@@ -31,12 +31,17 @@ class ExpenseCell: UITableViewCell {
             amountFormatter.locale = Locale.current
             amountFormatter.numberStyle = .currency
             
-            //amountLabel.text = amountFormatter.string(from: expense.amount as! NSDecimalNumber)
-            
-            accountLabel.text = expense.account.name
-            //accountBalanceLabel.text = amountFormatter.string(from: expense.amount*3)
-            
+            // amountLabel.text = amountFormatter.string(from: NSNumber.init(value: expense.amount))
+            amountLabel.text = expense.amount.asLocaleCurrency
+
             categoryLabel.text = expense.category.name
+            let categoryBalance = expense.amount*2.12
+            categoryBalanceLabel.text = categoryBalance.asLocaleCurrency
+
+            accountLabel.text = expense.account.name
+            let accountBalance = expense.amount*3.47
+            accountBalanceLabel.text = accountBalance.asLocaleCurrency
+            
         }
     }
 
@@ -51,4 +56,13 @@ class ExpenseCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+}
+
+extension Float {
+    var asLocaleCurrency:String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale.current
+        return formatter.string(from: NSNumber.init(value: self))!
+    }
 }
