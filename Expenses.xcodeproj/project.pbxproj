@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01FB82AB1FCADB1300DE1BA5 /* ExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FB82AA1FCADB1300DE1BA5 /* ExpensesViewController.swift */; };
+		01FB82AF1FCADEF800DE1BA5 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FB82AE1FCADEF800DE1BA5 /* ExpenseCell.swift */; };
 		852F27C51FCA2C0C006988A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27C41FCA2C0C006988A5 /* AppDelegate.swift */; };
 		852F27CA1FCA2C0C006988A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852F27C81FCA2C0C006988A5 /* Main.storyboard */; };
 		852F27CC1FCA2C0C006988A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 852F27CB1FCA2C0C006988A5 /* Assets.xcassets */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01FB82AA1FCADB1300DE1BA5 /* ExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewController.swift; sourceTree = "<group>"; };
+		01FB82AE1FCADEF800DE1BA5 /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		852F27C11FCA2C0C006988A5 /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		852F27C41FCA2C0C006988A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		852F27C91FCA2C0C006988A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 				852F27F41FCA312C006988A5 /* Category.swift */,
 				852F27F61FCA316E006988A5 /* Expense.swift */,
 				852F27F81FCA3184006988A5 /* Account.swift */,
+				01FB82AE1FCADEF800DE1BA5 /* ExpenseCell.swift */,
+				01FB82AA1FCADB1300DE1BA5 /* ExpensesViewController.swift */,
 			);
 			path = Expenses;
 			sourceTree = "<group>";
@@ -274,7 +280,9 @@
 				852F27C51FCA2C0C006988A5 /* AppDelegate.swift in Sources */,
 				852F27F51FCA312C006988A5 /* Category.swift in Sources */,
 				852F27F71FCA316E006988A5 /* Expense.swift in Sources */,
+				01FB82AF1FCADEF800DE1BA5 /* ExpenseCell.swift in Sources */,
 				852F27F91FCA3184006988A5 /* Account.swift in Sources */,
+				01FB82AB1FCADB1300DE1BA5 /* ExpensesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
