@@ -9,7 +9,9 @@
 import UIKit
 
 class ExpensesViewController: UITableViewController {
-    let expenses = SampleData.getExpenses()
+    let expenses = SampleData.getExpenses().sorted {
+        $0.date > $1.date
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return expenses.count

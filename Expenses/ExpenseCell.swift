@@ -20,8 +20,7 @@ class ExpenseCell: UITableViewCell {
     var expense: Expense? {
         didSet {
             guard let expense = expense else { return }
-            
-            dateLabel.text = expense.date.asLocaleDateString
+            dateLabel.text = expense.date.asLocaleDateTimeString
             amountLabel.text = expense.amount.asLocaleCurrency
             categoryLabel.text = expense.category.name
             let categoryBalance = expense.amount*2.12
