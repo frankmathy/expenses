@@ -55,6 +55,7 @@
 		852F27F41FCA312C006988A5 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		852F27F61FCA316E006988A5 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		852F27F81FCA3184006988A5 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		858029351FCA430800A7BCBA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +86,7 @@
 		852F27B81FCA2C0C006988A5 = {
 			isa = PBXGroup;
 			children = (
+				858029351FCA430800A7BCBA /* .gitignore */,
 				852F27C31FCA2C0C006988A5 /* Expenses */,
 				852F27D81FCA2C0C006988A5 /* ExpensesTests */,
 				852F27E31FCA2C0C006988A5 /* ExpensesUITests */,
