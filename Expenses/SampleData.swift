@@ -15,6 +15,7 @@ final class SampleData {
     let categoryBarber = Category(name: "Friseur")
     let categoryBakery = Category(name: "Bäcker")
     let categorySupermarket = Category(name: "Supermarkt")
+    let categoryFillingStation = Category(name: "Tankstelle")
 
     let accounts: [Account];
     var categories: [Category]
@@ -23,7 +24,7 @@ final class SampleData {
     
     init() {
         accounts = [accountHousehold, accountOther]
-        categories = [categorySupermarket, categoryBakery, categoryBarber]
+        categories = [categorySupermarket, categoryBakery, categoryBarber, categoryFillingStation]
         let today = Date()
         let calendar = Calendar(identifier: .gregorian)
         var dateComponents = DateComponents()
