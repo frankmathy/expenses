@@ -36,6 +36,15 @@ final class SampleData {
         let expenses = [
             Expense(date: yesterday!, category: categorySupermarket, account: accountHousehold, amount: 52.47, comment: "Essen Wochenende"),
             Expense(date: twoDaysAgo!, category: categoryBarber, account: accountOther, amount: 28.0, comment: "Basile Marvin"),
+            Expense(date: today, category: categoryBakery, account: accountOther, amount: 4.95, comment: "Bäcker Klein"),
+            Expense(date: yesterday!, category: categorySupermarket, account: accountHousehold, amount: 52.47, comment: "Essen Wochenende"),
+            Expense(date: twoDaysAgo!, category: categoryBarber, account: accountOther, amount: 28.0, comment: "Basile Marvin"),
+            Expense(date: today, category: categoryBakery, account: accountOther, amount: 4.95, comment: "Bäcker Klein"),
+            Expense(date: yesterday!, category: categorySupermarket, account: accountHousehold, amount: 52.47, comment: "Essen Wochenende"),
+            Expense(date: twoDaysAgo!, category: categoryBarber, account: accountOther, amount: 28.0, comment: "Basile Marvin"),
+            Expense(date: today, category: categoryBakery, account: accountOther, amount: 4.95, comment: "Bäcker Klein"),
+            Expense(date: yesterday!, category: categorySupermarket, account: accountHousehold, amount: 52.47, comment: "Essen Wochenende"),
+            Expense(date: twoDaysAgo!, category: categoryBarber, account: accountOther, amount: 28.0, comment: "Basile Marvin"),
             Expense(date: today, category: categoryBakery, account: accountOther, amount: 4.95, comment: "Bäcker Klein")
         ]
         return expenses

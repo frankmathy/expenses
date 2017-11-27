@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 class ExpensesViewController: UITableViewController {
     let expenses = SampleData.getExpenses().sorted {
@@ -24,6 +25,12 @@ class ExpensesViewController: UITableViewController {
         let expense = expenses[indexPath.row]
         expenseCell.expense = expense
         return expenseCell
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // os_log("Scrolled to %f", scrollView.contentOffset.y)
+        let firstVisibleIndexPath = self.tableView.indexPathsForVisibleRows?.first
+        print("First visible cell row=\(firstVisibleIndexPath?.row)")
     }
 
 }
