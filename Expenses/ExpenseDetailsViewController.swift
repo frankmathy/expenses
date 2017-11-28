@@ -30,6 +30,11 @@ class ExpenseDetailsViewController: UITableViewController {
         amountTextField.addTarget(self, action: #selector(amountTextFieldDidChange), for: .editingChanged)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        amountTextField.becomeFirstResponder()
+    }
+    
 
     
     @objc func amountTextFieldDidChange(_ textField: UITextField) {
