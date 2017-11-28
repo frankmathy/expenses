@@ -10,7 +10,7 @@ import UIKit
 import os.log
 
 class ExpensesViewController: UITableViewController {
-    let expenses = SampleData.getExpenses().sorted {
+    var expenses = SampleData.getExpenses().sorted {
         $0.date > $1.date
     }
     
@@ -33,4 +33,21 @@ class ExpensesViewController: UITableViewController {
         print("First visible cell row=\(firstVisibleIndexPath?.row)")
     }
 
+}
+
+extension ExpensesViewController {
+    @IBAction func cancelToExpensesViewController(_ segue: UIStoryboardSegue) {
+    }
+    
+    @IBAction func saveExpenseDetail(_ segue: UIStoryboardSegue) {
+        guard let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController,
+            let expense = expenseDetailsViewController.expense else {
+                return
+        }
+        
+        expenses.insert(expense, at: 0)
+        
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.insertRows(at: [indexPath], with: .automatic)
+    }
 }
