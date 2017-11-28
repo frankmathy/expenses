@@ -48,9 +48,16 @@ class ExpenseDetailsViewController: UITableViewController {
             gamePickerController.selectedGame = game
         }*/
     }
+    
 }
 
 extension ExpenseDetailsViewController {
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            amountTextField.becomeFirstResponder();
+        }
+    }
+
     @IBAction func unwindWithSelectedGame(segue: UIStoryboardSegue) {
 /*        if let gamePickerViewController = segue.source as? GamePickerViewController,
             let selectedGame = gamePickerViewController.selectedGame {

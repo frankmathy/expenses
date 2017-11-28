@@ -44,8 +44,8 @@ extension String {
         
         var number: NSNumber!
         let formatter = NumberFormatter()
-        formatter.numberStyle = .currencyAccounting
-        formatter.currencySymbol = Locale.current.currencySymbol!
+        formatter.numberStyle = .currency
+        formatter.currencySymbol = ""
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
         
@@ -63,6 +63,6 @@ extension String {
             return ""
         }
         
-        return formatter.string(from: number)!
+        return Locale.current.currencySymbol! + formatter.string(from: number)!.trimmingCharacters(in: .whitespaces)
     }
 }
