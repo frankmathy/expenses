@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExpenseDetailsViewController: UITableViewController {
+class ExpenseDetailsViewController: UIViewController {
     @IBOutlet weak var amountTextField: UITextField!
 
     var expense: Expense? {
@@ -57,12 +57,6 @@ class ExpenseDetailsViewController: UITableViewController {
 }
 
 extension ExpenseDetailsViewController {
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            amountTextField.becomeFirstResponder();
-        }
-    }
-
     @IBAction func unwindWithSelectedGame(segue: UIStoryboardSegue) {
 /*        if let gamePickerViewController = segue.source as? GamePickerViewController,
             let selectedGame = gamePickerViewController.selectedGame {
@@ -70,15 +64,3 @@ extension ExpenseDetailsViewController {
         } */
     }
 }
-
-extension ExpenseDetailsViewController {
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-/*        if indexPath.section == 0 {
-            nameTextField.becomeFirstResponder();
-        }*/
-    }
-}
-
-
-
-
