@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExpenseDetailsViewController: UIViewController, UITextFieldDelegate {
+class ExpenseDetailsViewController: UIViewController {
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var dateField: UITextField!
     
@@ -27,18 +27,10 @@ class ExpenseDetailsViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
-    /*
-     var game: String = "Chess" {
-     didSet {
-     detailLabel.text = game
-     }
-     }
-     */
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         amountTextField.addTarget(self, action: #selector(amountTextFieldDidChange), for: .editingChanged)
+        dateField.addTarget(self, action: #selector(dateFieldEditingDidBegin), for: .editingDidBegin)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,15 +55,7 @@ class ExpenseDetailsViewController: UIViewController, UITextFieldDelegate {
          }*/
     }
     
-    //MARK:- textFiled Delegate
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField === dateField {
-            self.pickUpDate(dateField)
-        }
-    }
-    
-    //MARK:- Function of datePicker
-    func pickUpDate(_ textField : UITextField){
+    @objc func dateFieldEditingDidBegin(_ textField : UITextField) {
         // DatePicker
         self.datePicker = UIDatePicker(frame:CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 216))
         if let date = expenseDate {
