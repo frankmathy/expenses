@@ -17,7 +17,7 @@ final class SampleData {
     static let categorySupermarket = Category(name: "Supermarkt")
     static let categoryFillingStation = Category(name: "Tankstelle")
     
-    static let projectNone = Project(name: "None")
+    static let projectNone = Project(name: "-")
     
     static func getAccounts() -> [Account] {
         return [accountHousehold, accountOther]
