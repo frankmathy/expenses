@@ -59,7 +59,7 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     @objc func amountTextFieldDidChange(_ textField: UITextField) {
         if let amountString = textField.text?.currencyInputFormatting() {
             textField.text = amountString
-            // TODO expense?.amount = 
+            expense?.amount = amountString.parseCurrencyValue()
         }
     }
     

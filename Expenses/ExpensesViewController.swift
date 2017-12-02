@@ -13,9 +13,7 @@ class ExpensesViewController: UITableViewController {
     
     var selectedExpense : Expense?
     
-    var expenses = SampleData.getExpenses().sorted {
-        $0.date > $1.date
-    }
+    var expenses = [Expense]()
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return expenses.count
