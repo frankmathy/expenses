@@ -210,16 +210,29 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="4GO-Ld-2Qg"/>
                     </view>
-                    <navigationItem key="navigationItem" id="WWf-iM-IZM"/>
+                    <navigationItem key="navigationItem" title="Edit Expense" id="WWf-iM-IZM">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="4da-bt-dZH">
+                            <connections>
+                                <segue destination="KSt-7m-aSt" kind="unwind" unwindAction="cancelToExpensesViewController:" id="yOi-PG-d3J"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="gjh-IE-Ihk">
+                            <connections>
+                                <segue destination="KSt-7m-aSt" kind="unwind" unwindAction="saveExpenseDetail:" id="GUx-Tj-Nrh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="accountField" destination="1Da-wv-mNo" id="TFl-GL-90E"/>
                         <outlet property="amountTextField" destination="sh1-au-K2P" id="SeP-CO-LjZ"/>
                         <outlet property="categoryField" destination="eah-G6-las" id="6lB-YW-qq4"/>
                         <outlet property="dateField" destination="tWg-Vi-XXy" id="Exp-AJ-zc4"/>
+                        <outlet property="navigationItem" destination="WWf-iM-IZM" id="K7X-0g-2S9"/>
                         <outlet property="projectField" destination="OHy-9y-7id" id="93w-ZG-TOP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UyG-7V-gMB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="KSt-7m-aSt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3517.5999999999999" y="124.58770614692655"/>
         </scene>

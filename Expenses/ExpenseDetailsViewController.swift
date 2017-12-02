@@ -20,51 +20,9 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     
     var editedTextField: UITextField?
     
-    var initialExpense : Expense?
+    var expense: Expense?
     
-    var expense: Expense? {
-        didSet {
-            if amountTextField != nil {
-                amountTextField.text = expense?.amount.asLocaleCurrency
-            }
-            expenseDate = expense?.date
-            category = expense?.category
-            account = expense?.account
-            project = expense?.project
-        }
-    }
-    
-    var expenseDate: Date? {
-        didSet {
-            if dateField != nil {
-                dateField.text = expenseDate?.asLocaleDateTimeString
-            }
-        }
-    }
-    
-    var category: Category? {
-        didSet {
-            if categoryField != nil {
-                categoryField.text = category?.name
-            }
-        }
-    }
-    
-    var account: Account? {
-        didSet {
-            if accountField != nil {
-                accountField.text = account?.name
-            }
-        }
-    }
-    
-    var project: Project? {
-        didSet {
-            if projectField != nil {
-                projectField.text = project?.name
-            }
-        }
-    }
+    var expenseIndexPath : IndexPath?
     
     let categories = SampleData.getCategories()
     
@@ -74,12 +32,23 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        expense = initialExpense
         amountTextField.addTarget(self, action: #selector(amountTextFieldDidChange), for: .editingChanged)
         dateField.addTarget(self, action: #selector(dateFieldEditingDidBegin), for: .editingDidBegin)
         categoryField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)
         accountField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)
         projectField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)
+
+        amountTextField.text = expense?.amount.asLocaleCurrency
+        dateField.text = expense?.date.asLocaleDateTimeString
+        categoryField.text = expense?.category.name
+        accountField.text = expense?.account.name
+        projectField.text = expense?.project.name
+        
+        if expenseIndexPath != nil {
+            navigationItem.title = "Edit Expense"
+        } else {
+            navigationItem.title = "Add Expense"
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -90,6 +59,7 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     @objc func amountTextFieldDidChange(_ textField: UITextField) {
         if let amountString = textField.text?.currencyInputFormatting() {
             textField.text = amountString
+            // TODO expense?.amount = 
         }
     }
     
@@ -107,7 +77,7 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     @objc func dateFieldEditingDidBegin(_ textField : UITextField) {
         // DatePicker
         self.datePicker = UIDatePicker(frame:CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 216))
-        if let date = expenseDate {
+        if let date = expense?.date {
             self.datePicker.date = date
         }
         self.datePicker.backgroundColor = UIColor.white
@@ -132,7 +102,8 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     }
     
     @objc func dateDoneClick() {
-        expenseDate = datePicker.date
+        expense?.date = datePicker.date
+        dateField.text = expense?.date.asLocaleDateTimeString
         dateField.resignFirstResponder()
     }
     
@@ -168,11 +139,14 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     @objc func pickerDoneClick() {
         let row = self.pickerView.selectedRow(inComponent: 0)
         if self.editedTextField === self.categoryField {
-            self.categoryField.text = categories[row].name
+            expense?.category = categories[row]
+            self.categoryField.text = expense?.category.name
         } else if self.editedTextField === self.accountField {
-            self.accountField.text = accounts[row].name
+            expense?.account = accounts[row]
+            self.accountField.text = expense?.account.name
         } else if self.editedTextField === self.projectField {
-            self.projectField.text = projects[row].name
+            expense?.project = projects[row]
+            self.projectField.text = expense?.project.name
         }
         self.editedTextField!.resignFirstResponder()
     }

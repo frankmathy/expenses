@@ -24,4 +24,8 @@ struct Expense {
         self.amount = amount
         self.comment = comment
     }
+    
+    init(byExpense expense: Expense) {
+        self.init(date: expense.date, category: expense.category, account: expense.account, project: expense.project, amount: expense.amount, comment: "")
+    }
 }

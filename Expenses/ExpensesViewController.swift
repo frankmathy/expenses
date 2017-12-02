@@ -41,12 +41,21 @@ class ExpensesViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AddExpense" {
+        if segue.destination is UINavigationController {
             let navigationController = segue.destination as! UINavigationController
-            let expenseDetailsViewController = navigationController.topViewController as! ExpenseDetailsViewController
-            let newExpense = Expense(date: Date(), category: SampleData.getCategories()[0], account: SampleData.getAccounts()[0], project: SampleData.getProjects()[0], amount: 0.0, comment: "Test")
-            expenseDetailsViewController.initialExpense = newExpense
-        } else if segue.identifier == "EditExpense" {
+            if navigationController.topViewController is ExpenseDetailsViewController {
+                let expenseDetailsViewController = navigationController.topViewController as! ExpenseDetailsViewController
+                if segue.identifier == "AddExpense" {
+                    let newExpense = Expense(date: Date(), category: SampleData.getCategories()[0], account: SampleData.getAccounts()[0], project: SampleData.getProjects()[0], amount: 0.0, comment: "Test")
+                    expenseDetailsViewController.expense = newExpense
+                    expenseDetailsViewController.expenseIndexPath = nil
+                } else if segue.identifier == "EditExpense" {
+                    if sender is IndexPath {
+                        expenseDetailsViewController.expenseIndexPath = (sender as! IndexPath)
+                        expenseDetailsViewController.expense = Expense(byExpense: self.expenses[(expenseDetailsViewController.expenseIndexPath?.row)!])
+                    }
+                }
+            }
         }
     }
 }
@@ -61,9 +70,12 @@ extension ExpensesViewController {
                 return
         }
         
-        expenses.insert(expense, at: 0)
-        
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
+        if(expenseDetailsViewController.expenseIndexPath != nil) {
+            self.expenses[(expenseDetailsViewController.expenseIndexPath?.row)!] = expenseDetailsViewController.expense!
+            tableView.reloadRows(at: [expenseDetailsViewController.expenseIndexPath!], with: UITableViewRowAnimation.automatic)
+        } else {
+            expenses.insert(expense, at: 0)
+            tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        }
     }
 }
