@@ -98,13 +98,14 @@
                     <navigationItem key="navigationItem" title="Expenses" id="8ep-K8-SIY">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xbu-vw-OZ1">
                             <connections>
-                                <segue destination="R7F-6Q-S4I" kind="presentation" id="wwc-5U-qXA"/>
+                                <segue destination="R7F-6Q-S4I" kind="presentation" identifier="AddExpense" id="wwc-5U-qXA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="3uE-Fl-kBt" id="nWm-o4-gQ2"/>
+                        <segue destination="R7F-6Q-S4I" kind="presentation" identifier="EditExpense" id="day-ig-YW8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5nj-nM-L6g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -259,4 +260,7 @@
             <point key="canvasLocation" x="2500" y="125"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="day-ig-YW8"/>
+    </inferredMetricsTieBreakers>
 </document>

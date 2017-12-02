@@ -20,9 +20,13 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     
     var editedTextField: UITextField?
     
+    var initialExpense : Expense?
+    
     var expense: Expense? {
         didSet {
-            amountTextField.text = expense?.amount.asLocaleCurrency
+            if amountTextField != nil {
+                amountTextField.text = expense?.amount.asLocaleCurrency
+            }
             expenseDate = expense?.date
             category = expense?.category
             account = expense?.account
@@ -32,25 +36,33 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     
     var expenseDate: Date? {
         didSet {
-            dateField.text = expenseDate?.asLocaleDateTimeString
+            if dateField != nil {
+                dateField.text = expenseDate?.asLocaleDateTimeString
+            }
         }
     }
     
     var category: Category? {
         didSet {
-            categoryField.text = category?.name
+            if categoryField != nil {
+                categoryField.text = category?.name
+            }
         }
     }
     
     var account: Account? {
         didSet {
-            accountField.text = account?.name
+            if accountField != nil {
+                accountField.text = account?.name
+            }
         }
     }
     
     var project: Project? {
         didSet {
-            projectField.text = project?.name
+            if projectField != nil {
+                projectField.text = project?.name
+            }
         }
     }
     
@@ -62,6 +74,7 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        expense = initialExpense
         amountTextField.addTarget(self, action: #selector(amountTextFieldDidChange), for: .editingChanged)
         dateField.addTarget(self, action: #selector(dateFieldEditingDidBegin), for: .editingDidBegin)
         categoryField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)

@@ -10,6 +10,9 @@ import UIKit
 import os.log
 
 class ExpensesViewController: UITableViewController {
+    
+    var selectedExpense : Expense?
+    
     var expenses = SampleData.getExpenses().sorted {
         $0.date > $1.date
     }
@@ -27,12 +30,25 @@ class ExpensesViewController: UITableViewController {
         return expenseCell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "EditExpense", sender: indexPath)
+    }
+    
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // os_log("Scrolled to %f", scrollView.contentOffset.y)
         let firstVisibleIndexPath = self.tableView.indexPathsForVisibleRows?.first
         print("First visible cell row=\(firstVisibleIndexPath?.row)")
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddExpense" {
+            let navigationController = segue.destination as! UINavigationController
+            let expenseDetailsViewController = navigationController.topViewController as! ExpenseDetailsViewController
+            let newExpense = Expense(date: Date(), category: SampleData.getCategories()[0], account: SampleData.getAccounts()[0], project: SampleData.getProjects()[0], amount: 0.0, comment: "Test")
+            expenseDetailsViewController.initialExpense = newExpense
+        } else if segue.identifier == "EditExpense" {
+        }
+    }
 }
 
 extension ExpensesViewController {
