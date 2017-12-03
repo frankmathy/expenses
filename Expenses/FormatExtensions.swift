@@ -37,6 +37,14 @@ extension Float {
         formatter.minimumFractionDigits = 2
         return formatter.string(from: NSNumber.init(value: self))!
     }
+    
+    func currencyInputFormatting() -> String {
+        // if first number is 0 or all numbers were deleted
+        guard self != 0 else {
+            return ""
+        }
+        return Locale.current.currencySymbol! + self.asLocaleCurrency.trimmingCharacters(in: .whitespaces)
+    }
 }
 
 extension String {
@@ -51,13 +59,6 @@ extension String {
     
     // formatting text for currency textField
     func currencyInputFormatting() -> String {
-        var value = self.parseCurrencyValue()
-        
-        // if first number is 0 or all numbers were deleted
-        guard value != 0 as Float else {
-            return ""
-        }
-        
-        return Locale.current.currencySymbol! + value.asLocaleCurrency.trimmingCharacters(in: .whitespaces)
+        return self.parseCurrencyValue().currencyInputFormatting()
     }
 }
