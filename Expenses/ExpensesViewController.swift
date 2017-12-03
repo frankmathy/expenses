@@ -39,21 +39,25 @@ class ExpensesViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is UINavigationController {
-            let navigationController = segue.destination as! UINavigationController
-            if navigationController.topViewController is ExpenseDetailsViewController {
-                let expenseDetailsViewController = navigationController.topViewController as! ExpenseDetailsViewController
-                if segue.identifier == "AddExpense" {
-                    let newExpense = Expense(date: Date(), category: SampleData.getCategories()[0], account: SampleData.getAccounts()[0], project: SampleData.getProjects()[0], amount: 0.0, comment: "Test")
-                    expenseDetailsViewController.expense = newExpense
-                    expenseDetailsViewController.expenseIndexPath = nil
-                } else if segue.identifier == "EditExpense" {
-                    if sender is IndexPath {
-                        expenseDetailsViewController.expenseIndexPath = (sender as! IndexPath)
-                        expenseDetailsViewController.expense = Expense(byExpense: self.expenses[(expenseDetailsViewController.expenseIndexPath?.row)!])
-                    }
-                }
+        super.prepare(for: segue, sender: sender)
+        switch segue.identifier ?? "" {
+        case "AddExpense":
+            os_log("Adding a new expense.", log: OSLog.default, type: .debug)
+        case "EditExpense":
+            guard let expsenseDetailsViewController = segue.destination as? ExpenseDetailsViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
             }
+            guard let selectedExpenseCell = sender as? ExpenseCell else {
+                fatalError("Unexpected sender: \(sender)")
+            }
+            guard let indexPath = tableView.indexPath(for: selectedExpenseCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            let selectedExpense = expenses[indexPath.row]
+            expsenseDetailsViewController.expense = selectedExpense
+
+        default:
+            fatalError("Unexpected Segue Identifier: \(segue.identifier)")
         }
     }
 }
@@ -63,17 +67,15 @@ extension ExpensesViewController {
     }
     
     @IBAction func saveExpenseDetail(_ segue: UIStoryboardSegue) {
-        guard let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController,
-            let expense = expenseDetailsViewController.expense else {
-                return
-        }
-        
-        if(expenseDetailsViewController.expenseIndexPath != nil) {
-            self.expenses[(expenseDetailsViewController.expenseIndexPath?.row)!] = expenseDetailsViewController.expense!
-            tableView.reloadRows(at: [expenseDetailsViewController.expenseIndexPath!], with: UITableViewRowAnimation.automatic)
-        } else {
-            expenses.insert(expense, at: 0)
-            tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                expenses[selectedIndexPath.row] = expense
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            } else {
+                let newIndexPath = IndexPath(row: 0, section: 0)
+                expenses.insert(expense, at: 0)
+                tableView.insertRows(at: [newIndexPath], with: UITableViewRowAnimation.automatic)
+            }
         }
     }
 }

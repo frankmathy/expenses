@@ -28,7 +28,6 @@ class ExpenseCell: UITableViewCell {
             accountLabel.text = expense.account.name
             let accountBalance = expense.amount*3.47
             accountBalanceLabel.text = accountBalance.asLocaleCurrency
-            
         }
     }
 

@@ -14,6 +14,8 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     @IBOutlet weak var categoryField: UITextField!
     @IBOutlet weak var accountField: UITextField!
     @IBOutlet weak var projectField: UITextField!
+    @IBOutlet weak var commentField: UITextField!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var datePicker : UIDatePicker!
     var pickerView : UIPickerView!
@@ -21,8 +23,6 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     var editedTextField: UITextField?
     
     var expense: Expense?
-    
-    var expenseIndexPath : IndexPath?
     
     let categories = SampleData.getCategories()
     
@@ -37,18 +37,21 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
         categoryField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)
         accountField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)
         projectField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)
-
-        amountTextField.text = expense?.amount.asLocaleCurrency
-        dateField.text = expense?.date.asLocaleDateTimeString
-        categoryField.text = expense?.category.name
-        accountField.text = expense?.account.name
-        projectField.text = expense?.project.name
         
-        if expenseIndexPath != nil {
+        if let expense = expense {
+            amountTextField.text = expense.amount.asLocaleCurrency
+            dateField.text = expense.date.asLocaleDateTimeString
+            categoryField.text = expense.category.name
+            accountField.text = expense.account.name
+            projectField.text = expense.project.name
+            commentField.text = expense.comment
             navigationItem.title = "Edit Expense"
         } else {
             navigationItem.title = "Add Expense"
+            expense = Expense(date: Date(), category: SampleData., account: , project: <#T##Project#>, amount: <#T##Float#>, comment: <#T##String#>)
         }
+        
+        updateSaveButtonState()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -182,6 +185,13 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
             return 0
         }
     }
+    
+    private func updateSaveButtonState() {
+        let amount = amountString.parseCurrencyValue()
+        let category = categoryField.text
+        saveButton.isEnabled = !text.isEmpty
+    }
+
 
 }
 
