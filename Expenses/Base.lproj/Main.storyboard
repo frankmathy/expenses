@@ -51,18 +51,6 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CategoryBalance" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCB-BO-Sbp">
-                                            <rect key="frame" x="223" y="35" width="118" height="18"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AccountBalance" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qoz-RU-hTh">
-                                            <rect key="frame" x="230" y="53" width="111" height="18"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="Zax-9X-e5I" secondAttribute="trailing" id="I1N-ro-qqG"/>
@@ -70,20 +58,14 @@
                                         <constraint firstItem="QwH-gC-0hd" firstAttribute="leading" secondItem="Wme-GW-NfO" secondAttribute="leading" id="NhH-eK-dYs"/>
                                         <constraint firstItem="cYB-OK-wqw" firstAttribute="leading" secondItem="Wme-GW-NfO" secondAttribute="leading" id="OTc-iF-pw9"/>
                                         <constraint firstItem="Wme-GW-NfO" firstAttribute="leading" secondItem="ElU-SO-ppS" secondAttribute="leadingMargin" id="PPS-yU-e4M"/>
-                                        <constraint firstItem="qoz-RU-hTh" firstAttribute="trailing" secondItem="aCB-BO-Sbp" secondAttribute="trailing" id="RFW-JM-y4Q"/>
                                         <constraint firstItem="Wme-GW-NfO" firstAttribute="top" secondItem="ElU-SO-ppS" secondAttribute="topMargin" id="ixl-I8-ZbG"/>
-                                        <constraint firstItem="Zax-9X-e5I" firstAttribute="trailing" secondItem="aCB-BO-Sbp" secondAttribute="trailing" id="qLa-hX-uMk"/>
-                                        <constraint firstItem="qoz-RU-hTh" firstAttribute="top" secondItem="QwH-gC-0hd" secondAttribute="top" id="qoy-m0-9hD"/>
                                         <constraint firstItem="QwH-gC-0hd" firstAttribute="top" secondItem="cYB-OK-wqw" secondAttribute="bottom" id="uKT-tg-sxq"/>
-                                        <constraint firstItem="aCB-BO-Sbp" firstAttribute="top" secondItem="cYB-OK-wqw" secondAttribute="top" id="y23-RF-Rx7"/>
                                         <constraint firstItem="Zax-9X-e5I" firstAttribute="top" secondItem="Wme-GW-NfO" secondAttribute="top" id="zIr-N0-6b1"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="accountBalanceLabel" destination="qoz-RU-hTh" id="jXN-JX-CUT"/>
                                     <outlet property="accountLabel" destination="QwH-gC-0hd" id="CpN-rU-eaq"/>
                                     <outlet property="amountLabel" destination="Zax-9X-e5I" id="0ts-0S-P05"/>
-                                    <outlet property="categoryBalanceLabel" destination="aCB-BO-Sbp" id="bsP-3j-rxL"/>
                                     <outlet property="categoryLabel" destination="cYB-OK-wqw" id="DqR-i7-0MT"/>
                                     <outlet property="dateLabel" destination="Wme-GW-NfO" id="e6x-IL-6Bn"/>
                                 </connections>

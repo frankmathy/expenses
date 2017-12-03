@@ -38,7 +38,7 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
         accountField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)
         projectField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)
 
-        amountTextField.text = expense?.amount.asLocaleCurrency
+        amountTextField.text = expense?.amount.currencyInputFormatting()
         dateField.text = expense?.date.asLocaleDateTimeString
         categoryField.text = expense?.category.name
         accountField.text = expense?.account.name

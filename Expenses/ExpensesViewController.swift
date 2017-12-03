@@ -15,6 +15,11 @@ class ExpensesViewController: UITableViewController {
     
     var expenses = [Expense]()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.leftBarButtonItem = editButtonItem
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return expenses.count
     }
