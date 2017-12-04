@@ -47,6 +47,14 @@ class ExpensesViewController: UITableViewController {
         expenseCell.commentLabel.text = expense.comment
         return expenseCell
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            expenses.remove(at: indexPath.row)
+            saveExpenses()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 
     /* To be used to show sum of costs up to date selected
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
