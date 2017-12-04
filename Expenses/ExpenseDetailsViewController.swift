@@ -43,7 +43,7 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
             navigationItem.title = "Edit Expense"
         } else {
             navigationItem.title = "Add Expense"
-            expense = Expense(date: Date(), category: SampleData.categorySupermarket!, account: SampleData.accountHousehold!, project: SampleData.projectNone!, amount: 0.0, comment: "")
+            expense = Expense(date: Date(), category: SampleData.categoryGroceries!, account: SampleData.accountHousehold!, project: SampleData.projectNone!, amount: 0.0, comment: "")
         }
         amountTextField.text = expense!.amount.currencyInputFormatting()
         dateField.text = expense!.date.asLocaleDateTimeString
