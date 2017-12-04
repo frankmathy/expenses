@@ -37,14 +37,15 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
         categoryField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)
         accountField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)
         projectField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)
-        
+        commentField.addTarget(self, action: #selector(commentTextFieldDidChange), for: .editingChanged)
+
         if let expense = expense {
             navigationItem.title = "Edit Expense"
         } else {
             navigationItem.title = "Add Expense"
-            expense = Expense(date: Date(), category: SampleData.categorySupermarket!, account: SampleData.accountHousehold, project: SampleData.projectNone, amount: 0.0, comment: "")
+            expense = Expense(date: Date(), category: SampleData.categorySupermarket!, account: SampleData.accountHousehold!, project: SampleData.projectNone!, amount: 0.0, comment: "")
         }
-        amountTextField.text = expense!.amount.asLocaleCurrency
+        amountTextField.text = expense!.amount.currencyInputFormatting()
         dateField.text = expense!.date.asLocaleDateTimeString
         categoryField.text = expense!.category.name
         accountField.text = expense!.account.name
@@ -75,6 +76,13 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
         if let amountString = textField.text?.currencyInputFormatting() {
             textField.text = amountString
             expense?.amount = amountString.parseCurrencyValue()
+            updateSaveButtonState()
+        }
+    }
+    
+    @objc func commentTextFieldDidChange(_ textField: UITextField) {
+        if let comment = textField.text {
+            expense?.comment = comment
             updateSaveButtonState()
         }
     }
@@ -195,13 +203,3 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
         saveButton.isEnabled = expense!.amount != 0.0 && expense?.category != nil && expense?.account != nil && expense?.project != nil
     }
 }
-
-extension ExpenseDetailsViewController {
-    @IBAction func unwindWithSelectedGame(segue: UIStoryboardSegue) {
-        /*        if let gamePickerViewController = segue.source as? GamePickerViewController,
-         let selectedGame = gamePickerViewController.selectedGame {
-         game = selectedGame
-         } */
-    }
-}
-

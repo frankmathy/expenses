@@ -15,9 +15,18 @@ class ExpensesViewController: UITableViewController {
     
     var expenses = [Expense]()
     
+    //MARK: Archiving Paths
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("expenses")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.leftBarButtonItem = editButtonItem
+        
+        if let savedExpenses = loadExpenses() {
+            expenses += savedExpenses
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,7 +40,7 @@ class ExpensesViewController: UITableViewController {
         }
         
         let expense = expenses[indexPath.row]
-        expenseCell.amountLabel.text = expense.amount.asLocaleCurrency
+        expenseCell.amountLabel.text = expense.amount.currencyInputFormatting()
         expenseCell.dateLabel.text = expense.date.asLocaleDateString
         expenseCell.categoryLabel.text = expense.category.name
         expenseCell.commentLabel.text = expense.comment
@@ -67,6 +76,19 @@ class ExpensesViewController: UITableViewController {
             fatalError("Unexpected Segue Identifier: \(segue.identifier)")
         }
     }
+    
+    private func saveExpenses() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(expenses, toFile: ExpensesViewController.ArchiveURL.path)
+        if isSuccessfulSave {
+            os_log("Expenses successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save expenses...", log: OSLog.default, type: .error)
+        }
+    }
+    
+    private func loadExpenses() -> [Expense]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: ExpensesViewController.ArchiveURL.path) as? [Expense]
+    }
 }
 
 extension ExpensesViewController {
@@ -83,6 +105,7 @@ extension ExpensesViewController {
                 expenses.insert(expense, at: 0)
                 tableView.insertRows(at: [newIndexPath], with: UITableViewRowAnimation.automatic)
             }
+            saveExpenses()
         }
     }
 }
