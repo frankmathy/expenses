@@ -229,6 +229,7 @@
                     <navigationItem key="navigationItem" title="Edit Expense" id="WWf-iM-IZM">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="4da-bt-dZH">
                             <connections>
+                                <action selector="cancel:" destination="zoB-6l-Zxn" id="OTX-If-vy7"/>
                                 <segue destination="KSt-7m-aSt" kind="unwind" unwindAction="cancelToExpensesViewController:" id="yOi-PG-d3J"/>
                             </connections>
                         </barButtonItem>

@@ -59,6 +59,18 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
         amountTextField.becomeFirstResponder()
     }
     
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        let isPresentingInAddExpenseMode = presentingViewController is UINavigationController
+        if isPresentingInAddExpenseMode {
+            dismiss(animated: true, completion: nil)
+        } else if let owningNavigationController = navigationController {
+            owningNavigationController.popViewController(animated: true)
+        } else {
+            fatalError("The MealViewController is not inside a navigation controller.")
+        }
+    }
+    
+    
     @objc func amountTextFieldDidChange(_ textField: UITextField) {
         if let amountString = textField.text?.currencyInputFormatting() {
             textField.text = amountString
