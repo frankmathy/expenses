@@ -26,10 +26,15 @@ class ExpensesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let expenseCell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCell", for: indexPath) as! ExpenseCell
+        guard let expenseCell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCell", for: indexPath) as? ExpenseCell else {
+            fatalError("The dequeued cell is not an instance of ExpenseCell.")
+        }
         
         let expense = expenses[indexPath.row]
-        expenseCell.expense = expense
+        expenseCell.amountLabel.text = expense.amount.asLocaleCurrency
+        expenseCell.dateLabel.text = expense.date.asLocaleDateString
+        expenseCell.categoryLabel.text = expense.category.name
+        expenseCell.commentLabel.text = expense.comment
         return expenseCell
     }
     

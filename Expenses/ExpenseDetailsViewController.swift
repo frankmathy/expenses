@@ -39,18 +39,18 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
         projectField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)
         
         if let expense = expense {
-            amountTextField.text = expense.amount.asLocaleCurrency
-            dateField.text = expense.date.asLocaleDateTimeString
-            categoryField.text = expense.category.name
-            accountField.text = expense.account.name
-            projectField.text = expense.project.name
-            commentField.text = expense.comment
             navigationItem.title = "Edit Expense"
         } else {
             navigationItem.title = "Add Expense"
-            expense = Expense(date: Date(), category: SampleData., account: , project: <#T##Project#>, amount: <#T##Float#>, comment: <#T##String#>)
+            expense = Expense(date: Date(), category: SampleData.categorySupermarket!, account: SampleData.accountHousehold, project: SampleData.projectNone, amount: 0.0, comment: "")
         }
-        
+        amountTextField.text = expense!.amount.asLocaleCurrency
+        dateField.text = expense!.date.asLocaleDateTimeString
+        categoryField.text = expense!.category.name
+        accountField.text = expense!.account.name
+        projectField.text = expense!.project.name
+        commentField.text = expense!.comment
+
         updateSaveButtonState()
     }
     
@@ -63,18 +63,8 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
         if let amountString = textField.text?.currencyInputFormatting() {
             textField.text = amountString
             expense?.amount = amountString.parseCurrencyValue()
+            updateSaveButtonState()
         }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /*        if segue.identifier == "SaveExpenseDetail",
-         let playerName = nameTextField.text {
-         player = Player(name: playerName, game: game, rating: 1)
-         }
-         if segue.identifier == "PickGame",
-         let gamePickerController = segue.destination as? GamePickerViewController {
-         gamePickerController.selectedGame = game
-         }*/
     }
     
     @objc func dateFieldEditingDidBegin(_ textField : UITextField) {
@@ -144,12 +134,15 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
         if self.editedTextField === self.categoryField {
             expense?.category = categories[row]
             self.categoryField.text = expense?.category.name
+            updateSaveButtonState()
         } else if self.editedTextField === self.accountField {
             expense?.account = accounts[row]
             self.accountField.text = expense?.account.name
+            updateSaveButtonState()
         } else if self.editedTextField === self.projectField {
             expense?.project = projects[row]
             self.projectField.text = expense?.project.name
+            updateSaveButtonState()
         }
         self.editedTextField!.resignFirstResponder()
     }
@@ -187,12 +180,8 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     }
     
     private func updateSaveButtonState() {
-        let amount = amountString.parseCurrencyValue()
-        let category = categoryField.text
-        saveButton.isEnabled = !text.isEmpty
+        saveButton.isEnabled = expense!.amount != 0.0 && expense?.category != nil && expense?.account != nil && expense?.project != nil
     }
-
-
 }
 
 extension ExpenseDetailsViewController {
