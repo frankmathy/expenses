@@ -27,6 +27,7 @@ class ExpensesViewController: UITableViewController {
         if let savedExpenses = loadExpenses() {
             expenses += savedExpenses
         }
+        sortExpenses()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,6 +90,12 @@ class ExpensesViewController: UITableViewController {
     private func loadExpenses() -> [Expense]? {
         return NSKeyedUnarchiver.unarchiveObject(withFile: ExpensesViewController.ArchiveURL.path) as? [Expense]
     }
+    
+    private func sortExpenses() {
+        expenses = expenses.sorted {
+            $0.date > $1.date
+        }
+    }
 }
 
 extension ExpensesViewController {
@@ -99,12 +106,14 @@ extension ExpensesViewController {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 expenses[selectedIndexPath.row] = expense
-                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+                // tableView.reloadRows(at: [selectedIndexPath], with: .none)
             } else {
                 let newIndexPath = IndexPath(row: 0, section: 0)
                 expenses.insert(expense, at: 0)
-                tableView.insertRows(at: [newIndexPath], with: UITableViewRowAnimation.automatic)
+                // tableView.insertRows(at: [newIndexPath], with: UITableViewRowAnimation.automatic)
             }
+            sortExpenses()
+            tableView.reloadData()
             saveExpenses()
         }
     }
