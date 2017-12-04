@@ -37,16 +37,13 @@ class ExpensesViewController: UITableViewController {
         expenseCell.commentLabel.text = expense.comment
         return expenseCell
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "EditExpense", sender: indexPath)
-    }
-    
+
+    /* To be used to show sum of costs up to date selected
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // os_log("Scrolled to %f", scrollView.contentOffset.y)
         let firstVisibleIndexPath = self.tableView.indexPathsForVisibleRows?.first
         print("First visible cell row=\(firstVisibleIndexPath?.row)")
-    }
+    } */
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
