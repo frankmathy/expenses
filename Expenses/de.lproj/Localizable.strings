@@ -1,0 +1,12 @@
+/* 
+  File.strings
+  Expenses
+
+  Created by Frank Mathy on 05.12.17.
+  Copyright © 2017 Frank Mathy. All rights reserved.
+*/
+
+"Edit Expense" = "Ausgabe ändern";
+"Add Expense" = "Ausgabe hinzufügen";
+"Done" = "Fertig";
+"Cancel" = "Abbrechen";

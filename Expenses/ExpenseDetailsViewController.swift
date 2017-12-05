@@ -39,10 +39,10 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
         projectField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)
         commentField.addTarget(self, action: #selector(commentTextFieldDidChange), for: .editingChanged)
 
-        if let expense = expense {
-            navigationItem.title = "Edit Expense"
+        if expense != nil {
+            navigationItem.title = NSLocalizedString("Edit Expense", comment: "")
         } else {
-            navigationItem.title = "Add Expense"
+            navigationItem.title = NSLocalizedString("Add Expense", comment: "")
             expense = Expense(date: Date(), category: SampleData.categoryGroceries!, account: SampleData.accountHousehold!, project: SampleData.projectNone!, amount: 0.0, comment: "")
         }
         amountTextField.text = expense!.amount.currencyInputFormatting()
@@ -106,9 +106,9 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
         toolBar.sizeToFit()
         
         // Adding Button ToolBar
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ExpenseDetailsViewController.dateDoneClick))
+        let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .plain, target: self, action: #selector(ExpenseDetailsViewController.dateDoneClick))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(ExpenseDetailsViewController.dateCancelClick))
+        let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(ExpenseDetailsViewController.dateCancelClick))
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
         textField.inputAccessoryView = toolBar
@@ -141,9 +141,9 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
         toolBar.sizeToFit()
         
         // Adding Button ToolBar
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ExpenseDetailsViewController.pickerDoneClick))
+        let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .plain, target: self, action: #selector(ExpenseDetailsViewController.pickerDoneClick))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(ExpenseDetailsViewController.pickerCancelClick))
+        let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(ExpenseDetailsViewController.pickerCancelClick))
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
         textField.inputAccessoryView = toolBar

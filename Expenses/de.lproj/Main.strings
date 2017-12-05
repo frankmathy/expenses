@@ -1,0 +1,57 @@
+
+/* Class = "UITextField"; placeholder = "Select Account"; ObjectID = "1Da-wv-mNo"; */
+"1Da-wv-mNo.placeholder" = "Konto wählen";
+
+/* Class = "UILabel"; text = "Category"; ObjectID = "1V5-2j-WlQ"; */
+"1V5-2j-WlQ.text" = "Kategorie";
+
+/* Class = "UINavigationItem"; title = "Expenses"; ObjectID = "8ep-K8-SIY"; */
+"8ep-K8-SIY.title" = "Ausgaben";
+
+/* Class = "UINavigationController"; title = "Expenses"; ObjectID = "BQT-fR-m3J"; */
+"BQT-fR-m3J.title" = "Ausgaben";
+
+/* Class = "UITableViewController"; title = "Expenses"; ObjectID = "Ccm-JH-a5y"; */
+"Ccm-JH-a5y.title" = "Ausgaben";
+
+/* Class = "UILabel"; text = "Project"; ObjectID = "F8u-9N-KzW"; */
+"F8u-9N-KzW.text" = "Projekt";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "JXd-G5-gWV"; */
+"JXd-G5-gWV.text" = "Beschreibung";
+
+/* Class = "UITextField"; placeholder = "Select Project"; ObjectID = "OHy-9y-7id"; */
+"OHy-9y-7id.placeholder" = "Projekt auswählen";
+
+/* Class = "UILabel"; text = "Comment"; ObjectID = "Rpv-El-io6"; */
+"Rpv-El-io6.text" = "Kommentar";
+
+/* Class = "UILabel"; text = "Account"; ObjectID = "UWj-4g-OF9"; */
+"UWj-4g-OF9.text" = "Konto";
+
+/* Class = "UINavigationItem"; title = "Edit Expense"; ObjectID = "WWf-iM-IZM"; */
+"WWf-iM-IZM.title" = "Ausgabe bearbeiten";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "Wme-GW-NfO"; */
+"Wme-GW-NfO.text" = "Datum";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "X9c-xg-6g8"; */
+"X9c-xg-6g8.text" = "Datum";
+
+/* Class = "UILabel"; text = "Amount"; ObjectID = "Zax-9X-e5I"; */
+"Zax-9X-e5I.text" = "Betrag";
+
+/* Class = "UILabel"; text = "Category"; ObjectID = "cYB-OK-wqw"; */
+"cYB-OK-wqw.text" = "Kategorie";
+
+/* Class = "UITextField"; placeholder = "Select Category"; ObjectID = "eah-G6-las"; */
+"eah-G6-las.placeholder" = "Kategorie wählen";
+
+/* Class = "UITextField"; placeholder = "Select Date"; ObjectID = "tWg-Vi-XXy"; */
+"tWg-Vi-XXy.placeholder" = "Datum wählen";
+
+/* Class = "UILabel"; text = "Amount"; ObjectID = "y7p-ZM-EwH"; */
+"y7p-ZM-EwH.text" = "Betrag";
+
+/* Class = "UIViewController"; title = "Expense Detail"; ObjectID = "zoB-6l-Zxn"; */
+"zoB-6l-Zxn.title" = "Ausgabendetail";
