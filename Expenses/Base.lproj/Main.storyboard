@@ -140,9 +140,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sh1-au-K2P">
-                                        <rect key="frame" x="0.0" y="28.5" width="150" height="45"/>
+                                        <rect key="frame" x="0.0" y="28.5" width="180" height="45"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="nLB-5I-i90"/>
+                                            <constraint firstAttribute="width" constant="180" id="nLB-5I-i90"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="34"/>
