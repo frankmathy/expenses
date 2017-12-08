@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import Firebase
 
 class ExpensesViewController: UITableViewController {
     
@@ -15,19 +16,29 @@ class ExpensesViewController: UITableViewController {
     
     var expenses = [Expense]()
     
-    //MARK: Archiving Paths
-    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("expenses")
-    
+    var user: User!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = editButtonItem
         
-        if let savedExpenses = loadExpenses() {
-            expenses += savedExpenses
-        }
-        sortExpenses()
+        user = User(uid: "FakeId", email: "hungry@person.food")
+        let expensesRef = getExpensesDatabaseReference()
+        expensesRef.queryOrdered(byChild: "date").observe(.value, with: { (snapshot) in
+            var newExpenses: [Expense] = []
+            for entry in snapshot.children {
+                let expense = Expense(snapshot: entry as! DataSnapshot)
+                newExpenses.append(expense)
+            }
+            self.expenses = newExpenses
+            self.sortExpenses()
+            self.tableView.reloadData()
+        })
+    }
+    
+    func getExpensesDatabaseReference() -> DatabaseReference {
+        return Database.database().reference(withPath: "expenses")
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,8 +61,10 @@ class ExpensesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let expense = expenses[indexPath.row]
+            let expensesRef = getExpensesDatabaseReference()
+            expensesRef.child(expense.key).removeValue()
             expenses.remove(at: indexPath.row)
-            saveExpenses()
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -85,20 +98,7 @@ class ExpensesViewController: UITableViewController {
             fatalError("Unexpected Segue Identifier: \(segue.identifier)")
         }
     }
-    
-    private func saveExpenses() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(expenses, toFile: ExpensesViewController.ArchiveURL.path)
-        if isSuccessfulSave {
-            os_log("Expenses successfully saved.", log: OSLog.default, type: .debug)
-        } else {
-            os_log("Failed to save expenses...", log: OSLog.default, type: .error)
-        }
-    }
-    
-    private func loadExpenses() -> [Expense]? {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: ExpensesViewController.ArchiveURL.path) as? [Expense]
-    }
-    
+
     private func sortExpenses() {
         expenses = expenses.sorted {
             $0.date > $1.date
@@ -112,17 +112,21 @@ extension ExpensesViewController {
     
     @IBAction func saveExpenseDetail(_ segue: UIStoryboardSegue) {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
+            let expensesRef = getExpensesDatabaseReference()
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                expense.key = expenses[selectedIndexPath.row].key
                 expenses[selectedIndexPath.row] = expense
-                // tableView.reloadRows(at: [selectedIndexPath], with: .none)
+                let oldExpenseRef = expensesRef.child(expense.key)
+                oldExpenseRef.setValue(expense.toAnyObject())
             } else {
                 let newIndexPath = IndexPath(row: 0, section: 0)
                 expenses.insert(expense, at: 0)
-                // tableView.insertRows(at: [newIndexPath], with: UITableViewRowAnimation.automatic)
+                let newExpenseRef = expensesRef.childByAutoId()
+                expense.key = newExpenseRef.key
+                newExpenseRef.setValue(expense.toAnyObject())
             }
             sortExpenses()
             tableView.reloadData()
-            saveExpenses()
         }
     }
 }

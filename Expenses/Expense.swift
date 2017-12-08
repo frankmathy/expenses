@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import Firebase
 import os.log
 
-class Expense: NSObject, NSCoding {
+class Expense {
+    var key: String
     var date: Date
     var category: Category
     var account: Account
@@ -19,6 +21,7 @@ class Expense: NSObject, NSCoding {
     
     //MARK: Types
     struct PropertyKey {
+        static let key = "key"
         static let date = "date"
         static let category = "category"
         static let account = "account"
@@ -28,6 +31,7 @@ class Expense: NSObject, NSCoding {
     }
     
     init(date: Date, category: Category, account: Account, project: Project, amount: Float, comment: String) {
+        self.key = ""
         self.date = date
         self.amount = amount
         self.category = category
@@ -36,27 +40,31 @@ class Expense: NSObject, NSCoding {
         self.comment = comment
     }
     
+    init(snapshot: DataSnapshot) {
+        self.key = snapshot.key
+        let snapshotValue = snapshot.value as! [String: AnyObject]
+        self.date = Date(timeIntervalSince1970: snapshotValue[PropertyKey.date] as! Double)
+        self.category = Category(name: snapshotValue[PropertyKey.category] as! String)!
+        self.account = Account(name: snapshotValue[PropertyKey.account] as! String)!
+        self.project = Project(name: snapshotValue[PropertyKey.project] as! String)!
+        self.amount = snapshotValue[PropertyKey.amount] as! Float
+        self.comment = snapshotValue[PropertyKey.comment] as! String
+    }
+    
     convenience init(byExpense expense: Expense) {
         self.init(date: expense.date, category: expense.category, account: expense.account, project: expense.project, amount: expense.amount, comment: "")
     }
     
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(date, forKey: PropertyKey.date)
-        aCoder.encode(amount, forKey: PropertyKey.amount)
-        aCoder.encode(category, forKey: PropertyKey.category)
-        aCoder.encode(account, forKey: PropertyKey.account)
-        aCoder.encode(project, forKey: PropertyKey.project)
-        aCoder.encode(comment, forKey: PropertyKey.comment)
-    }
-    
-    required convenience init?(coder aDecoder: NSCoder) {
-        let date = aDecoder.decodeObject(forKey: PropertyKey.date) as? Date
-        let amount = aDecoder.decodeFloat(forKey: PropertyKey.amount)
-        let category = aDecoder.decodeObject(forKey: PropertyKey.category) as? Category
-        let account = aDecoder.decodeObject(forKey: PropertyKey.account) as? Account
-        let project = aDecoder.decodeObject(forKey: PropertyKey.project) as? Project
-        let comment = aDecoder.decodeObject(forKey: PropertyKey.comment) as? String
-        self.init(date: date!, category: category!, account: account!, project: project!, amount: amount, comment: comment!)
+    func toAnyObject() -> Any {
+    return [
+            PropertyKey.date: date.timeIntervalSince1970,
+            PropertyKey.amount: amount,
+            PropertyKey.category: category.name,
+            PropertyKey.account: account.name,
+            PropertyKey.project: project.name,
+            PropertyKey.comment: comment
+        ]
     }
 
+    
 }
