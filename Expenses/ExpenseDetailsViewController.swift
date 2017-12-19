@@ -202,4 +202,38 @@ class ExpenseDetailsViewController: UITableViewController, UIPickerViewDataSourc
     private func updateSaveButtonState() {
         saveButton.isEnabled = expense!.amount != 0.0 && expense?.category != nil && expense?.account != nil && expense?.project != nil
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        switch segue.identifier ?? "" {
+        case "PickCategory":
+            guard let categoryTableViewController = segue.destination as? CategoryTableViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            categoryTableViewController.selectedValue = self.categoryField.text
+            categoryTableViewController.valueList = []
+            for category in categories {
+                categoryTableViewController.valueList?.append(category.name!)
+            }
+            
+        default:
+            // fatalError("Unexpected Segue Identifier: \(segue.identifier)")
+            return
+        }
+    }
+}
+
+extension ExpenseDetailsViewController {
+    @IBAction func unwindWithSelectedCategory(segue: UIStoryboardSegue) {
+        if let pickerViewController = segue.source as? CategoryTableViewController {
+            self.categoryField.text = pickerViewController.selectedValue
+            for category in categories {
+                if category.name == pickerViewController.selectedValue {
+                    expense?.category = category
+                    break
+                }
+            }
+            updateSaveButtonState()
+        }
+    }
 }
