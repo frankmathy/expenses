@@ -298,6 +298,9 @@
                                                 <constraint firstItem="Yvx-Uq-3Cb" firstAttribute="top" secondItem="QhH-Ng-bG3" secondAttribute="topMargin" id="oKc-uA-07p"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="y7m-p7-xs3" kind="show" identifier="PickAccount" id="3f8-2Q-nzp"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="HK3-NV-mtx" userLabel="Project Table View Cell">
                                         <rect key="frame" x="0.0" y="176" width="375" height="44"/>
@@ -338,6 +341,9 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="6m3-PH-obg" secondAttribute="trailing" id="wai-Cy-MUD"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="y7m-p7-xs3" kind="show" identifier="PickProject" id="Z2b-Kf-zn3"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="zNT-aN-oP7" userLabel="Remarks Table View Cell">
                                         <rect key="frame" x="0.0" y="220" width="375" height="44"/>
@@ -414,10 +420,10 @@
             </objects>
             <point key="canvasLocation" x="3415" y="125"/>
         </scene>
-        <!--Choose Category-->
+        <!--Named Item Picker View Controller-->
         <scene sceneID="K7J-fR-tYH">
             <objects>
-                <tableViewController title="Choose Category" id="y7m-p7-xs3" customClass="NamedItemPickerViewController" customModule="Expenses" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="y7m-p7-xs3" customClass="NamedItemPickerViewController" customModule="Expenses" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="QcW-mU-Grc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -501,6 +507,7 @@
         <image name="Remarks" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Z2b-Kf-zn3"/>
         <segue reference="jmC-oQ-GgU"/>
     </inferredMetricsTieBreakers>
 </document>

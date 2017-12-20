@@ -9,6 +9,7 @@
 import UIKit
 
 class ExpenseDetailsViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var dateField: UILabel!
     @IBOutlet weak var categoryField: UILabel!
@@ -16,6 +17,11 @@ class ExpenseDetailsViewController: UITableViewController, UIPickerViewDataSourc
     @IBOutlet weak var projectField: UILabel!
     @IBOutlet weak var commentField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    
+    // Types for picker controller
+    static let TYPE_CATEGORY = "category"
+    static let TYPE_ACCOUNT = "account"
+    static let TYPE_PROJECT = "project"
     
     var datePicker : UIDatePicker!
     var pickerView : UIPickerView!
@@ -207,11 +213,31 @@ class ExpenseDetailsViewController: UITableViewController, UIPickerViewDataSourc
         super.prepare(for: segue, sender: sender)
         switch segue.identifier ?? "" {
         case "PickCategory":
-            guard let categoryTableViewController = segue.destination as? NamedItemPickerViewController else {
+            guard let pickerController = segue.destination as? NamedItemPickerViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            categoryTableViewController.selectedValue = expense?.category
-            categoryTableViewController.valueList = categories
+            pickerController.title = "Category"
+            pickerController.itemType = ExpenseDetailsViewController.TYPE_CATEGORY
+            pickerController.selectedValue = expense?.category
+            pickerController.valueList = categories
+
+        case "PickAccount":
+            guard let pickerController = segue.destination as? NamedItemPickerViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            pickerController.title = "Account"
+            pickerController.itemType = ExpenseDetailsViewController.TYPE_ACCOUNT
+            pickerController.selectedValue = expense?.account
+            pickerController.valueList = accounts
+
+        case "PickProject":
+            guard let pickerController = segue.destination as? NamedItemPickerViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            pickerController.title = "Project"
+            pickerController.itemType = ExpenseDetailsViewController.TYPE_PROJECT
+            pickerController.selectedValue = expense?.project
+            pickerController.valueList = projects
             
         default:
             // fatalError("Unexpected Segue Identifier: \(segue.identifier)")
@@ -223,9 +249,19 @@ class ExpenseDetailsViewController: UITableViewController, UIPickerViewDataSourc
 extension ExpenseDetailsViewController {
     @IBAction func unwindWithSelectedCategory(segue: UIStoryboardSegue) {
         if let pickerViewController = segue.source as? NamedItemPickerViewController {
-            expense?.category = pickerViewController.selectedValue!
-            self.categoryField.text = expense?.category.name
-            updateSaveButtonState()
+            if pickerViewController.itemType == ExpenseDetailsViewController.TYPE_CATEGORY {
+                expense?.category = pickerViewController.selectedValue!
+                self.categoryField.text = expense?.category.name
+                updateSaveButtonState()
+            } else if pickerViewController.itemType == ExpenseDetailsViewController.TYPE_ACCOUNT {
+                expense?.account = pickerViewController.selectedValue!
+                self.accountField.text = expense?.account.name
+                updateSaveButtonState()
+            } else if pickerViewController.itemType == ExpenseDetailsViewController.TYPE_PROJECT {
+                expense?.project = pickerViewController.selectedValue!
+                self.projectField.text = expense?.project.name
+                updateSaveButtonState()
+            }
         }
     }
 }

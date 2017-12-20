@@ -10,6 +10,8 @@ import UIKit
 
 class NamedItemPickerViewController: UITableViewController {
     
+    var itemType : String?
+    
     var selectedCell : UITableViewCell?
     
     var valueList : [NamedItem]?
