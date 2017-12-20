@@ -6,7 +6,7 @@
 //  Copyright © 2017 Frank Mathy. All rights reserved.
 //
 
-class Category {
+class NamedItem {
     var name: String?
     
     init?(name: String) {

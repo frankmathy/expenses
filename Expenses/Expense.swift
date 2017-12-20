@@ -13,7 +13,7 @@ import os.log
 class Expense {
     var key: String
     var date: Date
-    var category: Category
+    var category: NamedItem
     var account: Account
     var project: Project
     var amount: Float
@@ -30,7 +30,7 @@ class Expense {
         static let comment = "comment"
     }
     
-    init(date: Date, category: Category, account: Account, project: Project, amount: Float, comment: String) {
+    init(date: Date, category: NamedItem, account: Account, project: Project, amount: Float, comment: String) {
         self.key = ""
         self.date = date
         self.amount = amount
@@ -44,7 +44,7 @@ class Expense {
         self.key = snapshot.key
         let snapshotValue = snapshot.value as! [String: AnyObject]
         self.date = Date(timeIntervalSince1970: snapshotValue[PropertyKey.date] as! Double)
-        self.category = Category(name: snapshotValue[PropertyKey.category] as! String)!
+        self.category = NamedItem(name: snapshotValue[PropertyKey.category] as! String)!
         self.account = Account(name: snapshotValue[PropertyKey.account] as! String)!
         self.project = Project(name: snapshotValue[PropertyKey.project] as! String)!
         self.amount = snapshotValue[PropertyKey.amount] as! Float

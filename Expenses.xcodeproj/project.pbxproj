@@ -23,7 +23,7 @@
 		852F27DA1FCA2C0C006988A5 /* ExpensesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27D91FCA2C0C006988A5 /* ExpensesTests.swift */; };
 		852F27E51FCA2C0C006988A5 /* ExpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27E41FCA2C0C006988A5 /* ExpensesUITests.swift */; };
 		852F27F31FCA30E8006988A5 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F21FCA30E8006988A5 /* SampleData.swift */; };
-		852F27F51FCA312C006988A5 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F41FCA312C006988A5 /* Category.swift */; };
+		852F27F51FCA312C006988A5 /* NamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F41FCA312C006988A5 /* NamedItem.swift */; };
 		852F27F71FCA316E006988A5 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* Expense.swift */; };
 		852F27F91FCA3184006988A5 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F81FCA3184006988A5 /* Account.swift */; };
 		859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859CEC951FCB20630028C9E7 /* FormatExtensions.swift */; };
@@ -78,7 +78,7 @@
 		852F27E41FCA2C0C006988A5 /* ExpensesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesUITests.swift; sourceTree = "<group>"; };
 		852F27E61FCA2C0C006988A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		852F27F21FCA30E8006988A5 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
-		852F27F41FCA312C006988A5 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		852F27F41FCA312C006988A5 /* NamedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItem.swift; sourceTree = "<group>"; };
 		852F27F61FCA316E006988A5 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		852F27F81FCA3184006988A5 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		858029351FCA430800A7BCBA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 				852F27CD1FCA2C0C006988A5 /* LaunchScreen.storyboard */,
 				852F27D01FCA2C0C006988A5 /* Info.plist */,
 				852F27F21FCA30E8006988A5 /* SampleData.swift */,
-				852F27F41FCA312C006988A5 /* Category.swift */,
+				852F27F41FCA312C006988A5 /* NamedItem.swift */,
 				852F27F61FCA316E006988A5 /* Expense.swift */,
 				852F27F81FCA3184006988A5 /* Account.swift */,
 				01051F211FCF01C00030FE2F /* Project.swift */,
@@ -517,7 +517,7 @@
 				852F27C51FCA2C0C006988A5 /* AppDelegate.swift in Sources */,
 				859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */,
 				01051F221FCF01C00030FE2F /* Project.swift in Sources */,
-				852F27F51FCA312C006988A5 /* Category.swift in Sources */,
+				852F27F51FCA312C006988A5 /* NamedItem.swift in Sources */,
 				852F27F71FCA316E006988A5 /* Expense.swift in Sources */,
 				01FB82AF1FCADEF800DE1BA5 /* ExpenseCell.swift in Sources */,
 				852F27F91FCA3184006988A5 /* Account.swift in Sources */,

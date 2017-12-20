@@ -12,17 +12,17 @@ final class SampleData {
     static let accountHousehold = Account(name: "Haushalt")
     static let accountOther = Account(name: "Restbudget")
 
-    static let categoryCar = Category(name: "Auto")
-    static let categoryBakery = Category(name: "Bäcker")
-    static let categoryDrugstore = Category(name: "Drogerie")
-    static let categoryHobby = Category(name: "Freizeit/Hobby")
-    static let categoryBarber = Category(name: "Friseur")
-    static let categoryPresents = Category(name: "Geschenke")
-    static let categoryHealth = Category(name: "Gesundheit")
-    static let categoryClothes = Category(name: "Kleidung")
-    static let categoryGroceries = Category(name: "Lebensmittel")
-    static let categoryRestaurant = Category(name: "Restaurant")
-    static let categoryTransportation = Category(name: "Transport")
+    static let categoryCar = NamedItem(name: "Auto")
+    static let categoryBakery = NamedItem(name: "Bäcker")
+    static let categoryDrugstore = NamedItem(name: "Drogerie")
+    static let categoryHobby = NamedItem(name: "Freizeit/Hobby")
+    static let categoryBarber = NamedItem(name: "Friseur")
+    static let categoryPresents = NamedItem(name: "Geschenke")
+    static let categoryHealth = NamedItem(name: "Gesundheit")
+    static let categoryClothes = NamedItem(name: "Kleidung")
+    static let categoryGroceries = NamedItem(name: "Lebensmittel")
+    static let categoryRestaurant = NamedItem(name: "Restaurant")
+    static let categoryTransportation = NamedItem(name: "Transport")
 
     
     static let projectNone = Project(name: "-")
@@ -32,7 +32,7 @@ final class SampleData {
         return [accountHousehold!, accountOther!]
     }
     
-    static func getCategories() -> [Category] {
+    static func getCategories() -> [NamedItem] {
         return [categoryCar!,categoryBakery!,categoryDrugstore!,categoryHobby!,categoryBarber!,categoryPresents!,categoryHealth!,categoryClothes!,categoryGroceries!,categoryRestaurant!,categoryTransportation!]
     }
     
