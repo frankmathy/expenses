@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ExpenseDetailsViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     @IBOutlet weak var amountTextField: UITextField!
-    @IBOutlet weak var dateField: UITextField!
-    @IBOutlet weak var categoryField: UITextField!
-    @IBOutlet weak var accountField: UITextField!
-    @IBOutlet weak var projectField: UITextField!
+    @IBOutlet weak var dateField: UILabel!
+    @IBOutlet weak var categoryField: UILabel!
+    @IBOutlet weak var accountField: UILabel!
+    @IBOutlet weak var projectField: UILabel!
     @IBOutlet weak var commentField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
@@ -33,10 +33,10 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         amountTextField.addTarget(self, action: #selector(amountTextFieldDidChange), for: .editingChanged)
-        dateField.addTarget(self, action: #selector(dateFieldEditingDidBegin), for: .editingDidBegin)
+/*        dateField.addTarget(self, action: #selector(dateFieldEditingDidBegin), for: .editingDidBegin)
         categoryField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)
         accountField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)
-        projectField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)
+        projectField.addTarget(self, action: #selector(pickerEditingDidBegin), for: .editingDidBegin)*/
         commentField.addTarget(self, action: #selector(commentTextFieldDidChange), for: .editingChanged)
 
         if expense != nil {
@@ -201,5 +201,39 @@ class ExpenseDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     
     private func updateSaveButtonState() {
         saveButton.isEnabled = expense!.amount != 0.0 && expense?.category != nil && expense?.account != nil && expense?.project != nil
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        switch segue.identifier ?? "" {
+        case "PickCategory":
+            guard let categoryTableViewController = segue.destination as? CategoryTableViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            categoryTableViewController.selectedValue = self.categoryField.text
+            categoryTableViewController.valueList = []
+            for category in categories {
+                categoryTableViewController.valueList?.append(category.name!)
+            }
+            
+        default:
+            // fatalError("Unexpected Segue Identifier: \(segue.identifier)")
+            return
+        }
+    }
+}
+
+extension ExpenseDetailsViewController {
+    @IBAction func unwindWithSelectedCategory(segue: UIStoryboardSegue) {
+        if let pickerViewController = segue.source as? CategoryTableViewController {
+            self.categoryField.text = pickerViewController.selectedValue
+            for category in categories {
+                if category.name == pickerViewController.selectedValue {
+                    expense?.category = category
+                    break
+                }
+            }
+            updateSaveButtonState()
+        }
     }
 }
