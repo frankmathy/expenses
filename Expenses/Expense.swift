@@ -14,8 +14,8 @@ class Expense {
     var key: String
     var date: Date
     var category: NamedItem
-    var account: Account
-    var project: Project
+    var account: NamedItem
+    var project: NamedItem
     var amount: Float
     var comment: String
     
@@ -30,7 +30,7 @@ class Expense {
         static let comment = "comment"
     }
     
-    init(date: Date, category: NamedItem, account: Account, project: Project, amount: Float, comment: String) {
+    init(date: Date, category: NamedItem, account: NamedItem, project: NamedItem, amount: Float, comment: String) {
         self.key = ""
         self.date = date
         self.amount = amount
@@ -45,8 +45,8 @@ class Expense {
         let snapshotValue = snapshot.value as! [String: AnyObject]
         self.date = Date(timeIntervalSince1970: snapshotValue[PropertyKey.date] as! Double)
         self.category = NamedItem(name: snapshotValue[PropertyKey.category] as! String)!
-        self.account = Account(name: snapshotValue[PropertyKey.account] as! String)!
-        self.project = Project(name: snapshotValue[PropertyKey.project] as! String)!
+        self.account = NamedItem(name: snapshotValue[PropertyKey.account] as! String)!
+        self.project = NamedItem(name: snapshotValue[PropertyKey.project] as! String)!
         self.amount = snapshotValue[PropertyKey.amount] as! Float
         self.comment = snapshotValue[PropertyKey.comment] as! String
     }

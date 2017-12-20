@@ -207,7 +207,7 @@ class ExpenseDetailsViewController: UITableViewController, UIPickerViewDataSourc
         super.prepare(for: segue, sender: sender)
         switch segue.identifier ?? "" {
         case "PickCategory":
-            guard let categoryTableViewController = segue.destination as? CategoryTableViewController else {
+            guard let categoryTableViewController = segue.destination as? NamedItemPickerViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             categoryTableViewController.selectedValue = self.categoryField.text
@@ -225,7 +225,7 @@ class ExpenseDetailsViewController: UITableViewController, UIPickerViewDataSourc
 
 extension ExpenseDetailsViewController {
     @IBAction func unwindWithSelectedCategory(segue: UIStoryboardSegue) {
-        if let pickerViewController = segue.source as? CategoryTableViewController {
+        if let pickerViewController = segue.source as? NamedItemPickerViewController {
             self.categoryField.text = pickerViewController.selectedValue
             for category in categories {
                 if category.name == pickerViewController.selectedValue {

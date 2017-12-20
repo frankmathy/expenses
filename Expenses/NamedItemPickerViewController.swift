@@ -1,5 +1,5 @@
 //
-//  CategoryTableViewController.swift
+//  NamedItemPickerViewController.swift
 //  Expenses
 //
 //  Created by Frank Mathy on 19.12.17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryTableViewController: UITableViewController {
+class NamedItemPickerViewController: UITableViewController {
     
     var selectedCell : UITableViewCell?
     

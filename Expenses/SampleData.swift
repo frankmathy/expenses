@@ -9,8 +9,8 @@
 import Foundation
 
 final class SampleData {
-    static let accountHousehold = Account(name: "Haushalt")
-    static let accountOther = Account(name: "Restbudget")
+    static let accountHousehold = NamedItem(name: "Haushalt")
+    static let accountOther = NamedItem(name: "Restbudget")
 
     static let categoryCar = NamedItem(name: "Auto")
     static let categoryBakery = NamedItem(name: "Bäcker")
@@ -25,10 +25,10 @@ final class SampleData {
     static let categoryTransportation = NamedItem(name: "Transport")
 
     
-    static let projectNone = Project(name: "-")
-    static let projectUrlaub = Project(name: "Urlaub")
+    static let projectNone = NamedItem(name: "-")
+    static let projectUrlaub = NamedItem(name: "Urlaub")
     
-    static func getAccounts() -> [Account] {
+    static func getAccounts() -> [NamedItem] {
         return [accountHousehold!, accountOther!]
     }
     
@@ -36,7 +36,7 @@ final class SampleData {
         return [categoryCar!,categoryBakery!,categoryDrugstore!,categoryHobby!,categoryBarber!,categoryPresents!,categoryHealth!,categoryClothes!,categoryGroceries!,categoryRestaurant!,categoryTransportation!]
     }
     
-    static func getProjects() -> [Project] {
+    static func getProjects() -> [NamedItem] {
         return [projectNone!, projectUrlaub!]
     }
 
