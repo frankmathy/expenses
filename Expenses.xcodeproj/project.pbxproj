@@ -25,6 +25,7 @@
 		852F27F51FCA312C006988A5 /* NamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F41FCA312C006988A5 /* NamedItem.swift */; };
 		852F27F71FCA316E006988A5 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* Expense.swift */; };
 		859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859CEC951FCB20630028C9E7 /* FormatExtensions.swift */; };
+		85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */; };
 		85CA6A801FD9CAF90047B344 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CA6A7F1FD9CAF90047B344 /* User.swift */; };
 		85F7C8AF1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7C8AE1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift */; };
 		FE2F1F0FB7849C919DBFB021 /* Pods_ExpensesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10570977BC269284A71C4DA3 /* Pods_ExpensesUITests.framework */; };
@@ -79,6 +80,7 @@
 		852F27F61FCA316E006988A5 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		858029351FCA430800A7BCBA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		859CEC951FCB20630028C9E7 /* FormatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatExtensions.swift; sourceTree = "<group>"; };
+		85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerViewController.swift; sourceTree = "<group>"; };
 		85CA6A7F1FD9CAF90047B344 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		85F7C8AE1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItemPickerViewController.swift; sourceTree = "<group>"; };
 		92C4A0BB66FBDA14DE298997 /* Pods_Expenses.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Expenses.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +161,7 @@
 				01BAF5F21FD8A1AD002E892A /* GoogleService-Info.plist */,
 				85CA6A7F1FD9CAF90047B344 /* User.swift */,
 				85F7C8AE1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift */,
+				85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */,
 			);
 			path = Expenses;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */,
 				852F27F51FCA312C006988A5 /* NamedItem.swift in Sources */,
 				852F27F71FCA316E006988A5 /* Expense.swift in Sources */,
+				85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */,
 				01FB82AF1FCADEF800DE1BA5 /* ExpenseCell.swift in Sources */,
 				01FB82AB1FCADB1300DE1BA5 /* ExpensesViewController.swift in Sources */,
 				01FB82B11FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift in Sources */,

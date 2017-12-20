@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -215,6 +216,10 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="93x-4L-Fg3" secondAttribute="bottom" id="vQZ-ng-tDg"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration" label="Date"/>
+                                        <connections>
+                                            <segue destination="8PS-Ws-kX2" kind="show" identifier="PickDate" id="bwb-6h-3XK"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="s9S-PA-wrp" userLabel="Category Table View Cell">
                                         <rect key="frame" x="0.0" y="88" width="375" height="44"/>
@@ -420,6 +425,52 @@
             </objects>
             <point key="canvasLocation" x="3415" y="125"/>
         </scene>
+        <!--Date-->
+        <scene sceneID="w8k-GJ-jG5">
+            <objects>
+                <viewController title="Date" id="8PS-Ws-kX2" customClass="DateTimePickerViewController" customModule="Expenses" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e7m-5D-zq3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fgC-0M-HUd">
+                                <rect key="frame" x="0.0" y="116" width="375" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="535503156.65587598">
+                                    <!--2017-12-20 22:52:36 +0000-->
+                                </date>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGn-dj-7Cu">
+                                <rect key="frame" x="30" y="340" width="315" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <segue destination="RNc-fE-fqc" kind="unwind" identifier="SaveDate" unwindAction="unwindWithSelectedDateWithSegue:" id="33b-hu-MwE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fgC-0M-HUd" firstAttribute="leading" secondItem="G8F-gQ-1PG" secondAttribute="leading" id="76g-xN-bzA"/>
+                            <constraint firstItem="fgC-0M-HUd" firstAttribute="top" secondItem="G8F-gQ-1PG" secondAttribute="top" id="K1B-r9-sDB"/>
+                            <constraint firstItem="fgC-0M-HUd" firstAttribute="trailing" secondItem="G8F-gQ-1PG" secondAttribute="trailing" id="MBo-sF-urc"/>
+                            <constraint firstItem="fgC-0M-HUd" firstAttribute="top" secondItem="G8F-gQ-1PG" secondAttribute="top" id="dkl-iH-KpB"/>
+                            <constraint firstItem="fgC-0M-HUd" firstAttribute="trailing" secondItem="G8F-gQ-1PG" secondAttribute="trailing" id="jbW-M6-zaM"/>
+                            <constraint firstItem="XGn-dj-7Cu" firstAttribute="top" secondItem="fgC-0M-HUd" secondAttribute="bottom" constant="8" id="nfb-kR-fBS"/>
+                            <constraint firstItem="G8F-gQ-1PG" firstAttribute="trailing" secondItem="XGn-dj-7Cu" secondAttribute="trailing" constant="30" id="pKz-Aw-GRZ"/>
+                            <constraint firstItem="XGn-dj-7Cu" firstAttribute="leading" secondItem="G8F-gQ-1PG" secondAttribute="leading" constant="30" id="rj2-K1-ESw"/>
+                            <constraint firstItem="fgC-0M-HUd" firstAttribute="leading" secondItem="G8F-gQ-1PG" secondAttribute="leading" id="zvS-DH-yFF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="G8F-gQ-1PG"/>
+                    </view>
+                    <connections>
+                        <outlet property="datePicker" destination="fgC-0M-HUd" id="tEN-o9-vUf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BSh-Q4-nXP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="RNc-fE-fqc" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4489" y="-584"/>
+        </scene>
         <!--Named Item Picker View Controller-->
         <scene sceneID="K7J-fR-tYH">
             <objects>
@@ -507,7 +558,7 @@
         <image name="Remarks" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Z2b-Kf-zn3"/>
+        <segue reference="NS6-py-hTY"/>
         <segue reference="jmC-oQ-GgU"/>
     </inferredMetricsTieBreakers>
 </document>
