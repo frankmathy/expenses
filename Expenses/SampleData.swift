@@ -29,15 +29,15 @@ final class SampleData {
     static let projectUrlaub = NamedItem(name: "Urlaub")
     
     static func getAccounts() -> [NamedItem] {
-        return [accountHousehold!, accountOther!]
+        return [accountHousehold, accountOther]
     }
     
     static func getCategories() -> [NamedItem] {
-        return [categoryCar!,categoryBakery!,categoryDrugstore!,categoryHobby!,categoryBarber!,categoryPresents!,categoryHealth!,categoryClothes!,categoryGroceries!,categoryRestaurant!,categoryTransportation!]
+        return [categoryCar,categoryBakery,categoryDrugstore,categoryHobby,categoryBarber,categoryPresents,categoryHealth,categoryClothes,categoryGroceries,categoryRestaurant,categoryTransportation]
     }
     
     static func getProjects() -> [NamedItem] {
-        return [projectNone!, projectUrlaub!]
+        return [projectNone, projectUrlaub]
     }
 
     static func getExpenses() -> [Expense] {
@@ -49,12 +49,12 @@ final class SampleData {
         dateComponents.day = -2
         let twoDaysAgo = calendar.date(byAdding: dateComponents, to: today)
         let expenses = [
-            Expense(date: yesterday!, category: categoryGroceries!, account: accountHousehold!, project: projectNone!, amount: 52.47, comment: "Essen Wochenende"),
-            Expense(date: twoDaysAgo!, category: categoryBarber!, account: accountOther!, project: projectNone!, amount: 28.0, comment: "Basile Marvin"),
-            Expense(date: today, category: categoryBakery!, account: accountOther!, project: projectNone!, amount: 4.95, comment: "Bäcker Klein"),
-            Expense(date: yesterday!, category: categoryGroceries!, account: accountHousehold!, project: projectNone!, amount: 52.47, comment: "Essen Wochenende"),
-            Expense(date: twoDaysAgo!, category: categoryBarber!, account: accountOther!, project: projectNone!, amount: 28.0, comment: "Basile Marvin"),
-            Expense(date: today, category: categoryBakery!, account: accountOther!, project: projectNone!, amount: 4.95, comment: "Bäcker Klein"),
+            Expense(date: yesterday!, category: categoryGroceries, account: accountHousehold, project: projectNone, amount: 52.47, comment: "Essen Wochenende"),
+            Expense(date: twoDaysAgo!, category: categoryBarber, account: accountOther, project: projectNone, amount: 28.0, comment: "Basile Marvin"),
+            Expense(date: today, category: categoryBakery, account: accountOther, project: projectNone, amount: 4.95, comment: "Bäcker Klein"),
+            Expense(date: yesterday!, category: categoryGroceries, account: accountHousehold, project: projectNone, amount: 52.47, comment: "Essen Wochenende"),
+            Expense(date: twoDaysAgo!, category: categoryBarber, account: accountOther, project: projectNone, amount: 28.0, comment: "Basile Marvin"),
+            Expense(date: today, category: categoryBakery, account: accountOther, project: projectNone, amount: 4.95, comment: "Bäcker Klein"),
         ]
         return expenses
     }

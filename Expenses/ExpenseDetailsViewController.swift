@@ -43,7 +43,7 @@ class ExpenseDetailsViewController: UITableViewController, UIPickerViewDataSourc
             navigationItem.title = NSLocalizedString("Edit Expense", comment: "")
         } else {
             navigationItem.title = NSLocalizedString("Add Expense", comment: "")
-            expense = Expense(date: Date(), category: SampleData.categoryGroceries!, account: SampleData.accountHousehold!, project: SampleData.projectNone!, amount: 0.0, comment: "")
+            expense = Expense(date: Date(), category: SampleData.categoryGroceries, account: SampleData.accountHousehold, project: SampleData.projectNone, amount: 0.0, comment: "")
         }
         amountTextField.text = expense!.amount.currencyInputFormatting()
         dateField.text = expense!.date.asLocaleDateTimeString
@@ -210,11 +210,8 @@ class ExpenseDetailsViewController: UITableViewController, UIPickerViewDataSourc
             guard let categoryTableViewController = segue.destination as? NamedItemPickerViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            categoryTableViewController.selectedValue = self.categoryField.text
-            categoryTableViewController.valueList = []
-            for category in categories {
-                categoryTableViewController.valueList?.append(category.name!)
-            }
+            categoryTableViewController.selectedValue = expense?.category
+            categoryTableViewController.valueList = categories
             
         default:
             // fatalError("Unexpected Segue Identifier: \(segue.identifier)")
@@ -226,13 +223,8 @@ class ExpenseDetailsViewController: UITableViewController, UIPickerViewDataSourc
 extension ExpenseDetailsViewController {
     @IBAction func unwindWithSelectedCategory(segue: UIStoryboardSegue) {
         if let pickerViewController = segue.source as? NamedItemPickerViewController {
-            self.categoryField.text = pickerViewController.selectedValue
-            for category in categories {
-                if category.name == pickerViewController.selectedValue {
-                    expense?.category = category
-                    break
-                }
-            }
+            expense?.category = pickerViewController.selectedValue!
+            self.categoryField.text = expense?.category.name
             updateSaveButtonState()
         }
     }

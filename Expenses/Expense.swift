@@ -44,9 +44,9 @@ class Expense {
         self.key = snapshot.key
         let snapshotValue = snapshot.value as! [String: AnyObject]
         self.date = Date(timeIntervalSince1970: snapshotValue[PropertyKey.date] as! Double)
-        self.category = NamedItem(name: snapshotValue[PropertyKey.category] as! String)!
-        self.account = NamedItem(name: snapshotValue[PropertyKey.account] as! String)!
-        self.project = NamedItem(name: snapshotValue[PropertyKey.project] as! String)!
+        self.category = NamedItem(name: snapshotValue[PropertyKey.category] as! String)
+        self.account = NamedItem(name: snapshotValue[PropertyKey.account] as! String)
+        self.project = NamedItem(name: snapshotValue[PropertyKey.project] as! String)
         self.amount = snapshotValue[PropertyKey.amount] as! Float
         self.comment = snapshotValue[PropertyKey.comment] as! String
     }

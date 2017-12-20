@@ -12,9 +12,9 @@ class NamedItemPickerViewController: UITableViewController {
     
     var selectedCell : UITableViewCell?
     
-    var valueList : [String]?
+    var valueList : [NamedItem]?
     
-    var selectedValue : String?
+    var selectedValue : NamedItem?
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let values = valueList else {
@@ -31,9 +31,9 @@ class NamedItemPickerViewController: UITableViewController {
         }
         
         let value = values[indexPath.row]
-        cell.textLabel?.text = value
+        cell.textLabel?.text = value.name
         
-        if(value == selectedValue) {
+        if(value.name == selectedValue!.name) {
             cell.accessoryType = .checkmark
             selectedCell = cell
         } else {
@@ -45,9 +45,11 @@ class NamedItemPickerViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "SaveCategory",
-            let cell = sender as? UITableViewCell else {
+            let cell = sender as? UITableViewCell,
+            let indexPath = tableView.indexPath(for: cell) else {
                 return
         }
-        selectedValue = cell.textLabel?.text
+        
+        selectedValue = valueList![indexPath.row]
     }
 }

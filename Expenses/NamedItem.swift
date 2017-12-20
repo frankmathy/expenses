@@ -7,12 +7,9 @@
 //
 
 class NamedItem {
-    var name: String?
+    var name: String
     
-    init?(name: String) {
-        guard !name.isEmpty else {
-            return nil
-        }
+    init(name: String) {
         self.name = name
     }
 }
