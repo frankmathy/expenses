@@ -24,7 +24,7 @@ class NamedItemPickerViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NamedItemCell", for: indexPath)
 
         guard let values = valueList else {
             return cell
