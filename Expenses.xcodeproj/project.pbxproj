@@ -24,6 +24,7 @@
 		852F27F31FCA30E8006988A5 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F21FCA30E8006988A5 /* SampleData.swift */; };
 		852F27F51FCA312C006988A5 /* NamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F41FCA312C006988A5 /* NamedItem.swift */; };
 		852F27F71FCA316E006988A5 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* Expense.swift */; };
+		85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */; };
 		859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859CEC951FCB20630028C9E7 /* FormatExtensions.swift */; };
 		85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */; };
 		85CA6A801FD9CAF90047B344 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CA6A7F1FD9CAF90047B344 /* User.swift */; };
@@ -78,6 +79,7 @@
 		852F27F21FCA30E8006988A5 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		852F27F41FCA312C006988A5 /* NamedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItem.swift; sourceTree = "<group>"; };
 		852F27F61FCA316E006988A5 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseGroupCell.swift; sourceTree = "<group>"; };
 		858029351FCA430800A7BCBA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		859CEC951FCB20630028C9E7 /* FormatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatExtensions.swift; sourceTree = "<group>"; };
 		85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				852F27F41FCA312C006988A5 /* NamedItem.swift */,
 				852F27F61FCA316E006988A5 /* Expense.swift */,
 				01FB82AE1FCADEF800DE1BA5 /* ExpenseCell.swift */,
+				85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */,
 				01FB82AA1FCADB1300DE1BA5 /* ExpensesViewController.swift */,
 				01FB82B01FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift */,
 				01BAF5EE1FD753DC002E892A /* Localizable.strings */,
@@ -516,6 +519,7 @@
 				852F27F51FCA312C006988A5 /* NamedItem.swift in Sources */,
 				852F27F71FCA316E006988A5 /* Expense.swift in Sources */,
 				85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */,
+				85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */,
 				01FB82AF1FCADEF800DE1BA5 /* ExpenseCell.swift in Sources */,
 				01FB82AB1FCADB1300DE1BA5 /* ExpensesViewController.swift in Sources */,
 				01FB82B11FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift in Sources */,

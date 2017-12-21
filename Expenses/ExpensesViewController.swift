@@ -68,7 +68,11 @@ class ExpensesViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tableView.dequeueReusableCell(withIdentifier: "HeaderCell")
+    }
+    
     /* To be used to show sum of costs up to date selected
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // os_log("Scrolled to %f", scrollView.contentOffset.y)
