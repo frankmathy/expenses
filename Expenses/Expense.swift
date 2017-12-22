@@ -8,7 +8,6 @@
 
 import Foundation
 import Firebase
-import os.log
 
 class Expense {
     var key: String
@@ -64,7 +63,5 @@ class Expense {
             PropertyKey.project: project.name,
             PropertyKey.comment: comment
         ]
-    }
-
-    
+    }    
 }

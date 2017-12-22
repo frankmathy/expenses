@@ -24,6 +24,7 @@
 		852F27F51FCA312C006988A5 /* NamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F41FCA312C006988A5 /* NamedItem.swift */; };
 		852F27F71FCA316E006988A5 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* Expense.swift */; };
 		85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */; };
+		8576456C1FEDAA8C001F9051 /* NamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8576456B1FEDAA8C001F9051 /* NamedItemDAO.swift */; };
 		857AE6581FEC8A67006CEDC2 /* ExpenseByDateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857AE6571FEC8A67006CEDC2 /* ExpenseByDateModel.swift */; };
 		859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859CEC951FCB20630028C9E7 /* FormatExtensions.swift */; };
 		85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */; };
@@ -85,6 +86,7 @@
 		852F27F41FCA312C006988A5 /* NamedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItem.swift; sourceTree = "<group>"; };
 		852F27F61FCA316E006988A5 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseGroupCell.swift; sourceTree = "<group>"; };
+		8576456B1FEDAA8C001F9051 /* NamedItemDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItemDAO.swift; sourceTree = "<group>"; };
 		857AE6571FEC8A67006CEDC2 /* ExpenseByDateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseByDateModel.swift; sourceTree = "<group>"; };
 		858029351FCA430800A7BCBA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		859CEC951FCB20630028C9E7 /* FormatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatExtensions.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */,
 				857AE6571FEC8A67006CEDC2 /* ExpenseByDateModel.swift */,
 				85CCDAF21FED77EC00E8C7CB /* ExpenseDAO.swift */,
+				8576456B1FEDAA8C001F9051 /* NamedItemDAO.swift */,
 			);
 			path = Expenses;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				852F27C51FCA2C0C006988A5 /* AppDelegate.swift in Sources */,
 				859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */,
 				852F27F51FCA312C006988A5 /* NamedItem.swift in Sources */,
+				8576456C1FEDAA8C001F9051 /* NamedItemDAO.swift in Sources */,
 				852F27F71FCA316E006988A5 /* Expense.swift in Sources */,
 				85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */,
 				85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */,
