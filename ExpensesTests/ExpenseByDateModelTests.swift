@@ -51,12 +51,15 @@ class ExpenseByDateModelTests: XCTestCase {
         
         XCTAssertEqual(model.expensesCount(inSection: 0), 3)
         XCTAssertEqual(model.sectionDate(inSection: 0), Calendar.current.startOfDay(for: testData.today))
+        XCTAssertEqual(roundTo2Dps(value: model.totalAmount(inSection: 0)), 37.9)
         
         XCTAssertEqual(model.expensesCount(inSection: 1), 2)
         XCTAssertEqual(model.sectionDate(inSection: 1), Calendar.current.startOfDay(for: testData.yesterday))
+        XCTAssertEqual(roundTo2Dps(value: model.totalAmount(inSection: 1)), 104.94)
 
         XCTAssertEqual(model.expensesCount(inSection: 2), 1)
         XCTAssertEqual(model.sectionDate(inSection: 2), Calendar.current.startOfDay(for: testData.twoDaysAgo))
+        XCTAssertEqual(roundTo2Dps(value: model.totalAmount(inSection: 2)), 28.0)
     }
     
     func testClearModelRemovesAllEntries() {
@@ -64,6 +67,10 @@ class ExpenseByDateModelTests: XCTestCase {
         model.setExpenses(expenses: testData.expenses)
         model.removeAll()
         XCTAssertEqual(model.sectionCount(), 0)
+    }
+    
+    func roundTo2Dps(value : Float) -> Float {
+        return ((value*100.0).rounded()) / 100.0
     }
     
 
