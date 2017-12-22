@@ -10,34 +10,25 @@ import UIKit
 import os.log
 import Firebase
 
-class ExpensesViewController: UITableViewController {
+class ExpensesViewController: UITableViewController, ExpenseObserver {
     
     var selectedExpense : Expense?
     
     var expenseModel = ExpenseByDateModel()
     
-    var user: User!
-
+    var expenseDAO : ExpenseDAO?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.leftBarButtonItem = editButtonItem
-        
-        user = User(uid: "FakeId", email: "hungry@person.food")
-        let expensesRef = getExpensesDatabaseReference()
-        expensesRef.queryOrdered(byChild: "date").observe(.value, with: { (snapshot) in
-            var newExpenses: [Expense] = []
-            for entry in snapshot.children {
-                let expense = Expense(snapshot: entry as! DataSnapshot)
-                newExpenses.append(expense)
-            }
-            self.expenseModel.setExpenses(expenses: newExpenses)
-            self.tableView.reloadData()
-        })
+        expenseDAO = ExpenseDAO()
+        expenseDAO!.addObserver(observer: self)
+        expenseDAO?.observeExpenses()
     }
     
-    func getExpensesDatabaseReference() -> DatabaseReference {
-        return Database.database().reference(withPath: "expenses")
+    func expensesChanged(expenses: [Expense]) {
+        self.expenseModel.setExpenses(expenses: expenses)
+        self.tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,8 +54,7 @@ class ExpensesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let expense = expenseModel.expense(inSection: indexPath.section, row: indexPath.row)
-            let expensesRef = getExpensesDatabaseReference()
-            expensesRef.child(expense.key).removeValue()
+            expenseDAO!.removeExpense(expense: expense)
             expenseModel.removeExpense(inSection: indexPath.section, row: indexPath.row)
             tableView.reloadData()
         }
@@ -117,22 +107,17 @@ extension ExpensesViewController {
     
     @IBAction func saveExpenseDetail(_ segue: UIStoryboardSegue) {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
-            let expensesRef = getExpensesDatabaseReference()
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update of expense
                 let oldExpense = expenseModel.expense(inSection: selectedIndexPath.section, row: selectedIndexPath.row)
                 expense.key = oldExpense.key
                 expenseModel.removeExpense(inSection: selectedIndexPath.section, row: selectedIndexPath.row)
                 expenseModel.addExpense(expense: expense)
-                let oldExpenseRef = expensesRef.child(expense.key)
-                oldExpenseRef.setValue(expense.toAnyObject())
+                expenseDAO!.updateExpense(expense: expense)
             } else {
                 // New expense
-                let newIndexPath = IndexPath(row: 0, section: 0)
                 expenseModel.addExpense(expense: expense)
-                let newExpenseRef = expensesRef.childByAutoId()
-                expense.key = newExpenseRef.key
-                newExpenseRef.setValue(expense.toAnyObject())
+                expenseDAO!.addExpense(expense: expense)
             }
             tableView.reloadData()
         }
