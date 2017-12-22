@@ -13,6 +13,7 @@ target 'Expenses' do
   target 'ExpensesTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'Firebase'
   end
 
   target 'ExpensesUITests' do
