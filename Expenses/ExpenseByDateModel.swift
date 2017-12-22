@@ -32,12 +32,14 @@ class ExpenseByDateModel {
         let groupDate = dateWithoutTime(date: expense.date)
         if expensesAtDate[groupDate] == nil {
             expensesAtDate[groupDate] = [Expense]()
-            sortedExpenseDates = Array(expensesAtDate.keys).sorted().reversed()
+            sortedExpenseDates = Array(expensesAtDate.keys)
+            sortedExpenseDates.sort(by: >)
         }
         if totalsForDate[groupDate] == nil {
             totalsForDate[groupDate] = 0.0
         }
         expensesAtDate[groupDate]?.append(expense)
+        expensesAtDate[groupDate]?.sort { $0.date > $1.date }
         totalsForDate[groupDate] = totalsForDate[groupDate]! + expense.amount
         grandTotal = grandTotal + expense.amount
     }
