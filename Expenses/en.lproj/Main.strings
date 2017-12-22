@@ -1,69 +1,69 @@
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "1i7-Yj-kpq"; */
-"1i7-Yj-kpq.text" = "Titel";
+"1i7-Yj-kpq.text" = "Title";
 
 /* Class = "UILabel"; text = "Comment"; ObjectID = "1wD-j6-rD1"; */
-"1wD-j6-rD1.text" = "Anmerkung";
+"1wD-j6-rD1.text" = "Comment";
 
 /* Class = "UILabel"; text = "Home"; ObjectID = "6Zc-QQ-9u3"; */
 "6Zc-QQ-9u3.text" = "Home";
 
 /* Class = "UILabel"; text = "Amount"; ObjectID = "7oc-ZO-cvq"; */
-"7oc-ZO-cvq.text" = "Betrag";
+"7oc-ZO-cvq.text" = "Amount";
 
 /* Class = "UIViewController"; title = "Date"; ObjectID = "8PS-Ws-kX2"; */
-"8PS-Ws-kX2.title" = "Datum";
+"8PS-Ws-kX2.title" = "Date";
 
 /* Class = "UINavigationItem"; title = "Expenses"; ObjectID = "8ep-K8-SIY"; */
-"8ep-K8-SIY.title" = "Ausgaben";
+"8ep-K8-SIY.title" = "Expenses";
 
 /* Class = "UINavigationController"; title = "Expenses"; ObjectID = "BQT-fR-m3J"; */
-"BQT-fR-m3J.title" = "Ausgaben";
+"BQT-fR-m3J.title" = "Expenses";
 
 /* Class = "UITableViewController"; title = "Expenses"; ObjectID = "Ccm-JH-a5y"; */
-"Ccm-JH-a5y.title" = "Ausgaben";
+"Ccm-JH-a5y.title" = "Expenses";
 
 /* Class = "UILabel"; text = "Amount"; ObjectID = "Er5-dM-cOp"; */
-"Er5-dM-cOp.text" = "Betrag";
+"Er5-dM-cOp.text" = "Amount";
 
 /* Class = "UILabel"; text = "Category"; ObjectID = "F6T-zv-qJQ"; */
-"F6T-zv-qJQ.text" = "Kategorie";
+"F6T-zv-qJQ.text" = "Category";
 
 /* Class = "UILabel"; text = "Date"; ObjectID = "GqC-2c-FGo"; */
-"GqC-2c-FGo.text" = "Datum";
+"GqC-2c-FGo.text" = "Date";
 
 /* Class = "UILabel"; text = "Project"; ObjectID = "OBj-aq-Dsh"; */
-"OBj-aq-Dsh.text" = "Projekt";
+"OBj-aq-Dsh.text" = "Project";
 
 /* Class = "UILabel"; text = "Date"; ObjectID = "T7p-PX-PRF"; */
-"T7p-PX-PRF.text" = "Datum";
+"T7p-PX-PRF.text" = "Date";
 
 /* Class = "UIButton"; normalTitle = "Save"; ObjectID = "XGn-dj-7Cu"; */
-"XGn-dj-7Cu.normalTitle" = "Speichern";
+"XGn-dj-7Cu.normalTitle" = "Save";
 
 /* Class = "UILabel"; text = "Total"; ObjectID = "g44-fM-6p8"; */
-"g44-fM-6p8.text" = "Gesamt";
+"g44-fM-6p8.text" = "Total";
 
 /* Class = "UILabel"; text = "Account"; ObjectID = "iGK-cV-r8Y"; */
-"iGK-cV-r8Y.text" = "Konto";
+"iGK-cV-r8Y.text" = "Account";
 
 /* Class = "UILabel"; text = "Salary Account"; ObjectID = "iUo-lt-YbS"; */
-"iUo-lt-YbS.text" = "Gehaltskonto";
+"iUo-lt-YbS.text" = "Salary Account";
 
 /* Class = "UILabel"; text = "Home"; ObjectID = "kLT-Mo-xux"; */
-"kLT-Mo-xux.text" = "Zuhause";
+"kLT-Mo-xux.text" = "Home";
 
 /* Class = "UINavigationItem"; title = "Edit Expense"; ObjectID = "oK9-A8-lO2"; */
-"oK9-A8-lO2.title" = "Ausgabe ändern";
+"oK9-A8-lO2.title" = "Edit Expense";
 
 /* Class = "UILabel"; text = "31.12.2017"; ObjectID = "omh-Li-7ty"; */
 "omh-Li-7ty.text" = "31.12.2017";
 
 /* Class = "UILabel"; text = "Remarks"; ObjectID = "qJp-bi-T1X"; */
-"qJp-bi-T1X.text" = "Bemerkung";
+"qJp-bi-T1X.text" = "Remarks";
 
 /* Class = "UITableViewCell"; accessibilityLabel = "Date"; ObjectID = "uB5-NN-iGn"; */
-"uB5-NN-iGn.accessibilityLabel" = "Datum";
+"uB5-NN-iGn.accessibilityLabel" = "Date";
 
 /* Class = "UILabel"; text = "Category"; ObjectID = "vsP-3P-XX3"; */
-"vsP-3P-XX3.text" = "Kategorie";
+"vsP-3P-XX3.text" = "Category";
