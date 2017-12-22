@@ -13,6 +13,7 @@ class ExpenseByDateModel {
     var sortedExpenseDates = [Date]()
     var expensesAtDate = [Date: [Expense]]()
     var totalsForDate = [Date: Float]()
+    var grandTotal : Float = 0.0
     
     typealias PureDate = (day: Int, month: Int, year: Int)
     
@@ -38,6 +39,7 @@ class ExpenseByDateModel {
         }
         expensesAtDate[groupDate]?.append(expense)
         totalsForDate[groupDate] = totalsForDate[groupDate]! + expense.amount
+        grandTotal = grandTotal + expense.amount
     }
     
     func removeAll() {
@@ -71,6 +73,19 @@ class ExpenseByDateModel {
     
     func expense(inSection: Int, row: Int) -> Expense {
         return sectionExpenses(inSection: inSection)[row]
+    }
+    
+    func removeExpense(inSection: Int, row: Int) {
+        let date = sectionDate(inSection: inSection)
+        var expenses = expensesAtDate[date]!
+        totalsForDate[date] = totalsForDate[date]! - expenses[row].amount
+        grandTotal = grandTotal - expenses[row].amount
+        expenses.remove(at: row)
+        if expenses.count == 0 {
+            totalsForDate.removeValue(forKey: date)
+            expensesAtDate.removeValue(forKey: date)
+            sortedExpenseDates.remove(at: inSection)
+        }
     }
     
     func totalAmount(forDate: Date) -> Float {

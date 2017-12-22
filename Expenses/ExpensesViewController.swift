@@ -14,7 +14,7 @@ class ExpensesViewController: UITableViewController {
     
     var selectedExpense : Expense?
     
-    var expenses = [Expense]()
+    var expenseModel = ExpenseByDateModel()
     
     var user: User!
 
@@ -31,8 +31,7 @@ class ExpensesViewController: UITableViewController {
                 let expense = Expense(snapshot: entry as! DataSnapshot)
                 newExpenses.append(expense)
             }
-            self.expenses = newExpenses
-            self.sortExpenses()
+            self.expenseModel.setExpenses(expenses: newExpenses)
             self.tableView.reloadData()
         })
     }
@@ -42,7 +41,11 @@ class ExpensesViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return expenses.count
+        return expenseModel.expensesCount(inSection: section)
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return expenseModel.sectionCount()
     }
     
     override func tableView(_ tableView: UITableView,
@@ -50,10 +53,8 @@ class ExpensesViewController: UITableViewController {
         guard let expenseCell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCell", for: indexPath) as? ExpenseCell else {
             fatalError("The dequeued cell is not an instance of ExpenseCell.")
         }
-        
-        let expense = expenses[indexPath.row]
+        let expense = expenseModel.expense(inSection: indexPath.section, row: indexPath.row)
         expenseCell.amountLabel.text = expense.amount.currencyInputFormatting()
-        expenseCell.dateLabel.text = expense.date.asLocaleDateString
         expenseCell.categoryLabel.text = expense.category.name
         expenseCell.commentLabel.text = expense.comment
         return expenseCell
@@ -61,16 +62,22 @@ class ExpensesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let expense = expenses[indexPath.row]
+            let expense = expenseModel.expense(inSection: indexPath.section, row: indexPath.row)
             let expensesRef = getExpensesDatabaseReference()
             expensesRef.child(expense.key).removeValue()
-            expenses.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            expenseModel.removeExpense(inSection: indexPath.section, row: indexPath.row)
+            tableView.reloadData()
         }
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableCell(withIdentifier: "HeaderCell")
+        guard let headerCell: ExpenseGroupCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as? ExpenseGroupCell else {
+            fatalError("The queued cell is not an instance of ExpenseGroupCell")
+        }
+        headerCell.dateLabel.text = expenseModel.sectionDate(inSection: section).asLocaleWeekdayDateString
+        headerCell.totalAmountLabel.text = expenseModel.totalAmount(inSection: section).currencyInputFormatting()
+
+        return headerCell
     }
     
     /* To be used to show sum of costs up to date selected
@@ -95,17 +102,11 @@ class ExpensesViewController: UITableViewController {
             guard let indexPath = tableView.indexPath(for: selectedExpenseCell) else {
                 fatalError("The selected cell is not being displayed by the table")
             }
-            let selectedExpense = expenses[indexPath.row]
+            let selectedExpense = expenseModel.expense(inSection: indexPath.section, row: indexPath.row)
             expsenseDetailsViewController.expense = selectedExpense
 
         default:
             fatalError("Unexpected Segue Identifier: \(segue.identifier)")
-        }
-    }
-
-    private func sortExpenses() {
-        expenses = expenses.sorted {
-            $0.date > $1.date
         }
     }
 }
@@ -118,18 +119,21 @@ extension ExpensesViewController {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
             let expensesRef = getExpensesDatabaseReference()
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                expense.key = expenses[selectedIndexPath.row].key
-                expenses[selectedIndexPath.row] = expense
+                // Update of expense
+                let oldExpense = expenseModel.expense(inSection: selectedIndexPath.section, row: selectedIndexPath.row)
+                expense.key = oldExpense.key
+                expenseModel.removeExpense(inSection: selectedIndexPath.section, row: selectedIndexPath.row)
+                expenseModel.addExpense(expense: expense)
                 let oldExpenseRef = expensesRef.child(expense.key)
                 oldExpenseRef.setValue(expense.toAnyObject())
             } else {
+                // New expense
                 let newIndexPath = IndexPath(row: 0, section: 0)
-                expenses.insert(expense, at: 0)
+                expenseModel.addExpense(expense: expense)
                 let newExpenseRef = expensesRef.childByAutoId()
                 expense.key = newExpenseRef.key
                 newExpenseRef.setValue(expense.toAnyObject())
             }
-            sortExpenses()
             tableView.reloadData()
         }
     }

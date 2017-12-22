@@ -60,6 +60,25 @@ class ExpenseByDateModelTests: XCTestCase {
         XCTAssertEqual(model.expensesCount(inSection: 2), 1)
         XCTAssertEqual(model.sectionDate(inSection: 2), Calendar.current.startOfDay(for: testData.twoDaysAgo))
         XCTAssertEqual(roundTo2Dps(value: model.totalAmount(inSection: 2)), 28.0)
+        
+        XCTAssertEqual(model.grandTotal, 170.84)
+    }
+    
+    func testDeleteFromModel() {
+        let model = ExpenseByDateModel()
+        model.setExpenses(expenses: testData.expenses)
+        XCTAssertEqual(model.sectionCount(), 3)
+        
+        XCTAssertEqual(model.expensesCount(inSection: 1), 2)
+        model.removeExpense(inSection: 1, row: 1)
+        // TODO: Fix error, somehow deletion not working
+        XCTAssertEqual(model.expensesCount(inSection: 1), 1)
+        XCTAssertEqual(roundTo2Dps(value: model.totalAmount(inSection: 1)), 52.47)
+
+        XCTAssertEqual(model.expensesCount(inSection: 2), 1)
+        model.removeExpense(inSection: 2, row: 0)
+        XCTAssertEqual(model.sectionCount(), 2)
+
     }
     
     func testClearModelRemovesAllEntries() {
@@ -73,6 +92,14 @@ class ExpenseByDateModelTests: XCTestCase {
         return ((value*100.0).rounded()) / 100.0
     }
     
+    func testRemoveStuff() {
+        var daten = [1,2,3]
+        daten.remove(at: 1)
+        XCTAssertEqual(daten.count, 2)
+        XCTAssertEqual(daten[1], 3)
+    }
+    
+
 
 
 }

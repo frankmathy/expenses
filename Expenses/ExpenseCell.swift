@@ -10,7 +10,6 @@ import UIKit
 
 class ExpenseCell: UITableViewCell {
     
-    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!

@@ -9,5 +9,7 @@
 import UIKit
 
 class ExpenseGroupCell: UITableViewCell {
-
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var totalAmountLabel: UILabel!
+    
 }

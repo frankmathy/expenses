@@ -25,6 +25,15 @@ extension Date {
         dateFormatter.locale = Locale.current
         return dateFormatter.string(from: self)
     }
+
+    var asLocaleWeekdayDateString:String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale.current
+        let weekday = Calendar.current.component(.weekday, from: self)
+        return dateFormatter.shortWeekdaySymbols[weekday-1] + " " + dateFormatter.string(from: self)
+    }
 }
 
 // Formatting extensions for Float
