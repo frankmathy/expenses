@@ -92,7 +92,7 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
                 fatalError("The selected cell is not being displayed by the table")
             }
             let selectedExpense = expenseModel.expense(inSection: indexPath.section, row: indexPath.row)
-            expsenseDetailsViewController.expense = selectedExpense
+            expsenseDetailsViewController.expense = Expense(byExpense: selectedExpense)
 
         default:
             fatalError("Unexpected Segue Identifier: \(segue.identifier)")

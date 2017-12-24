@@ -29,8 +29,16 @@ class Expense {
         static let comment = "comment"
     }
     
-    init(date: Date, category: NamedItem, account: NamedItem, project: NamedItem, amount: Float, comment: String) {
-        self.key = ""
+    convenience init(date: Date, category: NamedItem, account: NamedItem, project: NamedItem, amount: Float, comment: String) {
+        self.init(key: "", date: date, category: category, account: account, project: project, amount: amount, comment: comment)
+    }
+    
+    convenience init(expense: Expense) {
+        self.init(key: expense.key, date: expense.date, category: expense.category, account: expense.account, project: expense.project, amount: expense.amount,comment: expense.comment)
+    }
+    
+    init(key: String, date: Date, category: NamedItem, account: NamedItem, project: NamedItem, amount: Float, comment: String) {
+        self.key = key
         self.date = date
         self.amount = amount
         self.category = category
