@@ -1,0 +1,72 @@
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "1i7-Yj-kpq"; */
+"1i7-Yj-kpq.text" = "Title";
+
+/* Class = "UILabel"; text = "Comment"; ObjectID = "1wD-j6-rD1"; */
+"1wD-j6-rD1.text" = "Comment";
+
+/* Class = "UILabel"; text = "Home"; ObjectID = "6Zc-QQ-9u3"; */
+"6Zc-QQ-9u3.text" = "Home";
+
+/* Class = "UILabel"; text = "Amount"; ObjectID = "7oc-ZO-cvq"; */
+"7oc-ZO-cvq.text" = "Amount";
+
+/* Class = "UIViewController"; title = "Date"; ObjectID = "8PS-Ws-kX2"; */
+"8PS-Ws-kX2.title" = "Date";
+
+/* Class = "UINavigationItem"; title = "Ausgaben"; ObjectID = "8ep-K8-SIY"; */
+"8ep-K8-SIY.title" = "Ausgaben";
+
+/* Class = "UINavigationController"; title = "Expenses"; ObjectID = "BQT-fR-m3J"; */
+"BQT-fR-m3J.title" = "Expenses";
+
+/* Class = "UITableViewController"; title = "Expenses"; ObjectID = "Ccm-JH-a5y"; */
+"Ccm-JH-a5y.title" = "Expenses";
+
+/* Class = "UILabel"; text = "Betrag"; ObjectID = "Er5-dM-cOp"; */
+"Er5-dM-cOp.text" = "Betrag";
+
+/* Class = "UILabel"; text = "Kategorie"; ObjectID = "F6T-zv-qJQ"; */
+"F6T-zv-qJQ.text" = "Kategorie";
+
+/* Class = "UILabel"; text = "Datum"; ObjectID = "GqC-2c-FGo"; */
+"GqC-2c-FGo.text" = "Datum";
+
+/* Class = "UILabel"; text = "Projekt"; ObjectID = "OBj-aq-Dsh"; */
+"OBj-aq-Dsh.text" = "Projekt";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "T7p-PX-PRF"; */
+"T7p-PX-PRF.text" = "Date";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "XGn-dj-7Cu"; */
+"XGn-dj-7Cu.normalTitle" = "OK";
+
+/* Class = "UILabel"; text = "Total"; ObjectID = "g44-fM-6p8"; */
+"g44-fM-6p8.text" = "Total";
+
+/* Class = "UILabel"; text = "Datum ändern"; ObjectID = "hXq-Sd-pAa"; */
+"hXq-Sd-pAa.text" = "Datum ändern";
+
+/* Class = "UILabel"; text = "Konto"; ObjectID = "iGK-cV-r8Y"; */
+"iGK-cV-r8Y.text" = "Konto";
+
+/* Class = "UILabel"; text = "Salary Account"; ObjectID = "iUo-lt-YbS"; */
+"iUo-lt-YbS.text" = "Salary Account";
+
+/* Class = "UILabel"; text = "Home"; ObjectID = "kLT-Mo-xux"; */
+"kLT-Mo-xux.text" = "Home";
+
+/* Class = "UINavigationItem"; title = "Ausgabe bearbeiten"; ObjectID = "oK9-A8-lO2"; */
+"oK9-A8-lO2.title" = "Ausgabe bearbeiten";
+
+/* Class = "UILabel"; text = "31.12.2017"; ObjectID = "omh-Li-7ty"; */
+"omh-Li-7ty.text" = "31.12.2017";
+
+/* Class = "UILabel"; text = "Bemerkungen"; ObjectID = "qJp-bi-T1X"; */
+"qJp-bi-T1X.text" = "Bemerkungen";
+
+/* Class = "UITableViewCell"; accessibilityLabel = "Date"; ObjectID = "uB5-NN-iGn"; */
+"uB5-NN-iGn.accessibilityLabel" = "Date";
+
+/* Class = "UILabel"; text = "Category"; ObjectID = "vsP-3P-XX3"; */
+"vsP-3P-XX3.text" = "Category";

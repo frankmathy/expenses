@@ -61,15 +61,11 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if(section == 0) {
-            var totalsCell = tableView.dequeueReusableCell(withIdentifier: "HeaderTotalsCell")
-            if totalsCell == nil {
-                    totalsCell = UITableViewCell(style: .default, reuseIdentifier: "HeaderTotalsCell")
-            }
-            return totalsCell
-/*            guard let totalsCell = tableView.dequeueReusableCell(withIdentifier: "TotalsCell") as? TotalsCell else {
+            guard var totalsCell = tableView.dequeueReusableCell(withIdentifier: "TotalsCell") as? TotalsViewCell else {
                 fatalError("The queued cell is not an instance of TotalsCell")
             }
-            return totalsCell*/
+            totalsCell.amountLabel.text = expenseModel.grandTotal.currencyInputFormatting()
+            return totalsCell
         } else {
             guard let headerCell: ExpenseGroupCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as? ExpenseGroupCell else {
                 fatalError("The queued cell is not an instance of ExpenseGroupCell")
