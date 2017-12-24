@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import os.log
 import Firebase
 
 class ExpensesViewController: UITableViewController, ExpenseObserver {
@@ -81,7 +80,7 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
         super.prepare(for: segue, sender: sender)
         switch segue.identifier ?? "" {
         case "AddExpense":
-            os_log("Adding a new expense.", log: OSLog.default, type: .debug)
+            print("Adding a new expense.")
         case "EditExpense":
             guard let expsenseDetailsViewController = segue.destination as? ExpenseDetailsViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
