@@ -31,11 +31,11 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return expenseModel.expensesCount(inSection: section)
+        return section == 0 ? 0: expenseModel.expensesCount(inSection: section - 1)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return expenseModel.sectionCount()
+        return expenseModel.sectionCount()+1
     }
     
     override func tableView(_ tableView: UITableView,
@@ -43,7 +43,7 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
         guard let expenseCell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCell", for: indexPath) as? ExpenseCell else {
             fatalError("The dequeued cell is not an instance of ExpenseCell.")
         }
-        let expense = expenseModel.expense(inSection: indexPath.section, row: indexPath.row)
+        let expense = expenseModel.expense(inSection: indexPath.section-1, row: indexPath.row)
         expenseCell.amountLabel.text = expense.amount.currencyInputFormatting()
         expenseCell.categoryLabel.text = expense.category.name
         expenseCell.commentLabel.text = expense.comment
@@ -52,21 +52,32 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let expense = expenseModel.expense(inSection: indexPath.section, row: indexPath.row)
+            let expense = expenseModel.expense(inSection: indexPath.section-1, row: indexPath.row)
             expenseDAO!.removeExpense(expense: expense)
-            expenseModel.removeExpense(inSection: indexPath.section, row: indexPath.row)
+            expenseModel.removeExpense(inSection: indexPath.section-1, row: indexPath.row)
             tableView.reloadData()
         }
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let headerCell: ExpenseGroupCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as? ExpenseGroupCell else {
-            fatalError("The queued cell is not an instance of ExpenseGroupCell")
+        if(section == 0) {
+            var totalsCell = tableView.dequeueReusableCell(withIdentifier: "HeaderTotalsCell")
+            if totalsCell == nil {
+                    totalsCell = UITableViewCell(style: .default, reuseIdentifier: "HeaderTotalsCell")
+            }
+            return totalsCell
+/*            guard let totalsCell = tableView.dequeueReusableCell(withIdentifier: "TotalsCell") as? TotalsCell else {
+                fatalError("The queued cell is not an instance of TotalsCell")
+            }
+            return totalsCell*/
+        } else {
+            guard let headerCell: ExpenseGroupCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as? ExpenseGroupCell else {
+                fatalError("The queued cell is not an instance of ExpenseGroupCell")
+            }
+            headerCell.dateLabel.text = expenseModel.sectionDate(inSection: section - 1).asLocaleWeekdayDateString
+            headerCell.totalAmountLabel.text = expenseModel.totalAmount(inSection: section - 1).currencyInputFormatting()
+            return headerCell
         }
-        headerCell.dateLabel.text = expenseModel.sectionDate(inSection: section).asLocaleWeekdayDateString
-        headerCell.totalAmountLabel.text = expenseModel.totalAmount(inSection: section).currencyInputFormatting()
-
-        return headerCell
     }
     
     /* To be used to show sum of costs up to date selected
@@ -91,7 +102,7 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
             guard let indexPath = tableView.indexPath(for: selectedExpenseCell) else {
                 fatalError("The selected cell is not being displayed by the table")
             }
-            let selectedExpense = expenseModel.expense(inSection: indexPath.section, row: indexPath.row)
+            let selectedExpense = expenseModel.expense(inSection: indexPath.section-1, row: indexPath.row)
             expsenseDetailsViewController.expense = Expense(byExpense: selectedExpense)
 
         default:
@@ -108,9 +119,9 @@ extension ExpensesViewController {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update of expense
-                let oldExpense = expenseModel.expense(inSection: selectedIndexPath.section, row: selectedIndexPath.row)
+                let oldExpense = expenseModel.expense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
                 expense.key = oldExpense.key
-                expenseModel.removeExpense(inSection: selectedIndexPath.section, row: selectedIndexPath.row)
+                expenseModel.removeExpense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
                 expenseModel.addExpense(expense: expense)
                 expenseDAO!.updateExpense(expense: expense)
             } else {
