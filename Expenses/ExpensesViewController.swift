@@ -84,6 +84,27 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
         let firstVisibleIndexPath = self.tableView.indexPathsForVisibleRows?.first
         print("First visible cell row=\(firstVisibleIndexPath?.row)")
     } */
+    
+    @IBAction func exportData(_ sender: Any) {
+        let userDocumentsFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let path = userDocumentsFolder.appending("/Expenses.csv")
+        let fileURL = URL(fileURLWithPath: path)
+        var csv = ""
+        let dateFormat = ISO8601DateFormatter()
+        for section in 0..<(expenseModel.sectionCount()) {
+            for row in 0..<(expenseModel.expensesCount(inSection: section)) {
+                let expense = expenseModel.expense(inSection: section, row: row)
+                let dateString = dateFormat.string(from: expense.date)
+                let amountString = String(expense.amount)
+                csv += "\(dateString)\t\(amountString)\t\(expense.account.name)\t\(expense.category.name)\t\(expense.project.name)\t\(expense.comment)\t \n"
+            }
+        }
+        do {
+            try csv.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
+        } catch {
+            print("error")
+        }
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
