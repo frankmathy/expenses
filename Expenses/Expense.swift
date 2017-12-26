@@ -7,10 +7,10 @@
 //
 
 import Foundation
-import Firebase
+import CloudKit
 
 class Expense {
-    var key: String
+    var recordId: CKRecordID?
     var date: Date
     var category: NamedItem
     var account: NamedItem
@@ -18,27 +18,29 @@ class Expense {
     var amount: Float
     var comment: String
     
+    static let RecordTypeName = "Expense"
+    
     //MARK: Types
-    struct PropertyKey {
+    struct ColumnKey {
         static let key = "key"
-        static let date = "date"
-        static let category = "category"
-        static let account = "account"
-        static let project = "project"
-        static let amount = "amount"
-        static let comment = "comment"
+        static let date = "Date"
+        static let category = "Category"
+        static let account = "Account"
+        static let project = "Project"
+        static let amount = "Amount"
+        static let comment = "Comment"
     }
     
     convenience init(date: Date, category: NamedItem, account: NamedItem, project: NamedItem, amount: Float, comment: String) {
-        self.init(key: "", date: date, category: category, account: account, project: project, amount: amount, comment: comment)
+        self.init(recordId: nil, date: date, category: category, account: account, project: project, amount: amount, comment: comment)
     }
     
     convenience init(expense: Expense) {
-        self.init(key: expense.key, date: expense.date, category: expense.category, account: expense.account, project: expense.project, amount: expense.amount,comment: expense.comment)
+        self.init(recordId: expense.recordId, date: expense.date, category: expense.category, account: expense.account, project: expense.project, amount: expense.amount,comment: expense.comment)
     }
     
-    init(key: String, date: Date, category: NamedItem, account: NamedItem, project: NamedItem, amount: Float, comment: String) {
-        self.key = key
+    init(recordId: CKRecordID?, date: Date, category: NamedItem, account: NamedItem, project: NamedItem, amount: Float, comment: String) {
+        self.recordId = recordId
         self.date = date
         self.amount = amount
         self.category = category
@@ -47,29 +49,28 @@ class Expense {
         self.comment = comment
     }
     
-    init(snapshot: DataSnapshot) {
-        self.key = snapshot.key
-        let snapshotValue = snapshot.value as! [String: AnyObject]
-        self.date = Date(timeIntervalSince1970: snapshotValue[PropertyKey.date] as! Double)
-        self.category = NamedItem(name: snapshotValue[PropertyKey.category] as! String)
-        self.account = NamedItem(name: snapshotValue[PropertyKey.account] as! String)
-        self.project = NamedItem(name: snapshotValue[PropertyKey.project] as! String)
-        self.amount = snapshotValue[PropertyKey.amount] as! Float
-        self.comment = snapshotValue[PropertyKey.comment] as! String
+    init(record: CKRecord) {
+        self.recordId = record.recordID
+        self.date = record[ColumnKey.date] as! Date
+        self.category = NamedItem(name: record[ColumnKey.category] as! String)
+        self.account = NamedItem(name: record[ColumnKey.account] as! String)
+        self.project = NamedItem(name: record[ColumnKey.project] as! String)
+        self.amount = record[ColumnKey.amount] as! Float
+        self.comment = record[ColumnKey.comment] as! String
     }
     
     convenience init(byExpense expense: Expense) {
         self.init(date: expense.date, category: expense.category, account: expense.account, project: expense.project, amount: expense.amount, comment: "")
     }
     
-    func toAnyObject() -> Any {
-    return [
-            PropertyKey.date: date.timeIntervalSince1970,
-            PropertyKey.amount: amount,
-            PropertyKey.category: category.name,
-            PropertyKey.account: account.name,
-            PropertyKey.project: project.name,
-            PropertyKey.comment: comment
-        ]
+    func asCKRecord() -> CKRecord {
+        let record = recordId != nil ? CKRecord(recordType: Expense.RecordTypeName, recordID: recordId!) : CKRecord(recordType: Expense.RecordTypeName)
+        record.setObject(date as CKRecordValue, forKey: ColumnKey.date)
+        record.setObject(amount as CKRecordValue, forKey: ColumnKey.amount)
+        record.setObject(category.name as CKRecordValue, forKey: ColumnKey.category)
+        record.setObject(account.name as CKRecordValue, forKey: ColumnKey.account)
+        record.setObject(project.name as CKRecordValue, forKey: ColumnKey.project)
+        record.setObject(comment as CKRecordValue, forKey: ColumnKey.comment)
+        return record
     }    
 }

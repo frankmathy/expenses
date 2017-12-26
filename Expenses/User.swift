@@ -8,8 +8,6 @@
 
 import Foundation
 
-import Firebase
-
 struct User {
     
     let uid: String

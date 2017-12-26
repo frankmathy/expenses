@@ -6,14 +6,10 @@ target 'Expenses' do
   use_frameworks!
 
   # Pods for Expenses
-  pod 'Firebase/Core'
-  pod 'Firebase/Database'
-  pod 'Firebase/Auth'
 
   target 'ExpensesTests' do
     inherit! :search_paths
     # Pods for testing
-    pod 'Firebase'
   end
 
   target 'ExpensesUITests' do

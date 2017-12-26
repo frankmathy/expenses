@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Firebase
+import CloudKit
 
 class ExpensesViewController: UITableViewController, ExpenseObserver {
     
@@ -16,6 +16,8 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
     var expenseModel = ExpenseByDateModel()
     
     var expenseDAO : ExpenseDAO?
+    
+    var expensesExported = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +118,7 @@ extension ExpensesViewController {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update of expense
                 let oldExpense = expenseModel.expense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
-                expense.key = oldExpense.key
+                expense.recordId = oldExpense.recordId
                 expenseModel.removeExpense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
                 expenseModel.addExpense(expense: expense)
                 expenseDAO!.updateExpense(expense: expense)

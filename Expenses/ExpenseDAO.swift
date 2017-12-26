@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Firebase
+import CloudKit
 
 protocol ExpenseObserver {
     func expensesChanged(expenses: [Expense])
@@ -15,12 +15,14 @@ protocol ExpenseObserver {
 
 class ExpenseDAO {
     
-    let expensesDBReference : DatabaseReference
+    let container: CKContainer
+    let publicDB: CKDatabase
     
     var observers = [ExpenseObserver]()
     
     init() {
-        expensesDBReference = Database.database().reference(withPath: "expenses")
+        container = CKContainer.default()
+        publicDB = container.publicCloudDatabase
     }
     
     func addObserver(observer : ExpenseObserver) {
@@ -28,31 +30,48 @@ class ExpenseDAO {
     }
     
     func observeExpenses() {
-        expensesDBReference.removeAllObservers()
-        expensesDBReference.observe(.value, with: { (snapshot) in
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: Expense.RecordTypeName, predicate: predicate)
+        publicDB.perform(query, inZoneWith: nil) { [unowned self] results,error in
+            guard error == nil else {
+                print("Cloud Query Error - Refresh: \(error)")
+                return
+            }
             var newExpenses: [Expense] = []
-            for entry in snapshot.children {
-                let expense = Expense(snapshot: entry as! DataSnapshot)
+            for record in results! {
+                let expense = Expense(record: record)
                 newExpenses.append(expense)
             }
-            for observer in self.observers {
-                observer.expensesChanged(expenses: newExpenses)
+            DispatchQueue.main.async {
+                for observer in self.observers {
+                    observer.expensesChanged(expenses: newExpenses)
+                }
             }
-        })
+        }
     }
     
     func addExpense(expense: Expense) {
-        let newExpenseRef = expensesDBReference.childByAutoId()
-        expense.key = newExpenseRef.key
-        newExpenseRef.setValue(expense.toAnyObject())
+        publicDB.save(expense.asCKRecord(), completionHandler: { (record, error) in
+            guard error == nil else {
+                print("Error saving new expense record \(error)")
+                return
+            }
+            expense.recordId = (record?.recordID)!
+            print("Saved: \(record)")
+        })
     }
     
     func updateExpense(expense: Expense) {
-        let expenseRef = expensesDBReference.child(expense.key)
-        expenseRef.setValue(expense.toAnyObject())
+        addExpense(expense: expense)
     }
     
     func removeExpense(expense: Expense) {
-        expensesDBReference.child(expense.key).removeValue()
+        publicDB.delete(withRecordID: expense.recordId!) { (record, error) in
+            guard error == nil else {
+                print("Error deleting new expense record \(error)")
+                return
+            }
+            print("Deleted: \(record)")
+        }
     }
 }

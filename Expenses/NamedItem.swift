@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Firebase
 
 class NamedItem {
     var key: String
@@ -22,12 +21,6 @@ class NamedItem {
     init(name: String) {
         self.key = ""
         self.name = name
-    }
-    
-    init(snapshot: DataSnapshot) {
-        self.key = snapshot.key
-        let snapshotValue = snapshot.value as! [String: AnyObject]
-        self.name = snapshotValue[PropertyKey.name] as! String
     }
     
     func toAnyObject() -> Any {
