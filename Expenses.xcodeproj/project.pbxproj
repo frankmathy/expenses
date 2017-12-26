@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		019FCB9E1FD752BA00F478DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 019FCB9C1FD752BA00F478DE /* InfoPlist.strings */; };
 		01BAF5F01FD753DC002E892A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01BAF5EE1FD753DC002E892A /* Localizable.strings */; };
-		01BAF5F31FD8A1AE002E892A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01BAF5F21FD8A1AD002E892A /* GoogleService-Info.plist */; };
 		01FB82AB1FCADB1300DE1BA5 /* ExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FB82AA1FCADB1300DE1BA5 /* ExpensesViewController.swift */; };
 		01FB82AF1FCADEF800DE1BA5 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FB82AE1FCADEF800DE1BA5 /* ExpenseCell.swift */; };
 		01FB82B11FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FB82B01FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift */; };
@@ -65,7 +64,6 @@
 		01BAF5ED1FD7535A002E892A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01BAF5EF1FD753DC002E892A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01BAF5F11FD755BE002E892A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		01BAF5F21FD8A1AD002E892A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		01FB82AA1FCADB1300DE1BA5 /* ExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewController.swift; sourceTree = "<group>"; };
 		01FB82AE1FCADEF800DE1BA5 /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		01FB82B01FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsViewController.swift; sourceTree = "<group>"; };
@@ -180,7 +178,6 @@
 				01BAF5EE1FD753DC002E892A /* Localizable.strings */,
 				859CEC951FCB20630028C9E7 /* FormatExtensions.swift */,
 				019FCB9C1FD752BA00F478DE /* InfoPlist.strings */,
-				01BAF5F21FD8A1AD002E892A /* GoogleService-Info.plist */,
 				85CA6A7F1FD9CAF90047B344 /* User.swift */,
 				85F7C8AE1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift */,
 				85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */,
@@ -362,7 +359,6 @@
 			files = (
 				852F27CF1FCA2C0C006988A5 /* LaunchScreen.storyboard in Resources */,
 				019FCB9E1FD752BA00F478DE /* InfoPlist.strings in Resources */,
-				01BAF5F31FD8A1AE002E892A /* GoogleService-Info.plist in Resources */,
 				852F27CC1FCA2C0C006988A5 /* Assets.xcassets in Resources */,
 				852F27CA1FCA2C0C006988A5 /* Main.storyboard in Resources */,
 				01BAF5F01FD753DC002E892A /* Localizable.strings in Resources */,
