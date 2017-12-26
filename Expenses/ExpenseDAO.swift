@@ -17,12 +17,15 @@ class ExpenseDAO {
     
     let container: CKContainer
     let publicDB: CKDatabase
+    let cloudUserInfo: CloudUserInfo
     
     var observers = [ExpenseObserver]()
     
     init() {
         container = CKContainer.default()
         publicDB = container.publicCloudDatabase
+        cloudUserInfo = CloudUserInfo()
+        cloudUserInfo.loadUserInfo()
     }
     
     func addObserver(observer : ExpenseObserver) {
