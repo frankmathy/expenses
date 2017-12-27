@@ -21,15 +21,24 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // TODO: For push notifications - quick hack
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.expensesViewController = self
+        
         navigationItem.leftBarButtonItem = editButtonItem
         expenseDAO = ExpenseDAO()
         expenseDAO!.addObserver(observer: self)
-        expenseDAO?.observeExpenses()
+        expenseDAO?.reloadExpenses()
     }
     
     func expensesChanged(expenses: [Expense]) {
         self.expenseModel.setExpenses(expenses: expenses)
         self.tableView.reloadData()
+    }
+    
+    func reload() {
+        expenseDAO!.reloadExpenses()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,6 +85,49 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
             headerCell.totalAmountLabel.text = expenseModel.totalAmount(inSection: section - 1).currencyInputFormatting()
             return headerCell
         }
+    }
+    
+    @IBAction func importData(_ sender: Any) {
+        let userDocumentsFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let path = userDocumentsFolder.appending("/Expenses.csv")
+        let fileURL = URL(fileURLWithPath: path)
+        do {
+            var newExpenses = [Expense]()
+            let contents = try String(contentsOf: fileURL, encoding: String.Encoding.utf8)
+            print(contents)
+            let rows = contents.components(separatedBy: "\n")
+            let dateFormat = ISO8601DateFormatter()
+            for row in rows {
+                let columns = row.components(separatedBy: "\t")
+                if columns.count >= 6 {
+                    let date = dateFormat.date(from: columns[0])
+                    let amount = (columns[1] as NSString).floatValue
+                    let account = columns[2]
+                    let category = columns[3]
+                    let project = columns[4]
+                    let comment = columns[5]
+                    let expense = Expense(date: date!, category: NamedItem(name: category), account: NamedItem(name: account), project: NamedItem(name: project), amount: amount, comment: comment)
+                    expenseDAO?.addExpense(expense: expense)
+                }
+            }
+            print("Imported \((newExpenses.count)) expenses")
+        } catch {
+            print("File Read Error for file \(path)")
+            return
+        }
+        var expenses = [Expense]()
+        
+        
+        /*var csv = ""
+        let dateFormat = ISO8601DateFormatter()
+        for section in 0..<(expenseModel.sectionCount()) {
+            for row in 0..<(expenseModel.expensesCount(inSection: section)) {
+                let expense = expenseModel.expense(inSection: section, row: row)
+                let dateString = dateFormat.string(from: expense.date)
+                let amountString = String(expense.amount)
+                csv += "\(dateString)\t\(amountString)\t\(expense.account.name)\t\(expense.category.name)\t\(expense.project.name)\t\(expense.comment)\t \n"
+            }
+        }*/
     }
     
     /* To be used to show sum of costs up to date selected

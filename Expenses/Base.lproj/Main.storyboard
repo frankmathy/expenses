@@ -175,6 +175,11 @@
                                     <action selector="exportData:" destination="Ccm-JH-a5y" id="0GC-72-gIw"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem title="Import" id="DM2-4J-6gg">
+                                <connections>
+                                    <action selector="importData:" destination="Ccm-JH-a5y" id="Fwa-Vs-3c1"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
