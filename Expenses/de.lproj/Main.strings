@@ -1,27 +1,27 @@
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "1i7-Yj-kpq"; */
-"1i7-Yj-kpq.text" = "Title";
+"1i7-Yj-kpq.text" = "Titel";
 
 /* Class = "UILabel"; text = "Comment"; ObjectID = "1wD-j6-rD1"; */
-"1wD-j6-rD1.text" = "Comment";
+"1wD-j6-rD1.text" = "Beschreibung";
 
 /* Class = "UILabel"; text = "Home"; ObjectID = "6Zc-QQ-9u3"; */
 "6Zc-QQ-9u3.text" = "Home";
 
 /* Class = "UILabel"; text = "Amount"; ObjectID = "7oc-ZO-cvq"; */
-"7oc-ZO-cvq.text" = "Amount";
+"7oc-ZO-cvq.text" = "Betrag";
 
 /* Class = "UIViewController"; title = "Date"; ObjectID = "8PS-Ws-kX2"; */
-"8PS-Ws-kX2.title" = "Date";
+"8PS-Ws-kX2.title" = "Datum";
 
 /* Class = "UINavigationItem"; title = "Ausgaben"; ObjectID = "8ep-K8-SIY"; */
 "8ep-K8-SIY.title" = "Ausgaben";
 
 /* Class = "UINavigationController"; title = "Expenses"; ObjectID = "BQT-fR-m3J"; */
-"BQT-fR-m3J.title" = "Expenses";
+"BQT-fR-m3J.title" = "Ausgaben";
 
 /* Class = "UITableViewController"; title = "Expenses"; ObjectID = "Ccm-JH-a5y"; */
-"Ccm-JH-a5y.title" = "Expenses";
+"Ccm-JH-a5y.title" = "Ausgaben";
 
 /* Class = "UILabel"; text = "Betrag"; ObjectID = "Er5-dM-cOp"; */
 "Er5-dM-cOp.text" = "Betrag";
@@ -36,13 +36,13 @@
 "OBj-aq-Dsh.text" = "Projekt";
 
 /* Class = "UILabel"; text = "Date"; ObjectID = "T7p-PX-PRF"; */
-"T7p-PX-PRF.text" = "Date";
+"T7p-PX-PRF.text" = "Datum";
 
 /* Class = "UIButton"; normalTitle = "OK"; ObjectID = "XGn-dj-7Cu"; */
 "XGn-dj-7Cu.normalTitle" = "OK";
 
 /* Class = "UILabel"; text = "Total"; ObjectID = "g44-fM-6p8"; */
-"g44-fM-6p8.text" = "Total";
+"g44-fM-6p8.text" = "Gesamt";
 
 /* Class = "UILabel"; text = "Datum ändern"; ObjectID = "hXq-Sd-pAa"; */
 "hXq-Sd-pAa.text" = "Datum ändern";
@@ -51,7 +51,7 @@
 "iGK-cV-r8Y.text" = "Konto";
 
 /* Class = "UILabel"; text = "Salary Account"; ObjectID = "iUo-lt-YbS"; */
-"iUo-lt-YbS.text" = "Salary Account";
+"iUo-lt-YbS.text" = "Gehaltskonto";
 
 /* Class = "UILabel"; text = "Home"; ObjectID = "kLT-Mo-xux"; */
 "kLT-Mo-xux.text" = "Home";
@@ -66,7 +66,11 @@
 "qJp-bi-T1X.text" = "Bemerkungen";
 
 /* Class = "UITableViewCell"; accessibilityLabel = "Date"; ObjectID = "uB5-NN-iGn"; */
-"uB5-NN-iGn.accessibilityLabel" = "Date";
+"uB5-NN-iGn.accessibilityLabel" = "Datum";
 
 /* Class = "UILabel"; text = "Category"; ObjectID = "vsP-3P-XX3"; */
-"vsP-3P-XX3.text" = "Category";
+"vsP-3P-XX3.text" = "Kategorie";
+
+/* Class = "UITextField"; placeholder = "Remark"; ObjectID = "hgv-KN-G0T"; */
+"hgv-KN-G0T.placeholder" = "Beschreibung";
+
