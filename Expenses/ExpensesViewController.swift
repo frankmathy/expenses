@@ -9,13 +9,12 @@
 import UIKit
 import CloudKit
 
-class ExpensesViewController: UITableViewController, ExpenseObserver {
-    
+class ExpensesViewController: UITableViewController, ModelDelegate {
     private var selectedExpense : Expense?
     
     private var expenseModel = ExpenseByDateModel()
     
-    var expenseDAO : ExpenseDAO?
+    var model : Model?
 
     private let refreshTool = UIRefreshControl()
 
@@ -26,7 +25,7 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
         
         refreshTool.addTarget(self, action: #selector(refreshControlPulled(_:)), for: .valueChanged)
         // refreshControl.tintColor = UIColor(red: 0.25, green: 0.72, blue: 0.85, alpha: 1.0)
-        refreshTool.attributedTitle = NSAttributedString(string: "Reloading Expenses...")
+        refreshTool.attributedTitle = NSAttributedString(string: NSLocalizedString("Reloading Expenses", comment: ""))
         if #available(iOS 10.0, *) {
             tableView.refreshControl = refreshTool
         } else {
@@ -38,12 +37,12 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
         appDelegate.expensesViewController = self
         
         navigationItem.leftBarButtonItem = editButtonItem
-        expenseDAO = ExpenseDAO()
-        expenseDAO!.addObserver(observer: self)
-        expenseDAO?.reloadExpenses()
+        model = Model()
+        model!.addObserver(observer: self)
+        model?.reloadExpenses()
     }
     
-    func expensesChanged(expenses: [Expense]) {
+    func modelUpdated(expenses: [Expense]) {
         self.expenseModel.setExpenses(expenses: expenses)
         self.tableView.reloadData()
         refreshTool.endRefreshing()
@@ -54,7 +53,7 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
     }
     
     func reload() {
-        expenseDAO!.reloadExpenses()
+        model!.reloadExpenses()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,7 +80,7 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let expense = expenseModel.expense(inSection: indexPath.section-1, row: indexPath.row)
-            expenseDAO!.removeExpense(expense: expense)
+            model!.removeExpense(expense: expense)
             expenseModel.removeExpense(inSection: indexPath.section-1, row: indexPath.row)
             tableView.reloadData()
         }
@@ -109,7 +108,7 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
         let path = userDocumentsFolder.appending("/Expenses.csv")
         let fileURL = URL(fileURLWithPath: path)
         do {
-            var newExpenses = [Expense]()
+            let newExpenses = [Expense]()
             let contents = try String(contentsOf: fileURL, encoding: String.Encoding.utf8)
             print(contents)
             let rows = contents.components(separatedBy: "\n")
@@ -124,7 +123,7 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
                     let project = columns[4]
                     let comment = columns[5]
                     let expense = Expense(date: date!, category: NamedItem(name: category), account: NamedItem(name: account), project: NamedItem(name: project), amount: amount, comment: comment)
-                    expenseDAO?.addExpense(expense: expense)
+                    model?.addExpense(expense: expense)
                 }
             }
             print("Imported \((newExpenses.count)) expenses")
@@ -132,27 +131,7 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
             print("File Read Error for file \(path)")
             return
         }
-        var expenses = [Expense]()
-        
-        
-        /*var csv = ""
-        let dateFormat = ISO8601DateFormatter()
-        for section in 0..<(expenseModel.sectionCount()) {
-            for row in 0..<(expenseModel.expensesCount(inSection: section)) {
-                let expense = expenseModel.expense(inSection: section, row: row)
-                let dateString = dateFormat.string(from: expense.date)
-                let amountString = String(expense.amount)
-                csv += "\(dateString)\t\(amountString)\t\(expense.account.name)\t\(expense.category.name)\t\(expense.project.name)\t\(expense.comment)\t \n"
-            }
-        }*/
     }
-    
-    /* To be used to show sum of costs up to date selected
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // os_log("Scrolled to %f", scrollView.contentOffset.y)
-        let firstVisibleIndexPath = self.tableView.indexPathsForVisibleRows?.first
-        print("First visible cell row=\(firstVisibleIndexPath?.row)")
-    } */
     
     @IBAction func exportData(_ sender: Any) {
         let userDocumentsFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
@@ -197,6 +176,18 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
             fatalError("Unexpected Segue Identifier: \(segue.identifier)")
         }
     }
+    
+    func cloudAccessError(message: String, error: NSError) {
+        let body: String
+        if error.code == 1 {
+            body = NSLocalizedString("LogIntoICloud", comment: "")
+        } else {
+            body = error.localizedDescription
+        }
+        let alertController = UIAlertController(title: message, message: body, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
 extension ExpensesViewController {
@@ -211,11 +202,11 @@ extension ExpensesViewController {
                 expense.recordId = oldExpense.recordId
                 expenseModel.removeExpense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
                 expenseModel.addExpense(expense: expense)
-                expenseDAO!.updateExpense(expense: expense)
+                model!.updateExpense(expense: expense)
             } else {
                 // New expense
                 expenseModel.addExpense(expense: expense)
-                expenseDAO!.addExpense(expense: expense)
+                model!.addExpense(expense: expense)
             }
             tableView.reloadData()
         }

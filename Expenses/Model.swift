@@ -9,24 +9,31 @@
 import Foundation
 import CloudKit
 
-protocol ExpenseObserver {
-    func expensesChanged(expenses: [Expense])
+protocol ModelDelegate {
+    func modelUpdated(expenses: [Expense])
+    func cloudAccessError(message: String, error: NSError)
 }
 
-class ExpenseDAO {
+class Model {
+    
+    static let sharedInstance = Model()
     
     let container: CKContainer
     let publicDB: CKDatabase
     let cloudUserInfo: CloudUserInfo
     
-    var observers = [ExpenseObserver]()
+    var delegates = [ModelDelegate]()
     
+
     init() {
         container = CKContainer.default()
         publicDB = container.publicCloudDatabase
         cloudUserInfo = CloudUserInfo()
         cloudUserInfo.loadUserInfo()
-        
+        initializeSubscriptions()
+    }
+    
+    fileprivate func initializeSubscriptions() {
         // Delete existing subscriptions
         publicDB.fetchAllSubscriptions { [unowned self] subscriptions, error in
             var isSubscribed = false
@@ -42,8 +49,8 @@ class ExpenseDAO {
                 }
             } else {
                 // do your error handling here!
-                print("Error reading existing subscriptions: \(error!.localizedDescription)")
-                print(error!.localizedDescription)
+                let message = NSLocalizedString("Error reading iCloud subscriptions", comment: "")
+                self.cloudAccessError(message: message, error: error as! NSError)
             }
             if !isSubscribed {
                 // Subscribe to all record changes
@@ -57,6 +64,8 @@ class ExpenseDAO {
                     if error == nil{
                         print("Added subscription with id: \(subscription.subscriptionID)")
                     } else {
+                        let message = NSLocalizedString("Error adding iCloud subscription", comment: "")
+                        self.cloudAccessError(message: message, error: error as! NSError)
                         print("Error adding subscription with id \(subscription.subscriptionID): \(error!.localizedDescription)")
                     }
                 }
@@ -64,8 +73,26 @@ class ExpenseDAO {
         }
     }
     
-    func addObserver(observer : ExpenseObserver) {
-        observers.append(observer)
+    
+    func addObserver(observer : ModelDelegate) {
+        delegates.append(observer)
+    }
+    
+    func cloudAccessError(message: String, error: NSError) {
+        DispatchQueue.main.async {
+            print("\(message): \(error)")
+            for observer in self.delegates {
+                observer.cloudAccessError(message: message, error: error)
+            }
+        }
+    }
+    
+    fileprivate func modelUpdated(_ newExpenses: [Expense]) {
+        DispatchQueue.main.async {
+            for observer in self.delegates {
+                observer.modelUpdated(expenses: newExpenses)
+            }
+        }
     }
     
     func reloadExpenses() {
@@ -73,7 +100,8 @@ class ExpenseDAO {
         let query = CKQuery(recordType: Expense.RecordTypeName, predicate: predicate)
         publicDB.perform(query, inZoneWith: nil) { [unowned self] results,error in
             guard error == nil else {
-                print("Cloud Query Error - Refresh: \(error)")
+                let message = NSLocalizedString("Error loading expenses from iCloud", comment: "")
+                self.cloudAccessError(message: message, error: error as! NSError)
                 return
             }
             var newExpenses: [Expense] = []
@@ -81,18 +109,15 @@ class ExpenseDAO {
                 let expense = Expense(record: record)
                 newExpenses.append(expense)
             }
-            DispatchQueue.main.async {
-                for observer in self.observers {
-                    observer.expensesChanged(expenses: newExpenses)
-                }
-            }
+            self.modelUpdated(newExpenses)
         }
     }
     
     func addExpense(expense: Expense) {
         publicDB.save(expense.asCKRecord(), completionHandler: { (record, error) in
             guard error == nil else {
-                print("Error saving new expense record \(error)")
+                let message = NSLocalizedString("Error saving expense record", comment: "")
+                self.cloudAccessError(message: message, error: error as! NSError)
                 return
             }
             expense.recordId = (record?.recordID)!
@@ -107,7 +132,8 @@ class ExpenseDAO {
     func removeExpense(expense: Expense) {
         publicDB.delete(withRecordID: expense.recordId!) { (record, error) in
             guard error == nil else {
-                print("Error deleting new expense record \(error)")
+                let message = NSLocalizedString("Error deleting expense record", comment: "")
+                self.cloudAccessError(message: message, error: error as! NSError)
                 return
             }
             print("Deleted: \(record)")
