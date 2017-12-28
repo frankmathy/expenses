@@ -114,14 +114,16 @@ class Model {
     }
     
     func addExpense(expense: Expense) {
-        publicDB.save(expense.asCKRecord(), completionHandler: { (record, error) in
+        let record: CKRecord = expense.asCKRecord()
+        print("About to save expense with ID=\(record.recordID)")
+        publicDB.save(record, completionHandler: { (record, error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error saving expense record", comment: "")
                 self.cloudAccessError(message: message, error: error as! NSError)
                 return
             }
             expense.recordId = (record?.recordID)!
-            print("Saved: \(record)")
+            print("Successfully saved expense with ID=\(record?.recordID)")
         })
     }
     
@@ -136,7 +138,7 @@ class Model {
                 self.cloudAccessError(message: message, error: error as! NSError)
                 return
             }
-            print("Deleted: \(record)")
+            print("Successfully deleted expense wth ID=\(expense.recordId)")
         }
     }
 }
