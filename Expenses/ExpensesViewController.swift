@@ -72,6 +72,7 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
         }
         let expense = expenseModel.expense(inSection: indexPath.section-1, row: indexPath.row)
         expenseCell.amountLabel.text = expense.amount.currencyInputFormatting()
+        expenseCell.accountLabel.text = expense.account.name
         expenseCell.categoryLabel.text = expense.category.name
         expenseCell.commentLabel.text = expense.comment
         return expenseCell

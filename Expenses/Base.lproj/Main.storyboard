@@ -107,7 +107,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="RFl-4D-dWu">
-                                            <rect key="frame" x="16" y="4" width="321" height="46"/>
+                                            <rect key="frame" x="16" y="4" width="321" height="48.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Rsa-bC-nCG">
                                                     <rect key="frame" x="0.0" y="0.0" width="321" height="24"/>
@@ -127,10 +127,16 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VQ0-8s-Nsy">
-                                                    <rect key="frame" x="0.0" y="28" width="321" height="18"/>
+                                                    <rect key="frame" x="0.0" y="28" width="321" height="20.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wD-j6-rD1">
-                                                            <rect key="frame" x="0.0" y="0.0" width="321" height="18"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcb-Jo-yoF" userLabel="Account">
+                                                            <rect key="frame" x="0.0" y="0.0" width="246" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wD-j6-rD1">
+                                                            <rect key="frame" x="254" y="0.0" width="67" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -139,6 +145,7 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="VQ0-8s-Nsy" firstAttribute="trailing" secondItem="RFl-4D-dWu" secondAttribute="trailingMargin" id="8YX-ZN-mWe"/>
                                                 <constraint firstAttribute="trailing" secondItem="Rsa-bC-nCG" secondAttribute="trailing" id="cq1-HJ-gGV"/>
                                             </constraints>
                                         </stackView>
@@ -150,6 +157,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="accountLabel" destination="mcb-Jo-yoF" id="4Qa-mn-7pf"/>
                                     <outlet property="amountLabel" destination="7oc-ZO-cvq" id="B2g-Kc-L5N"/>
                                     <outlet property="categoryLabel" destination="vsP-3P-XX3" id="OGZ-mR-464"/>
                                     <outlet property="commentLabel" destination="1wD-j6-rD1" id="8gD-cZ-pQZ"/>
