@@ -52,6 +52,7 @@ class ExpenseByDateModel {
     
     func setExpenses(expenses: [Expense]) {
         removeAll()
+        grandTotal = 0.0
         for expense in expenses {
             addExpense(expense: expense)
         }
@@ -79,11 +80,11 @@ class ExpenseByDateModel {
     
     func removeExpense(inSection: Int, row: Int) {
         let date = sectionDate(inSection: inSection)
-        var expenses = expensesAtDate[date]!
-        totalsForDate[date] = totalsForDate[date]! - expenses[row].amount
-        grandTotal = grandTotal - expenses[row].amount
-        expenses.remove(at: row)
-        if expenses.count == 0 {
+        var expenseAmount = expensesAtDate[date]![row].amount
+        totalsForDate[date] = totalsForDate[date]! - expenseAmount
+        grandTotal = grandTotal - expenseAmount
+        expensesAtDate[date]!.remove(at: row)
+        if expensesAtDate[date]!.count == 0 {
             totalsForDate.removeValue(forKey: date)
             expensesAtDate.removeValue(forKey: date)
             sortedExpenseDates.remove(at: inSection)

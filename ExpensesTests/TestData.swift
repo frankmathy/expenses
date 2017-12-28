@@ -36,12 +36,12 @@ class TestData {
     let yesterday: Date
     let twoDaysAgo: Date
     
-    let expenseYesterdayGroceries: Expense
-    let expenseTodayBarber: Expense
-    let expenseTodayBakery: Expense
-    let expenseYesterdayDoctor: Expense
-    let expenseseTwoDaysAgoBarber: Expense
-    let expenseTodayAppleStore: Expense
+    let expenseYesterdayGroceries50: Expense
+    let expenseTodayBarber20: Expense
+    let expenseTodayBakery5: Expense
+    let expenseYesterdayDoctor95: Expense
+    let expenseseTwoDaysAgoBarber30: Expense
+    let expenseTodayAppleStore200: Expense
     let expenses: [Expense]
 
     init() {
@@ -55,12 +55,12 @@ class TestData {
         yesterday = calendar.date(byAdding: dateComponents, to: today)!
         dateComponents.day = -2
         twoDaysAgo = calendar.date(byAdding: dateComponents, to: today)!
-        expenseYesterdayGroceries = Expense(date: yesterday, category: categoryGroceries, account: accountHousehold, project: projectNone, amount: 52.47, comment: "Essen Wochenende")
-        expenseTodayBarber = Expense(date: today, category: categoryBarber, account: accountOther, project: projectNone, amount: 28.0, comment: "Basile Marvin")
-        expenseTodayBakery = Expense(date: today, category: categoryBakery, account: accountOther, project: projectNone, amount: 4.95, comment: "Bäcker Klein")
-        expenseYesterdayDoctor = Expense(date: yesterday, category: categoryHealth, account: accountHousehold, project: projectNone, amount: 52.47, comment: "Dr. Mastermind")
-        expenseseTwoDaysAgoBarber = Expense(date: twoDaysAgo, category: categoryBarber, account: accountOther, project: projectNone, amount: 28.0, comment: "Basile Marvin")
-        expenseTodayAppleStore = Expense(date: today, category: categoryHobby, account: accountOther, project: projectNone, amount: 4.95, comment: "Apple Store")
-        expenses = [ expenseYesterdayGroceries, expenseTodayBarber, expenseTodayBakery, expenseYesterdayDoctor, expenseseTwoDaysAgoBarber, expenseTodayAppleStore ]
+        expenseYesterdayGroceries50 = Expense(date: yesterday, category: categoryGroceries, account: accountHousehold, project: projectNone, amount: 50.00, comment: "Essen Wochenende")
+        expenseTodayBarber20 = Expense(date: today, category: categoryBarber, account: accountOther, project: projectNone, amount: 20.0, comment: "Basile Marvin")
+        expenseTodayBakery5 = Expense(date: today, category: categoryBakery, account: accountOther, project: projectNone, amount: 5.0, comment: "Bäcker Klein")
+        expenseYesterdayDoctor95 = Expense(date: yesterday, category: categoryHealth, account: accountHousehold, project: projectNone, amount: 95.0, comment: "Dr. Mastermind")
+        expenseseTwoDaysAgoBarber30 = Expense(date: twoDaysAgo, category: categoryBarber, account: accountOther, project: projectNone, amount: 30.0, comment: "Basile Marvin")
+        expenseTodayAppleStore200 = Expense(date: today, category: categoryHobby, account: accountOther, project: projectNone, amount: 200.0, comment: "Apple Store")
+        expenses = [ expenseYesterdayGroceries50, expenseTodayBarber20, expenseTodayBakery5, expenseYesterdayDoctor95, expenseseTwoDaysAgoBarber30, expenseTodayAppleStore200 ]
     }
 }

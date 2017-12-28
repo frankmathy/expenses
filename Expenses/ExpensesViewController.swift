@@ -11,16 +11,27 @@ import CloudKit
 
 class ExpensesViewController: UITableViewController, ExpenseObserver {
     
-    var selectedExpense : Expense?
+    private var selectedExpense : Expense?
     
-    var expenseModel = ExpenseByDateModel()
+    private var expenseModel = ExpenseByDateModel()
     
     var expenseDAO : ExpenseDAO?
-    
+
+    private let refreshTool = UIRefreshControl()
+
     var expensesExported = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refreshTool.addTarget(self, action: #selector(refreshControlPulled(_:)), for: .valueChanged)
+        // refreshControl.tintColor = UIColor(red: 0.25, green: 0.72, blue: 0.85, alpha: 1.0)
+        refreshTool.attributedTitle = NSAttributedString(string: "Reloading Expenses...")
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshTool
+        } else {
+            tableView.addSubview(refreshTool)
+        }
         
         // TODO: For push notifications - quick hack
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -35,6 +46,11 @@ class ExpensesViewController: UITableViewController, ExpenseObserver {
     func expensesChanged(expenses: [Expense]) {
         self.expenseModel.setExpenses(expenses: expenses)
         self.tableView.reloadData()
+        refreshTool.endRefreshing()
+    }
+    
+    @objc private func refreshControlPulled(_ sender: Any) {
+        reload()
     }
     
     func reload() {

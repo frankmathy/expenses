@@ -30,16 +30,16 @@ class ExpenseByDateModelTests: XCTestCase {
     
     func testCreateModelWithOneEntry() {
         let model = ExpenseByDateModel()
-        model.addExpense(expense: testData.expenseTodayBakery)
+        model.addExpense(expense: testData.expenseTodayBakery5)
         XCTAssertEqual(model.sectionCount(), 1)
         XCTAssertEqual(model.expensesCount(inSection: 0), 1)
     }
     
     func testCreateModelWithThreeEntriesAtSameDate() {
         let model = ExpenseByDateModel()
-        model.addExpense(expense: testData.expenseTodayBakery)
-        model.addExpense(expense: testData.expenseTodayAppleStore)
-        model.addExpense(expense: testData.expenseTodayBarber)
+        model.addExpense(expense: testData.expenseTodayBakery5)
+        model.addExpense(expense: testData.expenseTodayAppleStore200)
+        model.addExpense(expense: testData.expenseTodayBarber20)
         XCTAssertEqual(model.sectionCount(), 1)
         XCTAssertEqual(model.expensesCount(inSection: 0), 3)
     }
@@ -51,17 +51,25 @@ class ExpenseByDateModelTests: XCTestCase {
         
         XCTAssertEqual(model.expensesCount(inSection: 0), 3)
         XCTAssertEqual(model.sectionDate(inSection: 0), Calendar.current.startOfDay(for: testData.today))
-        XCTAssertEqual(roundTo2Dps(value: model.totalAmount(inSection: 0)), 37.9)
+        XCTAssertEqual(roundTo2Dps(value: model.totalAmount(inSection: 0)), 225.0)
         
         XCTAssertEqual(model.expensesCount(inSection: 1), 2)
         XCTAssertEqual(model.sectionDate(inSection: 1), Calendar.current.startOfDay(for: testData.yesterday))
-        XCTAssertEqual(roundTo2Dps(value: model.totalAmount(inSection: 1)), 104.94)
+        XCTAssertEqual(roundTo2Dps(value: model.totalAmount(inSection: 1)), 145.0)
 
         XCTAssertEqual(model.expensesCount(inSection: 2), 1)
         XCTAssertEqual(model.sectionDate(inSection: 2), Calendar.current.startOfDay(for: testData.twoDaysAgo))
-        XCTAssertEqual(roundTo2Dps(value: model.totalAmount(inSection: 2)), 28.0)
+        XCTAssertEqual(roundTo2Dps(value: model.totalAmount(inSection: 2)), 30.0)
         
-        XCTAssertEqual(model.grandTotal, 170.84)
+        XCTAssertEqual(model.grandTotal, 400.0)
+    }
+    
+    func testReloadWorksOk() {
+        let model = ExpenseByDateModel()
+        model.setExpenses(expenses: testData.expenses)
+        XCTAssertEqual(model.grandTotal, 400.0)
+        model.setExpenses(expenses: testData.expenses)
+        XCTAssertEqual(model.grandTotal, 400.0)
     }
     
     func testDeleteFromModel() {
@@ -73,7 +81,7 @@ class ExpenseByDateModelTests: XCTestCase {
         model.removeExpense(inSection: 1, row: 1)
         // TODO: Fix error, somehow deletion not working
         XCTAssertEqual(model.expensesCount(inSection: 1), 1)
-        XCTAssertEqual(roundTo2Dps(value: model.totalAmount(inSection: 1)), 52.47)
+        XCTAssertEqual(roundTo2Dps(value: model.totalAmount(inSection: 1)), 50.0)
 
         XCTAssertEqual(model.expensesCount(inSection: 2), 1)
         model.removeExpense(inSection: 2, row: 0)
