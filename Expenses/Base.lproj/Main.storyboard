@@ -30,7 +30,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SI8-WU-kmt">
                                             <rect key="frame" x="16" y="17" width="73" height="20"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyd-BE-PVO">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyd-BE-PVO" userLabel="DateLeftButton">
                                                     <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="FwQ-DO-3ZC"/>
@@ -38,12 +38,15 @@
                                                     </constraints>
                                                     <state key="normal" image="ArrowLeft"/>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcA-Sh-LGA">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcA-Sh-LGA" userLabel="DateRangeButton">
                                                     <rect key="frame" x="20" y="0.0" width="33" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <state key="normal" title="Alle"/>
+                                                    <connections>
+                                                        <action selector="dateRangeButtonPressed:" destination="D6j-Rb-gpe" eventType="touchUpInside" id="4oP-g5-2Yz"/>
+                                                    </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdn-Re-D26">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdn-Re-D26" userLabel="DateRightButton">
                                                     <rect key="frame" x="53" y="0.0" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="Ht1-z8-bBC"/>
@@ -84,6 +87,9 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="amountLabel" destination="ol1-SQ-rAK" id="bxQ-xx-fHn"/>
+                                    <outlet property="dateLeftButton" destination="Hyd-BE-PVO" id="EBA-zK-dA6"/>
+                                    <outlet property="dateRangeButton" destination="hcA-Sh-LGA" id="dS5-kq-0go"/>
+                                    <outlet property="dateRightButton" destination="cdn-Re-D26" id="XQQ-fp-W9f"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" id="cO3-tE-7EM" userLabel="HeaderCell" customClass="ExpenseGroupCell" customModule="Expenses" customModuleProvider="target">
