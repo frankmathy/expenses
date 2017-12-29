@@ -110,15 +110,24 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         totalsCell!.dateLeftButton.isUserInteractionEnabled = !showAllData
         totalsCell!.dateRightButton.isUserInteractionEnabled = !showAllData
         if totalsCell != nil {
-            if showAllData {
-                totalsCell!.dateRangeButton.setTitle(NSLocalizedString("All", comment: ""), for: .normal)
-            } else {
-                let dateFormat = DateFormatter()
-                dateFormat.dateFormat = "dd.MM."
-                let startDateString = dateFormat.string(from: model.dateIntervalSelection.startDate!)
-                dateFormat.dateFormat = "dd.MM.yyyy"
-                let endDateString = dateFormat.string(from: model.dateIntervalSelection.endDate!)
-                totalsCell!.dateRangeButton.setTitle(startDateString + "-" + endDateString, for: .normal)
+            switch(model.dateIntervalSelection.dateIntervalType) {
+            case .All:
+                    totalsCell!.dateRangeButton.setTitle(NSLocalizedString("All", comment: ""), for: .normal)
+            case .Month:
+                    let dateFormat = DateFormatter()
+                    dateFormat.dateFormat = "MMMM yyyy"
+                    totalsCell!.dateRangeButton.setTitle(dateFormat.string(from: model.dateIntervalSelection.startDate!), for: .normal)
+            case .Year:
+                    let dateFormat = DateFormatter()
+                    dateFormat.dateFormat = "yyyy"
+                    totalsCell!.dateRangeButton.setTitle(dateFormat.string(from: model.dateIntervalSelection.startDate!), for: .normal)
+            case .Week:
+                    let dateFormat = DateFormatter()
+                    dateFormat.dateFormat = "dd.MM."
+                    let startDateString = dateFormat.string(from: model.dateIntervalSelection.startDate!)
+                    dateFormat.dateFormat = "dd.MM.yyyy"
+                    let endDateString = dateFormat.string(from: model.dateIntervalSelection.endDate!)
+                    totalsCell!.dateRangeButton.setTitle(startDateString + "-" + endDateString, for: .normal)
             }
         }
     }
