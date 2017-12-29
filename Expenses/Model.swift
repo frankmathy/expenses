@@ -24,6 +24,7 @@ class Model {
     
     var delegates = [ModelDelegate]()
     
+    var dateIntervalType : DateIntervalType = DateIntervalType.Week
 
     init() {
         container = CKContainer.default()
@@ -93,6 +94,10 @@ class Model {
                 observer.modelUpdated(expenses: newExpenses)
             }
         }
+    }
+    
+    func setDateInterval(dateIntervalType: DateIntervalType) {
+        self.dateIntervalType = dateIntervalType
     }
     
     func reloadExpenses() {

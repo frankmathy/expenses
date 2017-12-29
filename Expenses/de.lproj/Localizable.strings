@@ -18,3 +18,8 @@
 "Error deleting expense record" = "Fehler beim Löschen der Ausgabe";
 "Error reading iCloud subscriptions" = "Fehler bei Lesen der iCloud Subscriptions";
 "Error adding iCloud subscription" = "Fehler beim Hinzufügen der iCloud Subscription";
+"Set Date Interval" = "Datumsintervall wählen";
+"All" = "Gesamt";
+"Week" = "Woche";
+"Month" = "Monat";
+"Year" = "Jahr";

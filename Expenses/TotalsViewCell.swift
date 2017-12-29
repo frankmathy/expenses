@@ -15,25 +15,26 @@ class TotalsViewCell: UITableViewCell {
     @IBOutlet weak var dateRightButton: UIButton!
     
     @IBAction func dateRangeButtonPressed(_ sender: UIButton) {
-        print("Date button pressed")
-        let alert = UIAlertController(title: "Expenses", message: "Set Date Range", preferredStyle: .alert)
-        let action1 = UIAlertAction(title: "Action 1", style: .default, handler: { (action) -> Void in
-            print("ACTION 1 selected!")
+        let alert = UIAlertController(title: NSLocalizedString("Expenses", comment: ""), message: NSLocalizedString("Set Date Interval", comment: ""), preferredStyle: .alert)
+        let actionWeek = UIAlertAction(title: NSLocalizedString("Week", comment: ""), style: .default, handler: { (action) -> Void in
+            Model.sharedInstance.setDateInterval(dateIntervalType: DateIntervalType.Week)
         })
-        
-        let action2 = UIAlertAction(title: "Action 2", style: .default, handler: { (action) -> Void in
-            print("ACTION 2 selected!")
+        let actionMonth = UIAlertAction(title: NSLocalizedString("Month", comment: ""), style: .default, handler: { (action) -> Void in
+            Model.sharedInstance.setDateInterval(dateIntervalType: DateIntervalType.Month)
         })
-        
-        let action3 = UIAlertAction(title: "Action 3", style: .default, handler: { (action) -> Void in
-            print("ACTION 3 selected!")
+        let actionYear = UIAlertAction(title: NSLocalizedString("Year", comment: ""), style: .default, handler: { (action) -> Void in
+            Model.sharedInstance.setDateInterval(dateIntervalType: DateIntervalType.Year)
         })
-        
+        let actionAll = UIAlertAction(title: NSLocalizedString("All", comment: ""), style: .default, handler: { (action) -> Void in
+            Model.sharedInstance.setDateInterval(dateIntervalType: DateIntervalType.All)
+        })
+
         // Cancel button
-        let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) -> Void in })
-        alert.addAction(action1)
-        alert.addAction(action2)
-        alert.addAction(action3)
+        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .destructive, handler: { (action) -> Void in })
+        alert.addAction(actionWeek)
+        alert.addAction(actionMonth)
+        alert.addAction(actionYear)
+        alert.addAction(actionAll)
         alert.addAction(cancel)
         parentViewController?.present(alert, animated: true, completion: nil)
     }

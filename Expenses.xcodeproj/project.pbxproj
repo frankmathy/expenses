@@ -27,6 +27,9 @@
 		85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */; };
 		8564BC501FF1C28B00B73D52 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8564BC4F1FF1C28B00B73D52 /* CloudKit.framework */; };
 		8576456C1FEDAA8C001F9051 /* NamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8576456B1FEDAA8C001F9051 /* NamedItemDAO.swift */; };
+		857764B21FF5A7ED00CBB925 /* DateIntervalSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */; };
+		857764B41FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B31FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift */; };
+		857764B51FF5AAEC00CBB925 /* DateIntervalSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */; };
 		857AE6581FEC8A67006CEDC2 /* ExpenseByDateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857AE6571FEC8A67006CEDC2 /* ExpenseByDateModel.swift */; };
 		859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859CEC951FCB20630028C9E7 /* FormatExtensions.swift */; };
 		85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */; };
@@ -93,6 +96,8 @@
 		8564BC4E1FF1C28100B73D52 /* Expenses.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Expenses.entitlements; sourceTree = "<group>"; };
 		8564BC4F1FF1C28B00B73D52 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		8576456B1FEDAA8C001F9051 /* NamedItemDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItemDAO.swift; sourceTree = "<group>"; };
+		857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIntervalSelection.swift; sourceTree = "<group>"; };
+		857764B31FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIntervalSelectionTests.swift; sourceTree = "<group>"; };
 		857AE6571FEC8A67006CEDC2 /* ExpenseByDateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseByDateModel.swift; sourceTree = "<group>"; };
 		858029351FCA430800A7BCBA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		859CEC951FCB20630028C9E7 /* FormatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatExtensions.swift; sourceTree = "<group>"; };
@@ -188,6 +193,7 @@
 				8576456B1FEDAA8C001F9051 /* NamedItemDAO.swift */,
 				85282C0B1FF00413009090F9 /* TotalsViewCell.swift */,
 				012E92D01FF264B5004AF427 /* CloudUserInfo.swift */,
+				857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */,
 			);
 			path = Expenses;
 			sourceTree = "<group>";
@@ -198,6 +204,7 @@
 				852F27DB1FCA2C0C006988A5 /* Info.plist */,
 				85CCDAE21FECF8E200E8C7CB /* ExpenseByDateModelTests.swift */,
 				85CCDAE91FED0BC500E8C7CB /* TestData.swift */,
+				857764B31FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift */,
 			);
 			path = ExpensesTests;
 			sourceTree = "<group>";
@@ -558,6 +565,7 @@
 				852F27F31FCA30E8006988A5 /* SampleData.swift in Sources */,
 				85282C0C1FF00413009090F9 /* TotalsViewCell.swift in Sources */,
 				852F27C51FCA2C0C006988A5 /* AppDelegate.swift in Sources */,
+				857764B21FF5A7ED00CBB925 /* DateIntervalSelection.swift in Sources */,
 				859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */,
 				852F27F51FCA312C006988A5 /* NamedItem.swift in Sources */,
 				8576456C1FEDAA8C001F9051 /* NamedItemDAO.swift in Sources */,
@@ -582,9 +590,11 @@
 				85CCDAE81FECFF7800E8C7CB /* FormatExtensions.swift in Sources */,
 				85CCDAE51FECFA6400E8C7CB /* Expense.swift in Sources */,
 				85CCDAE61FECFA7B00E8C7CB /* NamedItem.swift in Sources */,
+				857764B41FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift in Sources */,
 				85CCDAE31FECF8E200E8C7CB /* ExpenseByDateModelTests.swift in Sources */,
 				85CCDAEA1FED0BC500E8C7CB /* TestData.swift in Sources */,
 				85CCDAE41FECF9A400E8C7CB /* ExpenseByDateModel.swift in Sources */,
+				857764B51FF5AAEC00CBB925 /* DateIntervalSelection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

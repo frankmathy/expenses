@@ -14,7 +14,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
     
     private var expenseModel = ExpenseByDateModel()
     
-    var model : Model?
+    var model = Model.sharedInstance
 
     private let refreshTool = UIRefreshControl()
 
@@ -37,9 +37,8 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         appDelegate.expensesViewController = self
         
         navigationItem.leftBarButtonItem = editButtonItem
-        model = Model()
-        model!.addObserver(observer: self)
-        model?.reloadExpenses()
+        model.addObserver(observer: self)
+        model.reloadExpenses()
     }
     
     func modelUpdated(expenses: [Expense]) {
@@ -53,7 +52,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
     }
     
     func reload() {
-        model!.reloadExpenses()
+        model.reloadExpenses()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,7 +79,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let expense = expenseModel.expense(inSection: indexPath.section-1, row: indexPath.row)
-            model!.removeExpense(expense: expense)
+            model.removeExpense(expense: expense)
             expenseModel.removeExpense(inSection: indexPath.section-1, row: indexPath.row)
             tableView.reloadData()
         }
@@ -123,7 +122,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
                     let project = columns[4]
                     let comment = columns[5]
                     let expense = Expense(date: date!, category: NamedItem(name: category), account: NamedItem(name: account), project: NamedItem(name: project), amount: amount, comment: comment)
-                    model?.addExpense(expense: expense)
+                    model.addExpense(expense: expense)
                 }
             }
             print("Imported \((newExpenses.count)) expenses")
@@ -202,11 +201,11 @@ extension ExpensesViewController {
                 expense.recordId = oldExpense.recordId
                 expenseModel.removeExpense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
                 expenseModel.addExpense(expense: expense)
-                model!.updateExpense(expense: expense)
+                model.updateExpense(expense: expense)
             } else {
                 // New expense
                 expenseModel.addExpense(expense: expense)
-                model!.addExpense(expense: expense)
+                model.addExpense(expense: expense)
             }
             tableView.reloadData()
         }
