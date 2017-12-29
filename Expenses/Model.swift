@@ -32,6 +32,7 @@ class Model {
         publicDB = container.publicCloudDatabase
         cloudUserInfo = CloudUserInfo()
         cloudUserInfo.loadUserInfo()
+        dateIntervalSelection.setDateIntervalType(dateIntervalType: .Week)
         initializeSubscriptions()
     }
     
