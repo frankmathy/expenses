@@ -56,8 +56,7 @@ class Model {
             }
             if !isSubscribed {
                 // Subscribe to all record changes
-                let predicate = NSPredicate(value: true)
-                let subscription = CKQuerySubscription(recordType: Expense.RecordTypeName, predicate: predicate, options: [.firesOnRecordCreation, .firesOnRecordDeletion, .firesOnRecordUpdate])
+                let subscription = CKQuerySubscription(recordType: Expense.RecordTypeName, predicate: NSPredicate(value: true), options: [.firesOnRecordCreation, .firesOnRecordDeletion, .firesOnRecordUpdate])
                 let notification = CKNotificationInfo()
                 notification.alertBody = "Update in Expenses received."
                 notification.soundName = "default"
@@ -104,6 +103,7 @@ class Model {
                     observer.dateIntervalChanged()
                 }
             }
+            reloadExpenses()
         }
     }
     
@@ -115,6 +115,7 @@ class Model {
                     observer.dateIntervalChanged()
                 }
             }
+            reloadExpenses()
         }
     }
     
@@ -126,12 +127,17 @@ class Model {
                     observer.dateIntervalChanged()
                 }
             }
+            reloadExpenses()
         }
     }
     
     func reloadExpenses() {
-        let predicate = NSPredicate(value: true)
-        let query = CKQuery(recordType: Expense.RecordTypeName, predicate: predicate)
+        var datePredicate = NSPredicate(value: true)
+        if self.dateIntervalSelection.dateIntervalType != DateIntervalType.All {
+            datePredicate = NSPredicate(format: "Date >= %@ and Date <= %@", self.dateIntervalSelection.startDate as! NSDate, self.dateIntervalSelection.endDate as! NSDate)
+            //datePredicate = NSPredicate(format: "Date < %@", self.dateIntervalSelection.endDate as! NSDate)
+        }
+        let query = CKQuery(recordType: Expense.RecordTypeName, predicate: datePredicate)
         publicDB.perform(query, inZoneWith: nil) { [unowned self] results,error in
             guard error == nil else {
                 let message = NSLocalizedString("Error loading expenses from iCloud", comment: "")
