@@ -17,16 +17,16 @@ class TotalsViewCell: UITableViewCell {
     @IBAction func dateRangeButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: NSLocalizedString("Expenses", comment: ""), message: NSLocalizedString("Set Date Interval", comment: ""), preferredStyle: .alert)
         let actionWeek = UIAlertAction(title: NSLocalizedString("Week", comment: ""), style: .default, handler: { (action) -> Void in
-            Model.sharedInstance.setDateInterval(dateIntervalType: DateIntervalType.Week)
+            Model.sharedInstance.setDateIntervalType(dateIntervalType: DateIntervalType.Week)
         })
         let actionMonth = UIAlertAction(title: NSLocalizedString("Month", comment: ""), style: .default, handler: { (action) -> Void in
-            Model.sharedInstance.setDateInterval(dateIntervalType: DateIntervalType.Month)
+            Model.sharedInstance.setDateIntervalType(dateIntervalType: DateIntervalType.Month)
         })
         let actionYear = UIAlertAction(title: NSLocalizedString("Year", comment: ""), style: .default, handler: { (action) -> Void in
-            Model.sharedInstance.setDateInterval(dateIntervalType: DateIntervalType.Year)
+            Model.sharedInstance.setDateIntervalType(dateIntervalType: DateIntervalType.Year)
         })
         let actionAll = UIAlertAction(title: NSLocalizedString("All", comment: ""), style: .default, handler: { (action) -> Void in
-            Model.sharedInstance.setDateInterval(dateIntervalType: DateIntervalType.All)
+            Model.sharedInstance.setDateIntervalType(dateIntervalType: DateIntervalType.All)
         })
 
         // Cancel button
@@ -37,6 +37,14 @@ class TotalsViewCell: UITableViewCell {
         alert.addAction(actionAll)
         alert.addAction(cancel)
         parentViewController?.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func onPreviousPressed(_ sender: UIButton) {
+        Model.sharedInstance.dateIntervalPrevious()
+    }
+    
+    @IBAction func onNextPressed(_ sender: UIButton) {
+        Model.sharedInstance.dateIntervalNext()
     }
 }
 

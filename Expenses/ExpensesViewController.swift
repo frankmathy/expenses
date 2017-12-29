@@ -17,6 +17,8 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
     var model = Model.sharedInstance
 
     private let refreshTool = UIRefreshControl()
+    
+    var totalsCell : TotalsViewCell?
 
     var expensesExported = false
     
@@ -24,7 +26,6 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         super.viewDidLoad()
         
         refreshTool.addTarget(self, action: #selector(refreshControlPulled(_:)), for: .valueChanged)
-        // refreshControl.tintColor = UIColor(red: 0.25, green: 0.72, blue: 0.85, alpha: 1.0)
         refreshTool.attributedTitle = NSAttributedString(string: NSLocalizedString("Reloading Expenses", comment: ""))
         if #available(iOS 10.0, *) {
             tableView.refreshControl = refreshTool
@@ -87,10 +88,12 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if(section == 0) {
-            guard var totalsCell = tableView.dequeueReusableCell(withIdentifier: "TotalsCell") as? TotalsViewCell else {
+            totalsCell = tableView.dequeueReusableCell(withIdentifier: "TotalsCell") as? TotalsViewCell
+            if totalsCell == nil {
                 fatalError("The queued cell is not an instance of TotalsCell")
             }
-            totalsCell.amountLabel.text = expenseModel.grandTotal.currencyInputFormatting()
+            totalsCell?.amountLabel.text = expenseModel.grandTotal.currencyInputFormatting()
+            updateDateIntervalFields()
             return totalsCell
         } else {
             guard let headerCell: ExpenseGroupCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as? ExpenseGroupCell else {
@@ -99,6 +102,24 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
             headerCell.dateLabel.text = expenseModel.sectionDate(inSection: section - 1).asLocaleWeekdayDateString
             headerCell.totalAmountLabel.text = expenseModel.totalAmount(inSection: section - 1).currencyInputFormatting()
             return headerCell
+        }
+    }
+    
+    func updateDateIntervalFields() {
+        let showAllData = model.dateIntervalSelection.dateIntervalType == DateIntervalType.All
+        totalsCell!.dateLeftButton.isUserInteractionEnabled = !showAllData
+        totalsCell!.dateRightButton.isUserInteractionEnabled = !showAllData
+        if totalsCell != nil {
+            if showAllData {
+                totalsCell!.dateRangeButton.setTitle(NSLocalizedString("All", comment: ""), for: .normal)
+            } else {
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "dd.MM."
+                let startDateString = dateFormat.string(from: model.dateIntervalSelection.startDate!)
+                dateFormat.dateFormat = "dd.MM.yyyy"
+                let endDateString = dateFormat.string(from: model.dateIntervalSelection.endDate!)
+                totalsCell!.dateRangeButton.setTitle(startDateString + "-" + endDateString, for: .normal)
+            }
         }
     }
     
@@ -186,6 +207,10 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         let alertController = UIAlertController(title: message, message: body, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func dateIntervalChanged() {
+        updateDateIntervalFields()
     }
 }
 

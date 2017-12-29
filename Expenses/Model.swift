@@ -11,6 +11,7 @@ import CloudKit
 
 protocol ModelDelegate {
     func modelUpdated(expenses: [Expense])
+    func dateIntervalChanged()
     func cloudAccessError(message: String, error: NSError)
 }
 
@@ -22,10 +23,10 @@ class Model {
     let publicDB: CKDatabase
     let cloudUserInfo: CloudUserInfo
     
+    let dateIntervalSelection = DateIntervalSelection()
+    
     var delegates = [ModelDelegate]()
     
-    var dateIntervalType : DateIntervalType = DateIntervalType.Week
-
     init() {
         container = CKContainer.default()
         publicDB = container.publicCloudDatabase
@@ -96,8 +97,36 @@ class Model {
         }
     }
     
-    func setDateInterval(dateIntervalType: DateIntervalType) {
-        self.dateIntervalType = dateIntervalType
+    func setDateIntervalType(dateIntervalType: DateIntervalType) {
+        if dateIntervalSelection.setDateIntervalType(dateIntervalType: dateIntervalType) {
+            DispatchQueue.main.async {
+                for observer in self.delegates {
+                    observer.dateIntervalChanged()
+                }
+            }
+        }
+    }
+    
+    func dateIntervalNext() {
+        if dateIntervalSelection.dateIntervalType != DateIntervalType.All {
+            dateIntervalSelection.nextInterval()
+            DispatchQueue.main.async {
+                for observer in self.delegates {
+                    observer.dateIntervalChanged()
+                }
+            }
+        }
+    }
+    
+    func dateIntervalPrevious() {
+        if dateIntervalSelection.dateIntervalType != DateIntervalType.All {
+            dateIntervalSelection.previousInterval()
+            DispatchQueue.main.async {
+                for observer in self.delegates {
+                    observer.dateIntervalChanged()
+                }
+            }
+        }
     }
     
     func reloadExpenses() {

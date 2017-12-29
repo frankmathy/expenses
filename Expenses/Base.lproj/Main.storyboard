@@ -37,6 +37,9 @@
                                                         <constraint firstAttribute="width" constant="20" id="QeH-a9-Qzs"/>
                                                     </constraints>
                                                     <state key="normal" image="ArrowLeft"/>
+                                                    <connections>
+                                                        <action selector="onPreviousPressed:" destination="D6j-Rb-gpe" eventType="touchUpInside" id="NA8-GS-2Xm"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcA-Sh-LGA" userLabel="DateRangeButton">
                                                     <rect key="frame" x="20" y="0.0" width="33" height="20"/>
@@ -53,6 +56,9 @@
                                                         <constraint firstAttribute="width" constant="20" id="zxj-B5-SKC"/>
                                                     </constraints>
                                                     <state key="normal" image="ArrowRight"/>
+                                                    <connections>
+                                                        <action selector="onNextPressed:" destination="D6j-Rb-gpe" eventType="touchUpInside" id="em7-gM-F8S"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
