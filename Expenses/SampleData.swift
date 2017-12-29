@@ -9,24 +9,24 @@
 import Foundation
 
 final class SampleData {
-    static let accountHousehold = NamedItem(name: "Haushalt")
-    static let accountOther = NamedItem(name: "Restbudget")
+    static let accountHousehold = NamedItem(asAccount: "Haushalt")
+    static let accountOther = NamedItem(asAccount: "Restbudget")
 
-    static let categoryCar = NamedItem(name: "Auto")
-    static let categoryBakery = NamedItem(name: "Bäcker")
-    static let categoryDrugstore = NamedItem(name: "Drogerie")
-    static let categoryHobby = NamedItem(name: "Freizeit/Hobby")
-    static let categoryBarber = NamedItem(name: "Friseur")
-    static let categoryPresents = NamedItem(name: "Geschenke")
-    static let categoryHealth = NamedItem(name: "Gesundheit")
-    static let categoryClothes = NamedItem(name: "Kleidung")
-    static let categoryGroceries = NamedItem(name: "Lebensmittel")
-    static let categoryRestaurant = NamedItem(name: "Restaurant")
-    static let categoryTransportation = NamedItem(name: "Transport")
+    static let categoryCar = NamedItem(asCategory: "Auto")
+    static let categoryBakery = NamedItem(asCategory: "Bäcker")
+    static let categoryDrugstore = NamedItem(asCategory: "Drogerie")
+    static let categoryHobby = NamedItem(asCategory: "Freizeit/Hobby")
+    static let categoryBarber = NamedItem(asCategory: "Friseur")
+    static let categoryPresents = NamedItem(asCategory: "Geschenke")
+    static let categoryHealth = NamedItem(asCategory: "Gesundheit")
+    static let categoryClothes = NamedItem(asCategory: "Kleidung")
+    static let categoryGroceries = NamedItem(asCategory: "Lebensmittel")
+    static let categoryRestaurant = NamedItem(asCategory: "Restaurant")
+    static let categoryTransportation = NamedItem(asCategory: "Transport")
 
     
-    static let projectNone = NamedItem(name: "-")
-    static let projectUrlaub = NamedItem(name: "Urlaub")
+    static let projectNone = NamedItem(asProject: "-")
+    static let projectUrlaub = NamedItem(asProject: "Urlaub")
     
     static func getAccounts() -> [NamedItem] {
         return [accountHousehold, accountOther]

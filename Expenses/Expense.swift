@@ -32,7 +32,7 @@ class Expense {
     
     var category: NamedItem {
         get {
-            return NamedItem(name: record[ColumnKey.category] as! String)
+            return NamedItem(asCategory: record[ColumnKey.category] as! String)
         }
         
         set(newCategory) {
@@ -42,7 +42,7 @@ class Expense {
     
     var account: NamedItem {
         get {
-            return NamedItem(name: record[ColumnKey.account] as! String)
+            return NamedItem(asCategory: record[ColumnKey.account] as! String)
         }
         
         set(newAccount) {
@@ -52,7 +52,7 @@ class Expense {
     
     var project: NamedItem {
         get {
-            return NamedItem(name: record[ColumnKey.project] as! String)
+            return NamedItem(asProject: record[ColumnKey.project] as! String)
         }
         
         set(newProject) {
@@ -110,13 +110,15 @@ class Expense {
     }
     
     func asCKRecord() -> CKRecord {
-        let record = recordId != nil ? CKRecord(recordType: Expense.RecordTypeName, recordID: recordId!) : CKRecord(recordType: Expense.RecordTypeName)
-        record.setObject(date as CKRecordValue, forKey: ColumnKey.date)
-        record.setObject(amount as CKRecordValue, forKey: ColumnKey.amount)
-        record.setObject(category.name as CKRecordValue, forKey: ColumnKey.category)
-        record.setObject(account.name as CKRecordValue, forKey: ColumnKey.account)
-        record.setObject(project.name as CKRecordValue, forKey: ColumnKey.project)
-        record.setObject(comment as CKRecordValue, forKey: ColumnKey.comment)
         return record
-    }    
+    }
+    
+    func updateFromOtherExpense(other : Expense) {
+        date = other.date
+        category = other.category
+        account = other.account
+        project = other.project
+        amount = other.amount
+        comment = other.comment
+    }
 }

@@ -151,7 +151,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
                     let category = columns[3]
                     let project = columns[4]
                     let comment = columns[5]
-                    let expense = Expense(date: date!, category: NamedItem(name: category), account: NamedItem(name: account), project: NamedItem(name: project), amount: amount, comment: comment)
+                    let expense = Expense(date: date!, category: NamedItem(asCategory: category), account: NamedItem(asAccount: account), project: NamedItem(asProject: project), amount: amount, comment: comment)
                     model.addExpense(expense: expense)
                 }
             }
@@ -231,10 +231,11 @@ extension ExpensesViewController {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update of expense
-                let oldExpense = expenseModel.expense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
+                let updatedExpense = expenseModel.expense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
+                updatedExpense.updateFromOtherExpense(other: expense)
                 expenseModel.removeExpense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
-                expenseModel.addExpense(expense: expense)
-                model.updateExpense(expense: expense)
+                expenseModel.addExpense(expense: updatedExpense)
+                model.updateExpense(expense: updatedExpense)
             } else {
                 // New expense
                 expenseModel.addExpense(expense: expense)
