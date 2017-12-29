@@ -11,25 +11,25 @@ import Foundation
 
 
 class TestData {
-    let accountHousehold = NamedItem(name: "Haushalt")
-    let accountOther = NamedItem(name: "Restbudget")
+    let accountHousehold = NamedItem(asAccount: "Haushalt")
+    let accountOther = NamedItem(asAccount: "Restbudget")
     let accounts: [NamedItem]
 
-    let categoryCar = NamedItem(name: "Auto")
-    let categoryBakery = NamedItem(name: "Bäcker")
-    let categoryDrugstore = NamedItem(name: "Drogerie")
-    let categoryHobby = NamedItem(name: "Freizeit/Hobby")
-    let categoryBarber = NamedItem(name: "Friseur")
-    let categoryPresents = NamedItem(name: "Geschenke")
-    let categoryHealth = NamedItem(name: "Gesundheit")
-    let categoryClothes = NamedItem(name: "Kleidung")
-    let categoryGroceries = NamedItem(name: "Lebensmittel")
-    let categoryRestaurant = NamedItem(name: "Restaurant")
-    let categoryTransportation = NamedItem(name: "Transport")
+    let categoryCar = NamedItem(asCategory: "Auto")
+    let categoryBakery = NamedItem(asCategory: "Bäcker")
+    let categoryDrugstore = NamedItem(asCategory: "Drogerie")
+    let categoryHobby = NamedItem(asCategory: "Freizeit/Hobby")
+    let categoryBarber = NamedItem(asCategory: "Friseur")
+    let categoryPresents = NamedItem(asCategory: "Geschenke")
+    let categoryHealth = NamedItem(asCategory: "Gesundheit")
+    let categoryClothes = NamedItem(asCategory: "Kleidung")
+    let categoryGroceries = NamedItem(asCategory: "Lebensmittel")
+    let categoryRestaurant = NamedItem(asCategory: "Restaurant")
+    let categoryTransportation = NamedItem(asCategory: "Transport")
     let categories: [NamedItem]
 
-    let projectNone = NamedItem(name: "-")
-    let projectUrlaub = NamedItem(name: "Urlaub")
+    let projectNone = NamedItem(asProject: "-")
+    let projectUrlaub = NamedItem(asProject: "Urlaub")
     let projects: [NamedItem]
     
     let today : Date
