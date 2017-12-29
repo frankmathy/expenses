@@ -29,6 +29,9 @@ class Model {
     
     init() {
         container = CKContainer.default()
+        /* TODO Implement check if user is logged in to iCloud
+        container.accountStatus(completionHandler: { (accountStatus, error) in
+        }) */
         publicDB = container.publicCloudDatabase
         cloudUserInfo = CloudUserInfo()
         cloudUserInfo.loadUserInfo()
@@ -149,6 +152,7 @@ class Model {
             for record in results! {
                 let expense = Expense(record: record)
                 newExpenses.append(expense)
+                // Temporary hack to create missing accounts
             }
             self.modelUpdated(newExpenses)
         }
@@ -163,7 +167,6 @@ class Model {
                 self.cloudAccessError(message: message, error: error as! NSError)
                 return
             }
-            expense.recordId = (record?.recordID)!
             print("Successfully saved expense with ID=\(record?.recordID)")
         })
     }

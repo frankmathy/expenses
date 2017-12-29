@@ -232,7 +232,6 @@ extension ExpensesViewController {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update of expense
                 let oldExpense = expenseModel.expense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
-                expense.recordId = oldExpense.recordId
                 expenseModel.removeExpense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
                 expenseModel.addExpense(expense: expense)
                 model.updateExpense(expense: expense)

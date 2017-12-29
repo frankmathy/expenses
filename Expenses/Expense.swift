@@ -10,15 +10,75 @@ import Foundation
 import CloudKit
 
 class Expense {
-    var recordId: CKRecordID?
-    var date: Date
-    var category: NamedItem
-    var account: NamedItem
-    var project: NamedItem
-    var amount: Float
-    var comment: String
-    
     static let RecordTypeName = "Expense"
+    
+    var record : CKRecord
+    
+    var recordId: CKRecordID? {
+        get {
+            return record.recordID
+        }
+    }
+    
+    var date: Date {
+        get {
+            return record[ColumnKey.date] as! Date
+        }
+        
+        set(newDate) {
+            record[ColumnKey.date] = newDate as CKRecordValue
+        }
+    }
+    
+    var category: NamedItem {
+        get {
+            return NamedItem(name: record[ColumnKey.category] as! String)
+        }
+        
+        set(newCategory) {
+            record[ColumnKey.category] = newCategory.name as CKRecordValue
+        }
+    }
+    
+    var account: NamedItem {
+        get {
+            return NamedItem(name: record[ColumnKey.account] as! String)
+        }
+        
+        set(newAccount) {
+            record[ColumnKey.account] = newAccount.name as CKRecordValue
+        }
+    }
+    
+    var project: NamedItem {
+        get {
+            return NamedItem(name: record[ColumnKey.project] as! String)
+        }
+        
+        set(newProject) {
+            record[ColumnKey.project] = newProject.name as CKRecordValue
+        }
+    }
+    
+    var amount: Float {
+        get {
+            return record[ColumnKey.amount] as! Float
+        }
+        
+        set(newAmount) {
+            record[ColumnKey.amount] = newAmount as CKRecordValue
+        }
+    }
+    
+    var comment: String {
+        get {
+            return record[ColumnKey.comment] as! String
+        }
+        
+        set(newComment) {
+            record[ColumnKey.comment] = newComment as CKRecordValue
+        }
+    }
     
     //MARK: Types
     struct ColumnKey {
@@ -31,16 +91,8 @@ class Expense {
         static let comment = "Comment"
     }
     
-    convenience init(date: Date, category: NamedItem, account: NamedItem, project: NamedItem, amount: Float, comment: String) {
-        self.init(recordId: nil, date: date, category: category, account: account, project: project, amount: amount, comment: comment)
-    }
-    
-    convenience init(expense: Expense) {
-        self.init(recordId: expense.recordId, date: expense.date, category: expense.category, account: expense.account, project: expense.project, amount: expense.amount,comment: expense.comment)
-    }
-    
-    init(recordId: CKRecordID?, date: Date, category: NamedItem, account: NamedItem, project: NamedItem, amount: Float, comment: String) {
-        self.recordId = recordId
+    init(date: Date, category: NamedItem, account: NamedItem, project: NamedItem, amount: Float, comment: String) {
+        record = CKRecord(recordType: Expense.RecordTypeName)
         self.date = date
         self.amount = amount
         self.category = category
@@ -50,13 +102,7 @@ class Expense {
     }
     
     init(record: CKRecord) {
-        self.recordId = record.recordID
-        self.date = record[ColumnKey.date] as! Date
-        self.category = NamedItem(name: record[ColumnKey.category] as! String)
-        self.account = NamedItem(name: record[ColumnKey.account] as! String)
-        self.project = NamedItem(name: record[ColumnKey.project] as! String)
-        self.amount = record[ColumnKey.amount] as! Float
-        self.comment = record[ColumnKey.comment] as! String
+        self.record = record
     }
     
     convenience init(byExpense expense: Expense) {
