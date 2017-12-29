@@ -60,7 +60,7 @@ class Expense {
     }
     
     convenience init(byExpense expense: Expense) {
-        self.init(date: expense.date, category: expense.category, account: expense.account, project: expense.project, amount: expense.amount, comment: "")
+        self.init(date: expense.date, category: expense.category, account: expense.account, project: expense.project, amount: expense.amount, comment: expense.comment)
     }
     
     func asCKRecord() -> CKRecord {
