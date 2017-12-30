@@ -12,8 +12,7 @@ import CloudKit
 class NamedItem {
     
     struct ColumnKey {
-        static let key = "key"
-        static let name = "Name"
+        static let name = "accountName"
     }
     
     static let RecordNameCategory = "Category"
@@ -61,6 +60,5 @@ class NamedItem {
     init(recordTypeName : String, record: CKRecord) {
         self.recordTypeName = recordTypeName
         self.record = record
-        self.name = CKCurrentUserDefaultName
     }
 }

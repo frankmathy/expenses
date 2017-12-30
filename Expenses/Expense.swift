@@ -12,6 +12,16 @@ import CloudKit
 class Expense {
     static let RecordTypeName = "Expense"
     
+    struct ColumnKey {
+        static let date = "Date"
+        static let category = "Category"
+        static let account = "Account"
+        static let accountRef = "AccountRef"
+        static let project = "Project"
+        static let amount = "Amount"
+        static let comment = "Comment"
+    }
+    
     var record : CKRecord
     
     var recordId: CKRecordID? {
@@ -49,6 +59,17 @@ class Expense {
             record[ColumnKey.account] = newAccount.name as CKRecordValue
         }
     }
+
+    var accountRef: CKReference? {
+        get {
+            let accountRef = record[ColumnKey.accountRef]
+            return accountRef as! CKReference?
+        }
+        
+        set(newRef) {
+            record[ColumnKey.accountRef] = newRef as! CKReference
+        }
+    }
     
     var project: NamedItem {
         get {
@@ -78,17 +99,6 @@ class Expense {
         set(newComment) {
             record[ColumnKey.comment] = newComment as CKRecordValue
         }
-    }
-    
-    //MARK: Types
-    struct ColumnKey {
-        static let key = "key"
-        static let date = "Date"
-        static let category = "Category"
-        static let account = "Account"
-        static let project = "Project"
-        static let amount = "Amount"
-        static let comment = "Comment"
     }
     
     init(date: Date, category: NamedItem, account: Account, project: NamedItem, amount: Float, comment: String) {
