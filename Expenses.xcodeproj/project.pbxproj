@@ -15,6 +15,10 @@
 		01FB82B11FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FB82B01FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift */; };
 		3772B304FD492B522EFF83D4 /* Pods_ExpensesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C748394FE5DBA4CF998A05D2 /* Pods_ExpensesTests.framework */; };
 		4974BC354BC26F3BD1057AF1 /* Pods_Expenses.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C4A0BB66FBDA14DE298997 /* Pods_Expenses.framework */; };
+		852701381FF8174400D4076A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CA6A7F1FD9CAF90047B344 /* User.swift */; };
+		8527013A1FF8176000D4076A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F21FCA30E8006988A5 /* SampleData.swift */; };
+		8527013C1FF817C000D4076A /* CloudUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012E92D01FF264B5004AF427 /* CloudUserInfo.swift */; };
+		8527013D1FF817D900D4076A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAF21FED77EC00E8C7CB /* Model.swift */; };
 		85282C0C1FF00413009090F9 /* TotalsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85282C0B1FF00413009090F9 /* TotalsViewCell.swift */; };
 		852F27C51FCA2C0C006988A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27C41FCA2C0C006988A5 /* AppDelegate.swift */; };
 		852F27CA1FCA2C0C006988A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852F27C81FCA2C0C006988A5 /* Main.storyboard */; };
@@ -26,7 +30,6 @@
 		852F27F71FCA316E006988A5 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* Expense.swift */; };
 		85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */; };
 		8564BC501FF1C28B00B73D52 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8564BC4F1FF1C28B00B73D52 /* CloudKit.framework */; };
-		8576456C1FEDAA8C001F9051 /* NamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8576456B1FEDAA8C001F9051 /* NamedItemDAO.swift */; };
 		857764B21FF5A7ED00CBB925 /* DateIntervalSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */; };
 		857764B41FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B31FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift */; };
 		857764B51FF5AAEC00CBB925 /* DateIntervalSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */; };
@@ -97,7 +100,6 @@
 		85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseGroupCell.swift; sourceTree = "<group>"; };
 		8564BC4E1FF1C28100B73D52 /* Expenses.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Expenses.entitlements; sourceTree = "<group>"; };
 		8564BC4F1FF1C28B00B73D52 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		8576456B1FEDAA8C001F9051 /* NamedItemDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItemDAO.swift; sourceTree = "<group>"; };
 		857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIntervalSelection.swift; sourceTree = "<group>"; };
 		857764B31FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIntervalSelectionTests.swift; sourceTree = "<group>"; };
 		857AE6571FEC8A67006CEDC2 /* ExpenseByDateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseByDateModel.swift; sourceTree = "<group>"; };
@@ -146,6 +148,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		852701361FF816CC00D4076A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				85BD09D81FF70D8E002EE048 /* Account.swift */,
+				012E92D01FF264B5004AF427 /* CloudUserInfo.swift */,
+				857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */,
+				852F27F61FCA316E006988A5 /* Expense.swift */,
+				857AE6571FEC8A67006CEDC2 /* ExpenseByDateModel.swift */,
+				85CCDAF21FED77EC00E8C7CB /* Model.swift */,
+				852F27F41FCA312C006988A5 /* NamedItem.swift */,
+				85CA6A7F1FD9CAF90047B344 /* User.swift */,
+				852F27F21FCA30E8006988A5 /* SampleData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		852701371FF816D400D4076A /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				01FB82B01FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift */,
+				01FB82AA1FCADB1300DE1BA5 /* ExpensesViewController.swift */,
+				85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */,
+				85F7C8AE1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		852701391FF8175200D4076A /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				859CEC951FCB20630028C9E7 /* FormatExtensions.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		8527013B1FF8177300D4076A /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */,
+				85282C0B1FF00413009090F9 /* TotalsViewCell.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
 		852F27B81FCA2C0C006988A5 = {
 			isa = PBXGroup;
 			children = (
@@ -172,32 +218,19 @@
 		852F27C31FCA2C0C006988A5 /* Expenses */ = {
 			isa = PBXGroup;
 			children = (
-				8564BC4E1FF1C28100B73D52 /* Expenses.entitlements */,
+				852701361FF816CC00D4076A /* Model */,
+				8527013B1FF8177300D4076A /* Controls */,
+				852701371FF816D400D4076A /* View Controllers */,
+				852701391FF8175200D4076A /* Util */,
 				852F27C41FCA2C0C006988A5 /* AppDelegate.swift */,
+				8564BC4E1FF1C28100B73D52 /* Expenses.entitlements */,
 				852F27C81FCA2C0C006988A5 /* Main.storyboard */,
-				852F27CB1FCA2C0C006988A5 /* Assets.xcassets */,
 				852F27CD1FCA2C0C006988A5 /* LaunchScreen.storyboard */,
+				852F27CB1FCA2C0C006988A5 /* Assets.xcassets */,
 				852F27D01FCA2C0C006988A5 /* Info.plist */,
-				852F27F21FCA30E8006988A5 /* SampleData.swift */,
-				852F27F41FCA312C006988A5 /* NamedItem.swift */,
-				85BD09D81FF70D8E002EE048 /* Account.swift */,
-				852F27F61FCA316E006988A5 /* Expense.swift */,
 				01FB82AE1FCADEF800DE1BA5 /* ExpenseCell.swift */,
-				85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */,
-				01FB82AA1FCADB1300DE1BA5 /* ExpensesViewController.swift */,
-				01FB82B01FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift */,
 				01BAF5EE1FD753DC002E892A /* Localizable.strings */,
-				859CEC951FCB20630028C9E7 /* FormatExtensions.swift */,
 				019FCB9C1FD752BA00F478DE /* InfoPlist.strings */,
-				85CA6A7F1FD9CAF90047B344 /* User.swift */,
-				85F7C8AE1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift */,
-				85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */,
-				857AE6571FEC8A67006CEDC2 /* ExpenseByDateModel.swift */,
-				85CCDAF21FED77EC00E8C7CB /* Model.swift */,
-				8576456B1FEDAA8C001F9051 /* NamedItemDAO.swift */,
-				85282C0B1FF00413009090F9 /* TotalsViewCell.swift */,
-				012E92D01FF264B5004AF427 /* CloudUserInfo.swift */,
-				857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */,
 			);
 			path = Expenses;
 			sourceTree = "<group>";
@@ -572,7 +605,6 @@
 				857764B21FF5A7ED00CBB925 /* DateIntervalSelection.swift in Sources */,
 				859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */,
 				852F27F51FCA312C006988A5 /* NamedItem.swift in Sources */,
-				8576456C1FEDAA8C001F9051 /* NamedItemDAO.swift in Sources */,
 				852F27F71FCA316E006988A5 /* Expense.swift in Sources */,
 				85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */,
 				85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */,
@@ -592,14 +624,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8527013C1FF817C000D4076A /* CloudUserInfo.swift in Sources */,
 				85CCDAE81FECFF7800E8C7CB /* FormatExtensions.swift in Sources */,
 				85CCDAE51FECFA6400E8C7CB /* Expense.swift in Sources */,
 				85CCDAE61FECFA7B00E8C7CB /* NamedItem.swift in Sources */,
 				857764B41FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift in Sources */,
 				85CCDAE31FECF8E200E8C7CB /* ExpenseByDateModelTests.swift in Sources */,
+				8527013D1FF817D900D4076A /* Model.swift in Sources */,
 				85BD09DA1FF70D8E002EE048 /* Account.swift in Sources */,
 				85CCDAEA1FED0BC500E8C7CB /* TestData.swift in Sources */,
 				85CCDAE41FECF9A400E8C7CB /* ExpenseByDateModel.swift in Sources */,
+				8527013A1FF8176000D4076A /* SampleData.swift in Sources */,
+				852701381FF8174400D4076A /* User.swift in Sources */,
 				857764B51FF5AAEC00CBB925 /* DateIntervalSelection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
