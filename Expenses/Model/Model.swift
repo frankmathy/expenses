@@ -150,7 +150,7 @@ class Model {
             }
             var newExpenses: [Expense] = []
             for record in results! {
-                let expense = Expense(record: record)
+                let expense = Expense(asNew: record)
                 newExpenses.append(expense)
                 // Temporary hack to create missing accounts
             }

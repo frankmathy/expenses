@@ -525,6 +525,37 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="bc3-13-tcU" userLabel="Authors Cell">
+                                        <rect key="frame" x="0.0" y="278" width="375" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bc3-13-tcU" id="5Ql-OY-lTG">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Loz-ft-eh4">
+                                                    <rect key="frame" x="16" y="11" width="92.5" height="38"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created by at" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDO-mt-heD">
+                                                            <rect key="frame" x="0.0" y="0.0" width="92.5" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edited by at" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iem-0U-eoV">
+                                                            <rect key="frame" x="0.0" y="20" width="92.5" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Loz-ft-eh4" firstAttribute="top" secondItem="5Ql-OY-lTG" secondAttribute="topMargin" id="Y7s-cs-iLT"/>
+                                                <constraint firstItem="Loz-ft-eh4" firstAttribute="leading" secondItem="5Ql-OY-lTG" secondAttribute="leadingMargin" id="vfi-XA-rSQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -550,7 +581,9 @@
                         <outlet property="amountTextField" destination="dTi-o5-m44" id="bc4-B5-Xdc"/>
                         <outlet property="categoryField" destination="kLT-Mo-xux" id="0oM-cm-Kcx"/>
                         <outlet property="commentField" destination="hgv-KN-G0T" id="X80-MN-0nm"/>
+                        <outlet property="createdByAt" destination="cDO-mt-heD" id="NKm-Ej-k8C"/>
                         <outlet property="dateField" destination="omh-Li-7ty" id="N0x-Qh-cOc"/>
+                        <outlet property="editedByAt" destination="iem-0U-eoV" id="lgz-yE-qzH"/>
                         <outlet property="projectField" destination="6Zc-QQ-9u3" id="df2-7v-Rrq"/>
                         <outlet property="saveButton" destination="hxo-sG-mne" id="6vd-42-HWW"/>
                     </connections>
@@ -702,6 +735,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NS6-py-hTY"/>
-        <segue reference="tP5-Tm-Y7f"/>
+        <segue reference="CHv-ek-rLh"/>
     </inferredMetricsTieBreakers>
 </document>

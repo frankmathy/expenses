@@ -18,6 +18,14 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    var asLocaleDateLongTimeString:String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .medium
+        dateFormatter.locale = Locale.current
+        return dateFormatter.string(from: self)
+    }
+    
     var asLocaleDateString:String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short

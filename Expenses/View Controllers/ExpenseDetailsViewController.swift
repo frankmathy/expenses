@@ -17,6 +17,8 @@ class ExpenseDetailsViewController: UITableViewController {
     @IBOutlet weak var projectField: UILabel!
     @IBOutlet weak var commentField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var createdByAt: UILabel!
+    @IBOutlet weak var editedByAt: UILabel!
     
     // Types for picker controller
     static let TYPE_CATEGORY = "category"
@@ -50,6 +52,44 @@ class ExpenseDetailsViewController: UITableViewController {
         accountField.text = expense!.account.name
         projectField.text = expense!.project.name
         commentField.text = expense!.comment
+        
+        // Show creation details if available
+        let creatorUserRecordId = expense!.creatorUserRecordID
+        let creationDate = expense!.creationDate
+        if creatorUserRecordId != nil && creationDate != nil {
+            Model.sharedInstance.cloudUserInfo.getUserInfoByRecordName(recordName: creatorUserRecordId!, completionHandler: { (userInfo, error) in
+                DispatchQueue.main.async {
+                    if error == nil {
+                        let name = (userInfo?.givenName!)! + " " + (userInfo?.familyName!)!
+                        let dateString = (creationDate?.asLocaleDateLongTimeString)!
+                        self.createdByAt.text = "Created by \(name) at \(dateString)"
+                    } else {
+                        self.createdByAt.text = ""
+                    }
+                }
+            })
+        } else {
+            createdByAt.text = ""
+        }
+        
+        // Show modification details if available
+        let lastModifiedUserRecordId = expense!.lastModifiedUserRecordID
+        let modificationDate = expense!.modificationDate
+        if lastModifiedUserRecordId != nil && modificationDate != nil && modificationDate != creationDate {
+            Model.sharedInstance.cloudUserInfo.getUserInfoByRecordName(recordName: lastModifiedUserRecordId!, completionHandler: { (userInfo, error) in
+                DispatchQueue.main.async {
+                    if error == nil {
+                        let name = (userInfo?.givenName!)! + " " + (userInfo?.familyName!)!
+                        let dateString = (modificationDate?.asLocaleDateLongTimeString)!
+                        self.editedByAt.text = "Modified by \(name) at \(dateString)"
+                    } else {
+                        self.editedByAt.text = ""
+                    }
+                }
+            })
+        } else {
+            editedByAt.text = ""
+        }
 
         updateSaveButtonState()
     }

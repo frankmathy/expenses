@@ -101,6 +101,28 @@ class Expense {
         }
     }
     
+    var creatorUserRecordID : String? {
+        guard let userRecordId = record.creatorUserRecordID else {
+            return nil
+        }
+        return userRecordId.recordName
+    }
+    
+    var creationDate : Date? {
+        return record.creationDate
+    }
+    
+    var lastModifiedUserRecordID : String? {
+        guard let userRecordId = record.lastModifiedUserRecordID else {
+            return nil
+        }
+        return userRecordId.recordName
+    }
+    
+    var modificationDate : Date? {
+        return record.modificationDate
+    }
+    
     init(date: Date, category: NamedItem, account: Account, project: NamedItem, amount: Float, comment: String) {
         record = CKRecord(recordType: Expense.RecordTypeName)
         self.date = date
@@ -111,12 +133,12 @@ class Expense {
         self.comment = comment
     }
     
-    init(record: CKRecord) {
+    init(asNew record: CKRecord) {
         self.record = record
     }
     
-    convenience init(byExpense expense: Expense) {
-        self.init(date: expense.date, category: expense.category, account: expense.account, project: expense.project, amount: expense.amount, comment: expense.comment)
+    init(asCopy expense: Expense) {
+        record = expense.record.copy() as! CKRecord
     }
     
     func asCKRecord() -> CKRecord {

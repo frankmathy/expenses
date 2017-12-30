@@ -199,7 +199,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
                 fatalError("The selected cell is not being displayed by the table")
             }
             let selectedExpense = expenseModel.expense(inSection: indexPath.section-1, row: indexPath.row)
-            expsenseDetailsViewController.expense = Expense(byExpense: selectedExpense)
+            expsenseDetailsViewController.expense = Expense(asCopy: selectedExpense)
 
         default:
             fatalError("Unexpected Segue Identifier: \(segue.identifier)")
@@ -231,11 +231,9 @@ extension ExpensesViewController {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update of expense
-                let updatedExpense = expenseModel.expense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
-                updatedExpense.updateFromOtherExpense(other: expense)
                 expenseModel.removeExpense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
-                expenseModel.addExpense(expense: updatedExpense)
-                model.updateExpense(expense: updatedExpense)
+                expenseModel.addExpense(expense: expense)
+                model.updateExpense(expense: expense)
             } else {
                 // New expense
                 expenseModel.addExpense(expense: expense)
