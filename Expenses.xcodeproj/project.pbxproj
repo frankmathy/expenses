@@ -219,18 +219,18 @@
 		852F27C31FCA2C0C006988A5 /* Expenses */ = {
 			isa = PBXGroup;
 			children = (
+				852F27CD1FCA2C0C006988A5 /* LaunchScreen.storyboard */,
+				852F27C81FCA2C0C006988A5 /* Main.storyboard */,
+				852F27CB1FCA2C0C006988A5 /* Assets.xcassets */,
+				01BAF5EE1FD753DC002E892A /* Localizable.strings */,
+				019FCB9C1FD752BA00F478DE /* InfoPlist.strings */,
 				852701361FF816CC00D4076A /* Model */,
 				8527013B1FF8177300D4076A /* Controls */,
 				852701371FF816D400D4076A /* View Controllers */,
 				852701391FF8175200D4076A /* Util */,
 				852F27C41FCA2C0C006988A5 /* AppDelegate.swift */,
 				8564BC4E1FF1C28100B73D52 /* Expenses.entitlements */,
-				852F27C81FCA2C0C006988A5 /* Main.storyboard */,
-				852F27CD1FCA2C0C006988A5 /* LaunchScreen.storyboard */,
-				852F27CB1FCA2C0C006988A5 /* Assets.xcassets */,
 				852F27D01FCA2C0C006988A5 /* Info.plist */,
-				01BAF5EE1FD753DC002E892A /* Localizable.strings */,
-				019FCB9C1FD752BA00F478DE /* InfoPlist.strings */,
 			);
 			path = Expenses;
 			sourceTree = "<group>";
