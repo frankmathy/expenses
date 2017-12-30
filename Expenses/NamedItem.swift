@@ -61,5 +61,6 @@ class NamedItem {
     init(recordTypeName : String, record: CKRecord) {
         self.recordTypeName = recordTypeName
         self.record = record
+        self.name = CKCurrentUserDefaultName
     }
 }

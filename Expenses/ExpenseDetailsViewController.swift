@@ -141,7 +141,7 @@ extension ExpenseDetailsViewController {
                 self.categoryField.text = expense?.category.name
                 updateSaveButtonState()
             } else if pickerViewController.itemType == ExpenseDetailsViewController.TYPE_ACCOUNT {
-                expense?.account = pickerViewController.selectedValue!
+                expense?.account = pickerViewController.selectedValue! as! Account
                 self.accountField.text = expense?.account.name
                 updateSaveButtonState()
             } else if pickerViewController.itemType == ExpenseDetailsViewController.TYPE_PROJECT {

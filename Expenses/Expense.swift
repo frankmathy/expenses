@@ -40,9 +40,9 @@ class Expense {
         }
     }
     
-    var account: NamedItem {
+    var account: Account {
         get {
-            return NamedItem(asCategory: record[ColumnKey.account] as! String)
+            return Account(byName: record[ColumnKey.account] as! String)
         }
         
         set(newAccount) {
@@ -91,7 +91,7 @@ class Expense {
         static let comment = "Comment"
     }
     
-    init(date: Date, category: NamedItem, account: NamedItem, project: NamedItem, amount: Float, comment: String) {
+    init(date: Date, category: NamedItem, account: Account, project: NamedItem, amount: Float, comment: String) {
         record = CKRecord(recordType: Expense.RecordTypeName)
         self.date = date
         self.amount = amount

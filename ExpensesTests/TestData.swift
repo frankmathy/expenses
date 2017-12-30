@@ -11,8 +11,8 @@ import Foundation
 
 
 class TestData {
-    let accountHousehold = NamedItem(asAccount: "Haushalt")
-    let accountOther = NamedItem(asAccount: "Restbudget")
+    let accountHousehold = Account(byName: "Haushalt")
+    let accountOther = Account(byName: "Restbudget")
     let accounts: [NamedItem]
 
     let categoryCar = NamedItem(asCategory: "Auto")

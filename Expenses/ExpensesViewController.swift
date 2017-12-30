@@ -151,7 +151,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
                     let category = columns[3]
                     let project = columns[4]
                     let comment = columns[5]
-                    let expense = Expense(date: date!, category: NamedItem(asCategory: category), account: NamedItem(asAccount: account), project: NamedItem(asProject: project), amount: amount, comment: comment)
+                    let expense = Expense(date: date!, category: NamedItem(asCategory: category), account: Account(byName: account), project: NamedItem(asProject: project), amount: amount, comment: comment)
                     model.addExpense(expense: expense)
                 }
             }

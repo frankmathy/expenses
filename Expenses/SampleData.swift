@@ -9,8 +9,8 @@
 import Foundation
 
 final class SampleData {
-    static let accountHousehold = NamedItem(asAccount: "Haushalt")
-    static let accountOther = NamedItem(asAccount: "Restbudget")
+    static let accountHousehold = Account(byName: "Haushalt")
+    static let accountOther = Account(byName: "Restbudget")
 
     static let categoryCar = NamedItem(asCategory: "Auto")
     static let categoryBakery = NamedItem(asCategory: "Bäcker")

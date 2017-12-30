@@ -33,6 +33,8 @@
 		857AE6581FEC8A67006CEDC2 /* ExpenseByDateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857AE6571FEC8A67006CEDC2 /* ExpenseByDateModel.swift */; };
 		859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859CEC951FCB20630028C9E7 /* FormatExtensions.swift */; };
 		85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */; };
+		85BD09D91FF70D8E002EE048 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD09D81FF70D8E002EE048 /* Account.swift */; };
+		85BD09DA1FF70D8E002EE048 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD09D81FF70D8E002EE048 /* Account.swift */; };
 		85CA6A801FD9CAF90047B344 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CA6A7F1FD9CAF90047B344 /* User.swift */; };
 		85CCDAE31FECF8E200E8C7CB /* ExpenseByDateModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAE21FECF8E200E8C7CB /* ExpenseByDateModelTests.swift */; };
 		85CCDAE41FECF9A400E8C7CB /* ExpenseByDateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857AE6571FEC8A67006CEDC2 /* ExpenseByDateModel.swift */; };
@@ -102,6 +104,7 @@
 		858029351FCA430800A7BCBA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		859CEC951FCB20630028C9E7 /* FormatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatExtensions.swift; sourceTree = "<group>"; };
 		85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerViewController.swift; sourceTree = "<group>"; };
+		85BD09D81FF70D8E002EE048 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		85CA6A7F1FD9CAF90047B344 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		85CCDAE21FECF8E200E8C7CB /* ExpenseByDateModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseByDateModelTests.swift; sourceTree = "<group>"; };
 		85CCDAE91FED0BC500E8C7CB /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
@@ -177,6 +180,7 @@
 				852F27D01FCA2C0C006988A5 /* Info.plist */,
 				852F27F21FCA30E8006988A5 /* SampleData.swift */,
 				852F27F41FCA312C006988A5 /* NamedItem.swift */,
+				85BD09D81FF70D8E002EE048 /* Account.swift */,
 				852F27F61FCA316E006988A5 /* Expense.swift */,
 				01FB82AE1FCADEF800DE1BA5 /* ExpenseCell.swift */,
 				85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */,
@@ -579,6 +583,7 @@
 				012E92D11FF264B5004AF427 /* CloudUserInfo.swift in Sources */,
 				01FB82B11FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift in Sources */,
 				85CA6A801FD9CAF90047B344 /* User.swift in Sources */,
+				85BD09D91FF70D8E002EE048 /* Account.swift in Sources */,
 				85F7C8AF1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,6 +597,7 @@
 				85CCDAE61FECFA7B00E8C7CB /* NamedItem.swift in Sources */,
 				857764B41FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift in Sources */,
 				85CCDAE31FECF8E200E8C7CB /* ExpenseByDateModelTests.swift in Sources */,
+				85BD09DA1FF70D8E002EE048 /* Account.swift in Sources */,
 				85CCDAEA1FED0BC500E8C7CB /* TestData.swift in Sources */,
 				85CCDAE41FECF9A400E8C7CB /* ExpenseByDateModel.swift in Sources */,
 				857764B51FF5AAEC00CBB925 /* DateIntervalSelection.swift in Sources */,
