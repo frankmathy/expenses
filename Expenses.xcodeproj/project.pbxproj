@@ -186,6 +186,7 @@
 		8527013B1FF8177300D4076A /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				01FB82AE1FCADEF800DE1BA5 /* ExpenseCell.swift */,
 				85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */,
 				85282C0B1FF00413009090F9 /* TotalsViewCell.swift */,
 			);
@@ -228,7 +229,6 @@
 				852F27CD1FCA2C0C006988A5 /* LaunchScreen.storyboard */,
 				852F27CB1FCA2C0C006988A5 /* Assets.xcassets */,
 				852F27D01FCA2C0C006988A5 /* Info.plist */,
-				01FB82AE1FCADEF800DE1BA5 /* ExpenseCell.swift */,
 				01BAF5EE1FD753DC002E892A /* Localizable.strings */,
 				019FCB9C1FD752BA00F478DE /* InfoPlist.strings */,
 			);
