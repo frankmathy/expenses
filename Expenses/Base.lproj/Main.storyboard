@@ -679,7 +679,7 @@
         <!--Expenses-->
         <scene sceneID="umg-CB-hFa">
             <objects>
-                <navigationController title="Expenses" automaticallyAdjustsScrollViewInsets="NO" id="BQT-fR-m3J" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BQT-fR-m3J" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Expenses" image="ShoppingCart" id="Bv8-0j-PxZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="gW4-jv-the">
@@ -695,22 +695,52 @@
             </objects>
             <point key="canvasLocation" x="527.20000000000005" y="124.58770614692655"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Expenses by Category-->
         <scene sceneID="eiz-Yc-Iuc">
             <objects>
-                <tableViewController id="vex-bh-bZE" sceneMemberID="viewController">
+                <tableViewController title="Expenses by Category" id="vex-bh-bZE" customClass="ExpenseByCategoryTableViewController" customModule="Expenses" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mks-RW-AVy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="h5J-ud-8WE">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExpenseByCategoryCell" id="h5J-ud-8WE" customClass="ExpenseByCategoryCell" customModule="Expenses" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h5J-ud-8WE" id="TNm-sF-Jgo">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="O1C-SP-raM">
+                                            <rect key="frame" x="16" y="10.5" width="343" height="24"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="CategoryName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48F-6C-OHj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="266" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxY-Na-cK8">
+                                                    <rect key="frame" x="274" y="0.0" width="69" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="O1C-SP-raM" firstAttribute="leading" secondItem="TNm-sF-Jgo" secondAttribute="leadingMargin" id="4IC-cI-tSI"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="O1C-SP-raM" secondAttribute="trailing" id="J20-Ej-Qpq"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstItem="O1C-SP-raM" firstAttribute="centerY" secondItem="h5J-ud-8WE" secondAttribute="centerY" id="2JD-1q-Alf"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="amountLabel" destination="AxY-Na-cK8" id="fNj-c9-jEm"/>
+                                    <outlet property="categoryName" destination="48F-6C-OHj" id="6xU-DT-gcq"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -718,11 +748,11 @@
                             <outlet property="delegate" destination="vex-bh-bZE" id="JGV-eo-cVu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="smR-fC-S2K"/>
+                    <navigationItem key="navigationItem" title="Expense Totals" id="smR-fC-S2K"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cb0-0m-nNv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1816.8" y="805.54722638680664"/>
+            <point key="canvasLocation" x="1478" y="806"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yqS-uR-2jf">
@@ -767,8 +797,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JdQ-yH-qcI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Category Report" image="CategoryReport" selectedImage="CategoryReport" id="kpc-cr-NzQ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gT9-he-IH7">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="gT9-he-IH7">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

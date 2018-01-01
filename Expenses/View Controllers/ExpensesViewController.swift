@@ -44,6 +44,8 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         
         navigationItem.leftBarButtonItem = editButtonItem
         Model.sharedInstance.addObserver(observer: self)
+        
+        // TODO: Is this needed?
         reloadExpenses(refreshPulled: false)
     }
     
@@ -58,7 +60,6 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
                 // ViewControllerUtils().hideActivityIndicator()
             }
         }
-        Model.sharedInstance.expenseModel!.setExpenses(expenses: expenses)
         self.tableView.reloadData()
     }
     
@@ -79,11 +80,11 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 0: Model.sharedInstance.expenseModel!.expensesCount(inSection: section - 1)
+        return section == 0 ? 0: Model.sharedInstance.expenseByDateModel!.expensesCount(inSection: section - 1)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return Model.sharedInstance.expenseModel!.sectionCount()+1
+        return Model.sharedInstance.expenseByDateModel!.sectionCount()+1
     }
     
     override func tableView(_ tableView: UITableView,
@@ -91,7 +92,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         guard let expenseCell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCell", for: indexPath) as? ExpenseCell else {
             fatalError("The dequeued cell is not an instance of ExpenseCell.")
         }
-        let expense = Model.sharedInstance.expenseModel!.expense(inSection: indexPath.section-1, row: indexPath.row)
+        let expense = Model.sharedInstance.expenseByDateModel!.expense(inSection: indexPath.section-1, row: indexPath.row)
         expenseCell.amountLabel.text = expense.amount.currencyInputFormatting()
         expenseCell.accountLabel.text = expense.account.name
         expenseCell.categoryLabel.text = expense.category.name
@@ -101,9 +102,9 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let expense = Model.sharedInstance.expenseModel?.expense(inSection: indexPath.section-1, row: indexPath.row)
+            let expense = Model.sharedInstance.expenseByDateModel?.expense(inSection: indexPath.section-1, row: indexPath.row)
             Model.sharedInstance.removeExpense(expense: expense!)
-            Model.sharedInstance.expenseModel?.removeExpense(inSection: indexPath.section-1, row: indexPath.row)
+            Model.sharedInstance.expenseByDateModel?.removeExpense(inSection: indexPath.section-1, row: indexPath.row)
             tableView.reloadData()
         }
     }
@@ -114,15 +115,15 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
             if totalsCell == nil {
                 fatalError("The queued cell is not an instance of TotalsCell")
             }
-            totalsCell?.amountLabel.text = Model.sharedInstance.expenseModel!.grandTotal.currencyInputFormatting()
+            totalsCell?.amountLabel.text = Model.sharedInstance.expenseByDateModel!.grandTotal.currencyInputFormatting()
             updateDateIntervalFields()
             return totalsCell
         } else {
             guard let headerCell: ExpenseGroupCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as? ExpenseGroupCell else {
                 fatalError("The queued cell is not an instance of ExpenseGroupCell")
             }
-            headerCell.dateLabel.text = Model.sharedInstance.expenseModel!.sectionCategoryKey(inSection: section - 1).asLocaleWeekdayDateString
-            headerCell.totalAmountLabel.text = Model.sharedInstance.expenseModel?.totalAmount(inSection: section - 1).currencyInputFormatting()
+            headerCell.dateLabel.text = Model.sharedInstance.expenseByDateModel!.sectionCategoryKey(inSection: section - 1).asLocaleWeekdayDateString
+            headerCell.totalAmountLabel.text = Model.sharedInstance.expenseByDateModel?.totalAmount(inSection: section - 1).currencyInputFormatting()
             return headerCell
         }
     }
@@ -132,25 +133,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         totalsCell!.dateLeftButton.isUserInteractionEnabled = !showAllData
         totalsCell!.dateRightButton.isUserInteractionEnabled = !showAllData
         if totalsCell != nil {
-            switch(Model.sharedInstance.dateIntervalSelection.dateIntervalType) {
-            case .All:
-                    totalsCell!.dateRangeButton.setTitle(NSLocalizedString("All", comment: ""), for: .normal)
-            case .Month:
-                    let dateFormat = DateFormatter()
-                    dateFormat.dateFormat = "MMMM yyyy"
-                    totalsCell!.dateRangeButton.setTitle(dateFormat.string(from: Model.sharedInstance.dateIntervalSelection.startDate!), for: .normal)
-            case .Year:
-                    let dateFormat = DateFormatter()
-                    dateFormat.dateFormat = "yyyy"
-                    totalsCell!.dateRangeButton.setTitle(dateFormat.string(from: Model.sharedInstance.dateIntervalSelection.startDate!), for: .normal)
-            case .Week:
-                    let dateFormat = DateFormatter()
-                    dateFormat.dateFormat = "dd.MM."
-                    let startDateString = dateFormat.string(from: Model.sharedInstance.dateIntervalSelection.startDate!)
-                    dateFormat.dateFormat = "dd.MM.yyyy"
-                    let endDateString = dateFormat.string(from: Model.sharedInstance.dateIntervalSelection.endDate!)
-                    totalsCell!.dateRangeButton.setTitle(startDateString + "-" + endDateString, for: .normal)
-            }
+            totalsCell!.dateRangeButton.setTitle(Model.sharedInstance.dateIntervalSelectionText(), for: .normal)
         }
     }
     
@@ -169,7 +152,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
             guard let indexPath = tableView.indexPath(for: selectedExpenseCell) else {
                 fatalError("The selected cell is not being displayed by the table")
             }
-            let selectedExpense = Model.sharedInstance.expenseModel?.expense(inSection: indexPath.section-1, row: indexPath.row)
+            let selectedExpense = Model.sharedInstance.expenseByDateModel?.expense(inSection: indexPath.section-1, row: indexPath.row)
             expsenseDetailsViewController.expense = Expense(asCopy: selectedExpense!)
 
         default:
@@ -203,12 +186,12 @@ extension ExpensesViewController {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update of expense
-                Model.sharedInstance.expenseModel?.removeExpense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
-                Model.sharedInstance.expenseModel?.addExpense(expense: expense)
+                Model.sharedInstance.expenseByDateModel?.removeExpense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
+                Model.sharedInstance.expenseByDateModel?.addExpense(expense: expense)
                 Model.sharedInstance.updateExpense(expense: expense)
             } else {
                 // New expense
-                Model.sharedInstance.expenseModel?.addExpense(expense: expense)
+                Model.sharedInstance.expenseByDateModel?.addExpense(expense: expense)
                 Model.sharedInstance.addExpense(expense: expense)
             }
             tableView.reloadData()

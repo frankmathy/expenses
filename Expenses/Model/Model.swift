@@ -19,7 +19,8 @@ class Model {
     
     static let sharedInstance = Model()
 
-    let expenseModel : (GroupedExpenseModel<Date>)?
+    let expenseByDateModel : (GroupedExpenseModel<Date>)?
+    let expenseByCategoryModel : (GroupedExpenseModel<String>)?
 
     let container: CKContainer
     let publicDB: CKDatabase
@@ -33,10 +34,17 @@ class Model {
         container = CKContainer.default()
         
         // Create model grouped by date
-        expenseModel = GroupedExpenseModel<Date>(getKeyFunction: { (expense) -> Date in
+        expenseByDateModel = GroupedExpenseModel<Date>(getKeyFunction: { (expense) -> Date in
             Calendar.current.startOfDay(for: expense.date)
         }, compareKeysFunction: { (d1, d2) -> Bool in
             return d1.compare(d2) != ComparisonResult.orderedAscending
+        })
+        
+        // Create model grouped by category
+        expenseByCategoryModel = GroupedExpenseModel<String>(getKeyFunction: { (expense) -> String in
+            expense.category.name
+        }, compareKeysFunction: { (c1, c2) -> Bool in
+            return c1.compare(c2) == ComparisonResult.orderedAscending
         })
 
         /* TODO Implement check if user is logged in to iCloud
@@ -103,6 +111,8 @@ class Model {
     }
     
     fileprivate func modelUpdated(_ newExpenses: [Expense]) {
+        expenseByDateModel?.setExpenses(expenses: newExpenses)
+        expenseByCategoryModel?.setExpenses(expenses: newExpenses)
         DispatchQueue.main.async {
             for observer in self.delegates {
                 observer.modelUpdated(expenses: newExpenses)
@@ -161,6 +171,8 @@ class Model {
                 newExpenses.append(expense)
                 // Temporary hack to create missing accounts
             }
+            
+            // Update models
             self.modelUpdated(newExpenses)
         }
     }
@@ -190,6 +202,28 @@ class Model {
                 return
             }
             print("Successfully deleted expense wth ID=\(expense.recordId)")
+        }
+    }
+    
+    func dateIntervalSelectionText() -> String {
+        switch(dateIntervalSelection.dateIntervalType) {
+        case .All:
+            return NSLocalizedString("All", comment: "")
+        case .Month:
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "MMMM yyyy"
+            return dateFormat.string(from: Model.sharedInstance.dateIntervalSelection.startDate!)
+        case .Year:
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "yyyy"
+            return dateFormat.string(from: Model.sharedInstance.dateIntervalSelection.startDate!)
+        case .Week:
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "dd.MM."
+            let startDateString = dateFormat.string(from: Model.sharedInstance.dateIntervalSelection.startDate!)
+            dateFormat.dateFormat = "dd.MM.yyyy"
+            let endDateString = dateFormat.string(from: Model.sharedInstance.dateIntervalSelection.endDate!)
+            return startDateString + "-" + endDateString
         }
     }
 }

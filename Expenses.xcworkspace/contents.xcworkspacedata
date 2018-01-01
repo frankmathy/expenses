@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/frankmathy/devlocal/iOS/Expenses/Expenses/View Controllers/ExpenseByCategoryTableViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:Expenses.xcodeproj">
    </FileRef>
    <FileRef

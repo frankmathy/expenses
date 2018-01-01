@@ -16,9 +16,9 @@ class InfoViewController: UIViewController {
         let fileURL = URL(fileURLWithPath: path)
         var csv = ""
         let dateFormat = ISO8601DateFormatter()
-        for section in 0..<(Model.sharedInstance.expenseModel!.sectionCount()) {
-            for row in 0..<(Model.sharedInstance.expenseModel!.expensesCount(inSection: section)) {
-                let expense = Model.sharedInstance.expenseModel!.expense(inSection: section, row: row)
+        for section in 0..<(Model.sharedInstance.expenseByDateModel!.sectionCount()) {
+            for row in 0..<(Model.sharedInstance.expenseByDateModel!.expensesCount(inSection: section)) {
+                let expense = Model.sharedInstance.expenseByDateModel!.expense(inSection: section, row: row)
                 let dateString = dateFormat.string(from: expense.date)
                 let amountString = String(expense.amount)
                 csv += "\(dateString)\t\(amountString)\t\(expense.account.name)\t\(expense.category.name)\t\(expense.project.name)\t\(expense.comment)\t \n"
