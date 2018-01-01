@@ -12,10 +12,6 @@ import CloudKit
 class ExpensesViewController: UITableViewController, ModelDelegate {
     private var selectedExpense : Expense?
     
-    private var expenseModel : (GroupedExpenseModel<Date>)?
-    
-    var model = Model.sharedInstance
-
     private let refreshTool = UIRefreshControl()
     
     var totalsCell : TotalsViewCell?
@@ -34,7 +30,6 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         indicator.center = self.view.center
         self.view.addSubview(indicator)
         
-        expenseModel = GroupedExpenseModel<Date>(getKeyFunction: getKey, compareKeysFunction: compareDates)
         refreshTool.addTarget(self, action: #selector(refreshControlPulled(_:)), for: .valueChanged)
         refreshTool.attributedTitle = NSAttributedString(string: NSLocalizedString("Reloading Expenses", comment: ""))
         if #available(iOS 10.0, *) {
@@ -48,17 +43,8 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         appDelegate.expensesViewController = self
         
         navigationItem.leftBarButtonItem = editButtonItem
-        model.addObserver(observer: self)
+        Model.sharedInstance.addObserver(observer: self)
         reloadExpenses(refreshPulled: false)
-    }
-    
-    // Support functions for data model
-    func getKey(expense : Expense) -> Date {
-        return Calendar.current.startOfDay(for: expense.date)
-    }
-    
-    func compareDates(d1 : Date, d2 : Date) -> Bool {
-        return d1.compare(d2) != ComparisonResult.orderedAscending
     }
     
     func modelUpdated(expenses: [Expense]) {
@@ -72,7 +58,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
                 // ViewControllerUtils().hideActivityIndicator()
             }
         }
-        self.expenseModel!.setExpenses(expenses: expenses)
+        Model.sharedInstance.expenseModel!.setExpenses(expenses: expenses)
         self.tableView.reloadData()
     }
     
@@ -85,7 +71,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
                 // ViewControllerUtils().showActivityIndicator(uiView: self.view)
             }
         }
-        model.reloadExpenses()
+        Model.sharedInstance.reloadExpenses()
     }
     
     @objc private func refreshControlPulled(_ sender: Any) {
@@ -93,11 +79,11 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 0: expenseModel!.expensesCount(inSection: section - 1)
+        return section == 0 ? 0: Model.sharedInstance.expenseModel!.expensesCount(inSection: section - 1)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return expenseModel!.sectionCount()+1
+        return Model.sharedInstance.expenseModel!.sectionCount()+1
     }
     
     override func tableView(_ tableView: UITableView,
@@ -105,7 +91,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         guard let expenseCell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCell", for: indexPath) as? ExpenseCell else {
             fatalError("The dequeued cell is not an instance of ExpenseCell.")
         }
-        let expense = expenseModel!.expense(inSection: indexPath.section-1, row: indexPath.row)
+        let expense = Model.sharedInstance.expenseModel!.expense(inSection: indexPath.section-1, row: indexPath.row)
         expenseCell.amountLabel.text = expense.amount.currencyInputFormatting()
         expenseCell.accountLabel.text = expense.account.name
         expenseCell.categoryLabel.text = expense.category.name
@@ -115,9 +101,9 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let expense = expenseModel?.expense(inSection: indexPath.section-1, row: indexPath.row)
-            model.removeExpense(expense: expense!)
-            expenseModel?.removeExpense(inSection: indexPath.section-1, row: indexPath.row)
+            let expense = Model.sharedInstance.expenseModel?.expense(inSection: indexPath.section-1, row: indexPath.row)
+            Model.sharedInstance.removeExpense(expense: expense!)
+            Model.sharedInstance.expenseModel?.removeExpense(inSection: indexPath.section-1, row: indexPath.row)
             tableView.reloadData()
         }
     }
@@ -128,97 +114,46 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
             if totalsCell == nil {
                 fatalError("The queued cell is not an instance of TotalsCell")
             }
-            totalsCell?.amountLabel.text = expenseModel!.grandTotal.currencyInputFormatting()
+            totalsCell?.amountLabel.text = Model.sharedInstance.expenseModel!.grandTotal.currencyInputFormatting()
             updateDateIntervalFields()
             return totalsCell
         } else {
             guard let headerCell: ExpenseGroupCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as? ExpenseGroupCell else {
                 fatalError("The queued cell is not an instance of ExpenseGroupCell")
             }
-            headerCell.dateLabel.text = expenseModel!.sectionCategoryKey(inSection: section - 1).asLocaleWeekdayDateString
-            headerCell.totalAmountLabel.text = expenseModel?.totalAmount(inSection: section - 1).currencyInputFormatting()
+            headerCell.dateLabel.text = Model.sharedInstance.expenseModel!.sectionCategoryKey(inSection: section - 1).asLocaleWeekdayDateString
+            headerCell.totalAmountLabel.text = Model.sharedInstance.expenseModel?.totalAmount(inSection: section - 1).currencyInputFormatting()
             return headerCell
         }
     }
     
     func updateDateIntervalFields() {
-        let showAllData = model.dateIntervalSelection.dateIntervalType == DateIntervalType.All
+        let showAllData = Model.sharedInstance.dateIntervalSelection.dateIntervalType == DateIntervalType.All
         totalsCell!.dateLeftButton.isUserInteractionEnabled = !showAllData
         totalsCell!.dateRightButton.isUserInteractionEnabled = !showAllData
         if totalsCell != nil {
-            switch(model.dateIntervalSelection.dateIntervalType) {
+            switch(Model.sharedInstance.dateIntervalSelection.dateIntervalType) {
             case .All:
                     totalsCell!.dateRangeButton.setTitle(NSLocalizedString("All", comment: ""), for: .normal)
             case .Month:
                     let dateFormat = DateFormatter()
                     dateFormat.dateFormat = "MMMM yyyy"
-                    totalsCell!.dateRangeButton.setTitle(dateFormat.string(from: model.dateIntervalSelection.startDate!), for: .normal)
+                    totalsCell!.dateRangeButton.setTitle(dateFormat.string(from: Model.sharedInstance.dateIntervalSelection.startDate!), for: .normal)
             case .Year:
                     let dateFormat = DateFormatter()
                     dateFormat.dateFormat = "yyyy"
-                    totalsCell!.dateRangeButton.setTitle(dateFormat.string(from: model.dateIntervalSelection.startDate!), for: .normal)
+                    totalsCell!.dateRangeButton.setTitle(dateFormat.string(from: Model.sharedInstance.dateIntervalSelection.startDate!), for: .normal)
             case .Week:
                     let dateFormat = DateFormatter()
                     dateFormat.dateFormat = "dd.MM."
-                    let startDateString = dateFormat.string(from: model.dateIntervalSelection.startDate!)
+                    let startDateString = dateFormat.string(from: Model.sharedInstance.dateIntervalSelection.startDate!)
                     dateFormat.dateFormat = "dd.MM.yyyy"
-                    let endDateString = dateFormat.string(from: model.dateIntervalSelection.endDate!)
+                    let endDateString = dateFormat.string(from: Model.sharedInstance.dateIntervalSelection.endDate!)
                     totalsCell!.dateRangeButton.setTitle(startDateString + "-" + endDateString, for: .normal)
             }
         }
     }
     
-    @IBAction func importData(_ sender: Any) {
-        let userDocumentsFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let path = userDocumentsFolder.appending("/Expenses.csv")
-        let fileURL = URL(fileURLWithPath: path)
-        do {
-            let newExpenses = [Expense]()
-            let contents = try String(contentsOf: fileURL, encoding: String.Encoding.utf8)
-            print(contents)
-            let rows = contents.components(separatedBy: "\n")
-            let dateFormat = ISO8601DateFormatter()
-            for row in rows {
-                let columns = row.components(separatedBy: "\t")
-                if columns.count >= 6 {
-                    let date = dateFormat.date(from: columns[0])
-                    let amount = (columns[1] as NSString).floatValue
-                    let account = columns[2]
-                    let category = columns[3]
-                    let project = columns[4]
-                    let comment = columns[5]
-                    let expense = Expense(date: date!, category: NamedItem(asCategory: category), account: Account(byName: account), project: NamedItem(asProject: project), amount: amount, comment: comment)
-                    model.addExpense(expense: expense)
-                }
-            }
-            print("Imported \((newExpenses.count)) expenses")
-        } catch {
-            print("File Read Error for file \(path)")
-            return
-        }
-    }
-    
-    @IBAction func exportData(_ sender: Any) {
-        let userDocumentsFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let path = userDocumentsFolder.appending("/Expenses.csv")
-        let fileURL = URL(fileURLWithPath: path)
-        var csv = ""
-        let dateFormat = ISO8601DateFormatter()
-        for section in 0..<(expenseModel!.sectionCount()) {
-            for row in 0..<(expenseModel!.expensesCount(inSection: section)) {
-                let expense = expenseModel!.expense(inSection: section, row: row)
-                let dateString = dateFormat.string(from: expense.date)
-                let amountString = String(expense.amount)
-                csv += "\(dateString)\t\(amountString)\t\(expense.account.name)\t\(expense.category.name)\t\(expense.project.name)\t\(expense.comment)\t \n"
-            }
-        }
-        do {
-            try csv.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
-        } catch {
-            print("error")
-        }
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         switch segue.identifier ?? "" {
@@ -234,7 +169,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
             guard let indexPath = tableView.indexPath(for: selectedExpenseCell) else {
                 fatalError("The selected cell is not being displayed by the table")
             }
-            let selectedExpense = expenseModel?.expense(inSection: indexPath.section-1, row: indexPath.row)
+            let selectedExpense = Model.sharedInstance.expenseModel?.expense(inSection: indexPath.section-1, row: indexPath.row)
             expsenseDetailsViewController.expense = Expense(asCopy: selectedExpense!)
 
         default:
@@ -268,13 +203,13 @@ extension ExpensesViewController {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update of expense
-                expenseModel?.removeExpense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
-                expenseModel?.addExpense(expense: expense)
-                model.updateExpense(expense: expense)
+                Model.sharedInstance.expenseModel?.removeExpense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
+                Model.sharedInstance.expenseModel?.addExpense(expense: expense)
+                Model.sharedInstance.updateExpense(expense: expense)
             } else {
                 // New expense
-                expenseModel?.addExpense(expense: expense)
-                model.addExpense(expense: expense)
+                Model.sharedInstance.expenseModel?.addExpense(expense: expense)
+                Model.sharedInstance.addExpense(expense: expense)
             }
             tableView.reloadData()
         }

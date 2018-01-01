@@ -18,7 +18,9 @@ protocol ModelDelegate {
 class Model {
     
     static let sharedInstance = Model()
-    
+
+    let expenseModel : (GroupedExpenseModel<Date>)?
+
     let container: CKContainer
     let publicDB: CKDatabase
     let cloudUserInfo: CloudUserInfo
@@ -29,6 +31,14 @@ class Model {
     
     init() {
         container = CKContainer.default()
+        
+        // Create model grouped by date
+        expenseModel = GroupedExpenseModel<Date>(getKeyFunction: { (expense) -> Date in
+            Calendar.current.startOfDay(for: expense.date)
+        }, compareKeysFunction: { (d1, d2) -> Bool in
+            return d1.compare(d2) != ComparisonResult.orderedAscending
+        })
+
         /* TODO Implement check if user is logged in to iCloud
         container.accountStatus(completionHandler: { (accountStatus, error) in
         }) */

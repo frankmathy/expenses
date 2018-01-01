@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BQT-fR-m3J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hTx-Sw-Xgs">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -213,23 +212,11 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Expenses" id="8ep-K8-SIY">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="Xbu-vw-OZ1">
-                                <connections>
-                                    <segue destination="Gve-bN-uX2" kind="presentation" identifier="AddExpense" id="KAf-pC-Ahk"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Export" id="4yC-3h-ziG">
-                                <connections>
-                                    <action selector="exportData:" destination="Ccm-JH-a5y" id="0GC-72-gIw"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Import" id="DM2-4J-6gg">
-                                <connections>
-                                    <action selector="importData:" destination="Ccm-JH-a5y" id="Fwa-Vs-3c1"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xbu-vw-OZ1">
+                            <connections>
+                                <segue destination="Gve-bN-uX2" kind="presentation" identifier="AddExpense" id="KAf-pC-Ahk"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -258,7 +245,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1138.4000000000001" y="123.68815592203899"/>
+            <point key="canvasLocation" x="1477.5999999999999" y="123.68815592203899"/>
         </scene>
         <!--EditExpenseTableView-->
         <scene sceneID="gCQ-IU-Yt4">
@@ -595,7 +582,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dtj-rk-LPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="WdM-Yb-FVD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3413.5999999999999" y="124.58770614692655"/>
+            <point key="canvasLocation" x="3752.8000000000002" y="124.58770614692655"/>
         </scene>
         <!--Date-->
         <scene sceneID="w8k-GJ-jG5">
@@ -687,12 +674,13 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OfG-ys-l6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="k0B-ES-EwD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4490" y="124"/>
+            <point key="canvasLocation" x="4828" y="123.68815592203899"/>
         </scene>
         <!--Expenses-->
         <scene sceneID="umg-CB-hFa">
             <objects>
                 <navigationController title="Expenses" automaticallyAdjustsScrollViewInsets="NO" id="BQT-fR-m3J" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Expenses" image="ShoppingCart" id="Bv8-0j-PxZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="gW4-jv-the">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
@@ -705,7 +693,36 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y1P-ok-Cbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="188" y="125"/>
+            <point key="canvasLocation" x="527.20000000000005" y="124.58770614692655"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="eiz-Yc-Iuc">
+            <objects>
+                <tableViewController id="vex-bh-bZE" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mks-RW-AVy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="h5J-ud-8WE">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h5J-ud-8WE" id="TNm-sF-Jgo">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vex-bh-bZE" id="1g4-cr-kfc"/>
+                            <outlet property="delegate" destination="vex-bh-bZE" id="JGV-eo-cVu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="smR-fC-S2K"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cb0-0m-nNv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1816.8" y="805.54722638680664"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yqS-uR-2jf">
@@ -723,7 +740,126 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eS8-p4-4GP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2362" y="555"/>
+            <point key="canvasLocation" x="3039.1999999999998" y="554.57271364317842"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="toH-Wb-jA2">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="hTx-Sw-Xgs" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YXg-54-MOh">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BQT-fR-m3J" kind="relationship" relationship="viewControllers" id="d2Q-RA-E5V"/>
+                        <segue destination="JdQ-yH-qcI" kind="relationship" relationship="viewControllers" id="scV-HJ-M5g"/>
+                        <segue destination="XzA-3p-StF" kind="relationship" relationship="viewControllers" id="UTU-oV-cQe"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bme-c9-0wZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-854" y="239"/>
+        </scene>
+        <!--Category Report-->
+        <scene sceneID="k4D-dT-iTC">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JdQ-yH-qcI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Category Report" image="CategoryReport" selectedImage="CategoryReport" id="kpc-cr-NzQ"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gT9-he-IH7">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vex-bh-bZE" kind="relationship" relationship="rootViewController" id="Vc4-3g-a3f"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lae-bV-JKW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="527" y="806"/>
+        </scene>
+        <!--InfoViewController-->
+        <scene sceneID="Bd4-ab-sg8">
+            <objects>
+                <viewController title="InfoViewController" id="8sw-YT-JQ7" customClass="InfoViewController" customModule="Expenses" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CrP-Sc-y0d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Expenses" translatesAutoresizingMaskIntoConstraints="NO" id="CQ1-xh-cAZ">
+                                <rect key="frame" x="299" y="80" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="18Q-HI-cIa"/>
+                                    <constraint firstAttribute="width" constant="60" id="z2c-gD-Tao"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="xGl-Cy-2pJ">
+                                <rect key="frame" x="16" y="80" width="166" height="119"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCD-NW-ky9">
+                                        <rect key="frame" x="0.0" y="0.0" width="144.5" height="38.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(C) 2018 Frank Mathy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBR-Do-xeo">
+                                        <rect key="frame" x="0.0" y="38.5" width="166" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKc-f1-CJo">
+                                        <rect key="frame" x="0.0" y="59" width="81" height="30"/>
+                                        <state key="normal" title="Export Data"/>
+                                        <connections>
+                                            <action selector="exportDataPressed:" destination="8sw-YT-JQ7" eventType="touchUpInside" id="1rE-Mg-GtK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NU-8r-FNc">
+                                        <rect key="frame" x="0.0" y="89" width="82" height="30"/>
+                                        <state key="normal" title="Import Data"/>
+                                        <connections>
+                                            <action selector="importDataPressed:" destination="8sw-YT-JQ7" eventType="touchUpInside" id="wV3-aa-9bQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xGl-Cy-2pJ" firstAttribute="leading" secondItem="GrA-n0-Iyq" secondAttribute="leading" constant="16" id="9f5-v7-NVK"/>
+                            <constraint firstItem="CQ1-xh-cAZ" firstAttribute="top" secondItem="GrA-n0-Iyq" secondAttribute="top" constant="16" id="9l2-zI-KNE"/>
+                            <constraint firstItem="GrA-n0-Iyq" firstAttribute="trailing" secondItem="CQ1-xh-cAZ" secondAttribute="trailing" constant="16" id="SH3-51-Ukn"/>
+                            <constraint firstItem="xGl-Cy-2pJ" firstAttribute="top" secondItem="GrA-n0-Iyq" secondAttribute="top" constant="16" id="U8R-pE-cHv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GrA-n0-Iyq"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rVh-a8-GfW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Kf-4v-1R4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2156" y="1548.5757121439281"/>
+        </scene>
+        <!--Info-->
+        <scene sceneID="SXi-xs-TzW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XzA-3p-StF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Info" image="Info" id="Y6i-tO-GOg"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AYg-Uh-oav">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8sw-YT-JQ7" kind="relationship" relationship="rootViewController" id="z93-Ay-aGk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gEI-st-1qg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="527" y="1666"/>
         </scene>
     </scenes>
     <resources>
@@ -732,10 +868,14 @@
         <image name="ArrowRight" width="50" height="50"/>
         <image name="Calendar" width="50" height="50"/>
         <image name="Category" width="50" height="50"/>
+        <image name="CategoryReport" width="30" height="30"/>
         <image name="Euro" width="50" height="50"/>
+        <image name="Expenses" width="60" height="60"/>
         <image name="FilterOff" width="50" height="50"/>
+        <image name="Info" width="25" height="25"/>
         <image name="Project" width="50" height="50"/>
         <image name="Remarks" width="50" height="50"/>
+        <image name="ShoppingCart" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NS6-py-hTY"/>
