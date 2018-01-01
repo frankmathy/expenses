@@ -107,7 +107,6 @@ class Model {
                     observer.dateIntervalChanged()
                 }
             }
-            reloadExpenses()
         }
     }
     
@@ -119,7 +118,6 @@ class Model {
                     observer.dateIntervalChanged()
                 }
             }
-            reloadExpenses()
         }
     }
     
@@ -131,7 +129,6 @@ class Model {
                     observer.dateIntervalChanged()
                 }
             }
-            reloadExpenses()
         }
     }
     

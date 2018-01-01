@@ -22,6 +22,8 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
 
     var expensesExported = false
     
+    var refreshPulled = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,21 +41,30 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         
         navigationItem.leftBarButtonItem = editButtonItem
         model.addObserver(observer: self)
-        model.reloadExpenses()
+        reloadExpenses(refreshPulled: false)
     }
     
     func modelUpdated(expenses: [Expense]) {
+        if refreshPulled {
+            refreshTool.endRefreshing()
+            refreshPulled = false
+        } else {
+            // ViewControllerUtils().hideActivityIndicator()
+        }
         self.expenseModel.setExpenses(expenses: expenses)
         self.tableView.reloadData()
-        refreshTool.endRefreshing()
+    }
+    
+    func reloadExpenses(refreshPulled: Bool) {
+        self.refreshPulled = refreshPulled
+        if !refreshPulled {
+            // ViewControllerUtils().showActivityIndicator(uiView: self.view)
+        }
+        model.reloadExpenses()
     }
     
     @objc private func refreshControlPulled(_ sender: Any) {
-        reload()
-    }
-    
-    func reload() {
-        model.reloadExpenses()
+        reloadExpenses(refreshPulled: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -220,6 +231,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
     
     func dateIntervalChanged() {
         updateDateIntervalFields()
+        reloadExpenses(refreshPulled: false)
     }
 }
 

@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print("Received notification for \(notification)")
         if expensesViewController != nil {
-            expensesViewController?.reload()
+            expensesViewController?.reloadExpenses(refreshPulled: false)
         }
         //completionHandler([.alert, .sound])
     }

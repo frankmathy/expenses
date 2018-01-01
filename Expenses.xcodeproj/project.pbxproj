@@ -20,6 +20,7 @@
 		8527013C1FF817C000D4076A /* CloudUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012E92D01FF264B5004AF427 /* CloudUserInfo.swift */; };
 		8527013D1FF817D900D4076A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAF21FED77EC00E8C7CB /* Model.swift */; };
 		85282C0C1FF00413009090F9 /* TotalsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85282C0B1FF00413009090F9 /* TotalsViewCell.swift */; };
+		852A52471FF94C7B006C4767 /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852A52461FF94C7A006C4767 /* ViewControllerUtils.swift */; };
 		852F27C51FCA2C0C006988A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27C41FCA2C0C006988A5 /* AppDelegate.swift */; };
 		852F27CA1FCA2C0C006988A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852F27C81FCA2C0C006988A5 /* Main.storyboard */; };
 		852F27CC1FCA2C0C006988A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 852F27CB1FCA2C0C006988A5 /* Assets.xcassets */; };
@@ -83,6 +84,7 @@
 		7FA2D63C6D6FA18FD88BE0F0 /* Pods-ExpensesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpensesUITests/Pods-ExpensesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8527013E1FF8258200D4076A /* de */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = de; path = de.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85282C0B1FF00413009090F9 /* TotalsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalsViewCell.swift; sourceTree = "<group>"; };
+		852A52461FF94C7A006C4767 /* ViewControllerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
 		852F27C11FCA2C0C006988A5 /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		852F27C41FCA2C0C006988A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		852F27C91FCA2C0C006988A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				859CEC951FCB20630028C9E7 /* FormatExtensions.swift */,
+				852A52461FF94C7A006C4767 /* ViewControllerUtils.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -224,9 +227,9 @@
 				852F27CB1FCA2C0C006988A5 /* Assets.xcassets */,
 				01BAF5EE1FD753DC002E892A /* Localizable.strings */,
 				019FCB9C1FD752BA00F478DE /* InfoPlist.strings */,
-				852701361FF816CC00D4076A /* Model */,
-				8527013B1FF8177300D4076A /* Controls */,
 				852701371FF816D400D4076A /* View Controllers */,
+				8527013B1FF8177300D4076A /* Controls */,
+				852701361FF816CC00D4076A /* Model */,
 				852701391FF8175200D4076A /* Util */,
 				852F27C41FCA2C0C006988A5 /* AppDelegate.swift */,
 				8564BC4E1FF1C28100B73D52 /* Expenses.entitlements */,
@@ -609,6 +612,7 @@
 				85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */,
 				85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */,
 				01FB82AF1FCADEF800DE1BA5 /* ExpenseCell.swift in Sources */,
+				852A52471FF94C7B006C4767 /* ViewControllerUtils.swift in Sources */,
 				01FB82AB1FCADB1300DE1BA5 /* ExpensesViewController.swift in Sources */,
 				85CCDAF31FED77EC00E8C7CB /* Model.swift in Sources */,
 				857AE6581FEC8A67006CEDC2 /* ExpenseByDateModel.swift in Sources */,
