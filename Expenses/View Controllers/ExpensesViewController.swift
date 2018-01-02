@@ -49,15 +49,14 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         reloadExpenses(refreshPulled: false)
     }
     
-    func modelUpdated(expenses: [Expense]) {
+    func modelUpdated() {
         if refreshPulled {
             refreshTool.endRefreshing()
             refreshPulled = false
         } else {
             DispatchQueue.main.async {
-            self.indicator.stopAnimating()
-            self.indicator.hidesWhenStopped = true
-                // ViewControllerUtils().hideActivityIndicator()
+                self.indicator.stopAnimating()
+                self.indicator.hidesWhenStopped = true
             }
         }
         self.tableView.reloadData()
@@ -69,7 +68,6 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
             DispatchQueue.main.async {
                 self.indicator.startAnimating()
                 self.indicator.backgroundColor = UIColor.white
-                // ViewControllerUtils().showActivityIndicator(uiView: self.view)
             }
         }
         Model.sharedInstance.reloadExpenses()
@@ -104,8 +102,6 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         if editingStyle == .delete {
             let expense = Model.sharedInstance.expenseByDateModel?.expense(inSection: indexPath.section-1, row: indexPath.row)
             Model.sharedInstance.removeExpense(expense: expense!)
-            Model.sharedInstance.expenseByDateModel?.removeExpense(inSection: indexPath.section-1, row: indexPath.row)
-            tableView.reloadData()
         }
     }
     
@@ -184,17 +180,7 @@ extension ExpensesViewController {
     
     @IBAction func saveExpenseDetail(_ segue: UIStoryboardSegue) {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
-            if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                // Update of expense
-                Model.sharedInstance.expenseByDateModel?.removeExpense(inSection: selectedIndexPath.section-1, row: selectedIndexPath.row)
-                Model.sharedInstance.expenseByDateModel?.addExpense(expense: expense)
-                Model.sharedInstance.updateExpense(expense: expense)
-            } else {
-                // New expense
-                Model.sharedInstance.expenseByDateModel?.addExpense(expense: expense)
-                Model.sharedInstance.addExpense(expense: expense)
-            }
-            tableView.reloadData()
+            Model.sharedInstance.updateExpense(expense: expense)
         }
     }
 }

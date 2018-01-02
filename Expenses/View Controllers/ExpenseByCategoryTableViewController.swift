@@ -14,7 +14,7 @@ class ExpenseByCategoryTableViewController: UITableViewController, ModelDelegate
         Model.sharedInstance.addObserver(observer: self)
     }
     
-    func modelUpdated(expenses: [Expense]) {
+    func modelUpdated() {
         tableView.reloadData()
     }
     
@@ -30,7 +30,7 @@ class ExpenseByCategoryTableViewController: UITableViewController, ModelDelegate
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return (Model.sharedInstance.expenseByCategoryModel?.sectionCount())! + 1
+            return (Model.sharedInstance.expenseByCategoryModel?.sectionCount())! + 2
         } else {
             return 0
         }
@@ -41,15 +41,18 @@ class ExpenseByCategoryTableViewController: UITableViewController, ModelDelegate
             fatalError("The dequeued cell is not an instance of ExpenseByCategoryTableViewCell.")
         }
         
-        if indexPath.row > 0 {
-            let categoryName = Model.sharedInstance.expenseByCategoryModel?.sectionCategoryKey(inSection: indexPath.row - 1)
-            let categoryAmount = Model.sharedInstance.expenseByCategoryModel?.totalAmount(forExpenseKey: categoryName!)
-            
-            cell.categoryName.text = categoryName
-            cell.amountLabel.text = categoryAmount?.asLocaleCurrency
-        } else {
+        if indexPath.row == 0 {
             cell.categoryName.text = Model.sharedInstance.dateIntervalSelectionText()
             cell.amountLabel.text = ""
+        } else if indexPath.row == 1 {
+            cell.categoryName.text = "Total"
+            let totalAmount = Model.sharedInstance.expenseByCategoryModel?.grandTotal
+            cell.amountLabel.text = totalAmount?.currencyInputFormatting()
+        } else {
+            let categoryName = Model.sharedInstance.expenseByCategoryModel?.sectionCategoryKey(inSection: indexPath.row - 2)
+            let categoryAmount = Model.sharedInstance.expenseByCategoryModel?.totalAmount(forExpenseKey: categoryName!)
+            cell.categoryName.text = categoryName
+            cell.amountLabel.text = categoryAmount?.currencyInputFormatting()
         }
         return cell
     }

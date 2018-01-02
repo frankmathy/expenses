@@ -52,6 +52,7 @@ class GroupedExpenseModel<ExpenseKey : Hashable> {
         sortedGroupKeys.removeAll()
         expensesForKey.removeAll()
         totalsForKey.removeAll()
+        grandTotal = 0.0
     }
     
     func setExpenses(expenses: [Expense]) {

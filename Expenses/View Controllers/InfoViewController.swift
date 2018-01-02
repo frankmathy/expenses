@@ -52,7 +52,7 @@ class InfoViewController: UIViewController {
                     let project = columns[4]
                     let comment = columns[5]
                     let expense = Expense(date: date!, category: NamedItem(asCategory: category), account: Account(byName: account), project: NamedItem(asProject: project), amount: amount, comment: comment)
-                    Model.sharedInstance.addExpense(expense: expense)
+                    Model.sharedInstance.updateExpense(expense: expense)
                 }
             }
             ViewControllerUtils.showAlert(title: "Import succesful", message: "Imported \((newExpenses.count)) expenses.", viewController: self)

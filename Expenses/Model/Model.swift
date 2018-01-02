@@ -10,7 +10,7 @@ import Foundation
 import CloudKit
 
 protocol ModelDelegate {
-    func modelUpdated(expenses: [Expense])
+    func modelUpdated()
     func dateIntervalChanged()
     func cloudAccessError(message: String, error: NSError)
 }
@@ -19,6 +19,7 @@ class Model {
     
     static let sharedInstance = Model()
 
+    var expenseByRecordId = [String : Expense]()
     let expenseByDateModel : (GroupedExpenseModel<Date>)?
     let expenseByCategoryModel : (GroupedExpenseModel<String>)?
 
@@ -110,12 +111,10 @@ class Model {
         }
     }
     
-    fileprivate func modelUpdated(_ newExpenses: [Expense]) {
-        expenseByDateModel?.setExpenses(expenses: newExpenses)
-        expenseByCategoryModel?.setExpenses(expenses: newExpenses)
+    fileprivate func modelUpdated() {
         DispatchQueue.main.async {
             for observer in self.delegates {
-                observer.modelUpdated(expenses: newExpenses)
+                observer.modelUpdated()
             }
         }
     }
@@ -165,19 +164,32 @@ class Model {
                 self.cloudAccessError(message: message, error: error as! NSError)
                 return
             }
-            var newExpenses: [Expense] = []
+            self.removeAllFromCollections()
             for record in results! {
-                let expense = Expense(asNew: record)
-                newExpenses.append(expense)
-                // Temporary hack to create missing accounts
+                self.addExpenseToCollections(expense: Expense(asNew: record))
             }
             
             // Update models
-            self.modelUpdated(newExpenses)
+            self.modelUpdated()
         }
     }
     
-    func addExpense(expense: Expense) {
+    private func removeAllFromCollections() {
+        self.expenseByRecordId.removeAll()
+        self.expenseByDateModel?.removeAll()
+        self.expenseByCategoryModel?.removeAll()
+    }
+    
+    private func addExpenseToCollections(expense : Expense) -> Void {
+        self.expenseByRecordId[(expense.recordId?.recordName)!] = expense
+        self.expenseByDateModel?.addExpense(expense: expense)
+        self.expenseByCategoryModel?.addExpense(expense: expense)
+    }
+    
+    // Add or update Expense
+    func updateExpense(expense: Expense) {
+        let isNewExpense = expense.recordId == nil
+
         let record: CKRecord = expense.asCKRecord()
         print("About to save expense with ID=\(record.recordID)")
         publicDB.save(record, completionHandler: { (record, error) in
@@ -187,11 +199,16 @@ class Model {
                 return
             }
             print("Successfully saved expense with ID=\(record?.recordID)")
+
+            self.expenseByRecordId[(expense.recordId?.recordName)!] = expense
+            if isNewExpense {
+                self.expenseByDateModel?.addExpense(expense: expense)
+                self.expenseByCategoryModel?.addExpense(expense: expense)
+            } else {
+                self.refreshExpenseModels()
+            }
+            self.modelUpdated()
         })
-    }
-    
-    func updateExpense(expense: Expense) {
-        addExpense(expense: expense)
     }
     
     func removeExpense(expense: Expense) {
@@ -202,6 +219,18 @@ class Model {
                 return
             }
             print("Successfully deleted expense wth ID=\(expense.recordId)")
+            self.expenseByRecordId.removeValue(forKey: (expense.recordId?.recordName)!)
+            self.refreshExpenseModels()
+            self.modelUpdated()
+        }
+    }
+    
+    func refreshExpenseModels() -> Void {
+        self.expenseByDateModel?.removeAll()
+        self.expenseByCategoryModel?.removeAll()
+        for aExpense in self.expenseByRecordId.values {
+            self.expenseByDateModel?.addExpense(expense: aExpense)
+            self.expenseByCategoryModel?.addExpense(expense: aExpense)
         }
     }
     
