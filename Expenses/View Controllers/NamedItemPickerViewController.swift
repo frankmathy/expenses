@@ -9,6 +9,11 @@
 import UIKit
 
 class NamedItemPickerViewController: UITableViewController {
+
+    // Types for picker controller
+    static let TYPE_CATEGORIES = "categories"
+    static let TYPE_ACCOUNTS = "accounts"
+    static let TYPE_PROJECTS = "projects"
     
     var itemType : String?
     
@@ -17,7 +22,27 @@ class NamedItemPickerViewController: UITableViewController {
     var valueList : [NamedItem]?
     
     var selectedValue : NamedItem?
-
+    
+    override func viewDidLoad() {
+        valueList = []
+        
+        
+        
+        
+        switch itemType! {
+        case NamedItemPickerViewController.TYPE_ACCOUNTS:
+            valueList = SampleData.getAccounts()
+        case NamedItemPickerViewController.TYPE_PROJECTS:
+            valueList = SampleData.getProjects()
+        case NamedItemPickerViewController.TYPE_CATEGORIES:
+            valueList = SampleData.getProjects()
+        default:
+            fatalError("Unexpected item type: \(itemType)")
+            return
+        }
+        
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let values = valueList else {
             return 0

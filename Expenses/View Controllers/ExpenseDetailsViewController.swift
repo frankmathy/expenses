@@ -20,20 +20,9 @@ class ExpenseDetailsViewController: UITableViewController {
     @IBOutlet weak var createdByAt: UILabel!
     @IBOutlet weak var editedByAt: UILabel!
     
-    // Types for picker controller
-    static let TYPE_CATEGORY = "category"
-    static let TYPE_ACCOUNT = "account"
-    static let TYPE_PROJECT = "project"
-    
     var editedTextField: UITextField?
     
     var expense: Expense?
-    
-    let categories = SampleData.getCategories()
-    
-    let accounts = SampleData.getAccounts()
-    
-    let projects = SampleData.getProjects()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,27 +127,24 @@ class ExpenseDetailsViewController: UITableViewController {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             pickerController.title = "Category"
-            pickerController.itemType = ExpenseDetailsViewController.TYPE_CATEGORY
+            pickerController.itemType = NamedItemPickerViewController.TYPE_CATEGORIES
             pickerController.selectedValue = expense?.category
-            pickerController.valueList = categories
 
         case "PickAccount":
             guard let pickerController = segue.destination as? NamedItemPickerViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             pickerController.title = "Account"
-            pickerController.itemType = ExpenseDetailsViewController.TYPE_ACCOUNT
+            pickerController.itemType = NamedItemPickerViewController.TYPE_ACCOUNTS
             pickerController.selectedValue = expense?.account
-            pickerController.valueList = accounts
 
         case "PickProject":
             guard let pickerController = segue.destination as? NamedItemPickerViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             pickerController.title = "Project"
-            pickerController.itemType = ExpenseDetailsViewController.TYPE_PROJECT
+            pickerController.itemType = NamedItemPickerViewController.TYPE_PROJECTS
             pickerController.selectedValue = expense?.project
-            pickerController.valueList = projects
             
         case "PickDate":
             guard let datePickerController = segue.destination as? DateTimePickerViewController else {
@@ -167,7 +153,7 @@ class ExpenseDetailsViewController: UITableViewController {
             datePickerController.date = expense?.date
             
         default:
-            // fatalError("Unexpected Segue Identifier: \(segue.identifier)")
+            fatalError("Unexpected Segue Identifier: \(segue.identifier)")
             return
         }
     }
@@ -176,15 +162,15 @@ class ExpenseDetailsViewController: UITableViewController {
 extension ExpenseDetailsViewController {
     @IBAction func unwindWithSelectedCategory(segue: UIStoryboardSegue) {
         if let pickerViewController = segue.source as? NamedItemPickerViewController {
-            if pickerViewController.itemType == ExpenseDetailsViewController.TYPE_CATEGORY {
+            if pickerViewController.itemType == NamedItemPickerViewController.TYPE_CATEGORIES {
                 expense?.category = pickerViewController.selectedValue!
                 self.categoryField.text = expense?.category.name
                 updateSaveButtonState()
-            } else if pickerViewController.itemType == ExpenseDetailsViewController.TYPE_ACCOUNT {
+            } else if pickerViewController.itemType == NamedItemPickerViewController.TYPE_ACCOUNTS {
                 expense?.account = pickerViewController.selectedValue! as! Account
                 self.accountField.text = expense?.account.name
                 updateSaveButtonState()
-            } else if pickerViewController.itemType == ExpenseDetailsViewController.TYPE_PROJECT {
+            } else if pickerViewController.itemType == NamedItemPickerViewController.TYPE_PROJECTS {
                 expense?.project = pickerViewController.selectedValue!
                 self.projectField.text = expense?.project.name
                 updateSaveButtonState()
