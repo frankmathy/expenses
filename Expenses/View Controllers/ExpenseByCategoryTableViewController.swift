@@ -44,12 +44,12 @@ class ExpenseByCategoryTableViewController: UITableViewController, ModelDelegate
         if indexPath.row == 0 {
             cell.categoryName.text = Model.sharedInstance.dateIntervalSelectionText()
             cell.amountLabel.text = ""
-        } else if indexPath.row == 1 {
+        } else if indexPath.row == self.tableView(tableView, numberOfRowsInSection: 0) - 1 {
             cell.categoryName.text = "Total"
             let totalAmount = Model.sharedInstance.expenseByCategoryModel?.grandTotal
             cell.amountLabel.text = totalAmount?.currencyInputFormatting()
         } else {
-            let categoryName = Model.sharedInstance.expenseByCategoryModel?.sectionCategoryKey(inSection: indexPath.row - 2)
+            let categoryName = Model.sharedInstance.expenseByCategoryModel?.sectionCategoryKey(inSection: indexPath.row - 1)
             let categoryAmount = Model.sharedInstance.expenseByCategoryModel?.totalAmount(forExpenseKey: categoryName!)
             cell.categoryName.text = categoryName
             cell.amountLabel.text = categoryAmount?.currencyInputFormatting()
