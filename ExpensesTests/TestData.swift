@@ -11,26 +11,26 @@ import Foundation
 
 
 class TestData {
-    let accountHousehold = Account(byName: "Haushalt")
-    let accountOther = Account(byName: "Restbudget")
-    let accounts: [NamedItem]
+    let accountHousehold = "Haushalt"
+    let accountOther = "Restbudget"
+    let accounts: [String]
 
-    let categoryCar = NamedItem(asCategory: "Auto")
-    let categoryBakery = NamedItem(asCategory: "Bäcker")
-    let categoryDrugstore = NamedItem(asCategory: "Drogerie")
-    let categoryHobby = NamedItem(asCategory: "Freizeit/Hobby")
-    let categoryBarber = NamedItem(asCategory: "Friseur")
-    let categoryPresents = NamedItem(asCategory: "Geschenke")
-    let categoryHealth = NamedItem(asCategory: "Gesundheit")
-    let categoryClothes = NamedItem(asCategory: "Kleidung")
-    let categoryGroceries = NamedItem(asCategory: "Lebensmittel")
-    let categoryRestaurant = NamedItem(asCategory: "Restaurant")
-    let categoryTransportation = NamedItem(asCategory: "Transport")
-    let categories: [NamedItem]
+    let categoryCar = "Auto"
+    let categoryBakery = "Bäcker"
+    let categoryDrugstore = "Drogerie"
+    let categoryHobby = "Freizeit/Hobby"
+    let categoryBarber = "Friseur"
+    let categoryPresents = "Geschenke"
+    let categoryHealth = "Gesundheit"
+    let categoryClothes = "Kleidung"
+    let categoryGroceries = "Lebensmittel"
+    let categoryRestaurant = "Restaurant"
+    let categoryTransportation = "Transport"
+    let categories: [String]
 
-    let projectNone = NamedItem(asProject: "-")
-    let projectUrlaub = NamedItem(asProject: "Urlaub")
-    let projects: [NamedItem]
+    let projectNone = "-"
+    let projectUrlaub = "Urlaub"
+    let projects: [String]
     
     let today : Date
     let yesterday: Date
