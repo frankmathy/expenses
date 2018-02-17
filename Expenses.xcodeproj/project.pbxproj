@@ -27,7 +27,6 @@
 		852F27CF1FCA2C0C006988A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852F27CD1FCA2C0C006988A5 /* LaunchScreen.storyboard */; };
 		852F27E51FCA2C0C006988A5 /* ExpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27E41FCA2C0C006988A5 /* ExpensesUITests.swift */; };
 		852F27F31FCA30E8006988A5 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F21FCA30E8006988A5 /* SampleData.swift */; };
-		852F27F51FCA312C006988A5 /* NamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F41FCA312C006988A5 /* NamedItem.swift */; };
 		852F27F71FCA316E006988A5 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* Expense.swift */; };
 		85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */; };
 		8564BC501FF1C28B00B73D52 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8564BC4F1FF1C28B00B73D52 /* CloudKit.framework */; };
@@ -42,11 +41,8 @@
 		85BB1FAC1FFAE6D50090F816 /* ExpenseByCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1FAB1FFAE6D50090F816 /* ExpenseByCategoryCell.swift */; };
 		85BB1FAE1FFAE8CE0090F816 /* ExpenseByCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1FAD1FFAE8CE0090F816 /* ExpenseByCategoryTableViewController.swift */; };
 		85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */; };
-		85BD09D91FF70D8E002EE048 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD09D81FF70D8E002EE048 /* Account.swift */; };
-		85BD09DA1FF70D8E002EE048 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD09D81FF70D8E002EE048 /* Account.swift */; };
 		85CA6A801FD9CAF90047B344 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CA6A7F1FD9CAF90047B344 /* User.swift */; };
 		85CCDAE51FECFA6400E8C7CB /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* Expense.swift */; };
-		85CCDAE61FECFA7B00E8C7CB /* NamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F41FCA312C006988A5 /* NamedItem.swift */; };
 		85CCDAE81FECFF7800E8C7CB /* FormatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859CEC951FCB20630028C9E7 /* FormatExtensions.swift */; };
 		85CCDAEA1FED0BC500E8C7CB /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAE91FED0BC500E8C7CB /* TestData.swift */; };
 		85CCDAF31FED77EC00E8C7CB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAF21FED77EC00E8C7CB /* Model.swift */; };
@@ -100,7 +96,6 @@
 		852F27E41FCA2C0C006988A5 /* ExpensesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesUITests.swift; sourceTree = "<group>"; };
 		852F27E61FCA2C0C006988A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		852F27F21FCA30E8006988A5 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
-		852F27F41FCA312C006988A5 /* NamedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItem.swift; sourceTree = "<group>"; };
 		852F27F61FCA316E006988A5 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseGroupCell.swift; sourceTree = "<group>"; };
 		8564BC4E1FF1C28100B73D52 /* Expenses.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Expenses.entitlements; sourceTree = "<group>"; };
@@ -115,7 +110,6 @@
 		85BB1FAB1FFAE6D50090F816 /* ExpenseByCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseByCategoryCell.swift; sourceTree = "<group>"; };
 		85BB1FAD1FFAE8CE0090F816 /* ExpenseByCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExpenseByCategoryTableViewController.swift; path = "/Users/frankmathy/devlocal/iOS/Expenses/Expenses/View Controllers/ExpenseByCategoryTableViewController.swift"; sourceTree = "<absolute>"; };
 		85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerViewController.swift; sourceTree = "<group>"; };
-		85BD09D81FF70D8E002EE048 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		85CA6A7F1FD9CAF90047B344 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		85CCDAE91FED0BC500E8C7CB /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		85CCDAF21FED77EC00E8C7CB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -159,12 +153,10 @@
 		852701361FF816CC00D4076A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				85BD09D81FF70D8E002EE048 /* Account.swift */,
 				012E92D01FF264B5004AF427 /* CloudUserInfo.swift */,
 				857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */,
 				852F27F61FCA316E006988A5 /* Expense.swift */,
 				85CCDAF21FED77EC00E8C7CB /* Model.swift */,
-				852F27F41FCA312C006988A5 /* NamedItem.swift */,
 				85CA6A7F1FD9CAF90047B344 /* User.swift */,
 				852F27F21FCA30E8006988A5 /* SampleData.swift */,
 				85BB1F9F1FFA820B0090F816 /* GroupedExpenseModel.swift */,
@@ -619,7 +611,6 @@
 				857764B21FF5A7ED00CBB925 /* DateIntervalSelection.swift in Sources */,
 				85BB1FAE1FFAE8CE0090F816 /* ExpenseByCategoryTableViewController.swift in Sources */,
 				859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */,
-				852F27F51FCA312C006988A5 /* NamedItem.swift in Sources */,
 				852F27F71FCA316E006988A5 /* Expense.swift in Sources */,
 				85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */,
 				85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */,
@@ -631,7 +622,6 @@
 				012E92D11FF264B5004AF427 /* CloudUserInfo.swift in Sources */,
 				01FB82B11FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift in Sources */,
 				85CA6A801FD9CAF90047B344 /* User.swift in Sources */,
-				85BD09D91FF70D8E002EE048 /* Account.swift in Sources */,
 				85F7C8AF1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -644,10 +634,8 @@
 				85CCDAE81FECFF7800E8C7CB /* FormatExtensions.swift in Sources */,
 				85CCDAE51FECFA6400E8C7CB /* Expense.swift in Sources */,
 				85BB1FA11FFA820B0090F816 /* GroupedExpenseModel.swift in Sources */,
-				85CCDAE61FECFA7B00E8C7CB /* NamedItem.swift in Sources */,
 				857764B41FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift in Sources */,
 				8527013D1FF817D900D4076A /* Model.swift in Sources */,
-				85BD09DA1FF70D8E002EE048 /* Account.swift in Sources */,
 				85BB1FA41FFAA63C0090F816 /* GroupedExpenseModelTest.swift in Sources */,
 				85CCDAEA1FED0BC500E8C7CB /* TestData.swift in Sources */,
 				8527013A1FF8176000D4076A /* SampleData.swift in Sources */,

@@ -9,34 +9,34 @@
 import Foundation
 
 final class SampleData {
-    static let accountHousehold = Account(byName: "Haushalt")
-    static let accountOther = Account(byName: "Restbudget")
+    static let accountHousehold = "Haushalt"
+    static let accountOther = "Restbudget"
 
-    static let categoryCar = NamedItem(asCategory: "Auto")
-    static let categoryBakery = NamedItem(asCategory: "Bäcker")
-    static let categoryDrugstore = NamedItem(asCategory: "Drogerie")
-    static let categoryHobby = NamedItem(asCategory: "Freizeit/Hobby")
-    static let categoryBarber = NamedItem(asCategory: "Friseur")
-    static let categoryPresents = NamedItem(asCategory: "Geschenke")
-    static let categoryHealth = NamedItem(asCategory: "Gesundheit")
-    static let categoryClothes = NamedItem(asCategory: "Kleidung")
-    static let categoryGroceries = NamedItem(asCategory: "Lebensmittel")
-    static let categoryRestaurant = NamedItem(asCategory: "Restaurant")
-    static let categoryTransportation = NamedItem(asCategory: "Transport")
+    static let categoryCar = "Auto"
+    static let categoryBakery = "Bäcker"
+    static let categoryDrugstore = "Drogerie"
+    static let categoryHobby = "Freizeit/Hobby"
+    static let categoryBarber = "Friseur"
+    static let categoryPresents = "Geschenke"
+    static let categoryHealth = "Gesundheit"
+    static let categoryClothes = "Kleidung"
+    static let categoryGroceries = "Lebensmittel"
+    static let categoryRestaurant = "Restaurant"
+    static let categoryTransportation = "Transport"
 
     
-    static let projectNone = NamedItem(asProject: "-")
-    static let projectUrlaub = NamedItem(asProject: "Urlaub")
+    static let projectNone = "-"
+    static let projectUrlaub = "Urlaub"
     
-    static func getAccounts() -> [NamedItem] {
+    static func getAccounts() -> [String] {
         return [accountHousehold, accountOther]
     }
     
-    static func getCategories() -> [NamedItem] {
+    static func getCategories() -> [String] {
         return [categoryCar,categoryBakery,categoryDrugstore,categoryHobby,categoryBarber,categoryPresents,categoryHealth,categoryClothes,categoryGroceries,categoryRestaurant,categoryTransportation]
     }
     
-    static func getProjects() -> [NamedItem] {
+    static func getProjects() -> [String] {
         return [projectNone, projectUrlaub]
     }
 

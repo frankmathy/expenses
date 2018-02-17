@@ -92,8 +92,8 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         }
         let expense = Model.sharedInstance.expenseByDateModel!.expense(inSection: indexPath.section-1, row: indexPath.row)
         expenseCell.amountLabel.text = expense.amount.currencyInputFormatting()
-        expenseCell.accountLabel.text = expense.account.name
-        expenseCell.categoryLabel.text = expense.category.name
+        expenseCell.accountLabel.text = expense.account
+        expenseCell.categoryLabel.text = expense.category
         expenseCell.commentLabel.text = expense.comment
         return expenseCell
     }

@@ -37,9 +37,9 @@ class ExpenseDetailsViewController: UITableViewController {
         }
         amountTextField.text = expense!.amount.currencyInputFormatting()
         dateField.text = expense!.date.asLocaleDateTimeString
-        categoryField.text = expense!.category.name
-        accountField.text = expense!.account.name
-        projectField.text = expense!.project.name
+        categoryField.text = expense!.category
+        accountField.text = expense!.account
+        projectField.text = expense!.project
         commentField.text = expense!.comment
         
         // Show creation details if available
@@ -153,7 +153,7 @@ class ExpenseDetailsViewController: UITableViewController {
             datePickerController.date = expense?.date
             
         default:
-            fatalError("Unexpected Segue Identifier: \(segue.identifier)")
+            // fatalError("Unexpected Segue Identifier: \(segue.identifier)")
             return
         }
     }
@@ -164,15 +164,15 @@ extension ExpenseDetailsViewController {
         if let pickerViewController = segue.source as? NamedItemPickerViewController {
             if pickerViewController.itemType == NamedItemPickerViewController.TYPE_CATEGORIES {
                 expense?.category = pickerViewController.selectedValue!
-                self.categoryField.text = expense?.category.name
+                self.categoryField.text = expense?.category
                 updateSaveButtonState()
             } else if pickerViewController.itemType == NamedItemPickerViewController.TYPE_ACCOUNTS {
-                expense?.account = pickerViewController.selectedValue! as! Account
-                self.accountField.text = expense?.account.name
+                expense?.account = pickerViewController.selectedValue!
+                self.accountField.text = expense?.account
                 updateSaveButtonState()
             } else if pickerViewController.itemType == NamedItemPickerViewController.TYPE_PROJECTS {
                 expense?.project = pickerViewController.selectedValue!
-                self.projectField.text = expense?.project.name
+                self.projectField.text = expense?.project
                 updateSaveButtonState()
             }
         }

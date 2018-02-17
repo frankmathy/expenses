@@ -21,7 +21,7 @@ class InfoViewController: UIViewController {
                 let expense = Model.sharedInstance.expenseByDateModel!.expense(inSection: section, row: row)
                 let dateString = dateFormat.string(from: expense.date)
                 let amountString = String(expense.amount)
-                csv += "\(dateString)\t\(amountString)\t\(expense.account.name)\t\(expense.category.name)\t\(expense.project.name)\t\(expense.comment)\t \n"
+                csv += "\(dateString)\t\(amountString)\t\(expense.account)\t\(expense.category)\t\(expense.project)\t\(expense.comment)\t \n"
             }
         }
         do {
@@ -51,7 +51,7 @@ class InfoViewController: UIViewController {
                     let category = columns[3]
                     let project = columns[4]
                     let comment = columns[5]
-                    let expense = Expense(date: date!, category: NamedItem(asCategory: category), account: Account(byName: account), project: NamedItem(asProject: project), amount: amount, comment: comment)
+                    let expense = Expense(date: date!, category: category, account: account, project: project, amount: amount, comment: comment)
                     Model.sharedInstance.updateExpense(expense: expense)
                 }
             }

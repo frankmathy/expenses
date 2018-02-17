@@ -43,7 +43,7 @@ class Model {
         
         // Create model grouped by category
         expenseByCategoryModel = GroupedExpenseModel<String>(getKeyFunction: { (expense) -> String in
-            expense.category.name
+            expense.category
         }, compareKeysFunction: { (c1, c2) -> Bool in
             return c1.compare(c2) == ComparisonResult.orderedAscending
         })

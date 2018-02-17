@@ -19,9 +19,9 @@ class NamedItemPickerViewController: UITableViewController {
     
     var selectedCell : UITableViewCell?
     
-    var valueList : [NamedItem]?
+    var valueList : [String]?
     
-    var selectedValue : NamedItem?
+    var selectedValue : String?
     
     override func viewDidLoad() {
         valueList = []
@@ -58,9 +58,9 @@ class NamedItemPickerViewController: UITableViewController {
         }
         
         let value = values[indexPath.row]
-        cell.textLabel?.text = value.name
+        cell.textLabel?.text = value
         
-        if(value.name == selectedValue!.name) {
+        if(value == selectedValue!) {
             cell.accessoryType = .checkmark
             selectedCell = cell
         } else {

@@ -40,23 +40,23 @@ class Expense {
         }
     }
     
-    var category: NamedItem {
+    var category: String {
         get {
-            return NamedItem(asCategory: record[ColumnKey.category] as! String)
+            return record[ColumnKey.category] as! String
         }
         
         set(newCategory) {
-            record[ColumnKey.category] = newCategory.name as CKRecordValue
+            record[ColumnKey.category] = newCategory as CKRecordValue
         }
     }
     
-    var account: Account {
+    var account: String {
         get {
-            return Account(byName: record[ColumnKey.account] as! String)
+            return record[ColumnKey.account] as! String
         }
         
         set(newAccount) {
-            record[ColumnKey.account] = newAccount.name as CKRecordValue
+            record[ColumnKey.account] = newAccount as CKRecordValue
         }
     }
 
@@ -71,13 +71,13 @@ class Expense {
         }
     }
     
-    var project: NamedItem {
+    var project: String {
         get {
-            return NamedItem(asProject: record[ColumnKey.project] as! String)
+            return record[ColumnKey.project] as! String
         }
         
         set(newProject) {
-            record[ColumnKey.project] = newProject.name as CKRecordValue
+            record[ColumnKey.project] = newProject as CKRecordValue
         }
     }
     
@@ -123,7 +123,7 @@ class Expense {
         return record.modificationDate
     }
     
-    init(date: Date, category: NamedItem, account: Account, project: NamedItem, amount: Float, comment: String) {
+    init(date: Date, category: String, account: String, project: String, amount: Float, comment: String) {
         record = CKRecord(recordType: Expense.RecordTypeName)
         self.date = date
         self.amount = amount
