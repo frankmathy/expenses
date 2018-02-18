@@ -126,7 +126,7 @@ class ExpenseDetailsViewController: UITableViewController {
             guard let pickerController = segue.destination as? NamedItemPickerViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            pickerController.title = "Category"
+            pickerController.title = NSLocalizedString("Category", comment: "")
             pickerController.itemType = NamedItemPickerViewController.TYPE_CATEGORIES
             pickerController.selectedValue = expense?.category
 
@@ -134,7 +134,7 @@ class ExpenseDetailsViewController: UITableViewController {
             guard let pickerController = segue.destination as? NamedItemPickerViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            pickerController.title = "Account"
+            pickerController.title = NSLocalizedString("Account", comment: "")
             pickerController.itemType = NamedItemPickerViewController.TYPE_ACCOUNTS
             pickerController.selectedValue = expense?.account
 
@@ -142,7 +142,7 @@ class ExpenseDetailsViewController: UITableViewController {
             guard let pickerController = segue.destination as? NamedItemPickerViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            pickerController.title = "Project"
+            pickerController.title = NSLocalizedString("Project", comment: "")
             pickerController.itemType = NamedItemPickerViewController.TYPE_PROJECTS
             pickerController.selectedValue = expense?.project
             
