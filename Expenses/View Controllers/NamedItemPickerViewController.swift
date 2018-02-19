@@ -67,6 +67,7 @@ class NamedItemPickerViewController: UITableViewController {
                     self.valueList?.append(newItem)
                     publicDB.save(newItem.record, completionHandler: { (record, error) in
                         guard error == nil else {
+                            // TODO Show message dialog
                             let message = NSLocalizedString("Error saving named item", comment: "")
                             print("\(message): \(error!)")
                             return
@@ -108,6 +109,25 @@ class NamedItemPickerViewController: UITableViewController {
         }
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let item = self.valueList![indexPath.row]
+            let publicDB = CKContainer.default().publicCloudDatabase
+            publicDB.delete(withRecordID: item.recordId!, completionHandler: { (recordId, error) in
+                guard error == nil else {
+                    let message = NSLocalizedString("Error deleting named item", comment: "")
+                    print("\(message): \(error!)")
+                    // TODO Show error dialog
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.valueList?.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                }
+            })
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
