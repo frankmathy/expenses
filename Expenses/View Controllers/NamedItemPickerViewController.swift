@@ -77,13 +77,29 @@ class NamedItemPickerViewController: UITableViewController {
                 }
             }
             
+            // Check if selected entry is contained
+            if self.selectedValue != nil && self.selectedValue != "" && !(self.valueList?.contains(where: { (item) -> Bool in
+                return item.name == self.selectedValue
+            }))! {
+                let newItem = NamedItem(list: self.itemType!, name: self.selectedValue!)
+                self.valueList?.insert(newItem, at: 0)
+                publicDB.save(newItem.record, completionHandler: { (record, error) in
+                    guard error == nil else {
+                        // TODO Show message dialog
+                        let message = NSLocalizedString("Error saving named item", comment: "")
+                        print("\(message): \(error!)")
+                        return
+                    }
+                    print("Successfully saved named item with ID=\(record?.recordID)")
+                })
+            }
+            
             // Update table
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let values = valueList else {
             return 0
