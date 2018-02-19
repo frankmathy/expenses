@@ -27,6 +27,10 @@ class NamedItemPickerViewController: UITableViewController {
     var selectedValue : String?
     
     override func viewDidLoad() {
+        reloadData()
+    }
+
+    func reloadData() {
         let publicDB = CKContainer.default().publicCloudDatabase
 
         valueList = []
@@ -115,4 +119,27 @@ class NamedItemPickerViewController: UITableViewController {
 
         selectedValue = valueList![indexPath.row].name
     }
+    
+    @IBAction func addItemPressed(_ sender: UIBarButtonItem) {
+        ViewControllerUtils.showTextEntryAlert(title: NSLocalizedString("Add New Item", comment: ""), message: NSLocalizedString("Enter Item Name.", comment: ""), fieldName: NSLocalizedString("Name", comment: ""), viewController: self) { (itemString) in
+            if itemString != "" {
+                let newItem = NamedItem(list: self.itemType!, name: itemString)
+                self.valueList?.insert(newItem, at: 0)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+
+                let publicDB = CKContainer.default().publicCloudDatabase
+                publicDB.save(newItem.record, completionHandler: { (record, error) in
+                    guard error == nil else {
+                        let message = NSLocalizedString("Error saving new named item", comment: "")
+                        print("\(message): \(error!)")
+                        return
+                    }
+                    print("Successfully saved new named item with ID=\(record?.recordID)")
+                })
+            }
+        }
+    }
+    
 }

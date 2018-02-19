@@ -389,7 +389,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="y7m-p7-xs3" kind="show" identifier="PickCategory" id="NS6-py-hTY"/>
+                                            <segue destination="rsE-kp-b7t" kind="show" identifier="PickCategory" id="NS6-py-hTY"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="LX4-0P-wdf" userLabel="Account Table View Cell">
@@ -432,7 +432,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="y7m-p7-xs3" kind="show" identifier="PickAccount" id="3f8-2Q-nzp"/>
+                                            <segue destination="rsE-kp-b7t" kind="show" identifier="PickAccount" id="3f8-2Q-nzp"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="HK3-NV-mtx" userLabel="Project Table View Cell">
@@ -475,7 +475,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="y7m-p7-xs3" kind="show" identifier="PickProject" id="Z2b-Kf-zn3"/>
+                                            <segue destination="rsE-kp-b7t" kind="show" identifier="PickProject" id="Z2b-Kf-zn3"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="58" id="zNT-aN-oP7" userLabel="Remarks Table View Cell">
@@ -670,11 +670,23 @@
                             <outlet property="delegate" destination="y7m-p7-xs3" id="7yh-Ta-1It"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="ocL-y2-RnE">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="GqZ-rW-iJV">
+                            <connections>
+                                <segue destination="k0B-ES-EwD" kind="unwind" unwindAction="unwindCancelExpenseNamedItemWithSegue:" id="Lb0-Un-4YE"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cjz-bb-RfB">
+                            <connections>
+                                <action selector="addItemPressed:" destination="y7m-p7-xs3" id="47x-eG-HEa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OfG-ys-l6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="k0B-ES-EwD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4828" y="123.68815592203899"/>
+            <point key="canvasLocation" x="5924" y="123"/>
         </scene>
         <!--Expenses-->
         <scene sceneID="umg-CB-hFa">
@@ -712,7 +724,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="O1C-SP-raM">
-                                            <rect key="frame" x="16" y="7" width="343" height="24"/>
+                                            <rect key="frame" x="16" y="4" width="343" height="24"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="CategoryName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48F-6C-OHj">
                                                     <rect key="frame" x="0.0" y="0.0" width="266" height="24"/>
@@ -892,6 +904,24 @@
             </objects>
             <point key="canvasLocation" x="527" y="1666"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pZz-xc-tzX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rsE-kp-b7t" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GNv-UP-go7">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="y7m-p7-xs3" kind="relationship" relationship="rootViewController" id="7ay-bh-mSW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jIW-me-LkE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4827.1999999999998" y="123.23838080959521"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Account" width="50" height="50"/>
@@ -909,7 +939,7 @@
         <image name="ShoppingCart" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NS6-py-hTY"/>
+        <segue reference="3f8-2Q-nzp"/>
         <segue reference="tP5-Tm-Y7f"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -123,7 +123,8 @@ class ExpenseDetailsViewController: UITableViewController {
         super.prepare(for: segue, sender: sender)
         switch segue.identifier ?? "" {
         case "PickCategory":
-            guard let pickerController = segue.destination as? NamedItemPickerViewController else {
+            let nav = segue.destination as? UINavigationController
+            guard let pickerController = nav?.topViewController as? NamedItemPickerViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             pickerController.title = NSLocalizedString("Category", comment: "")
@@ -131,7 +132,8 @@ class ExpenseDetailsViewController: UITableViewController {
             pickerController.selectedValue = expense?.category
 
         case "PickAccount":
-            guard let pickerController = segue.destination as? NamedItemPickerViewController else {
+            let nav = segue.destination as? UINavigationController
+            guard let pickerController = nav?.topViewController as? NamedItemPickerViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             pickerController.title = NSLocalizedString("Account", comment: "")
@@ -139,7 +141,8 @@ class ExpenseDetailsViewController: UITableViewController {
             pickerController.selectedValue = expense?.account
 
         case "PickProject":
-            guard let pickerController = segue.destination as? NamedItemPickerViewController else {
+            let nav = segue.destination as? UINavigationController
+            guard let pickerController = nav?.topViewController as? NamedItemPickerViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             pickerController.title = NSLocalizedString("Project", comment: "")
@@ -183,5 +186,8 @@ extension ExpenseDetailsViewController {
             expense?.date = pickerController.date!
             dateField.text = expense!.date.asLocaleDateTimeString
         }
+    }
+    
+    @IBAction func unwindCancelExpenseNamedItem(segue: UIStoryboardSegue) {
     }
 }
