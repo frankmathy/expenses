@@ -177,7 +177,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         let csv = Model.sharedInstance.CSV()
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd HHmmss"
-        let fileName = "Expenses " + formatter.string(from: Date()) + ".csv"
+        let fileName = "Expenses " + formatter.string(from: Date()) + ".txt"
         let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
         do {
             try csv.write(to: path, atomically: true, encoding: String.Encoding.utf8)
@@ -194,7 +194,6 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
             ]
             present(vc, animated: true, completion: nil)
         } catch {
-            
         }
     }
     

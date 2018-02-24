@@ -7,48 +7,39 @@
 //
 
 import UIKit
+import MobileCoreServices
 
-class InfoViewController: UIViewController {
+class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UINavigationControllerDelegate {
 
     @IBAction func exportDataPressed(_ sender: UIButton) {
-        let userDocumentsFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let fileURL = URL(fileURLWithPath: userDocumentsFolder.appending("/Expenses.csv"))
         let csv = Model.sharedInstance.CSV()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd HHmmss"
+        let fileName = "Expenses " + formatter.string(from: Date()) + ".txt"
+        let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
         do {
-            try csv.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
-            ViewControllerUtils.showAlert(title: "Expenses exported", message: "Saved to Expenses.csv.", viewController: self)
+            try csv.write(to: path, atomically: true, encoding: String.Encoding.utf8)
+            let vc = UIActivityViewController(activityItems: [path], applicationActivities: [])
+            vc.excludedActivityTypes = [
+                UIActivityType.assignToContact,
+                UIActivityType.saveToCameraRoll,
+                UIActivityType.postToFlickr,
+                UIActivityType.postToVimeo,
+                UIActivityType.postToTencentWeibo,
+                UIActivityType.postToTwitter,
+                UIActivityType.postToFacebook,
+                UIActivityType.openInIBooks
+            ]
+            present(vc, animated: true, completion: nil)
         } catch {
-            ViewControllerUtils.showAlert(title: "Error exporting Expenses", message: "Saving to Expenses.csv failed.", viewController: self)
         }
     }
     
     @IBAction func importDataPressed(_ sender: UIButton) {
-        let userDocumentsFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let path = userDocumentsFolder.appending("/Expenses.csv")
-        let fileURL = URL(fileURLWithPath: path)
-        do {
-            let newExpenses = [Expense]()
-            let contents = try String(contentsOf: fileURL, encoding: String.Encoding.utf8)
-            print(contents)
-            let rows = contents.components(separatedBy: "\n")
-            let dateFormat = ISO8601DateFormatter()
-            for row in rows {
-                let columns = row.components(separatedBy: "\t")
-                if columns.count >= 6 {
-                    let date = dateFormat.date(from: columns[0])
-                    let amount = (columns[1] as NSString).floatValue
-                    let account = columns[2]
-                    let category = columns[3]
-                    let project = columns[4]
-                    let comment = columns[5]
-                    let expense = Expense(date: date!, category: category, account: account, project: project, amount: amount, comment: comment)
-                    Model.sharedInstance.updateExpense(expense: expense)
-                }
-            }
-            ViewControllerUtils.showAlert(title: "Import succesful", message: "Imported \((newExpenses.count)) expenses.", viewController: self)
-        } catch {
-            ViewControllerUtils.showAlert(title: "Error importing Expenses", message: "Importing from Expenses.csv failed.", viewController: self)
-        }
+        let picker = UIDocumentPickerViewController(documentTypes: [kUTTypePlainText as String], in: .import)
+        picker.delegate = self
+        picker.modalPresentationStyle = .formSheet
+        self.present(picker, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -60,6 +51,43 @@ class InfoViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        if urls.count > 0 {
+             do {
+                let contents = try String(contentsOf: urls[0], encoding: String.Encoding.utf8)
+                let rows = contents.components(separatedBy: "\n")
+                let dateFormat = ISO8601DateFormatter()
+                var imported = 0
+                for row in rows {
+                    let columns = row.components(separatedBy: "\t")
+                    if columns.count >= 6 {
+                        let date = dateFormat.date(from: columns[0])
+                        let amount = (columns[1] as NSString).floatValue
+                        let account = columns[2]
+                        let category = columns[3]
+                        let project = columns[4]
+                        let comment = columns[5]
+                        let expense = Expense(date: date!, category: category, account: account, project: project, amount: amount, comment: comment)
+                        Model.sharedInstance.updateExpense(expense: expense)
+                        imported = imported + 1
+                    }
+                 }
+                 ViewControllerUtils.showAlert(title: "Import succesful", message: "Imported \((imported)) expenses from \(urls[0].lastPathComponent)", viewController: self)
+             } catch {
+                 ViewControllerUtils.showAlert(title: "Error importing Expenses", message: "Importing from \(urls[0].lastPathComponent) failed.", viewController: self)
+             }
+        }
+    }
+    
+    public func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
+        documentPicker.delegate = self
+        present(documentPicker, animated: true, completion: nil)
+    }
+    
+    func documentMenuWasCancelled(_ documentMenu: UIDocumentMenuViewController) {
+        print("Cancelled")
     }
     
 
