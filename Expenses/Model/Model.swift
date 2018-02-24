@@ -82,7 +82,9 @@ class Model {
                     completionHandler()
                 }
             } else {
-                self.createAccount(accountName: SampleData.accountHousehold, completionHandler: completionHandler)
+                self.createAccount(accountName: SampleData.accountHousehold, completionHandler: { (account, error) in
+                    completionHandler()
+                })
             }
         }
     }
@@ -95,18 +97,18 @@ class Model {
         return ownAccountsByRecordId[recordName]
     }
     
-    func createAccount(accountName : String, completionHandler: @escaping () -> Swift.Void) {
+    func createAccount(accountName : String, completionHandler: @escaping (Account?, Error?) -> Swift.Void) {
         let account = Account(accountName: accountName)
         privateDB.save(account.record) { (record, error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error saving new account \(accountName) to iCloud", comment: "")
                 self.cloudAccessError(message: message, error: error! as NSError)
-                completionHandler()
+                completionHandler(account, error)
                 return
             }
             self.ownAccountsByName[account.accountName] = account
             self.ownAccountsByRecordId[(record?.recordID.recordName)!] = account
-            completionHandler()
+            completionHandler(account, error)
         }
     }
     
@@ -290,33 +292,18 @@ class Model {
     }
     
     func addExpense(date: Date, categoryName : String, accountName : String, projectName: String, amount: Float, comment: String, completionHandler: @escaping () -> Swift.Void) {
-        var account = getAccount(accountName: accountName)
+        let account = getAccount(accountName: accountName)
         if account != nil {
             addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, completionHandler: completionHandler)
         } else {
-            let namePredicate = NSPredicate(format: "accountName == %@", accountName)
-            let query = CKQuery(recordType: Account.RecordTypeName, predicate: namePredicate)
-            privateDB.perform(query, inZoneWith: nil) { [unowned self] results,error in
+            createAccount(accountName: accountName, completionHandler: { (account, error) in
                 guard error == nil else {
-                    let message = NSLocalizedString("Error loading account from iCloud", comment: "")
+                    let message = NSLocalizedString("Error creating account in iCloud", comment: "")
                     self.cloudAccessError(message: message, error: error! as NSError)
                     return
                 }
-                if results != nil && results!.count > 0 {
-                    account = Account(asNew: results![0])
-                    self.addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, completionHandler: completionHandler)
-                } else {
-                    account = Account(accountName: accountName)
-                    self.privateDB.save((account?.record)!, completionHandler: { (record, error) in
-                        guard error == nil else {
-                            let message = NSLocalizedString("Error creating account in iCloud", comment: "")
-                            self.cloudAccessError(message: message, error: error! as NSError)
-                            return
-                        }
-                        self.addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, completionHandler: completionHandler)
-                    })
-                }
-            }
+                self.addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, completionHandler: completionHandler)
+            })
         }
     }
     

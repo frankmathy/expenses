@@ -213,7 +213,9 @@ extension ExpensesViewController {
     @IBAction func saveExpenseDetail(_ segue: UIStoryboardSegue) {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
             Model.sharedInstance.updateExpense(expense: expense, isNewExpense: expenseDetailsViewController.newExpense!, completionHandler: {
-                self.modelUpdated()
+                DispatchQueue.main.async {
+                    self.modelUpdated()
+                }
             })
         }
     }
