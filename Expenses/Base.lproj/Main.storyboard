@@ -6,6 +6,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -212,11 +213,18 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Expenses" id="8ep-K8-SIY">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xbu-vw-OZ1">
-                            <connections>
-                                <segue destination="Gve-bN-uX2" kind="presentation" identifier="AddExpense" id="KAf-pC-Ahk"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="Xbu-vw-OZ1">
+                                <connections>
+                                    <segue destination="Gve-bN-uX2" kind="presentation" identifier="AddExpense" id="KAf-pC-Ahk"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="74O-EJ-1VH">
+                                <connections>
+                                    <action selector="shareButtonPressed:" destination="Ccm-JH-a5y" id="ZZc-Cc-h0t"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -831,51 +839,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Expenses" translatesAutoresizingMaskIntoConstraints="NO" id="CQ1-xh-cAZ">
-                                <rect key="frame" x="299" y="80" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="18Q-HI-cIa"/>
-                                    <constraint firstAttribute="width" constant="60" id="z2c-gD-Tao"/>
-                                </constraints>
-                            </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="xGl-Cy-2pJ">
-                                <rect key="frame" x="16" y="80" width="166" height="119"/>
+                            <stackView opaque="NO" contentMode="center" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="xGl-Cy-2pJ">
+                                <rect key="frame" x="10" y="231.5" width="355" height="205"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCD-NW-ky9">
-                                        <rect key="frame" x="0.0" y="0.0" width="144.5" height="38.5"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Expenses" translatesAutoresizingMaskIntoConstraints="NO" id="CQ1-xh-cAZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="60"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCD-NW-ky9">
+                                        <rect key="frame" x="0.0" y="60" width="355" height="38.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(C) 2018 Frank Mathy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBR-Do-xeo">
-                                        <rect key="frame" x="0.0" y="38.5" width="166" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© 2018 Frank Mathy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBR-Do-xeo">
+                                        <rect key="frame" x="0.0" y="98.5" width="355" height="25.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKc-f1-CJo">
-                                        <rect key="frame" x="0.0" y="59" width="81" height="30"/>
+                                        <rect key="frame" x="0.0" y="124" width="355" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Export Data"/>
                                         <connections>
                                             <action selector="exportDataPressed:" destination="8sw-YT-JQ7" eventType="touchUpInside" id="1rE-Mg-GtK"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NU-8r-FNc">
-                                        <rect key="frame" x="0.0" y="89" width="82" height="30"/>
+                                        <rect key="frame" x="0.0" y="164" width="355" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Import Data"/>
                                         <connections>
                                             <action selector="importDataPressed:" destination="8sw-YT-JQ7" eventType="touchUpInside" id="wV3-aa-9bQ"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="CQ1-xh-cAZ" secondAttribute="trailing" id="5eM-l6-4AG"/>
+                                    <constraint firstItem="cCD-NW-ky9" firstAttribute="trailing" secondItem="RBR-Do-xeo" secondAttribute="trailing" id="CGS-fM-fx3"/>
+                                    <constraint firstItem="CQ1-xh-cAZ" firstAttribute="trailing" secondItem="cCD-NW-ky9" secondAttribute="trailing" id="Pij-Cx-KjB"/>
+                                    <constraint firstItem="RBR-Do-xeo" firstAttribute="trailing" secondItem="aKc-f1-CJo" secondAttribute="trailing" id="j58-1P-yLU"/>
+                                    <constraint firstItem="aKc-f1-CJo" firstAttribute="trailing" secondItem="0NU-8r-FNc" secondAttribute="trailing" id="kZH-7O-pdR"/>
+                                    <constraint firstItem="0NU-8r-FNc" firstAttribute="top" secondItem="RBR-Do-xeo" secondAttribute="bottom" constant="40" id="lcg-1O-gpB"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="xGl-Cy-2pJ" firstAttribute="leading" secondItem="GrA-n0-Iyq" secondAttribute="leading" constant="16" id="9f5-v7-NVK"/>
-                            <constraint firstItem="CQ1-xh-cAZ" firstAttribute="top" secondItem="GrA-n0-Iyq" secondAttribute="top" constant="16" id="9l2-zI-KNE"/>
-                            <constraint firstItem="GrA-n0-Iyq" firstAttribute="trailing" secondItem="CQ1-xh-cAZ" secondAttribute="trailing" constant="16" id="SH3-51-Ukn"/>
-                            <constraint firstItem="xGl-Cy-2pJ" firstAttribute="top" secondItem="GrA-n0-Iyq" secondAttribute="top" constant="16" id="U8R-pE-cHv"/>
+                            <constraint firstItem="xGl-Cy-2pJ" firstAttribute="centerX" secondItem="CrP-Sc-y0d" secondAttribute="centerX" id="MzK-zC-637"/>
+                            <constraint firstItem="xGl-Cy-2pJ" firstAttribute="centerY" secondItem="CrP-Sc-y0d" secondAttribute="centerY" id="T6G-sO-k8h"/>
+                            <constraint firstItem="xGl-Cy-2pJ" firstAttribute="leading" secondItem="GrA-n0-Iyq" secondAttribute="leading" constant="10" id="qFI-Jt-x7d"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GrA-n0-Iyq"/>
                     </view>

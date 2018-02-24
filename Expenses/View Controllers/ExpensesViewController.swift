@@ -172,6 +172,30 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         updateDateIntervalFields()
         reloadExpenses(refreshPulled: false)
     }
+    
+    @IBAction func shareButtonPressed(_ sender: UIBarButtonItem) {
+        let csv = Model.sharedInstance.CSV()
+        let fileName = "expenses.csv"
+        let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+        do {
+            try csv.write(to: path, atomically: true, encoding: String.Encoding.utf8)
+            let vc = UIActivityViewController(activityItems: [path], applicationActivities: [])
+            vc.excludedActivityTypes = [
+                UIActivityType.assignToContact,
+                UIActivityType.saveToCameraRoll,
+                UIActivityType.postToFlickr,
+                UIActivityType.postToVimeo,
+                UIActivityType.postToTencentWeibo,
+                UIActivityType.postToTwitter,
+                UIActivityType.postToFacebook,
+                UIActivityType.openInIBooks
+            ]
+            present(vc, animated: true, completion: nil)
+        } catch {
+            
+        }
+    }
+    
 }
 
 extension ExpensesViewController {

@@ -255,4 +255,18 @@ class Model {
             return startDateString + "-" + endDateString
         }
     }
+    
+    func CSV() -> String {
+        var csv = ""
+        let dateFormat = ISO8601DateFormatter()
+        for section in 0..<(expenseByDateModel!.sectionCount()) {
+            for row in 0..<(expenseByDateModel!.expensesCount(inSection: section)) {
+                let expense = expenseByDateModel!.expense(inSection: section, row: row)
+                let dateString = dateFormat.string(from: expense.date)
+                let amountString = String(expense.amount)
+                csv += "\(dateString)\t\(amountString)\t\(expense.account)\t\(expense.category)\t\(expense.project)\t\(expense.comment)\t \n"
+            }
+        }
+        return csv
+    }
 }

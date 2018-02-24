@@ -12,18 +12,8 @@ class InfoViewController: UIViewController {
 
     @IBAction func exportDataPressed(_ sender: UIButton) {
         let userDocumentsFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let path = userDocumentsFolder.appending("/Expenses.csv")
-        let fileURL = URL(fileURLWithPath: path)
-        var csv = ""
-        let dateFormat = ISO8601DateFormatter()
-        for section in 0..<(Model.sharedInstance.expenseByDateModel!.sectionCount()) {
-            for row in 0..<(Model.sharedInstance.expenseByDateModel!.expensesCount(inSection: section)) {
-                let expense = Model.sharedInstance.expenseByDateModel!.expense(inSection: section, row: row)
-                let dateString = dateFormat.string(from: expense.date)
-                let amountString = String(expense.amount)
-                csv += "\(dateString)\t\(amountString)\t\(expense.account)\t\(expense.category)\t\(expense.project)\t\(expense.comment)\t \n"
-            }
-        }
+        let fileURL = URL(fileURLWithPath: userDocumentsFolder.appending("/Expenses.csv"))
+        let csv = Model.sharedInstance.CSV()
         do {
             try csv.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
             ViewControllerUtils.showAlert(title: "Expenses exported", message: "Saved to Expenses.csv.", viewController: self)
