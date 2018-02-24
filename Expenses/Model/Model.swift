@@ -24,7 +24,7 @@ class Model {
     let expenseByCategoryModel : (GroupedExpenseModel<String>)?
 
     let container: CKContainer
-    let publicDB: CKDatabase
+    let privateDB: CKDatabase
     let cloudUserInfo: CloudUserInfo
     
     let dateIntervalSelection = DateIntervalSelection()
@@ -51,7 +51,7 @@ class Model {
         /* TODO Implement check if user is logged in to iCloud
         container.accountStatus(completionHandler: { (accountStatus, error) in
         }) */
-        publicDB = container.publicCloudDatabase
+        privateDB = container.privateCloudDatabase
         cloudUserInfo = CloudUserInfo()
         cloudUserInfo.loadUserInfo()
         dateIntervalSelection.setDateIntervalType(dateIntervalType: .Week)
@@ -60,7 +60,7 @@ class Model {
     
     fileprivate func initializeSubscriptions() {
         // Delete existing subscriptions
-        publicDB.fetchAllSubscriptions { [unowned self] subscriptions, error in
+        privateDB.fetchAllSubscriptions { [unowned self] subscriptions, error in
             var isSubscribed = false
             if error == nil {
                 if let subscriptions = subscriptions {
@@ -84,7 +84,7 @@ class Model {
                 notification.alertBody = "Update in Expenses received."
                 notification.soundName = "default"
                 subscription.notificationInfo = notification
-                self.publicDB.save(subscription) { result, error in
+                self.privateDB.save(subscription) { result, error in
                     if error == nil{
                         print("Added subscription with id: \(subscription.subscriptionID)")
                     } else {
@@ -158,7 +158,7 @@ class Model {
             //datePredicate = NSPredicate(format: "Date < %@", self.dateIntervalSelection.endDate as! NSDate)
         }
         let query = CKQuery(recordType: Expense.RecordTypeName, predicate: datePredicate)
-        publicDB.perform(query, inZoneWith: nil) { [unowned self] results,error in
+        privateDB.perform(query, inZoneWith: nil) { [unowned self] results,error in
             guard error == nil else {
                 let message = NSLocalizedString("Error loading expenses from iCloud", comment: "")
                 self.cloudAccessError(message: message, error: error as! NSError)
@@ -192,7 +192,7 @@ class Model {
 
         let record: CKRecord = expense.asCKRecord()
         print("About to save expense with ID=\(record.recordID)")
-        publicDB.save(record, completionHandler: { (record, error) in
+        privateDB.save(record, completionHandler: { (record, error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error saving expense record", comment: "")
                 self.cloudAccessError(message: message, error: error as! NSError)
@@ -212,7 +212,7 @@ class Model {
     }
     
     func removeExpense(expense: Expense) {
-        publicDB.delete(withRecordID: expense.recordId!) { (record, error) in
+        privateDB.delete(withRecordID: expense.recordId!) { (record, error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error deleting expense record", comment: "")
                 self.cloudAccessError(message: message, error: error as! NSError)

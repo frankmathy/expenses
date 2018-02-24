@@ -30,6 +30,12 @@ class Expense {
         }
     }
     
+    var accountReference : CKReference? {
+        get {
+            return record.parent
+        }
+    }
+    
     var date: Date {
         get {
             return record[ColumnKey.date] as! Date

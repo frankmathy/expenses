@@ -31,14 +31,14 @@ class NamedItemPickerViewController: UITableViewController {
     }
 
     func reloadData() {
-        let publicDB = CKContainer.default().publicCloudDatabase
+        let privateDB = CKContainer.default().privateCloudDatabase
 
         valueList = []
         
         let predicate = NSPredicate(format: "ListName = %@", itemType!)
         let query = CKQuery(recordType: NamedItemPickerViewController.RECORD_TYPE_NAME, predicate: predicate)
         query.sortDescriptors = [NSSortDescriptor(key: NamedItem.nameColumnName, ascending: true)]
-        publicDB.perform(query, inZoneWith: nil) { [unowned self] results,error in
+        privateDB.perform(query, inZoneWith: nil) { [unowned self] results,error in
             guard error == nil else {
                 let message = NSLocalizedString("Error loading NamedItem from iCloud", comment: "")
                 print("\(message): \(error!)")
@@ -65,7 +65,7 @@ class NamedItemPickerViewController: UITableViewController {
                 for itemString in itemStrings {
                     let newItem = NamedItem(list: self.itemType!, name: itemString)
                     self.valueList?.append(newItem)
-                    publicDB.save(newItem.record, completionHandler: { (record, error) in
+                    privateDB.save(newItem.record, completionHandler: { (record, error) in
                         guard error == nil else {
                             // TODO Show message dialog
                             let message = NSLocalizedString("Error saving named item", comment: "")
@@ -83,7 +83,7 @@ class NamedItemPickerViewController: UITableViewController {
             }))! {
                 let newItem = NamedItem(list: self.itemType!, name: self.selectedValue!)
                 self.valueList?.insert(newItem, at: 0)
-                publicDB.save(newItem.record, completionHandler: { (record, error) in
+                privateDB.save(newItem.record, completionHandler: { (record, error) in
                     guard error == nil else {
                         // TODO Show message dialog
                         let message = NSLocalizedString("Error saving named item", comment: "")
@@ -130,8 +130,8 @@ class NamedItemPickerViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let item = self.valueList![indexPath.row]
-            let publicDB = CKContainer.default().publicCloudDatabase
-            publicDB.delete(withRecordID: item.recordId!, completionHandler: { (recordId, error) in
+            let privateDB = CKContainer.default().privateCloudDatabase
+            privateDB.delete(withRecordID: item.recordId!, completionHandler: { (recordId, error) in
                 guard error == nil else {
                     let message = NSLocalizedString("Error deleting named item", comment: "")
                     print("\(message): \(error!)")
@@ -165,8 +165,8 @@ class NamedItemPickerViewController: UITableViewController {
                     self.tableView.reloadData()
                 }
 
-                let publicDB = CKContainer.default().publicCloudDatabase
-                publicDB.save(newItem.record, completionHandler: { (record, error) in
+                let privateDB = CKContainer.default().privateCloudDatabase
+                privateDB.save(newItem.record, completionHandler: { (record, error) in
                     guard error == nil else {
                         let message = NSLocalizedString("Error saving new named item", comment: "")
                         print("\(message): \(error!)")
