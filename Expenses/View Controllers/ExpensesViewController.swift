@@ -44,9 +44,9 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         
         navigationItem.leftBarButtonItem = editButtonItem
         Model.sharedInstance.addObserver(observer: self)
-        
-        // TODO: Is this needed?
-        reloadExpenses(refreshPulled: false)
+        Model.sharedInstance.initializeStaticData {
+            self.reloadExpenses(refreshPulled: false)
+        }
     }
     
     func modelUpdated() {
@@ -92,7 +92,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         }
         let expense = Model.sharedInstance.expenseByDateModel!.expense(inSection: indexPath.section-1, row: indexPath.row)
         expenseCell.amountLabel.text = expense.amount.currencyInputFormatting()
-        expenseCell.accountLabel.text = expense.account
+        expenseCell.accountLabel.text = expense.accountName
         expenseCell.categoryLabel.text = expense.category
         expenseCell.commentLabel.text = expense.comment
         return expenseCell
@@ -137,9 +137,16 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         super.prepare(for: segue, sender: sender)
         switch segue.identifier ?? "" {
         case "AddExpense":
+            guard let navigationController = segue.destination as? UINavigationController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            guard let expenseDetailsViewController = navigationController.topViewController as? ExpenseDetailsViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
             print("Adding a new expense.")
+            expenseDetailsViewController.newExpense = true
         case "EditExpense":
-            guard let expsenseDetailsViewController = segue.destination as? ExpenseDetailsViewController else {
+            guard let expenseDetailsViewController = segue.destination as? ExpenseDetailsViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             guard let selectedExpenseCell = sender as? ExpenseCell else {
@@ -149,8 +156,8 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
                 fatalError("The selected cell is not being displayed by the table")
             }
             let selectedExpense = Model.sharedInstance.expenseByDateModel?.expense(inSection: indexPath.section-1, row: indexPath.row)
-            expsenseDetailsViewController.expense = Expense(asCopy: selectedExpense!)
-
+            expenseDetailsViewController.expense = Expense(asCopy: selectedExpense!)
+            expenseDetailsViewController.newExpense = false
         default:
             fatalError("Unexpected Segue Identifier: \(segue.identifier)")
         }
@@ -205,7 +212,9 @@ extension ExpensesViewController {
     
     @IBAction func saveExpenseDetail(_ segue: UIStoryboardSegue) {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
-            Model.sharedInstance.updateExpense(expense: expense)
+            Model.sharedInstance.updateExpense(expense: expense, isNewExpense: expenseDetailsViewController.newExpense!, completionHandler: {
+                self.modelUpdated()
+            })
         }
     }
 }

@@ -22,6 +22,9 @@ class Model {
     var expenseByRecordId = [String : Expense]()
     let expenseByDateModel : (GroupedExpenseModel<Date>)?
     let expenseByCategoryModel : (GroupedExpenseModel<String>)?
+    
+    var ownAccountsByName = [String : Account]()
+    var ownAccountsByRecordId = [String : Account]()
 
     let container: CKContainer
     let privateDB: CKDatabase
@@ -52,10 +55,59 @@ class Model {
         container.accountStatus(completionHandler: { (accountStatus, error) in
         }) */
         privateDB = container.privateCloudDatabase
-        cloudUserInfo = CloudUserInfo()
-        cloudUserInfo.loadUserInfo()
         dateIntervalSelection.setDateIntervalType(dateIntervalType: .Week)
+        cloudUserInfo = CloudUserInfo()
+    }
+    
+    func initializeStaticData(completionHandler: @escaping () -> Swift.Void) {
+        cloudUserInfo.loadUserInfo()
         initializeSubscriptions()
+        loadAccounts(completionHandler: completionHandler)
+    }
+    
+    func loadAccounts(completionHandler: @escaping () -> Swift.Void) {
+        let query = CKQuery(recordType: Account.RecordTypeName, predicate: NSPredicate(value: true))
+        privateDB.perform(query, inZoneWith: nil) { (records, error) in
+            guard error == nil else {
+                let message = NSLocalizedString("Error loading accounts from iCloud", comment: "")
+                self.cloudAccessError(message: message, error: error! as NSError)
+                completionHandler()
+                return
+            }
+            if records!.count > 0 {
+                for record in records! {
+                    let account = Account(asNew: record)
+                    self.ownAccountsByName[account.accountName] = account
+                    self.ownAccountsByRecordId[record.recordID.recordName] = account
+                    completionHandler()
+                }
+            } else {
+                self.createAccount(accountName: SampleData.accountHousehold, completionHandler: completionHandler)
+            }
+        }
+    }
+    
+    func getDefaultAccount() -> Account {
+        return (ownAccountsByName.first?.value)!
+    }
+    
+    func getAccount(recordName : String) -> Account? {
+        return ownAccountsByRecordId[recordName]
+    }
+    
+    func createAccount(accountName : String, completionHandler: @escaping () -> Swift.Void) {
+        let account = Account(accountName: accountName)
+        privateDB.save(account.record) { (record, error) in
+            guard error == nil else {
+                let message = NSLocalizedString("Error saving new account \(accountName) to iCloud", comment: "")
+                self.cloudAccessError(message: message, error: error! as NSError)
+                completionHandler()
+                return
+            }
+            self.ownAccountsByName[account.accountName] = account
+            self.ownAccountsByRecordId[(record?.recordID.recordName)!] = account
+            completionHandler()
+        }
     }
     
     fileprivate func initializeSubscriptions() {
@@ -111,7 +163,7 @@ class Model {
         }
     }
     
-    fileprivate func modelUpdated() {
+    func modelUpdated() {
         DispatchQueue.main.async {
             for observer in self.delegates {
                 observer.modelUpdated()
@@ -166,7 +218,12 @@ class Model {
             }
             self.removeAllFromCollections()
             for record in results! {
-                self.addExpenseToCollections(expense: Expense(asNew: record))
+                if record.parent != nil {
+                    let expense = Expense(asNew: record)
+                    let recordName = record.parent?.recordID.recordName
+                    expense.account = self.getAccount(recordName: (recordName)!)
+                    self.addExpenseToCollections(expense: expense)
+                }
             }
             
             // Update models
@@ -181,16 +238,14 @@ class Model {
     }
     
     private func addExpenseToCollections(expense : Expense) -> Void {
-        self.expenseByRecordId[(expense.recordId?.recordName)!] = expense
+        self.expenseByRecordId[expense.record.recordID.recordName] = expense
         self.expenseByDateModel?.addExpense(expense: expense)
         self.expenseByCategoryModel?.addExpense(expense: expense)
     }
     
     // Add or update Expense
-    func updateExpense(expense: Expense) {
-        let isNewExpense = expense.recordId == nil
-
-        let record: CKRecord = expense.asCKRecord()
+    func updateExpense(expense: Expense, isNewExpense: Bool, completionHandler: @escaping () -> Swift.Void) {
+        let record: CKRecord = expense.record
         print("About to save expense with ID=\(record.recordID)")
         privateDB.save(record, completionHandler: { (record, error) in
             guard error == nil else {
@@ -200,26 +255,26 @@ class Model {
             }
             print("Successfully saved expense with ID=\(record?.recordID)")
 
-            self.expenseByRecordId[(expense.recordId?.recordName)!] = expense
+            self.expenseByRecordId[expense.record.recordID.recordName] = expense
             if isNewExpense {
                 self.expenseByDateModel?.addExpense(expense: expense)
                 self.expenseByCategoryModel?.addExpense(expense: expense)
             } else {
                 self.refreshExpenseModels()
             }
-            self.modelUpdated()
+            completionHandler()
         })
     }
     
     func removeExpense(expense: Expense) {
-        privateDB.delete(withRecordID: expense.recordId!) { (record, error) in
+        privateDB.delete(withRecordID: expense.record.recordID) { (record, error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error deleting expense record", comment: "")
                 self.cloudAccessError(message: message, error: error as! NSError)
                 return
             }
-            print("Successfully deleted expense wth ID=\(expense.recordId)")
-            self.expenseByRecordId.removeValue(forKey: (expense.recordId?.recordName)!)
+            print("Successfully deleted expense wth ID=\(expense.record.recordID)")
+            self.expenseByRecordId.removeValue(forKey: expense.record.recordID.recordName)
             self.refreshExpenseModels()
             self.modelUpdated()
         }
@@ -232,6 +287,46 @@ class Model {
             self.expenseByDateModel?.addExpense(expense: aExpense)
             self.expenseByCategoryModel?.addExpense(expense: aExpense)
         }
+    }
+    
+    func addExpense(date: Date, categoryName : String, accountName : String, projectName: String, amount: Float, comment: String, completionHandler: @escaping () -> Swift.Void) {
+        var account = getAccount(accountName: accountName)
+        if account != nil {
+            addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, completionHandler: completionHandler)
+        } else {
+            let namePredicate = NSPredicate(format: "accountName == %@", accountName)
+            let query = CKQuery(recordType: Account.RecordTypeName, predicate: namePredicate)
+            privateDB.perform(query, inZoneWith: nil) { [unowned self] results,error in
+                guard error == nil else {
+                    let message = NSLocalizedString("Error loading account from iCloud", comment: "")
+                    self.cloudAccessError(message: message, error: error! as NSError)
+                    return
+                }
+                if results != nil && results!.count > 0 {
+                    account = Account(asNew: results![0])
+                    self.addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, completionHandler: completionHandler)
+                } else {
+                    account = Account(accountName: accountName)
+                    self.privateDB.save((account?.record)!, completionHandler: { (record, error) in
+                        guard error == nil else {
+                            let message = NSLocalizedString("Error creating account in iCloud", comment: "")
+                            self.cloudAccessError(message: message, error: error! as NSError)
+                            return
+                        }
+                        self.addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, completionHandler: completionHandler)
+                    })
+                }
+            }
+        }
+    }
+    
+    func addExpense(date: Date, categoryName : String, account : Account, projectName: String, amount: Float, comment: String, completionHandler: @escaping () -> Swift.Void) {
+        let expense = Expense(date: date, category: categoryName, account: account, project: projectName, amount: amount, comment: comment)
+        updateExpense(expense: expense, isNewExpense: true, completionHandler: completionHandler)
+    }
+        
+    func getAccount(accountName : String) -> Account? {
+        return ownAccountsByName[accountName]
     }
     
     func dateIntervalSelectionText() -> String {

@@ -439,9 +439,6 @@
                                                 <constraint firstItem="Yvx-Uq-3Cb" firstAttribute="top" secondItem="QhH-Ng-bG3" secondAttribute="topMargin" id="oKc-uA-07p"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="rsE-kp-b7t" kind="show" identifier="PickAccount" id="3f8-2Q-nzp"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="HK3-NV-mtx" userLabel="Project Table View Cell">
                                         <rect key="frame" x="0.0" y="176" width="375" height="44"/>
@@ -840,7 +837,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="center" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="xGl-Cy-2pJ">
-                                <rect key="frame" x="10" y="231.5" width="355" height="205"/>
+                                <rect key="frame" x="10" y="251.5" width="355" height="165"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Expenses" translatesAutoresizingMaskIntoConstraints="NO" id="CQ1-xh-cAZ">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="60"/>
@@ -857,16 +854,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKc-f1-CJo">
-                                        <rect key="frame" x="0.0" y="124" width="355" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Export Data"/>
-                                        <connections>
-                                            <action selector="exportDataPressed:" destination="8sw-YT-JQ7" eventType="touchUpInside" id="1rE-Mg-GtK"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NU-8r-FNc">
-                                        <rect key="frame" x="0.0" y="164" width="355" height="41"/>
+                                        <rect key="frame" x="0.0" y="124" width="355" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Import Data"/>
                                         <connections>
@@ -878,9 +867,8 @@
                                     <constraint firstAttribute="trailing" secondItem="CQ1-xh-cAZ" secondAttribute="trailing" id="5eM-l6-4AG"/>
                                     <constraint firstItem="cCD-NW-ky9" firstAttribute="trailing" secondItem="RBR-Do-xeo" secondAttribute="trailing" id="CGS-fM-fx3"/>
                                     <constraint firstItem="CQ1-xh-cAZ" firstAttribute="trailing" secondItem="cCD-NW-ky9" secondAttribute="trailing" id="Pij-Cx-KjB"/>
-                                    <constraint firstItem="RBR-Do-xeo" firstAttribute="trailing" secondItem="aKc-f1-CJo" secondAttribute="trailing" id="j58-1P-yLU"/>
-                                    <constraint firstItem="aKc-f1-CJo" firstAttribute="trailing" secondItem="0NU-8r-FNc" secondAttribute="trailing" id="kZH-7O-pdR"/>
                                     <constraint firstItem="0NU-8r-FNc" firstAttribute="top" secondItem="RBR-Do-xeo" secondAttribute="bottom" constant="40" id="lcg-1O-gpB"/>
+                                    <constraint firstItem="0NU-8r-FNc" firstAttribute="centerX" secondItem="xGl-Cy-2pJ" secondAttribute="centerX" id="zic-4E-n0S"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -952,7 +940,7 @@
         <image name="ShoppingCart" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3f8-2Q-nzp"/>
+        <segue reference="Z2b-Kf-zn3"/>
         <segue reference="tP5-Tm-Y7f"/>
     </inferredMetricsTieBreakers>
 </document>

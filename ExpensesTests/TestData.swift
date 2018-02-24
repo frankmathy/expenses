@@ -11,9 +11,9 @@ import Foundation
 
 
 class TestData {
-    let accountHousehold = "Haushalt"
-    let accountOther = "Restbudget"
-    let accounts: [String]
+    let accountHouseholdName = "Haushalt"
+    let accountOtherName = "Restbudget"
+    let accounts: [Account]
 
     let categoryCar = "Auto"
     let categoryBakery = "Bäcker"
@@ -45,7 +45,6 @@ class TestData {
     let expenses: [Expense]
 
     init() {
-        accounts = [accountHousehold, accountOther]
         categories = [categoryCar, categoryBakery, categoryDrugstore, categoryHobby, categoryBarber, categoryPresents, categoryHealth, categoryClothes, categoryGroceries, categoryRestaurant, categoryTransportation]
         projects = [projectNone, projectUrlaub]
         today = Date()
@@ -55,6 +54,9 @@ class TestData {
         yesterday = calendar.date(byAdding: dateComponents, to: today)!
         dateComponents.day = -2
         twoDaysAgo = calendar.date(byAdding: dateComponents, to: today)!
+        let accountHousehold = Account(accountName: accountHouseholdName)
+        let accountOther = Account(accountName: accountOtherName)
+        accounts = [accountHousehold, accountOther]
         expenseYesterdayGroceries50 = Expense(date: yesterday, category: categoryGroceries, account: accountHousehold, project: projectNone, amount: 50.00, comment: "Essen Wochenende")
         expenseTodayBarber20 = Expense(date: today, category: categoryBarber, account: accountOther, project: projectNone, amount: 20.0, comment: "Basile Marvin")
         expenseTodayBakery5 = Expense(date: today, category: categoryBakery, account: accountOther, project: projectNone, amount: 5.0, comment: "Bäcker Klein")

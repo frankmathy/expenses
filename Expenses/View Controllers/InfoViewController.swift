@@ -11,30 +11,6 @@ import MobileCoreServices
 
 class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UINavigationControllerDelegate {
 
-    @IBAction func exportDataPressed(_ sender: UIButton) {
-        let csv = Model.sharedInstance.CSV()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMdd HHmmss"
-        let fileName = "Expenses " + formatter.string(from: Date()) + ".txt"
-        let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
-        do {
-            try csv.write(to: path, atomically: true, encoding: String.Encoding.utf8)
-            let vc = UIActivityViewController(activityItems: [path], applicationActivities: [])
-            vc.excludedActivityTypes = [
-                UIActivityType.assignToContact,
-                UIActivityType.saveToCameraRoll,
-                UIActivityType.postToFlickr,
-                UIActivityType.postToVimeo,
-                UIActivityType.postToTencentWeibo,
-                UIActivityType.postToTwitter,
-                UIActivityType.postToFacebook,
-                UIActivityType.openInIBooks
-            ]
-            present(vc, animated: true, completion: nil)
-        } catch {
-        }
-    }
-    
     @IBAction func importDataPressed(_ sender: UIButton) {
         let picker = UIDocumentPickerViewController(documentTypes: [kUTTypePlainText as String], in: .import)
         picker.delegate = self
@@ -65,16 +41,17 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
                     if columns.count >= 6 {
                         let date = dateFormat.date(from: columns[0])
                         let amount = (columns[1] as NSString).floatValue
-                        let account = columns[2]
+                        let accountName = columns[2]
                         let category = columns[3]
                         let project = columns[4]
                         let comment = columns[5]
-                        let expense = Expense(date: date!, category: category, account: account, project: project, amount: amount, comment: comment)
-                        Model.sharedInstance.updateExpense(expense: expense)
+                        Model.sharedInstance.addExpense(date: date!, categoryName: category, accountName: accountName, projectName: project, amount: amount, comment: comment, completionHandler: {
+                        })
                         imported = imported + 1
                     }
-                 }
-                 ViewControllerUtils.showAlert(title: "Import succesful", message: "Imported \((imported)) expenses from \(urls[0].lastPathComponent)", viewController: self)
+                }
+                Model.sharedInstance.modelUpdated()
+                ViewControllerUtils.showAlert(title: "Import succesful", message: "Imported \((imported)) expenses from \(urls[0].lastPathComponent)", viewController: self)
              } catch {
                  ViewControllerUtils.showAlert(title: "Error importing Expenses", message: "Importing from \(urls[0].lastPathComponent) failed.", viewController: self)
              }
@@ -86,11 +63,10 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
         present(documentPicker, animated: true, completion: nil)
     }
     
-    func documentMenuWasCancelled(_ documentMenu: UIDocumentMenuViewController) {
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         print("Cancelled")
     }
     
-
     /*
     // MARK: - Navigation
 

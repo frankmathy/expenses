@@ -40,7 +40,7 @@ final class SampleData {
         return [projectNone, projectUrlaub]
     }
 
-    static func getExpenses() -> [Expense] {
+/*    static func getExpenses() -> [Expense] {
         let today = Date()
         let calendar = Calendar(identifier: .gregorian)
         var dateComponents = DateComponents()
@@ -57,5 +57,5 @@ final class SampleData {
             Expense(date: today, category: categoryBakery, account: accountOther, project: projectNone, amount: 4.95, comment: "Bäcker Klein"),
         ]
         return expenses
-    }
+    }*/
 }

@@ -13,16 +13,10 @@ class Account {
     static let RecordTypeName = "Account"
     
     struct ColumnKey {
-        static let accountName = "AccountName"
+        static let accountName = "accountName"
     }
     
     var record : CKRecord
-    
-    var recordId: CKRecordID? {
-        get {
-            return record.recordID
-        }
-    }
     
     var accountName: String {
         get {
@@ -67,10 +61,6 @@ class Account {
     
     init(asCopy account: Account) {
         record = account.record.copy() as! CKRecord
-    }
-    
-    func asCKRecord() -> CKRecord {
-        return record
     }
     
     func updateFromOtherAccount(other : Account) {

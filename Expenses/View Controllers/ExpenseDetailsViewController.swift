@@ -24,21 +24,23 @@ class ExpenseDetailsViewController: UITableViewController {
     
     var expense: Expense?
     
+    var newExpense : Bool?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         amountTextField.addTarget(self, action: #selector(amountTextFieldDidChange), for: .editingChanged)
         commentField.addTarget(self, action: #selector(commentTextFieldDidChange), for: .editingChanged)
 
-        if expense != nil {
-            navigationItem.title = NSLocalizedString("Edit Expense", comment: "")
-        } else {
+        if newExpense! {
             navigationItem.title = NSLocalizedString("Add Expense", comment: "")
-            expense = Expense(date: Date(), category: SampleData.categoryGroceries, account: SampleData.accountHousehold, project: SampleData.projectNone, amount: 0.0, comment: "")
+            expense = Expense(date: Date(), category: SampleData.categoryGroceries, account:  Model.sharedInstance.getDefaultAccount(), project: SampleData.projectNone, amount: 0.0, comment: "")
+        } else {
+            navigationItem.title = NSLocalizedString("Edit Expense", comment: "")
         }
         amountTextField.text = expense!.amount.currencyInputFormatting()
         dateField.text = expense!.date.asLocaleDateTimeString
         categoryField.text = expense!.category
-        accountField.text = expense!.account
+        accountField.text = expense!.account?.accountName
         projectField.text = expense!.project
         commentField.text = expense!.comment
         
@@ -131,15 +133,6 @@ class ExpenseDetailsViewController: UITableViewController {
             pickerController.itemType = NamedItemPickerViewController.TYPE_CATEGORIES
             pickerController.selectedValue = expense?.category
 
-        case "PickAccount":
-            let nav = segue.destination as? UINavigationController
-            guard let pickerController = nav?.topViewController as? NamedItemPickerViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            pickerController.title = NSLocalizedString("Account", comment: "")
-            pickerController.itemType = NamedItemPickerViewController.TYPE_ACCOUNTS
-            pickerController.selectedValue = expense?.account
-
         case "PickProject":
             let nav = segue.destination as? UINavigationController
             guard let pickerController = nav?.topViewController as? NamedItemPickerViewController else {
@@ -168,10 +161,6 @@ extension ExpenseDetailsViewController {
             if pickerViewController.itemType == NamedItemPickerViewController.TYPE_CATEGORIES {
                 expense?.category = pickerViewController.selectedValue!
                 self.categoryField.text = expense?.category
-                updateSaveButtonState()
-            } else if pickerViewController.itemType == NamedItemPickerViewController.TYPE_ACCOUNTS {
-                expense?.account = pickerViewController.selectedValue!
-                self.accountField.text = expense?.account
                 updateSaveButtonState()
             } else if pickerViewController.itemType == NamedItemPickerViewController.TYPE_PROJECTS {
                 expense?.project = pickerViewController.selectedValue!

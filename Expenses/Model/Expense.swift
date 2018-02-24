@@ -15,8 +15,6 @@ class Expense {
     struct ColumnKey {
         static let date = "Date"
         static let category = "Category"
-        static let account = "Account"
-        static let accountRef = "AccountRef"
         static let project = "Project"
         static let amount = "Amount"
         static let comment = "Comment"
@@ -24,15 +22,40 @@ class Expense {
     
     var record : CKRecord
     
-    var recordId: CKRecordID? {
+    private var accountObject : Account?
+    
+    var account : Account? {
+        set(newAccount) {
+            self.accountObject = newAccount
+            if account != nil {
+                self.accountReference = CKReference(recordID: account!.record.recordID, action: .none)
+            } else {
+                self.accountReference = nil
+            }
+        }
+        
         get {
-            return record.recordID
+            return self.accountObject
+        }
+    }
+    
+    var accountName : String? {
+        get {
+            if account != nil {
+                return account!.accountName
+            } else {
+                return nil
+            }
         }
     }
     
     var accountReference : CKReference? {
         get {
             return record.parent
+        }
+        
+        set(newRef) {
+            record.parent = newRef
         }
     }
     
@@ -53,27 +76,6 @@ class Expense {
         
         set(newCategory) {
             record[ColumnKey.category] = newCategory as CKRecordValue
-        }
-    }
-    
-    var account: String {
-        get {
-            return record[ColumnKey.account] as! String
-        }
-        
-        set(newAccount) {
-            record[ColumnKey.account] = newAccount as CKRecordValue
-        }
-    }
-
-    var accountRef: CKReference? {
-        get {
-            let accountRef = record[ColumnKey.accountRef]
-            return accountRef as! CKReference?
-        }
-        
-        set(newRef) {
-            record[ColumnKey.accountRef] = newRef as! CKReference
         }
     }
     
@@ -129,7 +131,7 @@ class Expense {
         return record.modificationDate
     }
     
-    init(date: Date, category: String, account: String, project: String, amount: Float, comment: String) {
+    init(date: Date, category: String, account: Account, project: String, amount: Float, comment: String) {
         record = CKRecord(recordType: Expense.RecordTypeName)
         self.date = date
         self.amount = amount
@@ -145,16 +147,13 @@ class Expense {
     
     init(asCopy expense: Expense) {
         record = expense.record.copy() as! CKRecord
-    }
-    
-    func asCKRecord() -> CKRecord {
-        return record
+        account = expense.account
     }
     
     func updateFromOtherExpense(other : Expense) {
         date = other.date
         category = other.category
-        account = other.account
+        accountReference = other.accountReference
         project = other.project
         amount = other.amount
         comment = other.comment

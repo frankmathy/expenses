@@ -29,6 +29,8 @@
 		852F27F31FCA30E8006988A5 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F21FCA30E8006988A5 /* SampleData.swift */; };
 		852F27F71FCA316E006988A5 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* Expense.swift */; };
 		852F5D75204187E6006B1AB9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* Account.swift */; };
+		852F5D762041C020006B1AB9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* Account.swift */; };
+		852F5D772041C021006B1AB9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* Account.swift */; };
 		85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */; };
 		8564BC501FF1C28B00B73D52 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8564BC4F1FF1C28B00B73D52 /* CloudKit.framework */; };
 		857764B21FF5A7ED00CBB925 /* DateIntervalSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */; };
@@ -643,6 +645,7 @@
 				85CCDAE51FECFA6400E8C7CB /* Expense.swift in Sources */,
 				85BB1FA11FFA820B0090F816 /* GroupedExpenseModel.swift in Sources */,
 				857764B41FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift in Sources */,
+				852F5D762041C020006B1AB9 /* Account.swift in Sources */,
 				8527013D1FF817D900D4076A /* Model.swift in Sources */,
 				85BB1FA41FFAA63C0090F816 /* GroupedExpenseModelTest.swift in Sources */,
 				85CCDAEA1FED0BC500E8C7CB /* TestData.swift in Sources */,
@@ -657,6 +660,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				852F27E51FCA2C0C006988A5 /* ExpensesUITests.swift in Sources */,
+				852F5D772041C021006B1AB9 /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

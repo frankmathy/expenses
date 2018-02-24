@@ -131,7 +131,7 @@ class NamedItemPickerViewController: UITableViewController {
         if editingStyle == .delete {
             let item = self.valueList![indexPath.row]
             let privateDB = CKContainer.default().privateCloudDatabase
-            privateDB.delete(withRecordID: item.recordId!, completionHandler: { (recordId, error) in
+            privateDB.delete(withRecordID: item.record.recordID, completionHandler: { (recordId, error) in
                 guard error == nil else {
                     let message = NSLocalizedString("Error deleting named item", comment: "")
                     print("\(message): \(error!)")

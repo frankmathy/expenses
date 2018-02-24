@@ -17,12 +17,6 @@ class NamedItem {
     
     var record : CKRecord
     
-    var recordId: CKRecordID? {
-        get {
-            return record.recordID
-        }
-    }
-    
     var name: String {
         get {
             return record[NamedItem.nameColumnName] as! String
