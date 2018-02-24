@@ -175,7 +175,9 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
     
     @IBAction func shareButtonPressed(_ sender: UIBarButtonItem) {
         let csv = Model.sharedInstance.CSV()
-        let fileName = "expenses.csv"
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd HHmmss"
+        let fileName = "Expenses " + formatter.string(from: Date()) + ".csv"
         let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
         do {
             try csv.write(to: path, atomically: true, encoding: String.Encoding.utf8)
