@@ -99,6 +99,8 @@ class Model {
     
     func createAccount(accountName : String, completionHandler: @escaping (Account?, Error?) -> Swift.Void) {
         let account = Account(accountName: accountName)
+        self.ownAccountsByName[account.accountName] = account
+        self.ownAccountsByRecordId[account.record.recordID.recordName] = account
         privateDB.save(account.record) { (record, error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error saving new account \(accountName) to iCloud", comment: "")
@@ -106,8 +108,6 @@ class Model {
                 completionHandler(account, error)
                 return
             }
-            self.ownAccountsByName[account.accountName] = account
-            self.ownAccountsByRecordId[(record?.recordID.recordName)!] = account
             completionHandler(account, error)
         }
     }
