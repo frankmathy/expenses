@@ -67,12 +67,21 @@ class GroupedExpenseModel<ExpenseKey : Hashable> {
         return expensesForKey.keys.count
     }
     
-    func sectionCategoryKey(inSection: Int) -> ExpenseKey {
-        return sortedGroupKeys[inSection]
+    func sectionCategoryKey(inSection: Int) -> ExpenseKey? {
+        if inSection < sortedGroupKeys.count {
+            return sortedGroupKeys[inSection]
+        } else {
+            return nil
+        }
     }
     
     func sectionExpenses(inSection: Int) -> [Expense] {
-        return expensesForKey[sectionCategoryKey(inSection: inSection)]!
+        let key = sectionCategoryKey(inSection: inSection)
+        if key != nil {
+            return expensesForKey[sectionCategoryKey(inSection: inSection)!]!
+        } else {
+            return []
+        }
     }
     
     func expensesCount(inSection: Int) -> Int {
@@ -85,14 +94,16 @@ class GroupedExpenseModel<ExpenseKey : Hashable> {
     
     func removeExpense(inSection: Int, row: Int) {
         let key = sectionCategoryKey(inSection: inSection)
-        let expenseAmount = expensesForKey[key]![row].amount
-        totalsForKey[key] = totalsForKey[key]! - expenseAmount
-        grandTotal = grandTotal - expenseAmount
-        expensesForKey[key]!.remove(at: row)
-        if expensesForKey[key]!.count == 0 {
-            totalsForKey.removeValue(forKey: key)
-            expensesForKey.removeValue(forKey: key)
-            sortedGroupKeys.remove(at: inSection)
+        if key != nil {
+            let expenseAmount = expensesForKey[key!]![row].amount
+            totalsForKey[key!] = totalsForKey[key!]! - expenseAmount
+            grandTotal = grandTotal - expenseAmount
+            expensesForKey[key!]!.remove(at: row)
+            if expensesForKey[key!]!.count == 0 {
+                totalsForKey.removeValue(forKey: key!)
+                expensesForKey.removeValue(forKey: key!)
+                sortedGroupKeys.remove(at: inSection)
+            }
         }
     }
     
@@ -101,6 +112,6 @@ class GroupedExpenseModel<ExpenseKey : Hashable> {
     }
     
     func totalAmount(inSection: Int) -> Float {
-        return totalAmount(forExpenseKey: sectionCategoryKey(inSection: inSection))
+        return totalAmount(forExpenseKey: sectionCategoryKey(inSection: inSection)!)
     }
 }

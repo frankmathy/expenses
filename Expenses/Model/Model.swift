@@ -55,7 +55,7 @@ class Model {
         container.accountStatus(completionHandler: { (accountStatus, error) in
         }) */
         privateDB = container.privateCloudDatabase
-        dateIntervalSelection.setDateIntervalType(dateIntervalType: .Week)
+        _ = dateIntervalSelection.setDateIntervalType(dateIntervalType: .Week)
         cloudUserInfo = CloudUserInfo()
     }
     
@@ -129,7 +129,7 @@ class Model {
             } else {
                 // do your error handling here!
                 let message = NSLocalizedString("Error reading iCloud subscriptions", comment: "")
-                self.cloudAccessError(message: message, error: error as! NSError)
+                self.cloudAccessError(message: message, error: error! as NSError)
             }
             if !isSubscribed {
                 // Subscribe to all record changes
@@ -143,7 +143,7 @@ class Model {
                         print("Added subscription with id: \(subscription.subscriptionID)")
                     } else {
                         let message = NSLocalizedString("Error adding iCloud subscription", comment: "")
-                        self.cloudAccessError(message: message, error: error as! NSError)
+                        self.cloudAccessError(message: message, error: error! as NSError)
                         print("Error adding subscription with id \(subscription.subscriptionID): \(error!.localizedDescription)")
                     }
                 }
@@ -157,28 +157,21 @@ class Model {
     }
     
     func cloudAccessError(message: String, error: NSError) {
-        DispatchQueue.main.async {
-            print("\(message): \(error)")
-            for observer in self.delegates {
-                observer.cloudAccessError(message: message, error: error)
-            }
+        for observer in self.delegates {
+            observer.cloudAccessError(message: message, error: error)
         }
     }
     
     func modelUpdated() {
-        DispatchQueue.main.async {
-            for observer in self.delegates {
-                observer.modelUpdated()
-            }
+        for observer in self.delegates {
+            observer.modelUpdated()
         }
     }
     
     func setDateIntervalType(dateIntervalType: DateIntervalType) {
         if dateIntervalSelection.setDateIntervalType(dateIntervalType: dateIntervalType) {
-            DispatchQueue.main.async {
-                for observer in self.delegates {
-                    observer.dateIntervalChanged()
-                }
+            for observer in self.delegates {
+                observer.dateIntervalChanged()
             }
         }
     }
@@ -186,10 +179,8 @@ class Model {
     func dateIntervalNext() {
         if dateIntervalSelection.dateIntervalType != DateIntervalType.All {
             dateIntervalSelection.nextInterval()
-            DispatchQueue.main.async {
-                for observer in self.delegates {
-                    observer.dateIntervalChanged()
-                }
+            for observer in self.delegates {
+                observer.dateIntervalChanged()
             }
         }
     }
@@ -197,10 +188,8 @@ class Model {
     func dateIntervalPrevious() {
         if dateIntervalSelection.dateIntervalType != DateIntervalType.All {
             dateIntervalSelection.previousInterval()
-            DispatchQueue.main.async {
-                for observer in self.delegates {
-                    observer.dateIntervalChanged()
-                }
+            for observer in self.delegates {
+                observer.dateIntervalChanged()
             }
         }
     }
@@ -208,14 +197,14 @@ class Model {
     func reloadExpenses() {
         var datePredicate = NSPredicate(value: true)
         if self.dateIntervalSelection.dateIntervalType != DateIntervalType.All {
-            datePredicate = NSPredicate(format: "Date >= %@ and Date <= %@", self.dateIntervalSelection.startDate as! NSDate, self.dateIntervalSelection.endDate as! NSDate)
+            datePredicate = NSPredicate(format: "Date >= %@ and Date <= %@", self.dateIntervalSelection.startDate! as NSDate, self.dateIntervalSelection.endDate! as NSDate)
             //datePredicate = NSPredicate(format: "Date < %@", self.dateIntervalSelection.endDate as! NSDate)
         }
         let query = CKQuery(recordType: Expense.RecordTypeName, predicate: datePredicate)
         privateDB.perform(query, inZoneWith: nil) { [unowned self] results,error in
             guard error == nil else {
                 let message = NSLocalizedString("Error loading expenses from iCloud", comment: "")
-                self.cloudAccessError(message: message, error: error as! NSError)
+                self.cloudAccessError(message: message, error: error! as NSError)
                 return
             }
             self.removeAllFromCollections()
@@ -252,10 +241,10 @@ class Model {
         privateDB.save(record, completionHandler: { (record, error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error saving expense record", comment: "")
-                self.cloudAccessError(message: message, error: error as! NSError)
+                self.cloudAccessError(message: message, error: error! as NSError)
                 return
             }
-            print("Successfully saved expense with ID=\(record?.recordID)")
+            print("Successfully saved expense with ID=\(record!.recordID)")
 
             self.expenseByRecordId[expense.record.recordID.recordName] = expense
             if isNewExpense {
@@ -272,7 +261,7 @@ class Model {
         privateDB.delete(withRecordID: expense.record.recordID) { (record, error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error deleting expense record", comment: "")
-                self.cloudAccessError(message: message, error: error as! NSError)
+                self.cloudAccessError(message: message, error: error! as NSError)
                 return
             }
             print("Successfully deleted expense wth ID=\(expense.record.recordID)")
@@ -346,7 +335,7 @@ class Model {
                 let expense = expenseByDateModel!.expense(inSection: section, row: row)
                 let dateString = dateFormat.string(from: expense.date)
                 let amountString = String(expense.amount)
-                csv += "\(dateString)\t\(amountString)\t\(expense.account)\t\(expense.category)\t\(expense.project)\t\(expense.comment)\t \n"
+                csv += "\(dateString)\t\(amountString)\t\(expense.account!)\t\(expense.category)\t\(expense.project)\t\(expense.comment)\t \n"
             }
         }
         return csv

@@ -34,7 +34,7 @@ class CloudUserInfo {
                     info?.emailAddress = userIdentity?.lookupInfo?.emailAddress
                     info?.givenName = userIdentity?.nameComponents?.givenName
                     info?.familyName = userIdentity?.nameComponents?.familyName
-                    print("User with recordName=\(recordName) has name= \((info?.givenName)!) \((info?.familyName))")
+                    print("User with recordName=\(recordName) has name= \(info!.givenName!) \(info!.familyName!)")
                     self.userInfoByRecordName[recordName] = info
                     completionHandler(info, nil)
                 } else {
@@ -77,7 +77,7 @@ class CloudUserInfo {
             CKContainer.default().fetchUserRecordID { (recordId, error) in
                 self.userRecordId = recordId
                 if error == nil {
-                    print("User ID: \(recordId?.recordName)")
+                    print("User ID: \(recordId!.recordName)")
                 } else {
                     print("Error querying user: " + (error?.localizedDescription)!)
                 }
