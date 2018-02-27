@@ -218,7 +218,7 @@ extension ExpensesViewController {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
             Model.sharedInstance.updateExpense(expense: expense, isNewExpense: expenseDetailsViewController.newExpense!, completionHandler: {
                 DispatchQueue.main.async {
-                    self.modelUpdated()
+                    Model.sharedInstance.modelUpdated()
                 }
             })
         }
