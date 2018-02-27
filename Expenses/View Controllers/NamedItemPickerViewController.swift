@@ -60,7 +60,6 @@ class NamedItemPickerViewController: UITableViewController {
                     itemStrings = SampleData.getCategories()
                 default:
                     fatalError("Unexpected item type: \(self.itemType!)")
-                    return
                 }
                 for itemString in itemStrings {
                     let newItem = NamedItem(list: self.itemType!, name: itemString)
@@ -72,7 +71,7 @@ class NamedItemPickerViewController: UITableViewController {
                             print("\(message): \(error!)")
                             return
                         }
-                        print("Successfully saved named item with ID=\(record?.recordID)")
+                        print("Successfully saved named item with ID=\(record!.recordID)")
                     })
                 }
             }
@@ -90,7 +89,7 @@ class NamedItemPickerViewController: UITableViewController {
                         print("\(message): \(error!)")
                         return
                     }
-                    print("Successfully saved named item with ID=\(record?.recordID)")
+                    print("Successfully saved named item with ID=\(record!.recordID)")
                 })
             }
             
@@ -172,7 +171,7 @@ class NamedItemPickerViewController: UITableViewController {
                         print("\(message): \(error!)")
                         return
                     }
-                    print("Successfully saved new named item with ID=\(record?.recordID)")
+                    print("Successfully saved new named item with ID=\(record!.recordID)")
                 })
             }
         }

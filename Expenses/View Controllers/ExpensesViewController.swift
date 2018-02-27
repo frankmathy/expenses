@@ -50,16 +50,16 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
     }
     
     func modelUpdated() {
-        if refreshPulled {
-            refreshTool.endRefreshing()
-            refreshPulled = false
-        } else {
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            if self.refreshPulled {
+                self.refreshTool.endRefreshing()
+                self.refreshPulled = false
+            } else {
                 self.indicator.stopAnimating()
                 self.indicator.hidesWhenStopped = true
             }
+            self.tableView.reloadData()
         }
-        self.tableView.reloadData()
     }
     
     func reloadExpenses(refreshPulled: Bool) {
@@ -118,7 +118,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
             guard let headerCell: ExpenseGroupCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as? ExpenseGroupCell else {
                 fatalError("The queued cell is not an instance of ExpenseGroupCell")
             }
-            headerCell.dateLabel.text = Model.sharedInstance.expenseByDateModel!.sectionCategoryKey(inSection: section - 1).asLocaleWeekdayDateString
+            headerCell.dateLabel.text = Model.sharedInstance.expenseByDateModel!.sectionCategoryKey(inSection: section - 1)!.asLocaleWeekdayDateString
             headerCell.totalAmountLabel.text = Model.sharedInstance.expenseByDateModel?.totalAmount(inSection: section - 1).currencyInputFormatting()
             return headerCell
         }
@@ -150,7 +150,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             guard let selectedExpenseCell = sender as? ExpenseCell else {
-                fatalError("Unexpected sender: \(sender)")
+                fatalError("Unexpected sender: \(sender!)")
             }
             guard let indexPath = tableView.indexPath(for: selectedExpenseCell) else {
                 fatalError("The selected cell is not being displayed by the table")
@@ -159,25 +159,29 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
             expenseDetailsViewController.expense = Expense(asCopy: selectedExpense!)
             expenseDetailsViewController.newExpense = false
         default:
-            fatalError("Unexpected Segue Identifier: \(segue.identifier)")
+            fatalError("Unexpected Segue Identifier: \(segue.identifier!)")
         }
     }
     
     func cloudAccessError(message: String, error: NSError) {
-        let body: String
-        if error.code == 1 {
-            body = NSLocalizedString("LogIntoICloud", comment: "")
-        } else {
-            body = error.localizedDescription
+        DispatchQueue.main.async {
+            let body: String
+            if error.code == 1 {
+                body = NSLocalizedString("LogIntoICloud", comment: "")
+            } else {
+                body = error.localizedDescription
+            }
+            let alertController = UIAlertController(title: message, message: body, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
         }
-        let alertController = UIAlertController(title: message, message: body, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-        present(alertController, animated: true, completion: nil)
     }
     
     func dateIntervalChanged() {
-        updateDateIntervalFields()
-        reloadExpenses(refreshPulled: false)
+        DispatchQueue.main.async {
+            self.updateDateIntervalFields()
+            self.reloadExpenses(refreshPulled: false)
+        }
     }
     
     @IBAction func shareButtonPressed(_ sender: UIBarButtonItem) {
@@ -214,7 +218,7 @@ extension ExpensesViewController {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
             Model.sharedInstance.updateExpense(expense: expense, isNewExpense: expenseDetailsViewController.newExpense!, completionHandler: {
                 DispatchQueue.main.async {
-                    self.modelUpdated()
+                    Model.sharedInstance.modelUpdated()
                 }
             })
         }
