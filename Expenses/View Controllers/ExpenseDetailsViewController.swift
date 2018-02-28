@@ -148,6 +148,13 @@ class ExpenseDetailsViewController: UITableViewController {
             }
             datePickerController.date = expense?.date
             
+        case "PickAccount":
+            let nav = segue.destination as? UINavigationController
+            guard let pickerController = nav?.topViewController as? AccountPickerViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            pickerController.selectedValue = expense?.account
+            
         default:
             // fatalError("Unexpected Segue Identifier: \(segue.identifier)")
             return
@@ -178,5 +185,17 @@ extension ExpenseDetailsViewController {
     }
     
     @IBAction func unwindCancelExpenseNamedItem(segue: UIStoryboardSegue) {
+    }
+    
+    @IBAction func unwindWithSelectedAccount(segue: UIStoryboardSegue) {
+        if let accountController = segue.source as? AccountPickerViewController {
+            expense?.account = accountController.selectedValue
+            print(expense?.account?.accountName)
+            self.accountField.text = expense?.account?.accountName
+            updateSaveButtonState()
+        }
+    }
+    
+    @IBAction func unwindCancelExpenseAccount(segue: UIStoryboardSegue) {
     }
 }

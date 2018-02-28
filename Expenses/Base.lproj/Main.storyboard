@@ -439,6 +439,9 @@
                                                 <constraint firstItem="Yvx-Uq-3Cb" firstAttribute="top" secondItem="QhH-Ng-bG3" secondAttribute="topMargin" id="oKc-uA-07p"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="HhG-3A-6eF" kind="show" identifier="PickAccount" id="uiS-N7-gfO"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="HK3-NV-mtx" userLabel="Project Table View Cell">
                                         <rect key="frame" x="0.0" y="176" width="375" height="44"/>
@@ -693,6 +696,45 @@
             </objects>
             <point key="canvasLocation" x="5924" y="123"/>
         </scene>
+        <!--Account Picker View Controller-->
+        <scene sceneID="hLU-7S-oAB">
+            <objects>
+                <tableViewController id="Co0-yj-OUP" customClass="AccountPickerViewController" customModule="Expenses" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="SZT-ho-uOs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountCell" id="WEd-XB-WSW">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WEd-XB-WSW" id="hi2-dG-HTp">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="5ZJ-Ie-4kf" kind="unwind" identifier="SaveAccount" unwindAction="unwindWithSelectedAccountWithSegue:" id="1kZ-q6-tD0"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Co0-yj-OUP" id="6qa-dM-rrB"/>
+                            <outlet property="delegate" destination="Co0-yj-OUP" id="b8b-gt-8yk"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Enj-Rf-vfc">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ipf-33-CX8">
+                            <connections>
+                                <segue destination="5ZJ-Ie-4kf" kind="unwind" unwindAction="unwindCancelExpenseAccountWithSegue:" id="UAA-Re-VPe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L35-Tq-qh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="5ZJ-Ie-4kf" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="5924" y="822"/>
+        </scene>
         <!--Expenses-->
         <scene sceneID="umg-CB-hFa">
             <objects>
@@ -922,6 +964,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIW-me-LkE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4827.1999999999998" y="123.23838080959521"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6Zz-1K-9St">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HhG-3A-6eF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iEZ-5W-FpO">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Co0-yj-OUP" kind="relationship" relationship="rootViewController" id="4Vx-zI-jbd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bth-1L-yOG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4826" y="823"/>
         </scene>
     </scenes>
     <resources>

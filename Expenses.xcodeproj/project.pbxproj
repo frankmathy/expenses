@@ -10,6 +10,7 @@
 		012E92D11FF264B5004AF427 /* CloudUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012E92D01FF264B5004AF427 /* CloudUserInfo.swift */; };
 		019FCB9E1FD752BA00F478DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 019FCB9C1FD752BA00F478DE /* InfoPlist.strings */; };
 		01BAF5F01FD753DC002E892A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01BAF5EE1FD753DC002E892A /* Localizable.strings */; };
+		01D8344220474BF600AB3C14 /* AccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D8344120474BF600AB3C14 /* AccountPickerViewController.swift */; };
 		01FB82AB1FCADB1300DE1BA5 /* ExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FB82AA1FCADB1300DE1BA5 /* ExpensesViewController.swift */; };
 		01FB82AF1FCADEF800DE1BA5 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FB82AE1FCADEF800DE1BA5 /* ExpenseCell.swift */; };
 		01FB82B11FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FB82B01FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift */; };
@@ -78,6 +79,7 @@
 		01BAF5ED1FD7535A002E892A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01BAF5EF1FD753DC002E892A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01BAF5F11FD755BE002E892A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01D8344120474BF600AB3C14 /* AccountPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPickerViewController.swift; sourceTree = "<group>"; };
 		01FB82AA1FCADB1300DE1BA5 /* ExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewController.swift; sourceTree = "<group>"; };
 		01FB82AE1FCADEF800DE1BA5 /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		01FB82B01FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 		852701371FF816D400D4076A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				01D8344120474BF600AB3C14 /* AccountPickerViewController.swift */,
 				8534868D2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift */,
 				01FB82B01FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift */,
 				01FB82AA1FCADB1300DE1BA5 /* ExpensesViewController.swift */,
@@ -613,6 +616,7 @@
 			files = (
 				85D67AAA20398FDB00F7AC1C /* NamedItem.swift in Sources */,
 				852F5D75204187E6006B1AB9 /* Account.swift in Sources */,
+				01D8344220474BF600AB3C14 /* AccountPickerViewController.swift in Sources */,
 				852F27F31FCA30E8006988A5 /* SampleData.swift in Sources */,
 				85282C0C1FF00413009090F9 /* TotalsViewCell.swift in Sources */,
 				85BB1FAC1FFAE6D50090F816 /* ExpenseByCategoryCell.swift in Sources */,

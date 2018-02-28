@@ -97,6 +97,10 @@ class Model {
         return ownAccountsByRecordId[recordName]
     }
     
+    func getAccounts() -> [Account] {
+        return Array(ownAccountsByName.values)
+    }
+    
     func createAccount(accountName : String, completionHandler: @escaping (Account?, Error?) -> Swift.Void) {
         let account = Account(accountName: accountName)
         self.ownAccountsByName[account.accountName] = account
