@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CloudKit
 
 class ExpensesViewController: UITableViewController, ModelDelegate {
     private var selectedExpense : Expense?

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010882442048A67F00EF9A9B /* CloudKitPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010882432048A67F00EF9A9B /* CloudKitPersistenceManager.swift */; };
 		012E92D11FF264B5004AF427 /* CloudUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012E92D01FF264B5004AF427 /* CloudUserInfo.swift */; };
 		019FCB9E1FD752BA00F478DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 019FCB9C1FD752BA00F478DE /* InfoPlist.strings */; };
 		01BAF5F01FD753DC002E892A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01BAF5EE1FD753DC002E892A /* Localizable.strings */; };
@@ -73,6 +74,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		010882432048A67F00EF9A9B /* CloudKitPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitPersistenceManager.swift; sourceTree = "<group>"; };
 		012E92D01FF264B5004AF427 /* CloudUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudUserInfo.swift; sourceTree = "<group>"; };
 		018DC2021FF57A9B00AB8274 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		019FCB9D1FD752BA00F478DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -158,6 +160,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		010882422048A60C00EF9A9B /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				010882432048A67F00EF9A9B /* CloudKitPersistenceManager.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
 		852701361FF816CC00D4076A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,8 +253,9 @@
 				8527013B1FF8177300D4076A /* Controls */,
 				852701361FF816CC00D4076A /* Model */,
 				852701391FF8175200D4076A /* Util */,
-				852F27C41FCA2C0C006988A5 /* AppDelegate.swift */,
+				010882422048A60C00EF9A9B /* Persistence */,
 				8564BC4E1FF1C28100B73D52 /* Expenses.entitlements */,
+				852F27C41FCA2C0C006988A5 /* AppDelegate.swift */,
 				852F27D01FCA2C0C006988A5 /* Info.plist */,
 			);
 			path = Expenses;
@@ -626,6 +637,7 @@
 				859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */,
 				8534868E2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift in Sources */,
 				852F27F71FCA316E006988A5 /* Expense.swift in Sources */,
+				010882442048A67F00EF9A9B /* CloudKitPersistenceManager.swift in Sources */,
 				85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */,
 				85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */,
 				01FB82AF1FCADEF800DE1BA5 /* ExpenseCell.swift in Sources */,
