@@ -51,6 +51,7 @@
 		85CCDAE81FECFF7800E8C7CB /* FormatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859CEC951FCB20630028C9E7 /* FormatExtensions.swift */; };
 		85CCDAEA1FED0BC500E8C7CB /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAE91FED0BC500E8C7CB /* TestData.swift */; };
 		85CCDAF31FED77EC00E8C7CB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAF21FED77EC00E8C7CB /* Model.swift */; };
+		85D58FF7204AE48900FD4346 /* AccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D58FF6204AE48900FD4346 /* AccountDAO.swift */; };
 		85D67AAA20398FDB00F7AC1C /* NamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D67AA920398FDB00F7AC1C /* NamedItem.swift */; };
 		85F7C8AF1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7C8AE1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift */; };
 		FE2F1F0FB7849C919DBFB021 /* Pods_ExpensesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10570977BC269284A71C4DA3 /* Pods_ExpensesUITests.framework */; };
@@ -122,6 +123,7 @@
 		85CA6A7F1FD9CAF90047B344 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		85CCDAE91FED0BC500E8C7CB /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		85CCDAF21FED77EC00E8C7CB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		85D58FF6204AE48900FD4346 /* AccountDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDAO.swift; sourceTree = "<group>"; };
 		85D67AA920398FDB00F7AC1C /* NamedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItem.swift; sourceTree = "<group>"; };
 		85F7C8AE1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItemPickerViewController.swift; sourceTree = "<group>"; };
 		92C4A0BB66FBDA14DE298997 /* Pods_Expenses.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Expenses.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				0195737C204AD4E80035B19A /* NamedItemDAO.swift */,
+				85D58FF6204AE48900FD4346 /* AccountDAO.swift */,
 			);
 			path = CloudKit;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				01FB82AF1FCADEF800DE1BA5 /* ExpenseCell.swift in Sources */,
 				852A52471FF94C7B006C4767 /* ViewControllerUtils.swift in Sources */,
 				0195737D204AD4E90035B19A /* NamedItemDAO.swift in Sources */,
+				85D58FF7204AE48900FD4346 /* AccountDAO.swift in Sources */,
 				01FB82AB1FCADB1300DE1BA5 /* ExpensesViewController.swift in Sources */,
 				85CCDAF31FED77EC00E8C7CB /* Model.swift in Sources */,
 				85BB1FA61FFADB050090F816 /* InfoViewController.swift in Sources */,

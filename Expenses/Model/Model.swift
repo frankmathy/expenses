@@ -66,21 +66,21 @@ class Model {
     }
     
     func loadAccounts(completionHandler: @escaping () -> Swift.Void) {
-        let query = CKQuery(recordType: Account.RecordTypeName, predicate: NSPredicate(value: true))
-        privateDB.perform(query, inZoneWith: nil) { (records, error) in
+        ownAccountsByName.removeAll()
+        ownAccountsByRecordId.removeAll()
+        AccountDAO.sharedInstance.load { (accounts, error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error loading accounts from iCloud", comment: "")
                 self.cloudAccessError(message: message, error: error! as NSError)
                 completionHandler()
                 return
             }
-            if records!.count > 0 {
-                for record in records! {
-                    let account = Account(asNew: record)
+            if accounts != nil && (accounts?.count != 0) {
+                for account in accounts! {
                     self.ownAccountsByName[account.accountName] = account
-                    self.ownAccountsByRecordId[record.recordID.recordName] = account
-                    completionHandler()
+                    self.ownAccountsByRecordId[account.record.recordID.recordName] = account
                 }
+                completionHandler()
             } else {
                 self.createAccount(accountName: SampleData.accountHousehold, completionHandler: { (account, error) in
                     completionHandler()
@@ -109,7 +109,7 @@ class Model {
         let account = Account(accountName: accountName)
         self.ownAccountsByName[account.accountName] = account
         self.ownAccountsByRecordId[account.record.recordID.recordName] = account
-        privateDB.save(account.record) { (record, error) in
+        AccountDAO.sharedInstance.save(account: account) { (account, error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error saving new account \(accountName) to iCloud", comment: "")
                 self.cloudAccessError(message: message, error: error! as NSError)
