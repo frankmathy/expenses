@@ -9,9 +9,9 @@
 import Foundation
 import CloudKit
 
-class NamedItemDAO {
+class CKNamedItemDAO {
     
-    static let sharedInstance = NamedItemDAO()
+    static let sharedInstance = CKNamedItemDAO()
     
     func save(item : NamedItem) {
         let privateDB = CKContainer.default().privateCloudDatabase

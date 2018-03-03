@@ -9,8 +9,8 @@
 import Foundation
 import CloudKit
 
-class AccountDAO {
-    static let sharedInstance = AccountDAO()
+class CKAccountDAO {
+    static let sharedInstance = CKAccountDAO()
 
     func load(completionHandler: @escaping ([Account]?, Error?) -> Swift.Void) {
         let privateDB = CKContainer.default().privateCloudDatabase

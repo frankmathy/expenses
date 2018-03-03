@@ -67,7 +67,7 @@ class Model {
     func loadAccounts(completionHandler: @escaping () -> Swift.Void) {
         ownAccountsByName.removeAll()
         ownAccountsByRecordId.removeAll()
-        AccountDAO.sharedInstance.load { (accounts, error) in
+        CKAccountDAO.sharedInstance.load { (accounts, error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error loading accounts from iCloud", comment: "")
                 self.cloudAccessError(message: message, error: error! as NSError)
@@ -108,7 +108,7 @@ class Model {
         let account = Account(accountName: accountName)
         self.ownAccountsByName[account.accountName] = account
         self.ownAccountsByRecordId[account.record.recordID.recordName] = account
-        AccountDAO.sharedInstance.save(account: account) { (account, error) in
+        CKAccountDAO.sharedInstance.save(account: account) { (account, error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error saving new account \(accountName) to iCloud", comment: "")
                 self.cloudAccessError(message: message, error: error! as NSError)

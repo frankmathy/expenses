@@ -30,7 +30,7 @@ class NamedItemPickerViewController: UITableViewController {
     }
 
     func reloadData() {
-        NamedItemDAO.sharedInstance.load(itemType: itemType!) { (namedItems, error) in
+        CKNamedItemDAO.sharedInstance.load(itemType: itemType!) { (namedItems, error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error loading NamedItem from iCloud", comment: "")
                 print("\(message): \(error!)")
@@ -53,7 +53,7 @@ class NamedItemPickerViewController: UITableViewController {
                 for itemString in itemStrings {
                     let newItem = NamedItem(list: self.itemType!, name: itemString)
                     self.valueList?.append(newItem)
-                    NamedItemDAO.sharedInstance.save(item: newItem)
+                    CKNamedItemDAO.sharedInstance.save(item: newItem)
                 }
             }
             
@@ -93,7 +93,7 @@ class NamedItemPickerViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let item = self.valueList![indexPath.row]
-            NamedItemDAO.sharedInstance.delete(item: item)
+            CKNamedItemDAO.sharedInstance.delete(item: item)
             self.valueList?.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         }
@@ -118,7 +118,7 @@ class NamedItemPickerViewController: UITableViewController {
                     self.tableView.reloadData()
                 }
                 
-                NamedItemDAO.sharedInstance.save(item: newItem)
+                CKNamedItemDAO.sharedInstance.save(item: newItem)
             }
         }
     }

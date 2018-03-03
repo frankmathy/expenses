@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		012E92D11FF264B5004AF427 /* CloudUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012E92D01FF264B5004AF427 /* CloudUserInfo.swift */; };
-		0195737D204AD4E90035B19A /* NamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195737C204AD4E80035B19A /* NamedItemDAO.swift */; };
+		0195737D204AD4E90035B19A /* CKNamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195737C204AD4E80035B19A /* CKNamedItemDAO.swift */; };
 		019FCB9E1FD752BA00F478DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 019FCB9C1FD752BA00F478DE /* InfoPlist.strings */; };
 		01BAF5F01FD753DC002E892A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01BAF5EE1FD753DC002E892A /* Localizable.strings */; };
 		01D8344220474BF600AB3C14 /* AccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D8344120474BF600AB3C14 /* AccountPickerViewController.swift */; };
@@ -54,7 +54,7 @@
 		85CCDAE81FECFF7800E8C7CB /* FormatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859CEC951FCB20630028C9E7 /* FormatExtensions.swift */; };
 		85CCDAEA1FED0BC500E8C7CB /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAE91FED0BC500E8C7CB /* TestData.swift */; };
 		85CCDAF31FED77EC00E8C7CB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAF21FED77EC00E8C7CB /* Model.swift */; };
-		85D58FF7204AE48900FD4346 /* AccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D58FF6204AE48900FD4346 /* AccountDAO.swift */; };
+		85D58FF7204AE48900FD4346 /* CKAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D58FF6204AE48900FD4346 /* CKAccountDAO.swift */; };
 		85D67AAA20398FDB00F7AC1C /* NamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D67AA920398FDB00F7AC1C /* NamedItem.swift */; };
 		85F7C8AF1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7C8AE1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift */; };
 		FE2F1F0FB7849C919DBFB021 /* Pods_ExpensesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10570977BC269284A71C4DA3 /* Pods_ExpensesUITests.framework */; };
@@ -80,7 +80,7 @@
 /* Begin PBXFileReference section */
 		012E92D01FF264B5004AF427 /* CloudUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudUserInfo.swift; sourceTree = "<group>"; };
 		018DC2021FF57A9B00AB8274 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		0195737C204AD4E80035B19A /* NamedItemDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedItemDAO.swift; sourceTree = "<group>"; };
+		0195737C204AD4E80035B19A /* CKNamedItemDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKNamedItemDAO.swift; sourceTree = "<group>"; };
 		019FCB9D1FD752BA00F478DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01BAF5ED1FD7535A002E892A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01BAF5EF1FD753DC002E892A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 		85CA6A7F1FD9CAF90047B344 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		85CCDAE91FED0BC500E8C7CB /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		85CCDAF21FED77EC00E8C7CB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		85D58FF6204AE48900FD4346 /* AccountDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDAO.swift; sourceTree = "<group>"; };
+		85D58FF6204AE48900FD4346 /* CKAccountDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKAccountDAO.swift; sourceTree = "<group>"; };
 		85D67AA920398FDB00F7AC1C /* NamedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItem.swift; sourceTree = "<group>"; };
 		85F7C8AE1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItemPickerViewController.swift; sourceTree = "<group>"; };
 		92C4A0BB66FBDA14DE298997 /* Pods_Expenses.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Expenses.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,8 +171,8 @@
 		010882422048A60C00EF9A9B /* CloudKit */ = {
 			isa = PBXGroup;
 			children = (
-				0195737C204AD4E80035B19A /* NamedItemDAO.swift */,
-				85D58FF6204AE48900FD4346 /* AccountDAO.swift */,
+				0195737C204AD4E80035B19A /* CKNamedItemDAO.swift */,
+				85D58FF6204AE48900FD4346 /* CKAccountDAO.swift */,
 				851E0F60204AF9BB0016FCBF /* CKUserDAO.swift */,
 				851E0F62204B0FF10016FCBF /* CKSubscriptionManager.swift */,
 				851E0F64204B13930016FCBF /* CKExpensesDAO.swift */,
@@ -656,8 +656,8 @@
 				85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */,
 				01FB82AF1FCADEF800DE1BA5 /* ExpenseCell.swift in Sources */,
 				852A52471FF94C7B006C4767 /* ViewControllerUtils.swift in Sources */,
-				0195737D204AD4E90035B19A /* NamedItemDAO.swift in Sources */,
-				85D58FF7204AE48900FD4346 /* AccountDAO.swift in Sources */,
+				0195737D204AD4E90035B19A /* CKNamedItemDAO.swift in Sources */,
+				85D58FF7204AE48900FD4346 /* CKAccountDAO.swift in Sources */,
 				01FB82AB1FCADB1300DE1BA5 /* ExpensesViewController.swift in Sources */,
 				85CCDAF31FED77EC00E8C7CB /* Model.swift in Sources */,
 				85BB1FA61FFADB050090F816 /* InfoViewController.swift in Sources */,
