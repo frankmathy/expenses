@@ -48,7 +48,7 @@ class ExpenseDetailsViewController: UITableViewController {
         let creatorUserRecordId = expense!.creatorUserRecordID
         let creationDate = expense!.creationDate
         if creatorUserRecordId != nil && creationDate != nil {
-            Model.sharedInstance.cloudUserInfo.getUserInfoByRecordName(recordName: creatorUserRecordId!, completionHandler: { (userInfo, error) in
+            Model.sharedInstance.getUserInfo(recordName: creatorUserRecordId!, completionHandler: { (userInfo, error) in
                 DispatchQueue.main.async {
                     if error == nil {
                         let name = (userInfo?.givenName!)! + " " + (userInfo?.familyName!)!
@@ -67,7 +67,7 @@ class ExpenseDetailsViewController: UITableViewController {
         let lastModifiedUserRecordId = expense!.lastModifiedUserRecordID
         let modificationDate = expense!.modificationDate
         if lastModifiedUserRecordId != nil && modificationDate != nil && modificationDate != creationDate {
-            Model.sharedInstance.cloudUserInfo.getUserInfoByRecordName(recordName: lastModifiedUserRecordId!, completionHandler: { (userInfo, error) in
+            Model.sharedInstance.getUserInfo(recordName: lastModifiedUserRecordId!, completionHandler: { (userInfo, error) in
                 DispatchQueue.main.async {
                     if error == nil {
                         let name = (userInfo?.givenName!)! + " " + (userInfo?.familyName!)!

@@ -28,7 +28,8 @@ class Model {
 
     let container: CKContainer
     let privateDB: CKDatabase
-    let cloudUserInfo: CloudUserInfo
+    var cloudUserInfo: CloudUserInfo?
+    var userInfoByRecordName = [String : CloudUserInfo]()
     
     let dateIntervalSelection = DateIntervalSelection()
     
@@ -56,11 +57,16 @@ class Model {
         }) */
         privateDB = container.privateCloudDatabase
         _ = dateIntervalSelection.setDateIntervalType(dateIntervalType: .Week)
-        cloudUserInfo = CloudUserInfo()
     }
     
     func initializeStaticData(completionHandler: @escaping () -> Swift.Void) {
-        cloudUserInfo.loadUserInfo()
+        CKUserDAO.sharedInstance.getCurrentUserInfo { (userInfo, error) in
+            if error != nil {
+                print("Error loading user info: \(error!)")
+            } else {
+                self.cloudUserInfo = userInfo!
+            }
+        }
         initializeSubscriptions()
         loadAccounts(completionHandler: completionHandler)
     }
@@ -288,6 +294,20 @@ class Model {
         }
     }
     
+    func getUserInfo(recordName : String, completionHandler: @escaping (CloudUserInfo?, Error?) -> Swift.Void) {
+        var info = userInfoByRecordName[recordName]
+        if info != nil {
+            completionHandler(info, nil)
+        } else {
+            CKUserDAO.sharedInstance.getUserInfo(recordName: recordName) { (userInfo, error) in
+                if error == nil && userInfo != nil {
+                    self.userInfoByRecordName[recordName] = userInfo
+                }
+                completionHandler(userInfo, error)
+            }
+        }
+    }
+
     func addExpense(date: Date, categoryName : String, accountName : String, projectName: String, amount: Float, comment: String, completionHandler: @escaping () -> Swift.Void) {
         let account = getAccount(accountName: accountName)
         if account != nil {
