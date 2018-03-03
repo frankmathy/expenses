@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CloudKit
 
 protocol ModelDelegate {
     func modelUpdated()
@@ -26,8 +25,6 @@ class Model {
     var ownAccountsByName = [String : Account]()
     var ownAccountsByRecordId = [String : Account]()
 
-    let container: CKContainer
-    let privateDB: CKDatabase
     var cloudUserInfo: CloudUserInfo?
     var userInfoByRecordName = [String : CloudUserInfo]()
     
@@ -36,8 +33,6 @@ class Model {
     var delegates = [ModelDelegate]()
     
     init() {
-        container = CKContainer.default()
-        
         // Create model grouped by date
         expenseByDateModel = GroupedExpenseModel<Date>(getKeyFunction: { (expense) -> Date in
             Calendar.current.startOfDay(for: expense.date)
@@ -52,10 +47,6 @@ class Model {
             return c1.compare(c2) == ComparisonResult.orderedAscending
         })
 
-        /* TODO Implement check if user is logged in to iCloud
-        container.accountStatus(completionHandler: { (accountStatus, error) in
-        }) */
-        privateDB = container.privateCloudDatabase
         _ = dateIntervalSelection.setDateIntervalType(dateIntervalType: .Week)
     }
     
@@ -171,25 +162,18 @@ class Model {
     }
     
     func reloadExpenses() {
-        var datePredicate = NSPredicate(value: true)
-        if self.dateIntervalSelection.dateIntervalType != DateIntervalType.All {
-            datePredicate = NSPredicate(format: "Date >= %@ and Date <= %@", self.dateIntervalSelection.startDate! as NSDate, self.dateIntervalSelection.endDate! as NSDate)
-            //datePredicate = NSPredicate(format: "Date < %@", self.dateIntervalSelection.endDate as! NSDate)
-        }
-        let query = CKQuery(recordType: Expense.RecordTypeName, predicate: datePredicate)
-        privateDB.perform(query, inZoneWith: nil) { [unowned self] results,error in
-            guard error == nil else {
+        CKExpensesDAO.sharedInstance.load(dateIntervalSelection: self.dateIntervalSelection) { (expenses, error) in
+            if error != nil {
                 let message = NSLocalizedString("Error loading expenses from iCloud", comment: "")
                 self.cloudAccessError(message: message, error: error! as NSError)
                 return
             }
+            
             self.removeAllFromCollections()
-            for record in results! {
-                if record.parent != nil {
-                    let expense = Expense(asNew: record)
-                    let recordName = record.parent?.recordID.recordName
-                    expense.account = self.getAccount(recordName: (recordName)!)
-                    self.addExpenseToCollections(expense: expense)
+            for expense in expenses! {
+                self.addExpenseToCollections(expense: expense)
+                if let parent = expense.record.parent {
+                    expense.account = self.getAccount(recordName: parent.recordID.recordName)
                 }
             }
             
@@ -212,29 +196,25 @@ class Model {
     
     // Add or update Expense
     func updateExpense(expense: Expense, isNewExpense: Bool, completionHandler: @escaping () -> Swift.Void) {
-        let record: CKRecord = expense.record
-        print("About to save expense with ID=\(record.recordID)")
-        privateDB.save(record, completionHandler: { (record, error) in
+        CKExpensesDAO.sharedInstance.save(expense: expense) { (expense, error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error saving expense record", comment: "")
                 self.cloudAccessError(message: message, error: error! as NSError)
                 return
             }
-            print("Successfully saved expense with ID=\(record!.recordID)")
-
-            self.expenseByRecordId[expense.record.recordID.recordName] = expense
+            self.expenseByRecordId[expense!.record.recordID.recordName] = expense
             if isNewExpense {
-                self.expenseByDateModel?.addExpense(expense: expense)
-                self.expenseByCategoryModel?.addExpense(expense: expense)
+                self.expenseByDateModel?.addExpense(expense: expense!)
+                self.expenseByCategoryModel?.addExpense(expense: expense!)
             } else {
                 self.refreshExpenseModels()
             }
             completionHandler()
-        })
+        }
     }
     
     func removeExpense(expense: Expense) {
-        privateDB.delete(withRecordID: expense.record.recordID) { (record, error) in
+        CKExpensesDAO.sharedInstance.delete(expense: expense) { (error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error deleting expense record", comment: "")
                 self.cloudAccessError(message: message, error: error! as NSError)
@@ -257,7 +237,7 @@ class Model {
     }
     
     func getUserInfo(recordName : String, completionHandler: @escaping (CloudUserInfo?, Error?) -> Swift.Void) {
-        var info = userInfoByRecordName[recordName]
+        let info = userInfoByRecordName[recordName]
         if info != nil {
             completionHandler(info, nil)
         } else {
