@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CloudKit
 
 class NamedItemPickerViewController: UITableViewController {
 
@@ -31,24 +30,14 @@ class NamedItemPickerViewController: UITableViewController {
     }
 
     func reloadData() {
-        let privateDB = CKContainer.default().privateCloudDatabase
-
-        valueList = []
-        
-        let predicate = NSPredicate(format: "ListName = %@", itemType!)
-        let query = CKQuery(recordType: NamedItemPickerViewController.RECORD_TYPE_NAME, predicate: predicate)
-        query.sortDescriptors = [NSSortDescriptor(key: NamedItem.nameColumnName, ascending: true)]
-        privateDB.perform(query, inZoneWith: nil) { [unowned self] results,error in
+        NamedItemDAO.sharedInstance.load(itemType: itemType!) { (namedItems, error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error loading NamedItem from iCloud", comment: "")
                 print("\(message): \(error!)")
                 return
             }
-            if results!.count > 0 {
-                for record in results! {
-                    self.valueList?.append(NamedItem(recordTypeName: self.itemType!, record: record))
-                }
-            } else {
+            self.valueList = namedItems
+            if self.valueList?.count == 0 {
                 // Initialize with default values
                 let itemStrings: [String]
                 switch self.itemType! {
@@ -64,33 +53,8 @@ class NamedItemPickerViewController: UITableViewController {
                 for itemString in itemStrings {
                     let newItem = NamedItem(list: self.itemType!, name: itemString)
                     self.valueList?.append(newItem)
-                    privateDB.save(newItem.record, completionHandler: { (record, error) in
-                        guard error == nil else {
-                            // TODO Show message dialog
-                            let message = NSLocalizedString("Error saving named item", comment: "")
-                            print("\(message): \(error!)")
-                            return
-                        }
-                        print("Successfully saved named item with ID=\(record!.recordID)")
-                    })
+                    NamedItemDAO.sharedInstance.save(item: newItem)
                 }
-            }
-            
-            // Check if selected entry is contained
-            if self.selectedValue != nil && self.selectedValue != "" && !(self.valueList?.contains(where: { (item) -> Bool in
-                return item.name == self.selectedValue
-            }))! {
-                let newItem = NamedItem(list: self.itemType!, name: self.selectedValue!)
-                self.valueList?.insert(newItem, at: 0)
-                privateDB.save(newItem.record, completionHandler: { (record, error) in
-                    guard error == nil else {
-                        // TODO Show message dialog
-                        let message = NSLocalizedString("Error saving named item", comment: "")
-                        print("\(message): \(error!)")
-                        return
-                    }
-                    print("Successfully saved named item with ID=\(record!.recordID)")
-                })
             }
             
             // Update table
@@ -129,19 +93,9 @@ class NamedItemPickerViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let item = self.valueList![indexPath.row]
-            let privateDB = CKContainer.default().privateCloudDatabase
-            privateDB.delete(withRecordID: item.record.recordID, completionHandler: { (recordId, error) in
-                guard error == nil else {
-                    let message = NSLocalizedString("Error deleting named item", comment: "")
-                    print("\(message): \(error!)")
-                    // TODO Show error dialog
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.valueList?.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-                }
-            })
+            NamedItemDAO.sharedInstance.delete(item: item)
+            self.valueList?.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         }
     }
     
@@ -163,16 +117,8 @@ class NamedItemPickerViewController: UITableViewController {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-
-                let privateDB = CKContainer.default().privateCloudDatabase
-                privateDB.save(newItem.record, completionHandler: { (record, error) in
-                    guard error == nil else {
-                        let message = NSLocalizedString("Error saving new named item", comment: "")
-                        print("\(message): \(error!)")
-                        return
-                    }
-                    print("Successfully saved new named item with ID=\(record!.recordID)")
-                })
+                
+                NamedItemDAO.sharedInstance.save(item: newItem)
             }
         }
     }

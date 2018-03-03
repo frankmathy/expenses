@@ -89,8 +89,12 @@ class Model {
         }
     }
     
-    func getDefaultAccount() -> Account {
-        return (ownAccountsByName.first?.value)!
+    func getDefaultAccount() -> Account? {
+        if ownAccountsByName.count > 0 {
+            return (ownAccountsByName.first?.value)!
+        } else {
+            return nil
+        }
     }
     
     func getAccount(recordName : String) -> Account? {

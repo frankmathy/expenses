@@ -33,7 +33,7 @@ class ExpenseDetailsViewController: UITableViewController {
 
         if newExpense! {
             navigationItem.title = NSLocalizedString("Add Expense", comment: "")
-            expense = Expense(date: Date(), category: SampleData.categoryGroceries, account:  Model.sharedInstance.getDefaultAccount(), project: SampleData.projectNone, amount: 0.0, comment: "")
+            expense = Expense(date: Date(), category: SampleData.categoryGroceries, account:  Model.sharedInstance.getDefaultAccount()!, project: SampleData.projectNone, amount: 0.0, comment: "")
         } else {
             navigationItem.title = NSLocalizedString("Edit Expense", comment: "")
         }
