@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		010882442048A67F00EF9A9B /* CloudKitPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010882432048A67F00EF9A9B /* CloudKitPersistenceManager.swift */; };
-		010882682048AA7600EF9A9B /* Expenses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 010882662048AA7600EF9A9B /* Expenses.xcdatamodeld */; };
 		012E92D11FF264B5004AF427 /* CloudUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012E92D01FF264B5004AF427 /* CloudUserInfo.swift */; };
 		019FCB9E1FD752BA00F478DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 019FCB9C1FD752BA00F478DE /* InfoPlist.strings */; };
 		01BAF5F01FD753DC002E892A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01BAF5EE1FD753DC002E892A /* Localizable.strings */; };
@@ -76,7 +75,6 @@
 
 /* Begin PBXFileReference section */
 		010882432048A67F00EF9A9B /* CloudKitPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitPersistenceManager.swift; sourceTree = "<group>"; };
-		010882672048AA7600EF9A9B /* Expenses.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Expenses.xcdatamodel; sourceTree = "<group>"; };
 		012E92D01FF264B5004AF427 /* CloudUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudUserInfo.swift; sourceTree = "<group>"; };
 		018DC2021FF57A9B00AB8274 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		019FCB9D1FD752BA00F478DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -258,7 +256,6 @@
 				010882422048A60C00EF9A9B /* Persistence */,
 				8564BC4E1FF1C28100B73D52 /* Expenses.entitlements */,
 				852F27C41FCA2C0C006988A5 /* AppDelegate.swift */,
-				010882662048AA7600EF9A9B /* Expenses.xcdatamodeld */,
 				852F27D01FCA2C0C006988A5 /* Info.plist */,
 			);
 			path = Expenses;
@@ -640,7 +637,6 @@
 				859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */,
 				8534868E2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift in Sources */,
 				852F27F71FCA316E006988A5 /* Expense.swift in Sources */,
-				010882682048AA7600EF9A9B /* Expenses.xcdatamodeld in Sources */,
 				010882442048A67F00EF9A9B /* CloudKitPersistenceManager.swift in Sources */,
 				85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */,
 				85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */,
@@ -1000,19 +996,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		010882662048AA7600EF9A9B /* Expenses.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				010882672048AA7600EF9A9B /* Expenses.xcdatamodel */,
-			);
-			currentVersion = 010882672048AA7600EF9A9B /* Expenses.xcdatamodel */;
-			path = Expenses.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 852F27B91FCA2C0C006988A5 /* Project object */;
 }
