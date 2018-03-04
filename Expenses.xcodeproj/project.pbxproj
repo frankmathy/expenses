@@ -8,7 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		012E92D11FF264B5004AF427 /* CloudUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012E92D01FF264B5004AF427 /* CloudUserInfo.swift */; };
+		016A03FC204CA84B00576CE8 /* ExchangeRateServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016A03FB204CA84B00576CE8 /* ExchangeRateServiceTest.swift */; };
+		016A03FD204CA86C00576CE8 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195738B204C3FF30035B19A /* ExchangeRateService.swift */; };
+		016A03FE204CA9BB00576CE8 /* CKNamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195737C204AD4E80035B19A /* CKNamedItemDAO.swift */; };
+		016A03FF204CA9BE00576CE8 /* CKAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D58FF6204AE48900FD4346 /* CKAccountDAO.swift */; };
+		016A0400204CA9C100576CE8 /* CKUserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F60204AF9BB0016FCBF /* CKUserDAO.swift */; };
+		016A0401204CA9C400576CE8 /* CKSubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F62204B0FF10016FCBF /* CKSubscriptionManager.swift */; };
+		016A0402204CA9C600576CE8 /* CKExpensesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F64204B13930016FCBF /* CKExpensesDAO.swift */; };
+		016A0403204CA9E300576CE8 /* NamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D67AA920398FDB00F7AC1C /* NamedItem.swift */; };
 		0195737D204AD4E90035B19A /* CKNamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195737C204AD4E80035B19A /* CKNamedItemDAO.swift */; };
+		0195738C204C3FF30035B19A /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195738B204C3FF30035B19A /* ExchangeRateService.swift */; };
 		019FCB9E1FD752BA00F478DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 019FCB9C1FD752BA00F478DE /* InfoPlist.strings */; };
 		01BAF5F01FD753DC002E892A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01BAF5EE1FD753DC002E892A /* Localizable.strings */; };
 		01D8344220474BF600AB3C14 /* AccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D8344120474BF600AB3C14 /* AccountPickerViewController.swift */; };
@@ -79,8 +88,10 @@
 
 /* Begin PBXFileReference section */
 		012E92D01FF264B5004AF427 /* CloudUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudUserInfo.swift; sourceTree = "<group>"; };
+		016A03FB204CA84B00576CE8 /* ExchangeRateServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateServiceTest.swift; sourceTree = "<group>"; };
 		018DC2021FF57A9B00AB8274 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		0195737C204AD4E80035B19A /* CKNamedItemDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKNamedItemDAO.swift; sourceTree = "<group>"; };
+		0195738B204C3FF30035B19A /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
 		019FCB9D1FD752BA00F478DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01BAF5ED1FD7535A002E892A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01BAF5EF1FD753DC002E892A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -180,6 +191,14 @@
 			path = CloudKit;
 			sourceTree = "<group>";
 		};
+		0195738A204C3FB10035B19A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0195738B204C3FF30035B19A /* ExchangeRateService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		852701361FF816CC00D4076A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +286,7 @@
 				852701391FF8175200D4076A /* Util */,
 				010882422048A60C00EF9A9B /* CloudKit */,
 				8564BC4E1FF1C28100B73D52 /* Expenses.entitlements */,
+				0195738A204C3FB10035B19A /* Service */,
 				852F27C41FCA2C0C006988A5 /* AppDelegate.swift */,
 				852F27D01FCA2C0C006988A5 /* Info.plist */,
 			);
@@ -280,6 +300,7 @@
 				85CCDAE91FED0BC500E8C7CB /* TestData.swift */,
 				857764B31FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift */,
 				85BB1FA21FFAA63C0090F816 /* GroupedExpenseModelTest.swift */,
+				016A03FB204CA84B00576CE8 /* ExchangeRateServiceTest.swift */,
 			);
 			path = ExpensesTests;
 			sourceTree = "<group>";
@@ -637,6 +658,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0195738C204C3FF30035B19A /* ExchangeRateService.swift in Sources */,
 				85D67AAA20398FDB00F7AC1C /* NamedItem.swift in Sources */,
 				852F5D75204187E6006B1AB9 /* Account.swift in Sources */,
 				01D8344220474BF600AB3C14 /* AccountPickerViewController.swift in Sources */,
@@ -674,16 +696,24 @@
 			files = (
 				8527013C1FF817C000D4076A /* CloudUserInfo.swift in Sources */,
 				85CCDAE81FECFF7800E8C7CB /* FormatExtensions.swift in Sources */,
+				016A0403204CA9E300576CE8 /* NamedItem.swift in Sources */,
+				016A03FD204CA86C00576CE8 /* ExchangeRateService.swift in Sources */,
 				85CCDAE51FECFA6400E8C7CB /* Expense.swift in Sources */,
 				85BB1FA11FFA820B0090F816 /* GroupedExpenseModel.swift in Sources */,
 				857764B41FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift in Sources */,
 				852F5D762041C020006B1AB9 /* Account.swift in Sources */,
 				8527013D1FF817D900D4076A /* Model.swift in Sources */,
 				85BB1FA41FFAA63C0090F816 /* GroupedExpenseModelTest.swift in Sources */,
+				016A03FE204CA9BB00576CE8 /* CKNamedItemDAO.swift in Sources */,
 				85CCDAEA1FED0BC500E8C7CB /* TestData.swift in Sources */,
 				8527013A1FF8176000D4076A /* SampleData.swift in Sources */,
+				016A03FF204CA9BE00576CE8 /* CKAccountDAO.swift in Sources */,
+				016A03FC204CA84B00576CE8 /* ExchangeRateServiceTest.swift in Sources */,
+				016A0401204CA9C400576CE8 /* CKSubscriptionManager.swift in Sources */,
 				852701381FF8174400D4076A /* User.swift in Sources */,
 				857764B51FF5AAEC00CBB925 /* DateIntervalSelection.swift in Sources */,
+				016A0400204CA9C100576CE8 /* CKUserDAO.swift in Sources */,
+				016A0402204CA9C600576CE8 /* CKExpensesDAO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

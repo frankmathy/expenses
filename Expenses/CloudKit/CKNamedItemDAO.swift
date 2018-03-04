@@ -31,7 +31,7 @@ class CKNamedItemDAO {
         var valueList = [NamedItem]()
         
         let predicate = NSPredicate(format: "ListName = %@", itemType)
-        let query = CKQuery(recordType: NamedItemPickerViewController.RECORD_TYPE_NAME, predicate: predicate)
+        let query = CKQuery(recordType: NamedItem.RecordTypeName, predicate: predicate)
         query.sortDescriptors = [NSSortDescriptor(key: NamedItem.nameColumnName, ascending: true)]
         privateDB.perform(query, inZoneWith: nil) { results,error in
             guard error == nil else {

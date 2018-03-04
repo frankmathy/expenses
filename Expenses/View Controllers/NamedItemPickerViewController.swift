@@ -10,8 +10,6 @@ import UIKit
 
 class NamedItemPickerViewController: UITableViewController {
 
-    static let RECORD_TYPE_NAME = "NamedItem"
-
     // Types for picker controller
     static let TYPE_CATEGORIES = "categories"
     static let TYPE_ACCOUNTS = "accounts"
