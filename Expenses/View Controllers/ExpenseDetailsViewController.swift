@@ -187,6 +187,9 @@ extension ExpenseDetailsViewController {
     @IBAction func unwindCancelExpenseNamedItem(segue: UIStoryboardSegue) {
     }
     
+    @IBAction func unwindCancelLocation(segue: UIStoryboardSegue) {
+    }
+    
     @IBAction func unwindWithSelectedAccount(segue: UIStoryboardSegue) {
         if let accountController = segue.source as? AccountPickerViewController {
             expense?.account = accountController.selectedValue
