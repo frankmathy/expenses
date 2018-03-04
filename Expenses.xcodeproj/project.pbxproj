@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		012E92D11FF264B5004AF427 /* CloudUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012E92D01FF264B5004AF427 /* CloudUserInfo.swift */; };
 		0195737D204AD4E90035B19A /* CKNamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195737C204AD4E80035B19A /* CKNamedItemDAO.swift */; };
+		01957389204B83B50035B19A /* Expenses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01957387204B83B50035B19A /* Expenses.xcdatamodeld */; };
 		019FCB9E1FD752BA00F478DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 019FCB9C1FD752BA00F478DE /* InfoPlist.strings */; };
 		01BAF5F01FD753DC002E892A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01BAF5EE1FD753DC002E892A /* Localizable.strings */; };
 		01D8344220474BF600AB3C14 /* AccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D8344120474BF600AB3C14 /* AccountPickerViewController.swift */; };
@@ -81,6 +82,7 @@
 		012E92D01FF264B5004AF427 /* CloudUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudUserInfo.swift; sourceTree = "<group>"; };
 		018DC2021FF57A9B00AB8274 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		0195737C204AD4E80035B19A /* CKNamedItemDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKNamedItemDAO.swift; sourceTree = "<group>"; };
+		01957388204B83B50035B19A /* Expenses.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Expenses.xcdatamodel; sourceTree = "<group>"; };
 		019FCB9D1FD752BA00F478DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01BAF5ED1FD7535A002E892A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01BAF5EF1FD753DC002E892A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				8564BC4E1FF1C28100B73D52 /* Expenses.entitlements */,
 				852F27C41FCA2C0C006988A5 /* AppDelegate.swift */,
 				852F27D01FCA2C0C006988A5 /* Info.plist */,
+				01957387204B83B50035B19A /* Expenses.xcdatamodeld */,
 			);
 			path = Expenses;
 			sourceTree = "<group>";
@@ -646,6 +649,7 @@
 				85282C0C1FF00413009090F9 /* TotalsViewCell.swift in Sources */,
 				851E0F65204B13930016FCBF /* CKExpensesDAO.swift in Sources */,
 				85BB1FAC1FFAE6D50090F816 /* ExpenseByCategoryCell.swift in Sources */,
+				01957389204B83B50035B19A /* Expenses.xcdatamodeld in Sources */,
 				852F27C51FCA2C0C006988A5 /* AppDelegate.swift in Sources */,
 				85BB1FA01FFA820B0090F816 /* GroupedExpenseModel.swift in Sources */,
 				857764B21FF5A7ED00CBB925 /* DateIntervalSelection.swift in Sources */,
@@ -1012,6 +1016,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		01957387204B83B50035B19A /* Expenses.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				01957388204B83B50035B19A /* Expenses.xcdatamodel */,
+			);
+			currentVersion = 01957388204B83B50035B19A /* Expenses.xcdatamodel */;
+			path = Expenses.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 852F27B91FCA2C0C006988A5 /* Project object */;
 }
