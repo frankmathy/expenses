@@ -48,7 +48,8 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
                 
                 let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 2000, 2000)
                 mapView.setRegion(viewRegion, animated: false)
-                
+                mapView.view(for: mapView.userLocation)?.isHidden = true
+
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = userLocation.coordinate
                 annotation.title = "Location"
