@@ -24,6 +24,15 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         mapView.delegate = self
+        
+        let pinImage = UIImage(named: "Pin")
+        let imageView = UIImageView(image: pinImage)
+        imageView.contentMode = UIViewContentMode.center
+        let imageLocation = self.mapView.convert(mapView.centerCoordinate, toPointTo: self.view)
+        imageView.center.x = imageLocation.x
+        imageView.center.y = imageLocation.y - (pinImage?.size.height)!/2
+        imageView.isUserInteractionEnabled = false
+        self.view.addSubview(imageView)
 
         if CLLocationManager.locationServicesEnabled() {
             locationManager.requestWhenInUseAuthorization()
@@ -46,40 +55,15 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
             if let userLocation = locations.last {
                 self.locationManager.stopUpdatingLocation()
                 
-                let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 2000, 2000)
+                let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, regionRadius, regionRadius)
                 mapView.setRegion(viewRegion, animated: false)
-                mapView.view(for: mapView.userLocation)?.isHidden = true
-
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = userLocation.coordinate
-                annotation.title = "Location"
-                mapView.addAnnotation(annotation)
             }
         }
     }
     
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
-        switch(newState) {
-        case .starting:
-            view.dragState = .dragging
-        case .ending, .canceling:
-            view.dragState = .none
-        default: break
-        }
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+        mapView.view(for: mapView.userLocation)?.isHidden = true
     }
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKPointAnnotation {
-            let pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "VenuePin")
-            pinAnnotationView.pinTintColor = .red
-            pinAnnotationView.isDraggable = true
-            pinAnnotationView.canShowCallout = false
-            pinAnnotationView.animatesDrop = true
-            return pinAnnotationView
-        }
-        return nil
-    }
-    
     
     func showLocationAlert() {
         let alert = UIAlertController(title: "Location Disabled", message: "Please enable location", preferredStyle: .alert)
