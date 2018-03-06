@@ -18,6 +18,8 @@ class Expense {
         static let project = "Project"
         static let amount = "Amount"
         static let comment = "Comment"
+        static let latitude = "Latitude"
+        static let longitude = "Longitude"
     }
     
     var record : CKRecord
@@ -106,6 +108,26 @@ class Expense {
         
         set(newComment) {
             record[ColumnKey.comment] = newComment as CKRecordValue
+        }
+    }
+    
+    var latitude: Double? {
+        get {
+            return record[ColumnKey.latitude] as! Double?
+        }
+        
+        set(newValue) {
+            record[ColumnKey.latitude] = newValue as CKRecordValue?
+        }
+    }
+    
+    var longitude: Double? {
+        get {
+            return record[ColumnKey.longitude] as! Double?
+        }
+        
+        set(newValue) {
+            record[ColumnKey.longitude] = newValue as CKRecordValue?
         }
     }
     

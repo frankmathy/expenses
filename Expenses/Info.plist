@@ -17,11 +17,17 @@
 	<key>CFBundleShortVersionString</key>
 	<string>0.1</string>
 	<key>CFBundleVersion</key>
-	<string>29</string>
+	<string>31</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Program requires GPS to determine current location</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Program requires GPS to determine current location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Program requires GPS to determine current location</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -43,11 +49,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>Program requires GPS to determine current location</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Program requires GPS to determine current location</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Program requires GPS to determine current location</string>
 </dict>
 </plist>

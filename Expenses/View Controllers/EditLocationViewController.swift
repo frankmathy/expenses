@@ -14,7 +14,7 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
     @IBOutlet weak var placesTableView: UITableView!
 
     let locationManager = CLLocationManager()
-    var currentLocation : CLLocation?
+    var expenseLocation : CLLocation?
 
     let regionRadius: CLLocationDistance = 1000
     
@@ -34,31 +34,39 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
         imageView.isUserInteractionEnabled = false
         self.view.addSubview(imageView)
 
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.requestWhenInUseAuthorization()
-            switch(CLLocationManager.authorizationStatus()) {
-            case .authorizedWhenInUse:
+        if expenseLocation == nil {
+            if CLLocationManager.locationServicesEnabled() {
+                locationManager.requestWhenInUseAuthorization()
+                switch(CLLocationManager.authorizationStatus()) {
+                case .authorizedWhenInUse:
+                    locationManager.startUpdatingLocation()
+                default:
+                    showLocationAlert()
+                }
                 locationManager.startUpdatingLocation()
-            default:
+            } else {
                 showLocationAlert()
             }
-            locationManager.startUpdatingLocation()
         } else {
-            showLocationAlert()
+            setEventLocaction(newLocation: expenseLocation!)
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        defer { currentLocation = locations.last }
-        if currentLocation == nil {
+        defer { expenseLocation = locations.last }
+        if expenseLocation == nil {
             // Zoom to user location
-            if let userLocation = locations.last {
+            if locations.last != nil {
                 self.locationManager.stopUpdatingLocation()
-                
-                let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, regionRadius, regionRadius)
-                mapView.setRegion(viewRegion, animated: false)
+                setEventLocaction(newLocation: locations.last!)
             }
         }
+    }
+    
+    func setEventLocaction(newLocation : CLLocation) {
+        self.expenseLocation = newLocation
+        let viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, regionRadius, regionRadius)
+        mapView.setRegion(viewRegion, animated: false)
     }
     
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
@@ -74,6 +82,11 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius, regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        let center = mapView.centerCoordinate
+        self.expenseLocation = CLLocation(latitude: center.latitude, longitude: center.longitude)
     }
     
     override func didReceiveMemoryWarning() {

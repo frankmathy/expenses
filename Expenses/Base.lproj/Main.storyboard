@@ -381,7 +381,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gdf-jC-4Kc" userLabel="Date Label">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gdf-jC-4Kc" userLabel="Location Label">
                                                             <rect key="frame" x="308" y="0.0" width="9" height="22"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <nil key="textColor"/>
@@ -398,7 +398,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="iG8-WH-MQh" kind="show" id="DSb-Mw-hrL"/>
+                                            <segue destination="iG8-WH-MQh" kind="show" identifier="PickLocation" id="DSb-Mw-hrL"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="s9S-PA-wrp" userLabel="Category Table View Cell">
@@ -627,6 +627,7 @@
                         <outlet property="createdByAt" destination="cDO-mt-heD" id="NKm-Ej-k8C"/>
                         <outlet property="dateField" destination="omh-Li-7ty" id="N0x-Qh-cOc"/>
                         <outlet property="editedByAt" destination="iem-0U-eoV" id="lgz-yE-qzH"/>
+                        <outlet property="locationField" destination="Gdf-jC-4Kc" id="WGA-o0-Hcb"/>
                         <outlet property="projectField" destination="6Zc-QQ-9u3" id="df2-7v-Rrq"/>
                         <outlet property="saveButton" destination="hxo-sG-mne" id="6vd-42-HWW"/>
                     </connections>
@@ -732,7 +733,18 @@
                                 <segue destination="IUz-lX-1P3" kind="unwind" unwindAction="unwindCancelLocationWithSegue:" id="SbV-lC-ljc"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="NCI-aP-LXv"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="save" id="NCI-aP-LXv">
+                                <connections>
+                                    <segue destination="IUz-lX-1P3" kind="unwind" unwindAction="unwindWithSelectedLocationWithSegue:" id="ctL-rP-Kh0"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="stop" id="PW5-fX-e1B">
+                                <connections>
+                                    <segue destination="IUz-lX-1P3" kind="unwind" unwindAction="unwindResetLocationWithSegue:" id="mMQ-ik-Loc"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="glA-Tj-J4S" id="7DV-w7-r5C"/>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class ExpenseDetailsViewController: UITableViewController {
 
@@ -19,6 +20,7 @@ class ExpenseDetailsViewController: UITableViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var createdByAt: UILabel!
     @IBOutlet weak var editedByAt: UILabel!
+    @IBOutlet weak var locationField: UILabel!
     
     var editedTextField: UITextField?
     
@@ -43,6 +45,7 @@ class ExpenseDetailsViewController: UITableViewController {
         accountField.text = expense!.account?.accountName
         projectField.text = expense!.project
         commentField.text = expense!.comment
+        updateLocationField()
         
         // Show creation details if available
         let creatorUserRecordId = expense!.creatorUserRecordID
@@ -155,6 +158,17 @@ class ExpenseDetailsViewController: UITableViewController {
             }
             pickerController.selectedValue = expense?.account
             
+        case "PickLocation":
+            let nav = segue.destination as? UINavigationController
+            guard let pickerController = nav?.topViewController as? EditLocationViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            if expense?.latitude != nil && expense?.longitude != nil {
+                pickerController.expenseLocation = CLLocation(latitude: (expense?.latitude)!, longitude: (expense?.longitude)!)
+            } else {
+                pickerController.expenseLocation = nil
+            }
+            
         default:
             // fatalError("Unexpected Segue Identifier: \(segue.identifier)")
             return
@@ -201,4 +215,39 @@ extension ExpenseDetailsViewController {
     
     @IBAction func unwindCancelExpenseAccount(segue: UIStoryboardSegue) {
     }
+    
+    @IBAction func unwindWithSelectedLocation(segue: UIStoryboardSegue) {
+        if let pickerController = segue.source as? EditLocationViewController {
+            if let location = pickerController.expenseLocation {
+                expense?.latitude = location.coordinate.latitude
+                expense?.longitude = location.coordinate.longitude
+            } else {
+                expense?.latitude = nil
+                expense?.longitude = nil
+            }
+        }
+        updateLocationField()
+    }
+    
+    func updateLocationField() {
+        if expense?.latitude == nil || expense?.longitude == nil {
+            locationField.text = "-"
+        } else {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .decimal
+            formatter.maximumFractionDigits = 5
+            formatter.minimumFractionDigits = 2
+            let lat =  formatter.string(from: expense?.latitude as! NSNumber)!
+            let long =  formatter.string(from: expense?.latitude as! NSNumber)!
+            let text = lat + ", " + long
+            locationField.text = text
+        }
+    }
+    
+    @IBAction func unwindResetLocation(segue: UIStoryboardSegue) {
+        expense?.latitude = nil
+        expense?.longitude = nil
+        updateLocationField()
+    }
+
 }
