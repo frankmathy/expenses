@@ -292,6 +292,7 @@
 				0195738A204C3FB10035B19A /* Service */,
 				852F27C41FCA2C0C006988A5 /* AppDelegate.swift */,
 				852F27D01FCA2C0C006988A5 /* Info.plist */,
+				01957387204B83B50035B19A /* Expenses.xcdatamodeld */,
 			);
 			path = Expenses;
 			sourceTree = "<group>";
@@ -672,6 +673,7 @@
 				85282C0C1FF00413009090F9 /* TotalsViewCell.swift in Sources */,
 				851E0F65204B13930016FCBF /* CKExpensesDAO.swift in Sources */,
 				85BB1FAC1FFAE6D50090F816 /* ExpenseByCategoryCell.swift in Sources */,
+				01957389204B83B50035B19A /* Expenses.xcdatamodeld in Sources */,
 				852F27C51FCA2C0C006988A5 /* AppDelegate.swift in Sources */,
 				85BB1FA01FFA820B0090F816 /* GroupedExpenseModel.swift in Sources */,
 				857764B21FF5A7ED00CBB925 /* DateIntervalSelection.swift in Sources */,
@@ -1046,6 +1048,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		01957387204B83B50035B19A /* Expenses.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				01957388204B83B50035B19A /* Expenses.xcdatamodel */,
+			);
+			currentVersion = 01957388204B83B50035B19A /* Expenses.xcdatamodel */;
+			path = Expenses.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 852F27B91FCA2C0C006988A5 /* Project object */;
 }
