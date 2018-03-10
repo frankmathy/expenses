@@ -43,9 +43,8 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         
         navigationItem.leftBarButtonItem = editButtonItem
         Model.sharedInstance.addObserver(observer: self)
-        Model.sharedInstance.initializeStaticData {
-            self.reloadExpenses(refreshPulled: false)
-        }
+        Model.sharedInstance.loadAccounts()
+        self.reloadExpenses(refreshPulled: false)
     }
     
     func modelUpdated() {
@@ -216,11 +215,8 @@ extension ExpensesViewController {
     
     @IBAction func saveExpenseDetail(_ segue: UIStoryboardSegue) {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
-            Model.sharedInstance.updateExpense(expense: expense, isNewExpense: expenseDetailsViewController.newExpense!, completionHandler: {
-                DispatchQueue.main.async {
-                    Model.sharedInstance.modelUpdated()
-                }
-            })
+            Model.sharedInstance.updateExpense(expense: expense, isNewExpense: expenseDetailsViewController.newExpense!)
+            Model.sharedInstance.modelUpdated()
         }
     }
 }

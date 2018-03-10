@@ -36,36 +36,22 @@ class CDExpensesDAO {
         }
     }
     
-    func save(expense: Expense, completionHandler: @escaping (Expense?, Error?) -> Swift.Void) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
-    
     func cancelChanges() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
-        do {
-            try managedContext.reset()
-        } catch let error as NSError {
-            print("Could not cancel. \(error), \(error.userInfo)")
-        }
+        try managedContext.reset()
     }
     
-    func delete(expense: Expense, completionHandler: @escaping (Error?) -> Swift.Void) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    func delete(expense: Expense) -> NSError? {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return NSError(domain: "Expenses", code: 1, userInfo: nil) }
         let managedContext = appDelegate.persistentContainer.viewContext
         managedContext.delete(expense)
         do {
             try managedContext.save()
-            completionHandler(nil)
         } catch let error as NSError {
             print("Could not delete. \(error), \(error.userInfo)")
-            completionHandler(error)
+            return error
         }
+        return nil
     }
 }

@@ -51,31 +51,22 @@ class Model {
         _ = dateIntervalSelection.setDateIntervalType(dateIntervalType: .Week)
     }
     
-    func initializeStaticData(completionHandler: @escaping () -> Swift.Void) {
-        loadAccounts(completionHandler: completionHandler)
-    }
-    
-    func loadAccounts(completionHandler: @escaping () -> Swift.Void) {
+    func loadAccounts() {
         ownAccountsByName.removeAll()
         ownAccountsByRecordId.removeAll()
-        CDAccountDAO.sharedInstance.load { (accounts, error) in
-            guard error == nil else {
-                let message = NSLocalizedString("Error loading accounts from iCloud", comment: "")
-                self.cloudAccessError(message: message, error: error! as NSError)
-                completionHandler()
-                return
+        let (accounts, error) = CDAccountDAO.sharedInstance.load()
+        guard error == nil else {
+            let message = NSLocalizedString("Error loading accounts from iCloud", comment: "")
+            self.cloudAccessError(message: message, error: error! as NSError)
+            return
+        }
+        if accounts != nil && (accounts?.count != 0) {
+            for account in accounts! {
+                self.ownAccountsByName[account.accountName!] = account
+                self.ownAccountsByRecordId[account.objectID] = account
             }
-            if accounts != nil && (accounts?.count != 0) {
-                for account in accounts! {
-                    self.ownAccountsByName[account.accountName!] = account
-                    self.ownAccountsByRecordId[account.objectID] = account
-                }
-                completionHandler()
-            } else {
-                self.createAccount(accountName: SampleData.accountHousehold, completionHandler: { (account, error) in
-                    completionHandler()
-                })
-            }
+        } else {
+            createAccount(accountName: SampleData.accountHousehold)
         }
     }
     
@@ -95,20 +86,18 @@ class Model {
         return Array(ownAccountsByName.values)
     }
     
-    func createAccount(accountName : String, completionHandler: @escaping (Account?, Error?) -> Swift.Void) {
+    func createAccount(accountName : String) -> (Account?, Error?) {
         let account = CDAccountDAO.sharedInstance.create()
         account?.accountName = accountName
         self.ownAccountsByName[account!.accountName!] = account
         self.ownAccountsByRecordId[account!.objectID] = account
-        CDAccountDAO.sharedInstance.save(account: account!) { (account, error) in
-            guard error == nil else {
-                let message = NSLocalizedString("Error saving new account \(accountName) to iCloud", comment: "")
-                self.cloudAccessError(message: message, error: error! as NSError)
-                completionHandler(account, error)
-                return
-            }
-            completionHandler(account, error)
+        let error = CoreDataUtil.sharedInstance.saveChanges()
+        guard error == nil else {
+            let message = NSLocalizedString("Error saving new account \(accountName) to iCloud", comment: "")
+            self.cloudAccessError(message: message, error: error! as NSError)
+            return (account, error)
         }
+        return (account, error)
     }
     
     func addObserver(observer : ModelDelegate) {
@@ -186,36 +175,33 @@ class Model {
     }
     
     // Add or update Expense
-    func updateExpense(expense: Expense, isNewExpense: Bool, completionHandler: @escaping () -> Swift.Void) {
-        CDExpensesDAO.sharedInstance.save(expense: expense) { (expense, error) in
-            guard error == nil else {
-                let message = NSLocalizedString("Error saving expense record", comment: "")
-                self.cloudAccessError(message: message, error: error! as NSError)
-                return
-            }
-            self.expenseByRecordId[expense!.objectID] = expense
-            if isNewExpense {
-                self.expenseByDateModel?.addExpense(expense: expense!)
-                self.expenseByCategoryModel?.addExpense(expense: expense!)
-            } else {
-                self.refreshExpenseModels()
-            }
-            completionHandler()
+    func updateExpense(expense: Expense, isNewExpense: Bool) {
+        let error = CoreDataUtil.sharedInstance.saveChanges()
+        guard error == nil else {
+            let message = NSLocalizedString("Error saving expense record", comment: "")
+            self.cloudAccessError(message: message, error: error! as NSError)
+            return
+        }
+        self.expenseByRecordId[expense.objectID] = expense
+        if isNewExpense {
+            self.expenseByDateModel?.addExpense(expense: expense)
+            self.expenseByCategoryModel?.addExpense(expense: expense)
+        } else {
+            self.refreshExpenseModels()
         }
     }
     
     func removeExpense(expense: Expense) {
-        CDExpensesDAO.sharedInstance.delete(expense: expense) { (error) in
-            guard error == nil else {
-                let message = NSLocalizedString("Error deleting expense record", comment: "")
-                self.cloudAccessError(message: message, error: error! as NSError)
-                return
-            }
-            print("Successfully deleted expense wth ID=\(expense.objectID)")
-            self.expenseByRecordId.removeValue(forKey: expense.objectID)
-            self.refreshExpenseModels()
-            self.modelUpdated()
+        let error = CDExpensesDAO.sharedInstance.delete(expense: expense)
+        guard error == nil else {
+            let message = NSLocalizedString("Error deleting expense record", comment: "")
+            self.cloudAccessError(message: message, error: error!)
+            return
         }
+        print("Successfully deleted expense wth ID=\(expense.objectID)")
+        self.expenseByRecordId.removeValue(forKey: expense.objectID)
+        self.refreshExpenseModels()
+        self.modelUpdated()
     }
     
     func refreshExpenseModels() -> Void {
@@ -242,23 +228,22 @@ class Model {
         }
     }*/
 
-    func addExpense(date: Date, categoryName : String, accountName : String, projectName: String, amount: Double, comment: String, completionHandler: @escaping () -> Swift.Void) {
+    func addExpense(date: Date, categoryName : String, accountName : String, projectName: String, amount: Double, comment: String) {
         let account = getAccount(accountName: accountName)
         if account != nil {
-            addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, completionHandler: completionHandler)
+            addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment)
         } else {
-            createAccount(accountName: accountName, completionHandler: { (account, error) in
-                guard error == nil else {
-                    let message = NSLocalizedString("Error creating account in iCloud", comment: "")
-                    self.cloudAccessError(message: message, error: error! as NSError)
-                    return
-                }
-                self.addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, completionHandler: completionHandler)
-            })
+            let (account, error) = createAccount(accountName: accountName)
+            guard error == nil else {
+                let message = NSLocalizedString("Error creating account in iCloud", comment: "")
+                self.cloudAccessError(message: message, error: error! as NSError)
+                return
+            }
+            self.addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment)
         }
     }
     
-    func addExpense(date: Date, categoryName : String, account : Account, projectName: String, amount: Double, comment: String, completionHandler: @escaping () -> Swift.Void) {
+    func addExpense(date: Date, categoryName : String, account : Account, projectName: String, amount: Double, comment: String) {
         let expense = CDExpensesDAO.sharedInstance.create()
         expense?.date = date
         expense?.category = categoryName
@@ -266,7 +251,7 @@ class Model {
         expense?.project = projectName
         expense?.amount = amount
         expense?.comment = comment
-        updateExpense(expense: expense!, isNewExpense: true, completionHandler: completionHandler)
+        updateExpense(expense: expense!, isNewExpense: true)
     }
         
     func getAccount(accountName : String) -> Account? {

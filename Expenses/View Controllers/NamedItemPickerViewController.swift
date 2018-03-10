@@ -28,33 +28,33 @@ class NamedItemPickerViewController: UITableViewController {
     }
 
     func reloadData() {
-        CDNamedItemDAO.sharedInstance.load(itemType: itemType!) { (namedItems, error) in
-            guard error == nil else {
-                let message = NSLocalizedString("Error loading NamedItem from iCloud", comment: "")
-                print("\(message): \(error!)")
-                return
+        let (namedItems, error) =
+        CDNamedItemDAO.sharedInstance.load(itemType: itemType!)
+        guard error == nil else {
+            let message = NSLocalizedString("Error loading NamedItem from iCloud", comment: "")
+            print("\(message): \(error!)")
+            return
+        }
+        self.valueList = namedItems
+        if self.valueList?.count == 0 {
+            // Initialize with default values
+            let itemStrings: [String]
+            switch self.itemType! {
+            case NamedItemPickerViewController.TYPE_ACCOUNTS:
+                itemStrings = SampleData.getAccounts()
+            case NamedItemPickerViewController.TYPE_PROJECTS:
+                itemStrings = SampleData.getProjects()
+            case NamedItemPickerViewController.TYPE_CATEGORIES:
+                itemStrings = SampleData.getCategories()
+            default:
+                fatalError("Unexpected item type: \(self.itemType!)")
             }
-            self.valueList = namedItems
-            if self.valueList?.count == 0 {
-                // Initialize with default values
-                let itemStrings: [String]
-                switch self.itemType! {
-                case NamedItemPickerViewController.TYPE_ACCOUNTS:
-                    itemStrings = SampleData.getAccounts()
-                case NamedItemPickerViewController.TYPE_PROJECTS:
-                    itemStrings = SampleData.getProjects()
-                case NamedItemPickerViewController.TYPE_CATEGORIES:
-                    itemStrings = SampleData.getCategories()
-                default:
-                    fatalError("Unexpected item type: \(self.itemType!)")
-                }
-                for itemString in itemStrings {
-                    let newItem = CDNamedItemDAO.sharedInstance.create()
-                    newItem?.itemName = itemString
-                    newItem?.listName = self.itemType
-                    self.valueList?.append(newItem!)
-                    CDNamedItemDAO.sharedInstance.save(item: newItem!)
-                }
+            for itemString in itemStrings {
+                let newItem = CDNamedItemDAO.sharedInstance.create()
+                newItem?.itemName = itemString
+                newItem?.listName = self.itemType
+                self.valueList?.append(newItem!)
+                CDNamedItemDAO.sharedInstance.save(item: newItem!)
             }
             
             // Update table

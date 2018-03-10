@@ -47,6 +47,7 @@
 		852F5D762041C020006B1AB9 /* CKAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* CKAccount.swift */; };
 		852F5D772041C021006B1AB9 /* CKAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* CKAccount.swift */; };
 		8534868E2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8534868D2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift */; };
+		854229A02053F0FE007A4282 /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8542299F2053F0FE007A4282 /* CoreDataUtil.swift */; };
 		85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */; };
 		8564BC501FF1C28B00B73D52 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8564BC4F1FF1C28B00B73D52 /* CloudKit.framework */; };
 		857764B21FF5A7ED00CBB925 /* DateIntervalSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */; };
@@ -131,6 +132,7 @@
 		852F27F61FCA316E006988A5 /* CKExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKExpense.swift; sourceTree = "<group>"; };
 		852F5D74204187E6006B1AB9 /* CKAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKAccount.swift; sourceTree = "<group>"; };
 		8534868D2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseByCategoryTableViewController.swift; sourceTree = "<group>"; };
+		8542299F2053F0FE007A4282 /* CoreDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 		85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseGroupCell.swift; sourceTree = "<group>"; };
 		8564BC4E1FF1C28100B73D52 /* Expenses.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Expenses.entitlements; sourceTree = "<group>"; };
 		8564BC4F1FF1C28B00B73D52 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -333,6 +335,7 @@
 				85A872B4205359D20099F7C8 /* CDNamedItemDAO.swift */,
 				85A872B620535A420099F7C8 /* CDAccountDAO.swift */,
 				85A872B820535A8D0099F7C8 /* CDExpensesDAO.swift */,
+				8542299F2053F0FE007A4282 /* CoreDataUtil.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -689,6 +692,7 @@
 				851E0F61204AF9BB0016FCBF /* CKUserDAO.swift in Sources */,
 				85A872B920535A8D0099F7C8 /* CDExpensesDAO.swift in Sources */,
 				852F27F31FCA30E8006988A5 /* SampleData.swift in Sources */,
+				854229A02053F0FE007A4282 /* CoreDataUtil.swift in Sources */,
 				851E0F63204B0FF10016FCBF /* CKSubscriptionManager.swift in Sources */,
 				85282C0C1FF00413009090F9 /* TotalsViewCell.swift in Sources */,
 				851E0F65204B13930016FCBF /* CKExpensesDAO.swift in Sources */,

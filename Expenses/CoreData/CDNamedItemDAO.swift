@@ -30,17 +30,17 @@ class CDNamedItemDAO {
         }
     }
     
-    func load(itemType : String, completionHandler: @escaping ([NamedItem]?, Error?) -> Swift.Void) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    func load(itemType : String) -> ([NamedItem]?, Error?) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return (nil, nil) }
         let managedContext = appDelegate.persistentContainer.viewContext
         let namedItemFetch = NSFetchRequest<NamedItem>(entityName: "NamedItem")
         namedItemFetch.predicate = NSPredicate(format: "itemName == %@", itemType)
         do {
             let items = try managedContext.fetch(namedItemFetch)
-            completionHandler(items, nil)
+            return (items, nil)
         } catch let error as NSError {
             print("Could not load. \(error), \(error.userInfo)")
-            completionHandler(nil, error)
+            return (nil, error)
         }
     }
     

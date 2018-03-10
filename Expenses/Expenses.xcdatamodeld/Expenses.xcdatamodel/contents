@@ -8,8 +8,8 @@
         <attribute name="category" attributeType="String" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="project" attributeType="String" syncable="YES"/>
         <relationship name="account" maxCount="1" deletionRule="Nullify" destinationEntity="Account" syncable="YES"/>
     </entity>

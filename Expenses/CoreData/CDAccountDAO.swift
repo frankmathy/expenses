@@ -20,26 +20,16 @@ class CDAccountDAO {
         return Account(context: managedContext)
     }
     
-    func load(completionHandler: @escaping ([Account]?, Error?) -> Swift.Void) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    func load() -> ([Account]?, Error?) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return (nil, nil)}
         let managedContext = appDelegate.persistentContainer.viewContext
         let accountFetch = NSFetchRequest<Account>(entityName: "Account")
         do {
             let items = try managedContext.fetch(accountFetch)
-            completionHandler(items, nil)
+            return (items, nil)
         } catch let error as NSError {
             print("Could not load. \(error), \(error.userInfo)")
-            completionHandler(nil, error)
-        }
-    }
-    
-    func save(account : Account, completionHandler: @escaping (Account?, Error?) -> Swift.Void) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            return (nil, error)
         }
     }
 }

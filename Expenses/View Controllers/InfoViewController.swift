@@ -45,8 +45,7 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
                         let category = columns[3]
                         let project = columns[4]
                         let comment = columns[5]
-                        Model.sharedInstance.addExpense(date: date!, categoryName: category, accountName: accountName, projectName: project, amount: amount, comment: comment, completionHandler: {
-                        })
+                        Model.sharedInstance.addExpense(date: date!, categoryName: category, accountName: accountName, projectName: project, amount: amount, comment: comment)
                         imported = imported + 1
                     }
                 }
