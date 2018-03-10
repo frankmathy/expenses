@@ -28,7 +28,7 @@ class NamedItemPickerViewController: UITableViewController {
     }
 
     func reloadData() {
-        CKNamedItemDAO.sharedInstance.load(itemType: itemType!) { (namedItems, error) in
+        CDNamedItemDAO.sharedInstance.load(itemType: itemType!) { (namedItems, error) in
             guard error == nil else {
                 let message = NSLocalizedString("Error loading NamedItem from iCloud", comment: "")
                 print("\(message): \(error!)")
@@ -49,9 +49,11 @@ class NamedItemPickerViewController: UITableViewController {
                     fatalError("Unexpected item type: \(self.itemType!)")
                 }
                 for itemString in itemStrings {
-                    let newItem = NamedItem(list: self.itemType!, name: itemString)
-                    self.valueList?.append(newItem)
-                    CKNamedItemDAO.sharedInstance.save(item: newItem)
+                    let newItem = CDNamedItemDAO.sharedInstance.create()
+                    newItem?.itemName = itemString
+                    newItem?.listName = self.itemType
+                    self.valueList?.append(newItem!)
+                    CDNamedItemDAO.sharedInstance.save(item: newItem!)
                 }
             }
             
@@ -75,7 +77,7 @@ class NamedItemPickerViewController: UITableViewController {
             return cell
         }
         
-        let value = values[indexPath.row].name
+        let value = values[indexPath.row].itemName
         cell.textLabel?.text = value
         
         if(value == selectedValue!) {
@@ -91,7 +93,7 @@ class NamedItemPickerViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let item = self.valueList![indexPath.row]
-            CKNamedItemDAO.sharedInstance.delete(item: item)
+            CDNamedItemDAO.sharedInstance.delete(item: item)
             self.valueList?.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         }
@@ -104,19 +106,21 @@ class NamedItemPickerViewController: UITableViewController {
                 return
         }
 
-        selectedValue = valueList![indexPath.row].name
+        selectedValue = valueList![indexPath.row].itemName
     }
     
     @IBAction func addItemPressed(_ sender: UIBarButtonItem) {
         ViewControllerUtils.showTextEntryAlert(title: NSLocalizedString("Add New Item", comment: ""), message: NSLocalizedString("Enter Item Name.", comment: ""), fieldName: NSLocalizedString("Name", comment: ""), viewController: self) { (itemString) in
             if itemString != "" {
-                let newItem = NamedItem(list: self.itemType!, name: itemString)
-                self.valueList?.insert(newItem, at: 0)
+                let newItem = CDNamedItemDAO.sharedInstance.create()
+                newItem?.itemName = itemString
+                newItem?.listName = self.itemType
+                self.valueList?.insert(newItem!, at: 0)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
                 
-                CKNamedItemDAO.sharedInstance.save(item: newItem)
+                CDNamedItemDAO.sharedInstance.save(item: newItem!)
             }
         }
     }

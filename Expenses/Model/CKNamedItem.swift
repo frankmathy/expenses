@@ -9,7 +9,7 @@
 import Foundation
 import CloudKit
 
-class NamedItem {
+class CKNamedItem {
     
     static let RecordTypeName = "NamedItem"
     static let nameColumnName = "ItemName"
@@ -19,26 +19,26 @@ class NamedItem {
     
     var name: String {
         get {
-            return record[NamedItem.nameColumnName] as! String
+            return record[CKNamedItem.nameColumnName] as! String
         }
         
         set(newComment) {
-            record[NamedItem.nameColumnName] = newComment as CKRecordValue
+            record[CKNamedItem.nameColumnName] = newComment as CKRecordValue
         }
     }
     
     var list: String {
         get {
-            return record[NamedItem.listColumnName] as! String
+            return record[CKNamedItem.listColumnName] as! String
         }
         
         set(listName) {
-            record[NamedItem.listColumnName] = listName as CKRecordValue
+            record[CKNamedItem.listColumnName] = listName as CKRecordValue
         }
     }
     
     init(list: String, name: String) {
-        record = CKRecord(recordType: NamedItem.RecordTypeName)
+        record = CKRecord(recordType: CKNamedItem.RecordTypeName)
         self.list = list
         self.name = name
     }

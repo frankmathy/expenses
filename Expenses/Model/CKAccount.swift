@@ -9,7 +9,7 @@
 import Foundation
 import CloudKit
 
-class Account {
+class CKAccount {
     static let RecordTypeName = "Account"
     
     struct ColumnKey {
@@ -51,7 +51,7 @@ class Account {
     }
     
     init(accountName: String) {
-        record = CKRecord(recordType: Account.RecordTypeName)
+        record = CKRecord(recordType: CKAccount.RecordTypeName)
         self.accountName = accountName
     }
     
@@ -59,11 +59,11 @@ class Account {
         self.record = record
     }
     
-    init(asCopy account: Account) {
+    init(asCopy account: CKAccount) {
         record = account.record.copy() as! CKRecord
     }
     
-    func updateFromOtherAccount(other : Account) {
+    func updateFromOtherAccount(other : CKAccount) {
         accountName = other.accountName
     }
 }

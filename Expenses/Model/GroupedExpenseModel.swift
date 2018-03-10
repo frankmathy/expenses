@@ -13,8 +13,8 @@ class GroupedExpenseModel<ExpenseKey : Hashable> {
     
     var sortedGroupKeys = [ExpenseKey]()
     var expensesForKey = [ExpenseKey: [Expense]]()
-    var totalsForKey = [ExpenseKey: Float]()
-    var grandTotal : Float = 0.0
+    var totalsForKey = [ExpenseKey: Double]()
+    var grandTotal : Double = 0.0
     
     var getKeyFunction : ((Expense) -> ExpenseKey)
     var compareKeysFunction : (ExpenseKey, ExpenseKey) -> Bool
@@ -43,7 +43,7 @@ class GroupedExpenseModel<ExpenseKey : Hashable> {
             totalsForKey[groupCategory] = 0.0
         }
         expensesForKey[groupCategory]?.append(expense)
-        expensesForKey[groupCategory]?.sort { $0.date > $1.date }
+        expensesForKey[groupCategory]?.sort { $0.date! > $1.date! }
         totalsForKey[groupCategory] = totalsForKey[groupCategory]! + expense.amount
         grandTotal = grandTotal + expense.amount
     }
@@ -107,11 +107,11 @@ class GroupedExpenseModel<ExpenseKey : Hashable> {
         }
     }
     
-    func totalAmount(forExpenseKey: ExpenseKey) -> Float {
+    func totalAmount(forExpenseKey: ExpenseKey) -> Double {
         return totalsForKey[forExpenseKey]!
     }
     
-    func totalAmount(inSection: Int) -> Float {
+    func totalAmount(inSection: Int) -> Double {
         return totalAmount(forExpenseKey: sectionCategoryKey(inSection: inSection)!)
     }
 }

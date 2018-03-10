@@ -35,12 +35,18 @@ class ExpenseDetailsViewController: UITableViewController {
 
         if newExpense! {
             navigationItem.title = NSLocalizedString("Add Expense", comment: "")
-            expense = Expense(date: Date(), category: SampleData.categoryGroceries, account:  Model.sharedInstance.getDefaultAccount()!, project: SampleData.projectNone, amount: 0.0, comment: "")
+            expense = CDExpensesDAO.sharedInstance.create()
+            expense?.date = Date()
+            expense?.category = SampleData.categoryGroceries
+            expense?.account = Model.sharedInstance.getDefaultAccount()
+            expense?.project = SampleData.projectNone
+            expense?.amount = 0.0
+            expense?.comment = ""
         } else {
             navigationItem.title = NSLocalizedString("Edit Expense", comment: "")
         }
         amountTextField.text = expense!.amount.currencyInputFormatting()
-        dateField.text = expense!.date.asLocaleDateTimeString
+        dateField.text = expense!.date!.asLocaleDateTimeString
         categoryField.text = expense!.category
         accountField.text = expense!.account?.accountName
         projectField.text = expense!.project
@@ -48,6 +54,7 @@ class ExpenseDetailsViewController: UITableViewController {
         updateLocationField()
         
         // Show creation details if available
+        /* TODO
         let creatorUserRecordId = expense!.creatorUserRecordID
         let creationDate = expense!.creationDate
         if creatorUserRecordId != nil && creationDate != nil {
@@ -64,9 +71,10 @@ class ExpenseDetailsViewController: UITableViewController {
             })
         } else {
             createdByAt.text = ""
-        }
+        } */
         
         // Show modification details if available
+        /* TODO
         let lastModifiedUserRecordId = expense!.lastModifiedUserRecordID
         let modificationDate = expense!.modificationDate
         if lastModifiedUserRecordId != nil && modificationDate != nil && modificationDate != creationDate {
@@ -83,7 +91,7 @@ class ExpenseDetailsViewController: UITableViewController {
             })
         } else {
             editedByAt.text = ""
-        }
+        }*/
 
         updateSaveButtonState()
     }
@@ -194,7 +202,7 @@ extension ExpenseDetailsViewController {
     @IBAction func unwindWithSelectedDate(segue: UIStoryboardSegue) {
         if let pickerController = segue.source as? DateTimePickerViewController {
             expense?.date = pickerController.date!
-            dateField.text = expense!.date.asLocaleDateTimeString
+            dateField.text = expense!.date?.asLocaleDateTimeString
         }
     }
     
@@ -222,15 +230,15 @@ extension ExpenseDetailsViewController {
                 expense?.latitude = location.coordinate.latitude
                 expense?.longitude = location.coordinate.longitude
             } else {
-                expense?.latitude = nil
-                expense?.longitude = nil
+                expense?.latitude = Double.nan
+                expense?.longitude = Double.nan
             }
         }
         updateLocationField()
     }
     
     func updateLocationField() {
-        if expense?.latitude == nil || expense?.longitude == nil {
+        if expense?.latitude == Double.nan || expense?.longitude == Double.nan {
             locationField.text = "-"
         } else {
             let formatter = NumberFormatter()
@@ -245,8 +253,8 @@ extension ExpenseDetailsViewController {
     }
     
     @IBAction func unwindResetLocation(segue: UIStoryboardSegue) {
-        expense?.latitude = nil
-        expense?.longitude = nil
+        expense?.latitude = Double.nan
+        expense?.longitude = Double.nan
         updateLocationField()
     }
 

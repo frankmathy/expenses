@@ -21,7 +21,7 @@ class CKSubscriptionManager {
             if error == nil {
                 if let subscriptions = subscriptions {
                     for subscription in subscriptions {
-                        if subscription.recordType == Expense.RecordTypeName {
+                        if subscription.recordType == CKExpense.RecordTypeName {
                             print("Existing subscription found with id: \(subscription.subscriptionID)")
                             isSubscribed = true
                             break
@@ -35,7 +35,7 @@ class CKSubscriptionManager {
             }
             if !isSubscribed {
                 // Subscribe to all record changes
-                let subscription = CKQuerySubscription(recordType: Expense.RecordTypeName, predicate: NSPredicate(value: true), options: [.firesOnRecordCreation, .firesOnRecordDeletion, .firesOnRecordUpdate])
+                let subscription = CKQuerySubscription(recordType: CKExpense.RecordTypeName, predicate: NSPredicate(value: true), options: [.firesOnRecordCreation, .firesOnRecordDeletion, .firesOnRecordUpdate])
                 let notification = CKNotificationInfo()
                 notification.alertBody = "Update in Expenses received."
                 notification.soundName = "default"

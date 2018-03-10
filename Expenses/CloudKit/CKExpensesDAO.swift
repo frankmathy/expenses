@@ -13,22 +13,22 @@ class CKExpensesDAO {
 
     static let sharedInstance = CKExpensesDAO()
 
-    func load(dateIntervalSelection : DateIntervalSelection, completionHandler: @escaping ([Expense]?, Error?) -> Swift.Void) {
+    func load(dateIntervalSelection : DateIntervalSelection, completionHandler: @escaping ([CKExpense]?, Error?) -> Swift.Void) {
         let privateDB = CKContainer.default().privateCloudDatabase
         var datePredicate = NSPredicate(value: true)
         if dateIntervalSelection.dateIntervalType != DateIntervalType.All {
             datePredicate = NSPredicate(format: "Date >= %@ and Date <= %@", dateIntervalSelection.startDate! as NSDate, dateIntervalSelection.endDate! as NSDate)
         }
-        let query = CKQuery(recordType: Expense.RecordTypeName, predicate: datePredicate)
+        let query = CKQuery(recordType: CKExpense.RecordTypeName, predicate: datePredicate)
         privateDB.perform(query, inZoneWith: nil) { [unowned self] results,error in
             guard error == nil else {
                 completionHandler(nil, error)
                 return
             }
-            var expenses = [Expense]()
+            var expenses = [CKExpense]()
             for record in results! {
                 if record.parent != nil {
-                    let expense = Expense(asNew: record)
+                    let expense = CKExpense(asNew: record)
                     expenses.append(expense)
                 }
             }
@@ -36,7 +36,7 @@ class CKExpensesDAO {
         }
     }
     
-    func save(expense: Expense, completionHandler: @escaping (Expense?, Error?) -> Swift.Void) {
+    func save(expense: CKExpense, completionHandler: @escaping (CKExpense?, Error?) -> Swift.Void) {
         let privateDB = CKContainer.default().privateCloudDatabase
         privateDB.save(expense.record, completionHandler: { (record, error) in
             guard error == nil else {
@@ -49,7 +49,7 @@ class CKExpensesDAO {
         })
     }
     
-    func delete(expense: Expense, completionHandler: @escaping (Error?) -> Swift.Void) {
+    func delete(expense: CKExpense, completionHandler: @escaping (Error?) -> Swift.Void) {
         let privateDB = CKContainer.default().privateCloudDatabase
         privateDB.delete(withRecordID: expense.record.recordID) { (record, error) in
             guard error == nil else {

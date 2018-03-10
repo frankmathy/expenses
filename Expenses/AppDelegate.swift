@@ -87,7 +87,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return container
     }()
     
-    // MARK: - Core Data Saving support
+    var managedObjectContext : NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
     
     func saveContext () {
         let context = persistentContainer.viewContext

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Expenses/Expenses.xcdatamodeld">
+   </FileRef>
+   <FileRef
       location = "group:Expenses.xcodeproj">
    </FileRef>
    <FileRef

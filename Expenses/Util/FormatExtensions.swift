@@ -64,13 +64,33 @@ extension Float {
     }
 }
 
+// Formatting extensions for Float
+extension Double {
+    var asLocaleCurrency:String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencySymbol = ""
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
+        return formatter.string(from: NSNumber.init(value: self))!
+    }
+    
+    func currencyInputFormatting() -> String {
+        // if first number is 0 or all numbers were deleted
+        guard self != 0 else {
+            return ""
+        }
+        return Locale.current.currencySymbol! + self.asLocaleCurrency.trimmingCharacters(in: .whitespaces)
+    }
+}
+
 extension String {
     
-    func parseCurrencyValue() -> Float {
+    func parseCurrencyValue() -> Double {
         var amountWithPrefix = self
         let regex = try! NSRegularExpression(pattern: "[^0-9]", options: .caseInsensitive)
         amountWithPrefix = regex.stringByReplacingMatches(in: amountWithPrefix, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, self.characters.count), withTemplate: "")
-        let value = (amountWithPrefix as NSString).floatValue
+        let value = (amountWithPrefix as NSString).doubleValue
         return value / 100
     }
     
