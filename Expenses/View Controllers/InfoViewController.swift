@@ -40,13 +40,12 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
                     let columns = row.components(separatedBy: "\t")
                     if columns.count >= 6 {
                         let date = dateFormat.date(from: columns[0])
-                        let amount = (columns[1] as NSString).floatValue
+                        let amount = (columns[1] as NSString).doubleValue
                         let accountName = columns[2]
                         let category = columns[3]
                         let project = columns[4]
                         let comment = columns[5]
-                        Model.sharedInstance.addExpense(date: date!, categoryName: category, accountName: accountName, projectName: project, amount: amount, comment: comment, completionHandler: {
-                        })
+                        Model.sharedInstance.addExpense(date: date!, categoryName: category, accountName: accountName, projectName: project, amount: amount, comment: comment)
                         imported = imported + 1
                     }
                 }

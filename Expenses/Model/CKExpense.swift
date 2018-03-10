@@ -9,7 +9,7 @@
 import Foundation
 import CloudKit
 
-class Expense {
+class CKExpense {
     static let RecordTypeName = "Expense"
     
     struct ColumnKey {
@@ -24,9 +24,9 @@ class Expense {
     
     var record : CKRecord
     
-    private var accountObject : Account?
+    private var accountObject : CKAccount?
     
-    var account : Account? {
+    var account : CKAccount? {
         set(newAccount) {
             self.accountObject = newAccount
             if account != nil {
@@ -153,8 +153,8 @@ class Expense {
         return record.modificationDate
     }
     
-    init(date: Date, category: String, account: Account, project: String, amount: Float, comment: String) {
-        record = CKRecord(recordType: Expense.RecordTypeName)
+    init(date: Date, category: String, account: CKAccount, project: String, amount: Float, comment: String) {
+        record = CKRecord(recordType: CKExpense.RecordTypeName)
         self.date = date
         self.amount = amount
         self.category = category
@@ -167,12 +167,12 @@ class Expense {
         self.record = record
     }
     
-    init(asCopy expense: Expense) {
+    init(asCopy expense: CKExpense) {
         record = expense.record.copy() as! CKRecord
         account = expense.account
     }
     
-    func updateFromOtherExpense(other : Expense) {
+    func updateFromOtherExpense(other : CKExpense) {
         date = other.date
         category = other.category
         accountReference = other.accountReference

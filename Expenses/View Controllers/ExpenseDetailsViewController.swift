@@ -35,12 +35,18 @@ class ExpenseDetailsViewController: UITableViewController {
 
         if newExpense! {
             navigationItem.title = NSLocalizedString("Add Expense", comment: "")
-            expense = Expense(date: Date(), category: SampleData.categoryGroceries, account:  Model.sharedInstance.getDefaultAccount()!, project: SampleData.projectNone, amount: 0.0, comment: "")
+            expense = CDExpensesDAO.sharedInstance.create()
+            expense?.date = Date()
+            expense?.category = SampleData.categoryGroceries
+            expense?.account = Model.sharedInstance.getDefaultAccount()
+            expense?.project = SampleData.projectNone
+            expense?.amount = 0.0
+            expense?.comment = ""
         } else {
             navigationItem.title = NSLocalizedString("Edit Expense", comment: "")
         }
         amountTextField.text = expense!.amount.currencyInputFormatting()
-        dateField.text = expense!.date.asLocaleDateTimeString
+        dateField.text = expense!.date!.asLocaleDateTimeString
         categoryField.text = expense!.category
         accountField.text = expense!.account?.accountName
         projectField.text = expense!.project
@@ -48,6 +54,7 @@ class ExpenseDetailsViewController: UITableViewController {
         updateLocationField()
         
         // Show creation details if available
+        /* TODO
         let creatorUserRecordId = expense!.creatorUserRecordID
         let creationDate = expense!.creationDate
         if creatorUserRecordId != nil && creationDate != nil {
@@ -64,9 +71,10 @@ class ExpenseDetailsViewController: UITableViewController {
             })
         } else {
             createdByAt.text = ""
-        }
+        } */
         
         // Show modification details if available
+        /* TODO
         let lastModifiedUserRecordId = expense!.lastModifiedUserRecordID
         let modificationDate = expense!.modificationDate
         if lastModifiedUserRecordId != nil && modificationDate != nil && modificationDate != creationDate {
@@ -83,7 +91,7 @@ class ExpenseDetailsViewController: UITableViewController {
             })
         } else {
             editedByAt.text = ""
-        }
+        }*/
 
         updateSaveButtonState()
     }
@@ -164,7 +172,7 @@ class ExpenseDetailsViewController: UITableViewController {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             if expense?.latitude != nil && expense?.longitude != nil {
-                pickerController.expenseLocation = CLLocation(latitude: (expense?.latitude)!, longitude: (expense?.longitude)!)
+                pickerController.expenseLocation = CLLocation(latitude: (expense?.latitude?.doubleValue)!, longitude: (expense?.longitude?.doubleValue)!)
             } else {
                 pickerController.expenseLocation = nil
             }
@@ -194,7 +202,7 @@ extension ExpenseDetailsViewController {
     @IBAction func unwindWithSelectedDate(segue: UIStoryboardSegue) {
         if let pickerController = segue.source as? DateTimePickerViewController {
             expense?.date = pickerController.date!
-            dateField.text = expense!.date.asLocaleDateTimeString
+            dateField.text = expense!.date?.asLocaleDateTimeString
         }
     }
     
@@ -219,8 +227,8 @@ extension ExpenseDetailsViewController {
     @IBAction func unwindWithSelectedLocation(segue: UIStoryboardSegue) {
         if let pickerController = segue.source as? EditLocationViewController {
             if let location = pickerController.expenseLocation {
-                expense?.latitude = location.coordinate.latitude
-                expense?.longitude = location.coordinate.longitude
+                expense?.latitude = NSNumber(value: location.coordinate.latitude)
+                expense?.longitude = NSNumber(value: location.coordinate.longitude)
             } else {
                 expense?.latitude = nil
                 expense?.longitude = nil
@@ -237,8 +245,8 @@ extension ExpenseDetailsViewController {
             formatter.numberStyle = .decimal
             formatter.maximumFractionDigits = 5
             formatter.minimumFractionDigits = 2
-            let lat =  formatter.string(from: expense?.latitude as! NSNumber)!
-            let long =  formatter.string(from: expense?.latitude as! NSNumber)!
+            let lat =  formatter.string(from: (expense?.latitude)!)!
+            let long =  formatter.string(from: (expense?.latitude)!)!
             let text = lat + ", " + long
             locationField.text = text
         }

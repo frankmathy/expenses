@@ -15,7 +15,7 @@
 		016A0400204CA9C100576CE8 /* CKUserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F60204AF9BB0016FCBF /* CKUserDAO.swift */; };
 		016A0401204CA9C400576CE8 /* CKSubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F62204B0FF10016FCBF /* CKSubscriptionManager.swift */; };
 		016A0402204CA9C600576CE8 /* CKExpensesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F64204B13930016FCBF /* CKExpensesDAO.swift */; };
-		016A0403204CA9E300576CE8 /* NamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D67AA920398FDB00F7AC1C /* NamedItem.swift */; };
+		016A0403204CA9E300576CE8 /* CKNamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D67AA920398FDB00F7AC1C /* CKNamedItem.swift */; };
 		0191900D204DF1EB003BC332 /* EditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0191900C204DF1EB003BC332 /* EditLocationViewController.swift */; };
 		0195737D204AD4E90035B19A /* CKNamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195737C204AD4E80035B19A /* CKNamedItemDAO.swift */; };
 		0195738C204C3FF30035B19A /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195738B204C3FF30035B19A /* ExchangeRateService.swift */; };
@@ -42,17 +42,22 @@
 		852F27CF1FCA2C0C006988A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852F27CD1FCA2C0C006988A5 /* LaunchScreen.storyboard */; };
 		852F27E51FCA2C0C006988A5 /* ExpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27E41FCA2C0C006988A5 /* ExpensesUITests.swift */; };
 		852F27F31FCA30E8006988A5 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F21FCA30E8006988A5 /* SampleData.swift */; };
-		852F27F71FCA316E006988A5 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* Expense.swift */; };
-		852F5D75204187E6006B1AB9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* Account.swift */; };
-		852F5D762041C020006B1AB9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* Account.swift */; };
-		852F5D772041C021006B1AB9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* Account.swift */; };
+		852F27F71FCA316E006988A5 /* CKExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* CKExpense.swift */; };
+		852F5D75204187E6006B1AB9 /* CKAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* CKAccount.swift */; };
+		852F5D762041C020006B1AB9 /* CKAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* CKAccount.swift */; };
+		852F5D772041C021006B1AB9 /* CKAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* CKAccount.swift */; };
 		8534868E2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8534868D2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift */; };
+		854229A02053F0FE007A4282 /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8542299F2053F0FE007A4282 /* CoreDataUtil.swift */; };
+		8547AA392053FA4800E79117 /* Expenses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8547AA372053FA4800E79117 /* Expenses.xcdatamodeld */; };
 		85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */; };
 		8564BC501FF1C28B00B73D52 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8564BC4F1FF1C28B00B73D52 /* CloudKit.framework */; };
 		857764B21FF5A7ED00CBB925 /* DateIntervalSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */; };
 		857764B41FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B31FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift */; };
 		857764B51FF5AAEC00CBB925 /* DateIntervalSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */; };
 		859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859CEC951FCB20630028C9E7 /* FormatExtensions.swift */; };
+		85A872B5205359D20099F7C8 /* CDNamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A872B4205359D20099F7C8 /* CDNamedItemDAO.swift */; };
+		85A872B720535A420099F7C8 /* CDAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A872B620535A420099F7C8 /* CDAccountDAO.swift */; };
+		85A872B920535A8D0099F7C8 /* CDExpensesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A872B820535A8D0099F7C8 /* CDExpensesDAO.swift */; };
 		85BB1FA01FFA820B0090F816 /* GroupedExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1F9F1FFA820B0090F816 /* GroupedExpenseModel.swift */; };
 		85BB1FA11FFA820B0090F816 /* GroupedExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1F9F1FFA820B0090F816 /* GroupedExpenseModel.swift */; };
 		85BB1FA41FFAA63C0090F816 /* GroupedExpenseModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1FA21FFAA63C0090F816 /* GroupedExpenseModelTest.swift */; };
@@ -60,12 +65,12 @@
 		85BB1FAC1FFAE6D50090F816 /* ExpenseByCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1FAB1FFAE6D50090F816 /* ExpenseByCategoryCell.swift */; };
 		85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */; };
 		85CA6A801FD9CAF90047B344 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CA6A7F1FD9CAF90047B344 /* User.swift */; };
-		85CCDAE51FECFA6400E8C7CB /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* Expense.swift */; };
+		85CCDAE51FECFA6400E8C7CB /* CKExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* CKExpense.swift */; };
 		85CCDAE81FECFF7800E8C7CB /* FormatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859CEC951FCB20630028C9E7 /* FormatExtensions.swift */; };
 		85CCDAEA1FED0BC500E8C7CB /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAE91FED0BC500E8C7CB /* TestData.swift */; };
 		85CCDAF31FED77EC00E8C7CB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAF21FED77EC00E8C7CB /* Model.swift */; };
 		85D58FF7204AE48900FD4346 /* CKAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D58FF6204AE48900FD4346 /* CKAccountDAO.swift */; };
-		85D67AAA20398FDB00F7AC1C /* NamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D67AA920398FDB00F7AC1C /* NamedItem.swift */; };
+		85D67AAA20398FDB00F7AC1C /* CKNamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D67AA920398FDB00F7AC1C /* CKNamedItem.swift */; };
 		85F7C8AF1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7C8AE1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift */; };
 		FE2F1F0FB7849C919DBFB021 /* Pods_ExpensesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10570977BC269284A71C4DA3 /* Pods_ExpensesUITests.framework */; };
 /* End PBXBuildFile section */
@@ -124,9 +129,11 @@
 		852F27E41FCA2C0C006988A5 /* ExpensesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesUITests.swift; sourceTree = "<group>"; };
 		852F27E61FCA2C0C006988A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		852F27F21FCA30E8006988A5 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
-		852F27F61FCA316E006988A5 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
-		852F5D74204187E6006B1AB9 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		852F27F61FCA316E006988A5 /* CKExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKExpense.swift; sourceTree = "<group>"; };
+		852F5D74204187E6006B1AB9 /* CKAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKAccount.swift; sourceTree = "<group>"; };
 		8534868D2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseByCategoryTableViewController.swift; sourceTree = "<group>"; };
+		8542299F2053F0FE007A4282 /* CoreDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
+		8547AA382053FA4800E79117 /* Expenses.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Expenses.xcdatamodel; sourceTree = "<group>"; };
 		85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseGroupCell.swift; sourceTree = "<group>"; };
 		8564BC4E1FF1C28100B73D52 /* Expenses.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Expenses.entitlements; sourceTree = "<group>"; };
 		8564BC4F1FF1C28B00B73D52 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -134,6 +141,9 @@
 		857764B31FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIntervalSelectionTests.swift; sourceTree = "<group>"; };
 		858029351FCA430800A7BCBA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		859CEC951FCB20630028C9E7 /* FormatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatExtensions.swift; sourceTree = "<group>"; };
+		85A872B4205359D20099F7C8 /* CDNamedItemDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDNamedItemDAO.swift; sourceTree = "<group>"; };
+		85A872B620535A420099F7C8 /* CDAccountDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDAccountDAO.swift; sourceTree = "<group>"; };
+		85A872B820535A8D0099F7C8 /* CDExpensesDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDExpensesDAO.swift; sourceTree = "<group>"; };
 		85BB1F9F1FFA820B0090F816 /* GroupedExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedExpenseModel.swift; sourceTree = "<group>"; };
 		85BB1FA21FFAA63C0090F816 /* GroupedExpenseModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedExpenseModelTest.swift; sourceTree = "<group>"; };
 		85BB1FA51FFADB050090F816 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -143,7 +153,7 @@
 		85CCDAE91FED0BC500E8C7CB /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		85CCDAF21FED77EC00E8C7CB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		85D58FF6204AE48900FD4346 /* CKAccountDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKAccountDAO.swift; sourceTree = "<group>"; };
-		85D67AA920398FDB00F7AC1C /* NamedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItem.swift; sourceTree = "<group>"; };
+		85D67AA920398FDB00F7AC1C /* CKNamedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKNamedItem.swift; sourceTree = "<group>"; };
 		85F7C8AE1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItemPickerViewController.swift; sourceTree = "<group>"; };
 		92C4A0BB66FBDA14DE298997 /* Pods_Expenses.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Expenses.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C748394FE5DBA4CF998A05D2 /* Pods_ExpensesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpensesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,13 +216,13 @@
 			children = (
 				012E92D01FF264B5004AF427 /* CloudUserInfo.swift */,
 				857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */,
-				852F27F61FCA316E006988A5 /* Expense.swift */,
+				852F27F61FCA316E006988A5 /* CKExpense.swift */,
 				85CCDAF21FED77EC00E8C7CB /* Model.swift */,
 				85CA6A7F1FD9CAF90047B344 /* User.swift */,
 				852F27F21FCA30E8006988A5 /* SampleData.swift */,
 				85BB1F9F1FFA820B0090F816 /* GroupedExpenseModel.swift */,
-				85D67AA920398FDB00F7AC1C /* NamedItem.swift */,
-				852F5D74204187E6006B1AB9 /* Account.swift */,
+				85D67AA920398FDB00F7AC1C /* CKNamedItem.swift */,
+				852F5D74204187E6006B1AB9 /* CKAccount.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -289,6 +299,8 @@
 				852701391FF8175200D4076A /* Util */,
 				010882422048A60C00EF9A9B /* CloudKit */,
 				8564BC4E1FF1C28100B73D52 /* Expenses.entitlements */,
+				8547AA372053FA4800E79117 /* Expenses.xcdatamodeld */,
+				85A872B3205359AA0099F7C8 /* CoreData */,
 				0195738A204C3FB10035B19A /* Service */,
 				852F27C41FCA2C0C006988A5 /* AppDelegate.swift */,
 				852F27D01FCA2C0C006988A5 /* Info.plist */,
@@ -315,6 +327,17 @@
 				852F27E61FCA2C0C006988A5 /* Info.plist */,
 			);
 			path = ExpensesUITests;
+			sourceTree = "<group>";
+		};
+		85A872B3205359AA0099F7C8 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				85A872B4205359D20099F7C8 /* CDNamedItemDAO.swift */,
+				85A872B620535A420099F7C8 /* CDAccountDAO.swift */,
+				85A872B820535A8D0099F7C8 /* CDExpensesDAO.swift */,
+				8542299F2053F0FE007A4282 /* CoreDataUtil.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		997A9BA9E5EB9FDBB7949EAA /* Frameworks */ = {
@@ -663,11 +686,13 @@
 			files = (
 				0191900D204DF1EB003BC332 /* EditLocationViewController.swift in Sources */,
 				0195738C204C3FF30035B19A /* ExchangeRateService.swift in Sources */,
-				85D67AAA20398FDB00F7AC1C /* NamedItem.swift in Sources */,
-				852F5D75204187E6006B1AB9 /* Account.swift in Sources */,
+				85D67AAA20398FDB00F7AC1C /* CKNamedItem.swift in Sources */,
+				852F5D75204187E6006B1AB9 /* CKAccount.swift in Sources */,
 				01D8344220474BF600AB3C14 /* AccountPickerViewController.swift in Sources */,
 				851E0F61204AF9BB0016FCBF /* CKUserDAO.swift in Sources */,
+				85A872B920535A8D0099F7C8 /* CDExpensesDAO.swift in Sources */,
 				852F27F31FCA30E8006988A5 /* SampleData.swift in Sources */,
+				854229A02053F0FE007A4282 /* CoreDataUtil.swift in Sources */,
 				851E0F63204B0FF10016FCBF /* CKSubscriptionManager.swift in Sources */,
 				85282C0C1FF00413009090F9 /* TotalsViewCell.swift in Sources */,
 				851E0F65204B13930016FCBF /* CKExpensesDAO.swift in Sources */,
@@ -676,8 +701,9 @@
 				85BB1FA01FFA820B0090F816 /* GroupedExpenseModel.swift in Sources */,
 				857764B21FF5A7ED00CBB925 /* DateIntervalSelection.swift in Sources */,
 				859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */,
+				8547AA392053FA4800E79117 /* Expenses.xcdatamodeld in Sources */,
 				8534868E2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift in Sources */,
-				852F27F71FCA316E006988A5 /* Expense.swift in Sources */,
+				852F27F71FCA316E006988A5 /* CKExpense.swift in Sources */,
 				85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */,
 				85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */,
 				01FB82AF1FCADEF800DE1BA5 /* ExpenseCell.swift in Sources */,
@@ -687,9 +713,11 @@
 				01FB82AB1FCADB1300DE1BA5 /* ExpensesViewController.swift in Sources */,
 				85CCDAF31FED77EC00E8C7CB /* Model.swift in Sources */,
 				85BB1FA61FFADB050090F816 /* InfoViewController.swift in Sources */,
+				85A872B720535A420099F7C8 /* CDAccountDAO.swift in Sources */,
 				012E92D11FF264B5004AF427 /* CloudUserInfo.swift in Sources */,
 				01FB82B11FCD41EC00DE1BA5 /* ExpenseDetailsViewController.swift in Sources */,
 				85CA6A801FD9CAF90047B344 /* User.swift in Sources */,
+				85A872B5205359D20099F7C8 /* CDNamedItemDAO.swift in Sources */,
 				85F7C8AF1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -700,12 +728,12 @@
 			files = (
 				8527013C1FF817C000D4076A /* CloudUserInfo.swift in Sources */,
 				85CCDAE81FECFF7800E8C7CB /* FormatExtensions.swift in Sources */,
-				016A0403204CA9E300576CE8 /* NamedItem.swift in Sources */,
+				016A0403204CA9E300576CE8 /* CKNamedItem.swift in Sources */,
 				016A03FD204CA86C00576CE8 /* ExchangeRateService.swift in Sources */,
-				85CCDAE51FECFA6400E8C7CB /* Expense.swift in Sources */,
+				85CCDAE51FECFA6400E8C7CB /* CKExpense.swift in Sources */,
 				85BB1FA11FFA820B0090F816 /* GroupedExpenseModel.swift in Sources */,
 				857764B41FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift in Sources */,
-				852F5D762041C020006B1AB9 /* Account.swift in Sources */,
+				852F5D762041C020006B1AB9 /* CKAccount.swift in Sources */,
 				8527013D1FF817D900D4076A /* Model.swift in Sources */,
 				85BB1FA41FFAA63C0090F816 /* GroupedExpenseModelTest.swift in Sources */,
 				016A03FE204CA9BB00576CE8 /* CKNamedItemDAO.swift in Sources */,
@@ -726,7 +754,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				852F27E51FCA2C0C006988A5 /* ExpensesUITests.swift in Sources */,
-				852F5D772041C021006B1AB9 /* Account.swift in Sources */,
+				852F5D772041C021006B1AB9 /* CKAccount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1046,6 +1074,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8547AA372053FA4800E79117 /* Expenses.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8547AA382053FA4800E79117 /* Expenses.xcdatamodel */,
+			);
+			currentVersion = 8547AA382053FA4800E79117 /* Expenses.xcdatamodel */;
+			name = Expenses.xcdatamodeld;
+			path = ../../../../.Trash/Expenses.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 852F27B91FCA2C0C006988A5 /* Project object */;
 }

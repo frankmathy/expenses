@@ -43,9 +43,8 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         
         navigationItem.leftBarButtonItem = editButtonItem
         Model.sharedInstance.addObserver(observer: self)
-        Model.sharedInstance.initializeStaticData {
-            self.reloadExpenses(refreshPulled: false)
-        }
+        Model.sharedInstance.loadAccounts()
+        self.reloadExpenses(refreshPulled: false)
     }
     
     func modelUpdated() {
@@ -91,7 +90,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         }
         let expense = Model.sharedInstance.expenseByDateModel!.expense(inSection: indexPath.section-1, row: indexPath.row)
         expenseCell.amountLabel.text = expense.amount.currencyInputFormatting()
-        expenseCell.accountLabel.text = expense.accountName
+        expenseCell.accountLabel.text = expense.account?.accountName
         expenseCell.categoryLabel.text = expense.category
         expenseCell.commentLabel.text = expense.comment
         return expenseCell
@@ -155,7 +154,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
                 fatalError("The selected cell is not being displayed by the table")
             }
             let selectedExpense = Model.sharedInstance.expenseByDateModel?.expense(inSection: indexPath.section-1, row: indexPath.row)
-            expenseDetailsViewController.expense = Expense(asCopy: selectedExpense!)
+            expenseDetailsViewController.expense = selectedExpense!
             expenseDetailsViewController.newExpense = false
         default:
             fatalError("Unexpected Segue Identifier: \(segue.identifier!)")
@@ -211,15 +210,13 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
 
 extension ExpensesViewController {
     @IBAction func cancelToExpensesViewController(_ segue: UIStoryboardSegue) {
+            CDExpensesDAO.sharedInstance.cancelChanges()
     }
     
     @IBAction func saveExpenseDetail(_ segue: UIStoryboardSegue) {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
-            Model.sharedInstance.updateExpense(expense: expense, isNewExpense: expenseDetailsViewController.newExpense!, completionHandler: {
-                DispatchQueue.main.async {
-                    Model.sharedInstance.modelUpdated()
-                }
-            })
+            Model.sharedInstance.updateExpense(expense: expense, isNewExpense: expenseDetailsViewController.newExpense!)
+            Model.sharedInstance.modelUpdated()
         }
     }
 }

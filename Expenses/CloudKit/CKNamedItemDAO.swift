@@ -13,7 +13,7 @@ class CKNamedItemDAO {
     
     static let sharedInstance = CKNamedItemDAO()
     
-    func save(item : NamedItem) {
+    func save(item : CKNamedItem) {
         let privateDB = CKContainer.default().privateCloudDatabase
         privateDB.save(item.record, completionHandler: { (record, error) in
             guard error == nil else {
@@ -25,14 +25,14 @@ class CKNamedItemDAO {
         })
     }
     
-    func load(itemType : String, completionHandler: @escaping ([NamedItem]?, Error?) -> Swift.Void) {
+    func load(itemType : String, completionHandler: @escaping ([CKNamedItem]?, Error?) -> Swift.Void) {
         let privateDB = CKContainer.default().privateCloudDatabase
         
-        var valueList = [NamedItem]()
+        var valueList = [CKNamedItem]()
         
         let predicate = NSPredicate(format: "ListName = %@", itemType)
-        let query = CKQuery(recordType: NamedItem.RecordTypeName, predicate: predicate)
-        query.sortDescriptors = [NSSortDescriptor(key: NamedItem.nameColumnName, ascending: true)]
+        let query = CKQuery(recordType: CKNamedItem.RecordTypeName, predicate: predicate)
+        query.sortDescriptors = [NSSortDescriptor(key: CKNamedItem.nameColumnName, ascending: true)]
         privateDB.perform(query, inZoneWith: nil) { results,error in
             guard error == nil else {
                 completionHandler(nil, error)
@@ -40,14 +40,14 @@ class CKNamedItemDAO {
             }
             if results!.count > 0 {
                 for record in results! {
-                    valueList.append(NamedItem(recordTypeName: itemType, record: record))
+                    valueList.append(CKNamedItem(recordTypeName: itemType, record: record))
                 }
             }
             completionHandler(valueList, error)
         }
     }
     
-    func delete(item : NamedItem) {
+    func delete(item : CKNamedItem) {
         let privateDB = CKContainer.default().privateCloudDatabase
         privateDB.delete(withRecordID: item.record.recordID, completionHandler: { (recordId, error) in
             guard error == nil else {

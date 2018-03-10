@@ -12,24 +12,24 @@ import CloudKit
 class CKAccountDAO {
     static let sharedInstance = CKAccountDAO()
 
-    func load(completionHandler: @escaping ([Account]?, Error?) -> Swift.Void) {
+    func load(completionHandler: @escaping ([CKAccount]?, Error?) -> Swift.Void) {
         let privateDB = CKContainer.default().privateCloudDatabase
-        let query = CKQuery(recordType: Account.RecordTypeName, predicate: NSPredicate(value: true))
+        let query = CKQuery(recordType: CKAccount.RecordTypeName, predicate: NSPredicate(value: true))
         privateDB.perform(query, inZoneWith: nil) { (records, error) in
             guard error == nil else {
                 completionHandler(nil, error)
                 return
             }
-            var accounts = [Account]()
+            var accounts = [CKAccount]()
             for record in records! {
-                let account = Account(asNew: record)
+                let account = CKAccount(asNew: record)
                 accounts.append(account)
             }
             completionHandler(accounts, error)
         }
     }
     
-    func save(account : Account, completionHandler: @escaping (Account?, Error?) -> Swift.Void) {
+    func save(account : CKAccount, completionHandler: @escaping (CKAccount?, Error?) -> Swift.Void) {
         let privateDB = CKContainer.default().privateCloudDatabase
         privateDB.save(account.record) { (record, error) in
             guard error == nil else {

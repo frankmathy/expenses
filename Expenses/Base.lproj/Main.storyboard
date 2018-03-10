@@ -610,7 +610,7 @@
                     <navigationItem key="navigationItem" title="Edit Expense" id="oK9-A8-lO2">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="1W6-xp-0th">
                             <connections>
-                                <action selector="cancel:" destination="veN-7C-ofw" id="sPv-yY-yLI"/>
+                                <segue destination="WdM-Yb-FVD" kind="unwind" unwindAction="cancelToExpensesViewController:" id="f1i-1b-sfc"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="hxo-sG-mne">
@@ -697,19 +697,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="glA-Tj-J4S">
-                                <rect key="frame" x="0.0" y="72" width="359" height="270"/>
+                                <rect key="frame" x="8" y="72" width="359" height="270"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="270" id="P6X-ho-Y0t"/>
                                 </constraints>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foursquare Place:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mca-nK-KoN">
-                                <rect key="frame" x="0.0" y="350" width="172.5" height="26"/>
+                                <rect key="frame" x="8" y="350" width="172.5" height="26"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QZi-kd-8Xz">
-                                <rect key="frame" x="0.0" y="383" width="359" height="276"/>
+                                <rect key="frame" x="8" y="383" width="359" height="276"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
