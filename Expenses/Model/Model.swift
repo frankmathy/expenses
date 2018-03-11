@@ -288,7 +288,7 @@ class Model {
                 let expense = expenseByDateModel!.expense(inSection: section, row: row)
                 let dateString = dateFormat.string(from: expense.date!)
                 let amountString = String(expense.amount)
-                csv += "\(dateString)\t\(amountString)\t\(expense.account!)\t\(expense.category)\t\(expense.project)\t\(expense.comment)\t \n"
+                csv += "\(dateString)\t\(amountString)\t\(expense.account!.accountName!)\t\(expense.category!)\t\(expense.project!)\t\(expense.comment!)\t \n"
             }
         }
         return csv
