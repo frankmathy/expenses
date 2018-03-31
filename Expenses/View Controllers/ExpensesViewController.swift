@@ -210,7 +210,8 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
 
 extension ExpensesViewController {
     @IBAction func cancelToExpensesViewController(_ segue: UIStoryboardSegue) {
-            CDExpensesDAO.sharedInstance.cancelChanges()
+        CDExpensesDAO.sharedInstance.cancelChanges()
+        self.reloadExpenses(refreshPulled: false)
     }
     
     @IBAction func saveExpenseDetail(_ segue: UIStoryboardSegue) {
