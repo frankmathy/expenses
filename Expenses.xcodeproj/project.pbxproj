@@ -46,7 +46,6 @@
 		852F27F71FCA316E006988A5 /* CKExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* CKExpense.swift */; };
 		852F5D75204187E6006B1AB9 /* CKAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* CKAccount.swift */; };
 		852F5D762041C020006B1AB9 /* CKAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* CKAccount.swift */; };
-		852F5D772041C021006B1AB9 /* CKAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* CKAccount.swift */; };
 		8534868E2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8534868D2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift */; };
 		854229A02053F0FE007A4282 /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8542299F2053F0FE007A4282 /* CoreDataUtil.swift */; };
 		85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */; };
@@ -191,6 +190,9 @@
 		010882422048A60C00EF9A9B /* CloudKit */ = {
 			isa = PBXGroup;
 			children = (
+				852F27F61FCA316E006988A5 /* CKExpense.swift */,
+				852F5D74204187E6006B1AB9 /* CKAccount.swift */,
+				85D67AA920398FDB00F7AC1C /* CKNamedItem.swift */,
 				0195737C204AD4E80035B19A /* CKNamedItemDAO.swift */,
 				85D58FF6204AE48900FD4346 /* CKAccountDAO.swift */,
 				851E0F60204AF9BB0016FCBF /* CKUserDAO.swift */,
@@ -213,13 +215,10 @@
 			children = (
 				012E92D01FF264B5004AF427 /* CloudUserInfo.swift */,
 				857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */,
-				852F27F61FCA316E006988A5 /* CKExpense.swift */,
 				85CCDAF21FED77EC00E8C7CB /* Model.swift */,
 				85CA6A7F1FD9CAF90047B344 /* User.swift */,
 				852F27F21FCA30E8006988A5 /* SampleData.swift */,
 				85BB1F9F1FFA820B0090F816 /* GroupedExpenseModel.swift */,
-				85D67AA920398FDB00F7AC1C /* CKNamedItem.swift */,
-				852F5D74204187E6006B1AB9 /* CKAccount.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -750,7 +749,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				852F27E51FCA2C0C006988A5 /* ExpensesUITests.swift in Sources */,
-				852F5D772041C021006B1AB9 /* CKAccount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

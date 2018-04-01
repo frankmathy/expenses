@@ -69,6 +69,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
             }
         }
         Model.sharedInstance.reloadExpenses()
+        Model.sharedInstance.loadAccounts()
     }
     
     @objc private func refreshControlPulled(_ sender: Any) {
