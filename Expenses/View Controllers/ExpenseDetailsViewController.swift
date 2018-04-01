@@ -176,6 +176,7 @@ class ExpenseDetailsViewController: UITableViewController {
             } else {
                 pickerController.expenseLocation = nil
             }
+            pickerController.expenseLocationDescription = expense?.locationDescription
             
         default:
             // fatalError("Unexpected Segue Identifier: \(segue.identifier)")
@@ -229,9 +230,11 @@ extension ExpenseDetailsViewController {
             if let location = pickerController.expenseLocation {
                 expense?.latitude = NSNumber(value: location.coordinate.latitude)
                 expense?.longitude = NSNumber(value: location.coordinate.longitude)
+                expense?.locationDescription = pickerController.expenseLocationDescription
             } else {
                 expense?.latitude = nil
                 expense?.longitude = nil
+                expense?.locationDescription = nil
             }
         }
         updateLocationField()
@@ -241,14 +244,18 @@ extension ExpenseDetailsViewController {
         if expense?.latitude == nil || expense?.longitude == nil {
             locationField.text = "-"
         } else {
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .decimal
-            formatter.maximumFractionDigits = 5
-            formatter.minimumFractionDigits = 2
-            let lat =  formatter.string(from: (expense?.latitude)!)!
-            let long =  formatter.string(from: (expense?.latitude)!)!
-            let text = lat + ", " + long
-            locationField.text = text
+            if expense?.locationDescription != nil {
+                self.locationField.text = expense?.locationDescription!
+            } else {
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                formatter.maximumFractionDigits = 5
+                formatter.minimumFractionDigits = 2
+                let lat =  formatter.string(from: (self.expense?.latitude)!)!
+                let long =  formatter.string(from: (self.expense?.latitude)!)!
+                let text = lat + ", " + long
+                self.locationField.text = text
+            }
         }
     }
     

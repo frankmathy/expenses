@@ -12,12 +12,16 @@ import MapKit
 class EditLocationViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var placesTableView: UITableView!
-
+    @IBOutlet weak var addressLabel: UILabel!
+    
     let locationManager = CLLocationManager()
     var expenseLocation : CLLocation?
+    var expenseLocationDescription : String?
 
     let regionRadius: CLLocationDistance = 1000
-    
+
+    let geocoder = CLGeocoder()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -67,6 +71,22 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
         self.expenseLocation = newLocation
         let viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, regionRadius, regionRadius)
         mapView.setRegion(viewRegion, animated: false)
+        refreshLocationDescription()
+    }
+    
+    func refreshLocationDescription() {
+        if expenseLocation != nil {
+            geocoder.reverseGeocodeLocation(self.expenseLocation!) { (placemarks, error) in
+                if error == nil {
+                    let firstLocation = placemarks?[0]
+                    self.expenseLocationDescription = (firstLocation?.postalAddress?.street)! + ", " + (firstLocation?.postalAddress?.city)!
+                    self.addressLabel.text = self.expenseLocationDescription
+                } else {
+                    self.expenseLocationDescription = nil
+                    self.addressLabel.text = ""
+                }
+            }
+        }
     }
     
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
@@ -87,6 +107,7 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let center = mapView.centerCoordinate
         self.expenseLocation = CLLocation(latitude: center.latitude, longitude: center.longitude)
+        refreshLocationDescription()
     }
     
     override func didReceiveMemoryWarning() {
