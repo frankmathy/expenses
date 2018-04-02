@@ -91,12 +91,29 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
                 }
             }
             
+            // Determine visible radius
+            let region = mapView.region
+            let leftTop = CLLocation(latitude: region.center.latitude - region.span.latitudeDelta/2, longitude: region.center.longitude - region.span.longitudeDelta/2)
+            let center = CLLocation(latitude: region.center.latitude, longitude: region.center.longitude)
+            let radius = center.distance(from: leftTop)
+            print("Radius = \(radius)")
+            
+            mapView.removeAnnotations(mapView.annotations)
             let foursquare = FoursquareClient()
-            foursquare.search(atLocation: (expenseLocation?.coordinate)!) { (venues, error) in
+            foursquare.search(atLocation: (expenseLocation?.coordinate)!, radius: Int(radius)) { (venues, error) in
                 if venues != nil {
-                    print("Found \(venues?.count) Foursquare venues")
-                    for venue in venues! {
-                        print("Venue: Id=\(venue.id), Name=\(venue.name), Category=\(venue.category), Address=\(venue.address), coord=(\(venue.lat),\(venue.lng))")
+                    DispatchQueue.main.async {
+                        print("Found \(venues?.count) Foursquare venues")
+                        for venue in venues! {
+                            print("Venue: Id=\(venue.id), Name=\(venue.name), Category=\(venue.category), Address=\(venue.address), coord=(\(venue.lat),\(venue.lng))")
+                            
+                            let coord = CLLocationCoordinate2D(latitude: venue.lat, longitude: venue.lng)
+                            let annotation = MKPointAnnotation()
+                            annotation.coordinate = coord
+                            annotation.title = venue.name
+                            annotation.subtitle = venue.address
+                            self.mapView.addAnnotation(annotation)
+                        }
                     }
                 }
             }

@@ -20,9 +20,9 @@ struct FoursquareVenue {
 
 class FoursquareClient {
     
-    func search(atLocation currentLocation : CLLocationCoordinate2D, completionHandler: @escaping ([FoursquareVenue]?, Error?) -> Swift.Void) {
+    func search(atLocation currentLocation : CLLocationCoordinate2D, radius: Int, completionHandler: @escaping ([FoursquareVenue]?, Error?) -> Swift.Void) {
         let today = Date()
-        let url = "https://api.foursquare.com/v2/search/recommendations?ll=\(currentLocation.latitude),\(currentLocation.longitude)&v=\(today.asYYYYMMDDString)&intent=browse&limit=15&radius=500&client_id=\(AppCredentials.foursquareClientId)&client_secret=\(AppCredentials.foursquareClientSecret)"
+        let url = "https://api.foursquare.com/v2/search/recommendations?ll=\(currentLocation.latitude),\(currentLocation.longitude)&v=\(today.asYYYYMMDDString)&intent=browse&limit=15&radius=\(radius)&client_id=\(AppCredentials.foursquareClientId)&client_secret=\(AppCredentials.foursquareClientSecret)"
         print(url)
         
         let request = NSMutableURLRequest(url: URL(string: url)!)
