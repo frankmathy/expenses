@@ -47,6 +47,8 @@
 		852F5D75204187E6006B1AB9 /* CKAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* CKAccount.swift */; };
 		852F5D762041C020006B1AB9 /* CKAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* CKAccount.swift */; };
 		8534868E2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8534868D2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift */; };
+		8540BDF020719BF200A246BA /* FoursquareClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8540BDEF20719BF200A246BA /* FoursquareClient.swift */; };
+		8540BDF220719C6500A246BA /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8540BDF120719C6500A246BA /* SwiftyJSON.swift */; };
 		854229A02053F0FE007A4282 /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8542299F2053F0FE007A4282 /* CoreDataUtil.swift */; };
 		85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */; };
 		857764B21FF5A7ED00CBB925 /* DateIntervalSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */; };
@@ -131,6 +133,8 @@
 		852F27F61FCA316E006988A5 /* CKExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKExpense.swift; sourceTree = "<group>"; };
 		852F5D74204187E6006B1AB9 /* CKAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKAccount.swift; sourceTree = "<group>"; };
 		8534868D2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseByCategoryTableViewController.swift; sourceTree = "<group>"; };
+		8540BDEF20719BF200A246BA /* FoursquareClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoursquareClient.swift; sourceTree = "<group>"; };
+		8540BDF120719C6500A246BA /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		8542299F2053F0FE007A4282 /* CoreDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 		85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseGroupCell.swift; sourceTree = "<group>"; };
 		8564BC4E1FF1C28100B73D52 /* Expenses.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Expenses.entitlements; sourceTree = "<group>"; };
@@ -243,6 +247,8 @@
 			children = (
 				859CEC951FCB20630028C9E7 /* FormatExtensions.swift */,
 				852A52461FF94C7A006C4767 /* ViewControllerUtils.swift */,
+				8540BDEF20719BF200A246BA /* FoursquareClient.swift */,
+				8540BDF120719C6500A246BA /* SwiftyJSON.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -682,8 +688,10 @@
 				0191900D204DF1EB003BC332 /* EditLocationViewController.swift in Sources */,
 				0195738C204C3FF30035B19A /* ExchangeRateService.swift in Sources */,
 				85D67AAA20398FDB00F7AC1C /* CKNamedItem.swift in Sources */,
+				8540BDF220719C6500A246BA /* SwiftyJSON.swift in Sources */,
 				852F5D75204187E6006B1AB9 /* CKAccount.swift in Sources */,
 				01D8344220474BF600AB3C14 /* AccountPickerViewController.swift in Sources */,
+				8540BDF020719BF200A246BA /* FoursquareClient.swift in Sources */,
 				851E0F61204AF9BB0016FCBF /* CKUserDAO.swift in Sources */,
 				85A872B920535A8D0099F7C8 /* CDExpensesDAO.swift in Sources */,
 				852F27F31FCA30E8006988A5 /* SampleData.swift in Sources */,

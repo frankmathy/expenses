@@ -80,12 +80,19 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
                 if error == nil {
                     let firstLocation = placemarks?[0]
                     self.expenseLocationDescription = (firstLocation?.postalAddress?.street)! + ", " + (firstLocation?.postalAddress?.city)!
-                    self.addressLabel.text = self.expenseLocationDescription
+                    DispatchQueue.main.async {
+                        self.addressLabel.text = self.expenseLocationDescription
+                    }
                 } else {
                     self.expenseLocationDescription = nil
-                    self.addressLabel.text = ""
+                    DispatchQueue.main.async {
+                        self.addressLabel.text = ""
+                    }
                 }
             }
+            
+            let foursquare = FoursquareClient()
+            foursquare.search(atLocation: (expenseLocation?.coordinate)!)
         }
     }
     
