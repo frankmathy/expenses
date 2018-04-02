@@ -9,10 +9,20 @@
 import Foundation
 import MapKit
 
+struct FoursquareVenue {
+    var id : String
+    var name : String
+    var category : String
+    var address : String?
+    var lat : Double
+    var lng : Double
+}
+
 class FoursquareClient {
     
-    func search(atLocation currentLocation : CLLocationCoordinate2D) {
-        let url = "https://api.foursquare.com/v2/search/recommendations?ll=\(currentLocation.latitude),\(currentLocation.longitude)&v=20160607&intent=browse&limit=15&radius=500&client_id=\(client_id)&client_secret=\(client_secret)"
+    func search(atLocation currentLocation : CLLocationCoordinate2D, completionHandler: @escaping ([FoursquareVenue]?, Error?) -> Swift.Void) {
+        let today = Date()
+        let url = "https://api.foursquare.com/v2/search/recommendations?ll=\(currentLocation.latitude),\(currentLocation.longitude)&v=\(today.asYYYYMMDDString)&intent=browse&limit=15&radius=500&client_id=\(AppCredentials.foursquareClientId)&client_secret=\(AppCredentials.foursquareClientSecret)"
         print(url)
         
         let request = NSMutableURLRequest(url: URL(string: url)!)
@@ -24,25 +34,26 @@ class FoursquareClient {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         let task = session.dataTask(with: request as URLRequest) { (data, response, err) in
+            if err != nil {
+                print("Error retrieving data from Foursquare: \(err.debugDescription)")
+                completionHandler(nil, err)
+                return
+            }
             do {
+                
                 let json = try JSON(data: data!)
                 let searchResults = json["response"]["group"]["results"].arrayValue
-                print("Found \(searchResults.count) Foursquare places")
-                for result in searchResults {
-                    let id = result["venue"]["id"].string!
-                    let name = result["venue"]["name"].string!
-                    let category = result["venue"]["categories"][0]["name"].string!
-                    let address = result["venue"]["location"]["address"].string
-                    let lat = result["venue"]["location"]["lat"].double
-                    let lng = result["venue"]["location"]["lng"].double
-                    let distance = result["venue"]["location"]["distance"].int
-                    print("Venue: Id=\(id), Name=\(name), Category=\(category), Address=\(address), distance=\(distance), coord=(\(lat),\(lng))")
+                let sortedResults = searchResults.sorted(by: { (json1, json2) -> Bool in
+                    return json1["venue"]["location"]["distance"].int! < json2["venue"]["location"]["distance"].int!
+                })
+                var venues = [FoursquareVenue]()
+                for result in sortedResults {
+                    let venue = FoursquareVenue(id: result["venue"]["id"].string!, name: result["venue"]["name"].string!, category: result["venue"]["categories"][0]["name"].string!, address: result["venue"]["location"]["address"].string, lat: result["venue"]["location"]["lat"].double!, lng: result["venue"]["location"]["lng"].double!)
+                    venues.append(venue)
                 }
-                DispatchQueue.main.async {
-                    // TODO
-                }
+                completionHandler(venues, nil)
             } catch {
-                
+                completionHandler(nil, NSError(domain: "Error loading data", code: 0, userInfo: nil))
             }
         }
         

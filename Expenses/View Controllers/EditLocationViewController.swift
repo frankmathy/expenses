@@ -92,7 +92,14 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
             }
             
             let foursquare = FoursquareClient()
-            foursquare.search(atLocation: (expenseLocation?.coordinate)!)
+            foursquare.search(atLocation: (expenseLocation?.coordinate)!) { (venues, error) in
+                if venues != nil {
+                    print("Found \(venues?.count) Foursquare venues")
+                    for venue in venues! {
+                        print("Venue: Id=\(venue.id), Name=\(venue.name), Category=\(venue.category), Address=\(venue.address), coord=(\(venue.lat),\(venue.lng))")
+                    }
+                }
+            }
         }
     }
     

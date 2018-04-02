@@ -42,6 +42,12 @@ extension Date {
         let weekday = Calendar.current.component(.weekday, from: self)
         return dateFormatter.shortWeekdaySymbols[weekday-1] + " " + dateFormatter.string(from: self)
     }
+    
+    var asYYYYMMDDString:String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYYMMdd"
+        return dateFormatter.string(from: self)
+    }
 }
 
 // Formatting extensions for Float
