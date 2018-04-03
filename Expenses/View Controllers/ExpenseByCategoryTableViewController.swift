@@ -11,6 +11,8 @@ class ExpenseByCategoryTableViewController: UITableViewController, ModelDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Remove blank table row lines
+        self.tableView.tableFooterView = UIView()
         Model.sharedInstance.addObserver(observer: self)
     }
     
@@ -45,11 +47,14 @@ class ExpenseByCategoryTableViewController: UITableViewController, ModelDelegate
         
         if indexPath.row == 0 {
             cell.categoryName.text = Model.sharedInstance.dateIntervalSelectionText()
+            cell.categoryName.font = UIFont.boldSystemFont(ofSize: cell.categoryName.font.pointSize)
             cell.amountLabel.text = ""
         } else if indexPath.row == self.tableView(tableView, numberOfRowsInSection: 0) - 1 {
             cell.categoryName.text = "Total"
+            cell.categoryName.font = UIFont.boldSystemFont(ofSize: cell.categoryName.font.pointSize)
             let totalAmount = Model.sharedInstance.expenseByCategoryModel?.grandTotal
             cell.amountLabel.text = totalAmount?.currencyInputFormatting()
+            cell.amountLabel.font = UIFont.boldSystemFont(ofSize: cell.amountLabel.font.pointSize)
         } else {
             let categoryName = Model.sharedInstance.expenseByCategoryModel?.sectionCategoryKey(inSection: indexPath.row - 1)
             let categoryAmount = Model.sharedInstance.expenseByCategoryModel?.totalAmount(forExpenseKey: categoryName!)

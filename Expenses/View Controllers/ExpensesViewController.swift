@@ -24,6 +24,9 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Remove blank table row lines
+        self.tableView.tableFooterView = UIView()
+
         indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
         indicator.center = self.view.center

@@ -17,9 +17,6 @@
 /* Class = "UINavigationItem"; title = "Expenses"; ObjectID = "8ep-K8-SIY"; */
 "8ep-K8-SIY.title" = "Expenses";
 
-/* Class = "UINavigationController"; title = "Expenses"; ObjectID = "BQT-fR-m3J"; */
-"BQT-fR-m3J.title" = "Expenses";
-
 /* Class = "UITableViewController"; title = "Expenses"; ObjectID = "Ccm-JH-a5y"; */
 "Ccm-JH-a5y.title" = "Expenses";
 
@@ -38,8 +35,8 @@
 /* Class = "UILabel"; text = "Date"; ObjectID = "T7p-PX-PRF"; */
 "T7p-PX-PRF.text" = "Date";
 
-/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "XGn-dj-7Cu"; */
-"XGn-dj-7Cu.normalTitle" = "Save";
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "XGn-dj-7Cu"; */
+"XGn-dj-7Cu.normalTitle" = "OK";
 
 /* Class = "UILabel"; text = "Total"; ObjectID = "g44-fM-6p8"; */
 "g44-fM-6p8.text" = "Total";
@@ -59,11 +56,77 @@
 /* Class = "UILabel"; text = "31.12.2017"; ObjectID = "omh-Li-7ty"; */
 "omh-Li-7ty.text" = "31.12.2017";
 
-/* Class = "UILabel"; text = "Remarks"; ObjectID = "qJp-bi-T1X"; */
-"qJp-bi-T1X.text" = "Remarks";
-
 /* Class = "UITableViewCell"; accessibilityLabel = "Date"; ObjectID = "uB5-NN-iGn"; */
 "uB5-NN-iGn.accessibilityLabel" = "Date";
 
 /* Class = "UILabel"; text = "Category"; ObjectID = "vsP-3P-XX3"; */
 "vsP-3P-XX3.text" = "Category";
+
+/* Class = "UIButton"; normalTitle = "Import Data"; ObjectID = "0NU-8r-FNc"; */
+"0NU-8r-FNc.normalTitle" = "";
+
+/* Class = "UILabel"; text = "CategoryName"; ObjectID = "48F-6C-OHj"; */
+"48F-6C-OHj.text" = "";
+
+/* Class = "UIViewController"; title = "InfoViewController"; ObjectID = "8sw-YT-JQ7"; */
+"8sw-YT-JQ7.title" = "";
+
+/* Class = "UIViewController"; title = "Edit Location"; ObjectID = "AMB-F7-uwc"; */
+"AMB-F7-uwc.title" = "";
+
+/* Class = "UILabel"; text = "Amount"; ObjectID = "AxY-Na-cK8"; */
+"AxY-Na-cK8.text" = "";
+
+/* Class = "UITabBarItem"; title = "Expenses"; ObjectID = "Bv8-0j-PxZ"; */
+"Bv8-0j-PxZ.title" = "";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "Gdf-jC-4Kc"; */
+"Gdf-jC-4Kc.text" = "";
+
+/* Class = "UILabel"; text = "© 2018 Frank Mathy"; ObjectID = "RBR-Do-xeo"; */
+"RBR-Do-xeo.text" = "";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "RCp-3W-lzO"; */
+"RCp-3W-lzO.normalTitle" = "";
+
+/* Class = "UITabBarItem"; title = "Info"; ObjectID = "Y6i-tO-GOg"; */
+"Y6i-tO-GOg.title" = "";
+
+/* Class = "UILabel"; text = "Venue"; ObjectID = "bRY-6v-fNA"; */
+"bRY-6v-fNA.text" = "";
+
+/* Class = "UILabel"; text = "Expenses"; ObjectID = "cCD-NW-ky9"; */
+"cCD-NW-ky9.text" = "";
+
+/* Class = "UILabel"; text = "Created by at"; ObjectID = "cDO-mt-heD"; */
+"cDO-mt-heD.text" = "";
+
+/* Class = "UILabel"; text = "Change Expense Date"; ObjectID = "hXq-Sd-pAa"; */
+"hXq-Sd-pAa.text" = "";
+
+/* Class = "UIButton"; normalTitle = "Alle"; ObjectID = "hcA-Sh-LGA"; */
+"hcA-Sh-LGA.normalTitle" = "";
+
+/* Class = "UITextField"; placeholder = "Remark"; ObjectID = "hgv-KN-G0T"; */
+"hgv-KN-G0T.placeholder" = "";
+
+/* Class = "UILabel"; text = "Edited by at"; ObjectID = "iem-0U-eoV"; */
+"iem-0U-eoV.text" = "";
+
+/* Class = "UITabBarItem"; title = "Category Report"; ObjectID = "kpc-cr-NzQ"; */
+"kpc-cr-NzQ.title" = "";
+
+/* Class = "UILabel"; text = "Account"; ObjectID = "mcb-Jo-yoF"; */
+"mcb-Jo-yoF.text" = "";
+
+/* Class = "UILabel"; text = "Amount"; ObjectID = "ol1-SQ-rAK"; */
+"ol1-SQ-rAK.text" = "";
+
+/* Class = "UINavigationItem"; title = "Expense Totals"; ObjectID = "smR-fC-S2K"; */
+"smR-fC-S2K.title" = "";
+
+/* Class = "UITableViewController"; title = "Expenses by Category"; ObjectID = "vex-bh-bZE"; */
+"vex-bh-bZE.title" = "";
+
+/* Class = "UILabel"; text = "Address"; ObjectID = "yEz-dR-umQ"; */
+"yEz-dR-umQ.text" = "";

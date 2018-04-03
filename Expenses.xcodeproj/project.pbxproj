@@ -116,7 +116,6 @@
 		851E0F60204AF9BB0016FCBF /* CKUserDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKUserDAO.swift; sourceTree = "<group>"; };
 		851E0F62204B0FF10016FCBF /* CKSubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKSubscriptionManager.swift; sourceTree = "<group>"; };
 		851E0F64204B13930016FCBF /* CKExpensesDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKExpensesDAO.swift; sourceTree = "<group>"; };
-		8527013E1FF8258200D4076A /* de */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = de; path = de.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85282C0B1FF00413009090F9 /* TotalsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalsViewCell.swift; sourceTree = "<group>"; };
 		852A52461FF94C7A006C4767 /* ViewControllerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
 		852F27C11FCA2C0C006988A5 /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +151,7 @@
 		85BB1FA51FFADB050090F816 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		85BB1FAB1FFAE6D50090F816 /* ExpenseByCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseByCategoryCell.swift; sourceTree = "<group>"; };
 		85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerViewController.swift; sourceTree = "<group>"; };
+		85C9140020743ED600A770A8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		85CA6A7F1FD9CAF90047B344 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		85CCDAE91FED0BC500E8C7CB /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		85CCDAF21FED77EC00E8C7CB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -811,7 +811,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				852F27CE1FCA2C0C006988A5 /* Base */,
-				8527013E1FF8258200D4076A /* de */,
+				85C9140020743ED600A770A8 /* de */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
