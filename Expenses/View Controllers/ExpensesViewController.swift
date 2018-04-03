@@ -93,7 +93,11 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         expenseCell.amountLabel.text = expense.amount.currencyInputFormatting()
         expenseCell.accountLabel.text = expense.account?.accountName
         expenseCell.categoryLabel.text = expense.category
-        expenseCell.commentLabel.text = expense.comment
+        if expense.venueName != nil {
+            expenseCell.commentLabel.text = expense.venueName
+        } else {
+            expenseCell.commentLabel.text = expense.comment
+        }
         return expenseCell
     }
     
