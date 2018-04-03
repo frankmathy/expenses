@@ -171,12 +171,10 @@ class ExpenseDetailsViewController: UITableViewController {
             guard let pickerController = nav?.topViewController as? EditLocationViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            if expense?.latitude != nil && expense?.longitude != nil {
-                pickerController.expenseLocation = CLLocation(latitude: (expense?.latitude?.doubleValue)!, longitude: (expense?.longitude?.doubleValue)!)
-            } else {
-                pickerController.expenseLocation = nil
-            }
-            pickerController.expenseLocationDescription = expense?.locationDescription
+            pickerController.venueId = expense?.venueId
+            pickerController.venueName = expense?.venueName
+            pickerController.venueLng = expense?.venueLng
+            pickerController.venueLat = expense?.venueLat
             
         default:
             // fatalError("Unexpected Segue Identifier: \(segue.identifier)")
@@ -227,41 +225,27 @@ extension ExpenseDetailsViewController {
     
     @IBAction func unwindWithSelectedLocation(segue: UIStoryboardSegue) {
         if let pickerController = segue.source as? EditLocationViewController {
-            if let location = pickerController.expenseLocation {
-                expense?.latitude = NSNumber(value: location.coordinate.latitude)
-                expense?.longitude = NSNumber(value: location.coordinate.longitude)
-                expense?.locationDescription = pickerController.expenseLocationDescription
-            } else {
-                expense?.latitude = nil
-                expense?.longitude = nil
-                expense?.locationDescription = nil
-            }
+            expense?.venueId = pickerController.venueId
+            expense?.venueName = pickerController.venueName
+            expense?.venueLng = pickerController.venueLng!
+            expense?.venueLat = pickerController.venueLat!
         }
         updateLocationField()
     }
     
     func updateLocationField() {
-        if expense?.latitude == nil || expense?.longitude == nil {
+        if expense?.venueName == nil {
             locationField.text = "-"
         } else {
-            if expense?.locationDescription != nil {
-                self.locationField.text = expense?.locationDescription!
-            } else {
-                let formatter = NumberFormatter()
-                formatter.numberStyle = .decimal
-                formatter.maximumFractionDigits = 5
-                formatter.minimumFractionDigits = 2
-                let lat =  formatter.string(from: (self.expense?.latitude)!)!
-                let long =  formatter.string(from: (self.expense?.latitude)!)!
-                let text = lat + ", " + long
-                self.locationField.text = text
-            }
+            locationField.text = expense?.venueName
         }
     }
     
     @IBAction func unwindResetLocation(segue: UIStoryboardSegue) {
-        expense?.latitude = nil
-        expense?.longitude = nil
+        expense?.venueName = nil
+        expense?.venueId = nil
+        expense?.venueLng = Double.nan
+        expense?.venueLat = Double.nan
         updateLocationField()
     }
 

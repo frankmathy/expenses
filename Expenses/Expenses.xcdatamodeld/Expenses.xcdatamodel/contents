@@ -8,10 +8,11 @@
         <attribute name="category" attributeType="String" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="Double" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="locationDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="Double" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="project" attributeType="String" syncable="YES"/>
+        <attribute name="venueId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="venueLat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="venueLng" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="venueName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="account" maxCount="1" deletionRule="Nullify" destinationEntity="Account" syncable="YES"/>
     </entity>
     <entity name="NamedItem" representedClassName="NamedItem" syncable="YES" codeGenerationType="class">
@@ -20,7 +21,7 @@
     </entity>
     <elements>
         <element name="Account" positionX="-180" positionY="-243" width="128" height="60"/>
-        <element name="Expense" positionX="97" positionY="-189" width="128" height="180"/>
-        <element name="NamedItem" positionX="-162" positionY="15" width="128" height="75"/>
+        <element name="Expense" positionX="97" positionY="-243" width="128" height="193"/>
+        <element name="NamedItem" positionX="-308" positionY="-135" width="128" height="75"/>
     </elements>
 </model>

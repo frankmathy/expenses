@@ -9,18 +9,25 @@
 import UIKit
 import MapKit
 
+class VenueAnnotation : MKPointAnnotation {
+    var venue : FoursquareVenue?
+}
+
 class EditLocationViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var placesTableView: UITableView!
     @IBOutlet weak var addressLabel: UILabel!
     
     let locationManager = CLLocationManager()
-    var expenseLocation : CLLocation?
-    var expenseLocationDescription : String?
+    
+    var venueId : String?
+    var venueName : String?
+    var venueLat : Double?
+    var venueLng : Double?
+    
+    var visibleLocation : CLLocation?
 
-    let regionRadius: CLLocationDistance = 1000
-
-    let geocoder = CLGeocoder()
+    let regionRadius: CLLocationDistance = 400
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +36,8 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         mapView.delegate = self
         
-        let pinImage = UIImage(named: "Pin")
-        let imageView = UIImageView(image: pinImage)
-        imageView.contentMode = UIViewContentMode.center
-        let imageLocation = self.mapView.convert(mapView.centerCoordinate, toPointTo: self.view)
-        imageView.center.x = imageLocation.x
-        imageView.center.y = imageLocation.y - (pinImage?.size.height)!/2
-        imageView.isUserInteractionEnabled = false
-        self.view.addSubview(imageView)
-
-        if expenseLocation == nil {
+        if venueId == nil {
+            addressLabel.text = ""
             if CLLocationManager.locationServicesEnabled() {
                 locationManager.requestWhenInUseAuthorization()
                 switch(CLLocationManager.authorizationStatus()) {
@@ -52,45 +51,42 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
                 showLocationAlert()
             }
         } else {
-            setEventLocaction(newLocation: expenseLocation!)
+            addressLabel.text = venueName
+            setVisibleLocaction(newLocation: CLLocation(latitude: venueLat!, longitude: venueLng!))
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let venueAnnotation = view.annotation as? VenueAnnotation {
+            let venue = venueAnnotation.venue
+            venueId = venueAnnotation.venue?.id
+            venueName = venueAnnotation.venue?.name
+            venueLat = venueAnnotation.venue?.lat
+            venueLng = venueAnnotation.venue?.lng
+            addressLabel.text = venueName
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        defer { expenseLocation = locations.last }
-        if expenseLocation == nil {
+        defer { visibleLocation = locations.last }
+        if visibleLocation == nil {
             // Zoom to user location
             if locations.last != nil {
                 self.locationManager.stopUpdatingLocation()
-                setEventLocaction(newLocation: locations.last!)
+                setVisibleLocaction(newLocation: locations.last!)
             }
         }
     }
     
-    func setEventLocaction(newLocation : CLLocation) {
-        self.expenseLocation = newLocation
+    func setVisibleLocaction(newLocation : CLLocation) {
+        self.visibleLocation = newLocation
         let viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, regionRadius, regionRadius)
         mapView.setRegion(viewRegion, animated: false)
         refreshLocationDescription()
     }
     
     func refreshLocationDescription() {
-        if expenseLocation != nil {
-            geocoder.reverseGeocodeLocation(self.expenseLocation!) { (placemarks, error) in
-                if error == nil {
-                    let firstLocation = placemarks?[0]
-                    self.expenseLocationDescription = (firstLocation?.postalAddress?.street)! + ", " + (firstLocation?.postalAddress?.city)!
-                    DispatchQueue.main.async {
-                        self.addressLabel.text = self.expenseLocationDescription
-                    }
-                } else {
-                    self.expenseLocationDescription = nil
-                    DispatchQueue.main.async {
-                        self.addressLabel.text = ""
-                    }
-                }
-            }
-            
+        if visibleLocation != nil {
             // Determine visible radius
             let region = mapView.region
             let leftTop = CLLocation(latitude: region.center.latitude - region.span.latitudeDelta/2, longitude: region.center.longitude - region.span.longitudeDelta/2)
@@ -100,28 +96,40 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
             
             mapView.removeAnnotations(mapView.annotations)
             let foursquare = FoursquareClient()
-            foursquare.search(atLocation: (expenseLocation?.coordinate)!, radius: Int(radius)) { (venues, error) in
+            foursquare.search(atLocation: (visibleLocation?.coordinate)!, radius: Int(radius)) { (venues, error) in
                 if venues != nil {
                     DispatchQueue.main.async {
                         print("Found \(venues?.count) Foursquare venues")
+                        var selectedVenueAnnotation : VenueAnnotation?
                         for venue in venues! {
                             print("Venue: Id=\(venue.id), Name=\(venue.name), Category=\(venue.category), Address=\(venue.address), coord=(\(venue.lat),\(venue.lng))")
                             
                             let coord = CLLocationCoordinate2D(latitude: venue.lat, longitude: venue.lng)
-                            let annotation = MKPointAnnotation()
+                            let annotation = VenueAnnotation()
                             annotation.coordinate = coord
                             annotation.title = venue.name
                             annotation.subtitle = venue.address
+                            annotation.venue = venue
                             self.mapView.addAnnotation(annotation)
+                            if self.venueId == venue.id {
+                                selectedVenueAnnotation = annotation
+                            }
+                        }
+                        
+                        if selectedVenueAnnotation == nil && self.venueId != nil {
+                            let annotation = VenueAnnotation()
+                            annotation.coordinate = CLLocationCoordinate2D(latitude: self.venueLat!, longitude: self.venueLng!)
+                            annotation.title = self.venueName
+                            annotation.venue = FoursquareVenue(id: self.venueId!, name: self.venueName!, category: "", address: "", lat: self.venueLat!, lng: self.venueLng!)
+                        }
+                        
+                        if selectedVenueAnnotation != nil {
+                            self.mapView.selectAnnotation(selectedVenueAnnotation!, animated: true)
                         }
                     }
                 }
             }
         }
-    }
-    
-    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-        mapView.view(for: mapView.userLocation)?.isHidden = true
     }
     
     func showLocationAlert() {
@@ -137,7 +145,7 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let center = mapView.centerCoordinate
-        self.expenseLocation = CLLocation(latitude: center.latitude, longitude: center.longitude)
+        self.visibleLocation = CLLocation(latitude: center.latitude, longitude: center.longitude)
         refreshLocationDescription()
     }
     
@@ -146,7 +154,16 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
         // Dispose of any resources that can be recreated.
     }
     
-    
+/*    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        var pin = mapView.dequeueReusableAnnotationView(withIdentifier: "VenuePin") as! MKPinAnnotationView?
+        if pin == nil {
+            pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "VenuePin")
+        } else {
+            pin?.annotation = annotation
+        }
+        pin?.pinTintColor = MKPinAnnotationView.greenPinColor()
+        return pin
+    }*/
 
     /*
     // MARK: - Navigation
