@@ -34,7 +34,8 @@ class CDNamedItemDAO {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return (nil, nil) }
         let managedContext = appDelegate.persistentContainer.viewContext
         let namedItemFetch = NSFetchRequest<NamedItem>(entityName: "NamedItem")
-        namedItemFetch.predicate = NSPredicate(format: "itemName == %@", itemType)
+        namedItemFetch.predicate = NSPredicate(format: "listName == %@", itemType)
+        namedItemFetch.sortDescriptors = [NSSortDescriptor(key: "itemName", ascending: true)]
         do {
             let items = try managedContext.fetch(namedItemFetch)
             return (items, nil)

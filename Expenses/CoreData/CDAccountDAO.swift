@@ -24,6 +24,7 @@ class CDAccountDAO {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return (nil, nil)}
         let managedContext = appDelegate.persistentContainer.viewContext
         let accountFetch = NSFetchRequest<Account>(entityName: "Account")
+        accountFetch.sortDescriptors = [NSSortDescriptor(key: "accountName", ascending: true)]
         do {
             let items = try managedContext.fetch(accountFetch)
             return (items, nil)
