@@ -64,7 +64,7 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="p8K-uZ-DQB">
-                                            <rect key="frame" x="269" y="17" width="97" height="20"/>
+                                            <rect key="frame" x="268" y="17" width="69" height="20"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ol1-SQ-rAK">
                                                     <rect key="frame" x="0.0" y="0.0" width="69" height="20"/>
@@ -72,8 +72,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCp-3W-lzO">
-                                                    <rect key="frame" x="77" y="0.0" width="20" height="20"/>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCp-3W-lzO">
+                                                    <rect key="frame" x="-268" y="0.0" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="Jpe-qp-sEd"/>
                                                         <constraint firstAttribute="height" constant="20" id="fyI-8Q-ie5"/>
@@ -87,7 +87,7 @@
                                     <constraints>
                                         <constraint firstItem="p8K-uZ-DQB" firstAttribute="centerY" secondItem="G5t-PS-wLO" secondAttribute="centerY" id="5wI-mO-Dkh"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="p8K-uZ-DQB" secondAttribute="trailing" id="803-Dh-YlZ"/>
-                                        <constraint firstAttribute="trailing" secondItem="p8K-uZ-DQB" secondAttribute="trailing" constant="9" id="VVg-uN-na3"/>
+                                        <constraint firstAttribute="trailing" secondItem="p8K-uZ-DQB" secondAttribute="trailing" constant="38" id="VVg-uN-na3"/>
                                         <constraint firstItem="SI8-WU-kmt" firstAttribute="leading" secondItem="G5t-PS-wLO" secondAttribute="leadingMargin" id="Vfs-Ax-Q0q"/>
                                         <constraint firstItem="SI8-WU-kmt" firstAttribute="centerY" secondItem="G5t-PS-wLO" secondAttribute="centerY" id="neK-hz-DqC"/>
                                     </constraints>
