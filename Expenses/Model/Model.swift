@@ -124,6 +124,14 @@ class Model {
         }
     }
     
+    func setDateToday() {
+        dateIntervalSelection.setDateToday()
+        for observer in self.delegates {
+            observer.dateIntervalChanged()
+        }
+
+    }
+    
     func dateIntervalNext() {
         if dateIntervalSelection.dateIntervalType != DateIntervalType.All {
             dateIntervalSelection.nextInterval()

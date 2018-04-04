@@ -20,6 +20,7 @@
 "Error reading iCloud subscriptions" = "Fehler bei Lesen der iCloud Subscriptions";
 "Error adding iCloud subscription" = "Fehler beim Hinzufügen der iCloud Subscription";
 "Set Date Interval" = "Datumsintervall wählen";
+"Today" = "Heute";
 "All" = "Gesamt";
 "Week" = "Woche";
 "Month" = "Monat";

@@ -16,6 +16,9 @@ class TotalsViewCell: UITableViewCell {
     
     @IBAction func dateRangeButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: NSLocalizedString("Expenses", comment: ""), message: NSLocalizedString("Set Date Interval", comment: ""), preferredStyle: .alert)
+        let actionToday = UIAlertAction(title: NSLocalizedString("Today", comment: ""), style: .default, handler: { (action) -> Void in
+            Model.sharedInstance.setDateToday()
+        })
         let actionWeek = UIAlertAction(title: NSLocalizedString("Week", comment: ""), style: .default, handler: { (action) -> Void in
             Model.sharedInstance.setDateIntervalType(dateIntervalType: DateIntervalType.Week)
         })
@@ -31,6 +34,7 @@ class TotalsViewCell: UITableViewCell {
 
         // Cancel button
         let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .destructive, handler: { (action) -> Void in })
+        alert.addAction(actionToday)
         alert.addAction(actionWeek)
         alert.addAction(actionMonth)
         alert.addAction(actionYear)

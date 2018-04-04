@@ -25,12 +25,16 @@ class DateIntervalSelection {
         dateIntervalType = DateIntervalType.All
     }
     
-    func setDateIntervalType(dateIntervalType: DateIntervalType) -> Bool {
-        return setDateIntervalType(referenceDay: Date(), dateIntervalType: dateIntervalType)
+    func setDateToday() {
+        _ = self.setDateIntervalType(referenceDay: Date(), dateIntervalType: self.dateIntervalType, forceUpdate: true)
     }
     
-    func setDateIntervalType(referenceDay : Date, dateIntervalType : DateIntervalType) -> Bool {
-        if self.dateIntervalType != dateIntervalType {
+    func setDateIntervalType(dateIntervalType: DateIntervalType) -> Bool {
+        return setDateIntervalType(referenceDay: Date(), dateIntervalType: dateIntervalType, forceUpdate: false)
+    }
+    
+    func setDateIntervalType(referenceDay : Date, dateIntervalType : DateIntervalType, forceUpdate: Bool) -> Bool {
+        if self.dateIntervalType != dateIntervalType || forceUpdate {
             self.dateIntervalType = dateIntervalType
             let calendar = Calendar.current
             if dateIntervalType == DateIntervalType.Week {
@@ -91,5 +95,4 @@ class DateIntervalSelection {
             endDate = calendar.date(byAdding: .year, value: toNext ? 1 : -1, to: endDate!)
         }
     }
-    
 }
