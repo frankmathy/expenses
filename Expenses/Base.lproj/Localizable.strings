@@ -6,6 +6,7 @@
   Copyright © 2017 Frank Mathy. All rights reserved.
 */
 
+"Expenses" = "Expenses";
 "OK" = "OK";
 "Edit Expense" = "Edit Expense";
 "Add Expense" = "Add Expense";
@@ -30,3 +31,10 @@
 "Enter Item Name." = "Enter Item Name.";
 "Name" = "Name";
 "Save" = "Save";
+"Selected Venue" = "Venue: ";
+"Import succesful" = "Import succesful";
+"Error importing Expenses" = "Error importing Expenses";
+"Imported d expenses from s" = "Imported %d expenses from %@";
+"Importing from s failed." = "Importing from %@ failed.";
+"Location Disabled" = "Location Services Disabled";
+"Please enable location" = "Please enable location services";

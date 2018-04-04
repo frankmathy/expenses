@@ -50,9 +50,10 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
                     }
                 }
                 Model.sharedInstance.modelUpdated()
-                ViewControllerUtils.showAlert(title: "Import succesful", message: "Imported \((imported)) expenses from \(urls[0].lastPathComponent)", viewController: self)
+                Model.sharedInstance.setDateIntervalType(dateIntervalType: DateIntervalType.Week)
+                ViewControllerUtils.showAlert(title: NSLocalizedString("Import succesful", comment: ""), message: String(format: NSLocalizedString("Imported d expenses from s", comment: ""), imported, (urls[0].lastPathComponent)), viewController: self)
              } catch {
-                 ViewControllerUtils.showAlert(title: "Error importing Expenses", message: "Importing from \(urls[0].lastPathComponent) failed.", viewController: self)
+                ViewControllerUtils.showAlert(title: NSLocalizedString("Error importing Expenses", comment: ""), message: String(format: NSLocalizedString("Importing from s failed.", comment: ""), (urls[0].lastPathComponent)), viewController: self)
              }
         }
     }
@@ -63,17 +64,5 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
     }
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-        print("Cancelled")
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

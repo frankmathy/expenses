@@ -15,7 +15,6 @@ class VenueAnnotation : MKPointAnnotation {
 
 class EditLocationViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var placesTableView: UITableView!
     @IBOutlet weak var addressLabel: UILabel!
     
     let locationManager = CLLocationManager()
@@ -27,7 +26,10 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
     
     var visibleLocation : CLLocation?
 
-    let regionRadius: CLLocationDistance = 400
+    let regionRadius: CLLocationDistance = 200
+    let maxVenuesOnMap = 50
+    
+    let selectedVenueString = NSLocalizedString("Selected Venue", comment: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +39,7 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
         mapView.delegate = self
         
         if venueId == nil {
-            addressLabel.text = ""
+            addressLabel.text = selectedVenueString + "-"
             if CLLocationManager.locationServicesEnabled() {
                 locationManager.requestWhenInUseAuthorization()
                 switch(CLLocationManager.authorizationStatus()) {
@@ -51,20 +53,27 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
                 showLocationAlert()
             }
         } else {
-            addressLabel.text = venueName
+            addressLabel.text = selectedVenueString + venueName!
             setVisibleLocaction(newLocation: CLLocation(latitude: venueLat!, longitude: venueLng!))
         }
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let venueAnnotation = view.annotation as? VenueAnnotation {
-            let venue = venueAnnotation.venue
             venueId = venueAnnotation.venue?.id
             venueName = venueAnnotation.venue?.name
             venueLat = venueAnnotation.venue?.lat
             venueLng = venueAnnotation.venue?.lng
-            addressLabel.text = venueName
+            addressLabel.text = selectedVenueString + venueName!
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        venueId = nil
+        venueName = nil
+        venueLat = Double.nan
+        venueLng = Double.nan
+        addressLabel.text = selectedVenueString + "-"
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -92,18 +101,14 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
             let leftTop = CLLocation(latitude: region.center.latitude - region.span.latitudeDelta/2, longitude: region.center.longitude - region.span.longitudeDelta/2)
             let center = CLLocation(latitude: region.center.latitude, longitude: region.center.longitude)
             let radius = center.distance(from: leftTop)
-            print("Radius = \(radius)")
             
             mapView.removeAnnotations(mapView.annotations)
             let foursquare = FoursquareClient()
-            foursquare.search(atLocation: (visibleLocation?.coordinate)!, radius: Int(radius)) { (venues, error) in
+            foursquare.search(atLocation: (visibleLocation?.coordinate)!, radius: Int(radius), resultLimit: maxVenuesOnMap) { (venues, error) in
                 if venues != nil {
                     DispatchQueue.main.async {
-                        print("Found \(venues?.count) Foursquare venues")
                         var selectedVenueAnnotation : VenueAnnotation?
                         for venue in venues! {
-                            print("Venue: Id=\(venue.id), Name=\(venue.name), Category=\(venue.category), Address=\(venue.address), coord=(\(venue.lat),\(venue.lng))")
-                            
                             let coord = CLLocationCoordinate2D(latitude: venue.lat, longitude: venue.lng)
                             let annotation = VenueAnnotation()
                             annotation.coordinate = coord
@@ -133,8 +138,8 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
     }
     
     func showLocationAlert() {
-        let alert = UIAlertController(title: "Location Disabled", message: "Please enable location", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        let alert = UIAlertController(title: NSLocalizedString("Location Disabled", comment: ""), message: NSLocalizedString("Please enable location", comment: ""), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
 
