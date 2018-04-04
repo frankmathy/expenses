@@ -69,7 +69,7 @@
 "hgv-KN-G0T.placeholder" = "Beschreibung";
 
 /* Class = "UIButton"; normalTitle = "Import Data"; ObjectID = "0NU-8r-FNc"; */
-"0NU-8r-FNc.normalTitle" = "Importiere Daten";
+"0NU-8r-FNc.normalTitle" = "Importiere Ausgaben";
 
 /* Class = "UILabel"; text = "CategoryName"; ObjectID = "48F-6C-OHj"; */
 /* "48F-6C-OHj.text" = "CategoryName"; */

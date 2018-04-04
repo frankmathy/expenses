@@ -18,6 +18,17 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
         self.present(picker, animated: true, completion: nil)
     }
     
+    @IBAction func deleteAllExpensesPressed(_ sender: Any) {
+        let alert = UIAlertController(title: NSLocalizedString("Expenses", comment: ""), message: NSLocalizedString("Delete all Expenses?", comment: ""), preferredStyle: .alert)
+        let yes = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive, handler: { (action) -> Void in
+            Model.sharedInstance.deleteAllExpenses()
+        })
+        let no = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default, handler: { (action) -> Void in })
+        alert.addAction(yes)
+        alert.addAction(no)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

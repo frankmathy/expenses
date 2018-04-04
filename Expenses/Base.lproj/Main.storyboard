@@ -1017,7 +1017,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="center" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="xGl-Cy-2pJ">
-                                <rect key="frame" x="10" y="251.5" width="355" height="165"/>
+                                <rect key="frame" x="10" y="230.5" width="355" height="207"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Expenses" translatesAutoresizingMaskIntoConstraints="NO" id="CQ1-xh-cAZ">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="60"/>
@@ -1037,14 +1037,25 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NU-8r-FNc">
                                         <rect key="frame" x="0.0" y="124" width="355" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Import Data"/>
+                                        <state key="normal" title="Import Expenses"/>
                                         <connections>
                                             <action selector="importDataPressed:" destination="8sw-YT-JQ7" eventType="touchUpInside" id="wV3-aa-9bQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnS-mZ-l4d">
+                                        <rect key="frame" x="0.0" y="165" width="355" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Delete All Expenses">
+                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteAllExpensesPressed:" destination="8sw-YT-JQ7" eventType="touchUpInside" id="lJV-yA-DRv"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="CQ1-xh-cAZ" secondAttribute="trailing" id="5eM-l6-4AG"/>
+                                    <constraint firstItem="cnS-mZ-l4d" firstAttribute="centerX" secondItem="xGl-Cy-2pJ" secondAttribute="centerX" id="8Dk-kh-6b6"/>
                                     <constraint firstItem="cCD-NW-ky9" firstAttribute="trailing" secondItem="RBR-Do-xeo" secondAttribute="trailing" id="CGS-fM-fx3"/>
                                     <constraint firstItem="CQ1-xh-cAZ" firstAttribute="trailing" secondItem="cCD-NW-ky9" secondAttribute="trailing" id="Pij-Cx-KjB"/>
                                     <constraint firstItem="0NU-8r-FNc" firstAttribute="top" secondItem="RBR-Do-xeo" secondAttribute="bottom" constant="40" id="lcg-1O-gpB"/>

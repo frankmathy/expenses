@@ -13,6 +13,8 @@ import CoreData
 class CDExpensesDAO {
     
     static let sharedInstance = CDExpensesDAO()
+    
+    static let entityName = "Expense"
 
     func create() -> Expense? {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
@@ -23,7 +25,7 @@ class CDExpensesDAO {
     func load(dateIntervalSelection : DateIntervalSelection) -> (expenses: [Expense]?, error: NSError?) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return (nil, nil) }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let expenseFetch = NSFetchRequest<Expense>(entityName: "Expense")
+        let expenseFetch = NSFetchRequest<Expense>(entityName: CDExpensesDAO.entityName)
         if dateIntervalSelection.dateIntervalType != DateIntervalType.All {
             expenseFetch.predicate = NSPredicate(format: "date >= %@ and date <= %@", dateIntervalSelection.startDate! as NSDate, dateIntervalSelection.endDate! as NSDate)
         }
@@ -43,7 +45,7 @@ class CDExpensesDAO {
     }
     
     func delete(expense: Expense) -> NSError? {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return NSError(domain: "Expenses", code: 1, userInfo: nil) }
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return NSError(domain: CDExpensesDAO.entityName, code: 1, userInfo: nil) }
         let managedContext = appDelegate.persistentContainer.viewContext
         managedContext.delete(expense)
         do {
@@ -53,5 +55,19 @@ class CDExpensesDAO {
             return error
         }
         return nil
+    }
+    
+    func deleteAll() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CDExpensesDAO.entityName)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try managedContext.execute(deleteRequest)
+            try managedContext.save()
+        }
+        catch {
+            print("Error deleting all expenses")
+        }
     }
 }

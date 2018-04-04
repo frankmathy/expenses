@@ -39,3 +39,6 @@
 "Importing from s failed." = "Importing from %@ failed.";
 "Location Disabled" = "Location Services Disabled";
 "Please enable location" = "Please enable location services";
+"Delete all Expenses?" = "Delete all Expenses?";
+"Yes" = "Yes";
+"No" = "No";

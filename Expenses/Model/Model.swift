@@ -212,6 +212,11 @@ class Model {
         self.modelUpdated()
     }
     
+    func deleteAllExpenses() {
+        CDExpensesDAO.sharedInstance.deleteAll()
+        reloadExpenses()
+    }
+    
     func refreshExpenseModels() -> Void {
         self.expenseByDateModel?.removeAll()
         self.expenseByCategoryModel?.removeAll()

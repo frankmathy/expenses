@@ -15,8 +15,6 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
     
     var totalsCell : TotalsViewCell?
 
-    var expensesExported = false
-    
     var refreshPulled = false
     
     var indicator = UIActivityIndicatorView()

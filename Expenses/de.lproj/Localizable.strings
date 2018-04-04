@@ -39,3 +39,6 @@
 "Importing from s failed." = "Import aus %@ fehlgeschlagen.";
 "Location Disabled" = "Standortdienste deaktiviert";
 "Please enable location" = "Bitte Standortdienste aktivieren";
+"Delete all Expenses?" = "Alle Ausgaben löschen?";
+"Yes" = "Ja";
+"No" = "Nein";
