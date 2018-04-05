@@ -38,28 +38,20 @@ class NamedItemPickerViewController: UITableViewController {
         self.valueList = namedItems
         if self.valueList?.count == 0 {
             // Initialize with default values
-            let itemStrings: [String]
-            switch self.itemType! {
-            case NamedItemPickerViewController.TYPE_ACCOUNTS:
-                itemStrings = SampleData.getAccounts()
-            case NamedItemPickerViewController.TYPE_PROJECTS:
-                itemStrings = SampleData.getProjects()
-            case NamedItemPickerViewController.TYPE_CATEGORIES:
-                itemStrings = SampleData.getCategories()
-            default:
-                fatalError("Unexpected item type: \(self.itemType!)")
-            }
-            for itemString in itemStrings {
-                let newItem = CDNamedItemDAO.sharedInstance.create()
-                newItem?.itemName = itemString
-                newItem?.listName = self.itemType
-                self.valueList?.append(newItem!)
-                CDNamedItemDAO.sharedInstance.save(item: newItem!)
-            }
-            
-            // Update table
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+            let itemStrings = PListUtils.loadDefaultValues(forResource: "DefaultValues", itemId: self.itemType!)
+            if itemStrings != nil {
+                for itemString in itemStrings! {
+                    let newItem = CDNamedItemDAO.sharedInstance.create()
+                    newItem?.itemName = itemString
+                    newItem?.listName = self.itemType
+                    self.valueList?.append(newItem!)
+                    CDNamedItemDAO.sharedInstance.save(item: newItem!)
+                }
+
+                // Update table
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -80,7 +72,7 @@ class NamedItemPickerViewController: UITableViewController {
         let value = values[indexPath.row].itemName
         cell.textLabel?.text = value
         
-        if(value == selectedValue!) {
+        if(value == selectedValue) {
             cell.accessoryType = .checkmark
             selectedCell = cell
         } else {
@@ -124,5 +116,4 @@ class NamedItemPickerViewController: UITableViewController {
             }
         }
     }
-    
 }

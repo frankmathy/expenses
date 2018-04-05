@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		012E92D11FF264B5004AF427 /* CloudUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012E92D01FF264B5004AF427 /* CloudUserInfo.swift */; };
-		016A03FC204CA84B00576CE8 /* ExchangeRateServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016A03FB204CA84B00576CE8 /* ExchangeRateServiceTest.swift */; };
 		016A03FD204CA86C00576CE8 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195738B204C3FF30035B19A /* ExchangeRateService.swift */; };
 		016A03FE204CA9BB00576CE8 /* CKNamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195737C204AD4E80035B19A /* CKNamedItemDAO.swift */; };
 		016A03FF204CA9BE00576CE8 /* CKAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D58FF6204AE48900FD4346 /* CKAccountDAO.swift */; };
@@ -32,7 +31,6 @@
 		851E0F63204B0FF10016FCBF /* CKSubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F62204B0FF10016FCBF /* CKSubscriptionManager.swift */; };
 		851E0F65204B13930016FCBF /* CKExpensesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F64204B13930016FCBF /* CKExpensesDAO.swift */; };
 		852701381FF8174400D4076A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CA6A7F1FD9CAF90047B344 /* User.swift */; };
-		8527013A1FF8176000D4076A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F21FCA30E8006988A5 /* SampleData.swift */; };
 		8527013C1FF817C000D4076A /* CloudUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012E92D01FF264B5004AF427 /* CloudUserInfo.swift */; };
 		8527013D1FF817D900D4076A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAF21FED77EC00E8C7CB /* Model.swift */; };
 		85282C0C1FF00413009090F9 /* TotalsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85282C0B1FF00413009090F9 /* TotalsViewCell.swift */; };
@@ -42,18 +40,20 @@
 		852F27CC1FCA2C0C006988A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 852F27CB1FCA2C0C006988A5 /* Assets.xcassets */; };
 		852F27CF1FCA2C0C006988A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852F27CD1FCA2C0C006988A5 /* LaunchScreen.storyboard */; };
 		852F27E51FCA2C0C006988A5 /* ExpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27E41FCA2C0C006988A5 /* ExpensesUITests.swift */; };
-		852F27F31FCA30E8006988A5 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F21FCA30E8006988A5 /* SampleData.swift */; };
 		852F27F71FCA316E006988A5 /* CKExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* CKExpense.swift */; };
 		852F5D75204187E6006B1AB9 /* CKAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* CKAccount.swift */; };
 		852F5D762041C020006B1AB9 /* CKAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* CKAccount.swift */; };
 		8534868E2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8534868D2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift */; };
 		8540BDF020719BF200A246BA /* FoursquareClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8540BDEF20719BF200A246BA /* FoursquareClient.swift */; };
 		8540BDF220719C6500A246BA /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8540BDF120719C6500A246BA /* SwiftyJSON.swift */; };
+		85418CAC2076C94D00B45798 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27C41FCA2C0C006988A5 /* AppDelegate.swift */; };
+		85418CAD2076C95100B45798 /* CDAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A872B620535A420099F7C8 /* CDAccountDAO.swift */; };
+		85418CAE2076D47900B45798 /* DefaultValues.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85418CB02076D47900B45798 /* DefaultValues.plist */; };
+		85418CB32076D6C000B45798 /* PListUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85418CB22076D6C000B45798 /* PListUtils.swift */; };
 		854229A02053F0FE007A4282 /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8542299F2053F0FE007A4282 /* CoreDataUtil.swift */; };
 		855032332072BA2E002943C8 /* AppCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855032322072BA2D002943C8 /* AppCredentials.swift */; };
 		85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */; };
 		857764B21FF5A7ED00CBB925 /* DateIntervalSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */; };
-		857764B41FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B31FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift */; };
 		857764B51FF5AAEC00CBB925 /* DateIntervalSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */; };
 		859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859CEC951FCB20630028C9E7 /* FormatExtensions.swift */; };
 		85A872B5205359D20099F7C8 /* CDNamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A872B4205359D20099F7C8 /* CDNamedItemDAO.swift */; };
@@ -61,14 +61,12 @@
 		85A872B920535A8D0099F7C8 /* CDExpensesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A872B820535A8D0099F7C8 /* CDExpensesDAO.swift */; };
 		85BB1FA01FFA820B0090F816 /* GroupedExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1F9F1FFA820B0090F816 /* GroupedExpenseModel.swift */; };
 		85BB1FA11FFA820B0090F816 /* GroupedExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1F9F1FFA820B0090F816 /* GroupedExpenseModel.swift */; };
-		85BB1FA41FFAA63C0090F816 /* GroupedExpenseModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1FA21FFAA63C0090F816 /* GroupedExpenseModelTest.swift */; };
 		85BB1FA61FFADB050090F816 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1FA51FFADB050090F816 /* InfoViewController.swift */; };
 		85BB1FAC1FFAE6D50090F816 /* ExpenseByCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1FAB1FFAE6D50090F816 /* ExpenseByCategoryCell.swift */; };
 		85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */; };
 		85CA6A801FD9CAF90047B344 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CA6A7F1FD9CAF90047B344 /* User.swift */; };
 		85CCDAE51FECFA6400E8C7CB /* CKExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* CKExpense.swift */; };
 		85CCDAE81FECFF7800E8C7CB /* FormatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859CEC951FCB20630028C9E7 /* FormatExtensions.swift */; };
-		85CCDAEA1FED0BC500E8C7CB /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAE91FED0BC500E8C7CB /* TestData.swift */; };
 		85CCDAF31FED77EC00E8C7CB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAF21FED77EC00E8C7CB /* Model.swift */; };
 		85D58FF7204AE48900FD4346 /* CKAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D58FF6204AE48900FD4346 /* CKAccountDAO.swift */; };
 		85D67AAA20398FDB00F7AC1C /* CKNamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D67AA920398FDB00F7AC1C /* CKNamedItem.swift */; };
@@ -129,12 +127,14 @@
 		852F27E01FCA2C0C006988A5 /* ExpensesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpensesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		852F27E41FCA2C0C006988A5 /* ExpensesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesUITests.swift; sourceTree = "<group>"; };
 		852F27E61FCA2C0C006988A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		852F27F21FCA30E8006988A5 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		852F27F61FCA316E006988A5 /* CKExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKExpense.swift; sourceTree = "<group>"; };
 		852F5D74204187E6006B1AB9 /* CKAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKAccount.swift; sourceTree = "<group>"; };
 		8534868D2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseByCategoryTableViewController.swift; sourceTree = "<group>"; };
 		8540BDEF20719BF200A246BA /* FoursquareClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoursquareClient.swift; sourceTree = "<group>"; };
 		8540BDF120719C6500A246BA /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		85418CAF2076D47900B45798 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/DefaultValues.plist; sourceTree = "<group>"; };
+		85418CB12076D48500B45798 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = de; path = de.lproj/DefaultValues.plist; sourceTree = "<group>"; };
+		85418CB22076D6C000B45798 /* PListUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PListUtils.swift; sourceTree = "<group>"; };
 		8542299F2053F0FE007A4282 /* CoreDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 		855032322072BA2D002943C8 /* AppCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppCredentials.swift; path = ../../../../Documents/Development/iOS/FrankMathyCredentials/AppCredentials.swift; sourceTree = "<group>"; };
 		85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseGroupCell.swift; sourceTree = "<group>"; };
@@ -223,7 +223,6 @@
 				857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */,
 				85CCDAF21FED77EC00E8C7CB /* Model.swift */,
 				85CA6A7F1FD9CAF90047B344 /* User.swift */,
-				852F27F21FCA30E8006988A5 /* SampleData.swift */,
 				85BB1F9F1FFA820B0090F816 /* GroupedExpenseModel.swift */,
 			);
 			path = Model;
@@ -251,6 +250,7 @@
 				852A52461FF94C7A006C4767 /* ViewControllerUtils.swift */,
 				8540BDEF20719BF200A246BA /* FoursquareClient.swift */,
 				8540BDF120719C6500A246BA /* SwiftyJSON.swift */,
+				85418CB22076D6C000B45798 /* PListUtils.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -297,6 +297,7 @@
 				852F27CB1FCA2C0C006988A5 /* Assets.xcassets */,
 				01BAF5EE1FD753DC002E892A /* Localizable.strings */,
 				019FCB9C1FD752BA00F478DE /* InfoPlist.strings */,
+				85418CB02076D47900B45798 /* DefaultValues.plist */,
 				855032322072BA2D002943C8 /* AppCredentials.swift */,
 				852701371FF816D400D4076A /* View Controllers */,
 				8527013B1FF8177300D4076A /* Controls */,
@@ -497,6 +498,7 @@
 				019FCB9E1FD752BA00F478DE /* InfoPlist.strings in Resources */,
 				852F27CC1FCA2C0C006988A5 /* Assets.xcassets in Resources */,
 				852F27CA1FCA2C0C006988A5 /* Main.storyboard in Resources */,
+				85418CAE2076D47900B45798 /* DefaultValues.plist in Resources */,
 				01BAF5F01FD753DC002E892A /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -694,10 +696,10 @@
 				8540BDF220719C6500A246BA /* SwiftyJSON.swift in Sources */,
 				852F5D75204187E6006B1AB9 /* CKAccount.swift in Sources */,
 				01D8344220474BF600AB3C14 /* AccountPickerViewController.swift in Sources */,
+				85418CB32076D6C000B45798 /* PListUtils.swift in Sources */,
 				8540BDF020719BF200A246BA /* FoursquareClient.swift in Sources */,
 				851E0F61204AF9BB0016FCBF /* CKUserDAO.swift in Sources */,
 				85A872B920535A8D0099F7C8 /* CDExpensesDAO.swift in Sources */,
-				852F27F31FCA30E8006988A5 /* SampleData.swift in Sources */,
 				854229A02053F0FE007A4282 /* CoreDataUtil.swift in Sources */,
 				851E0F63204B0FF10016FCBF /* CKSubscriptionManager.swift in Sources */,
 				85282C0C1FF00413009090F9 /* TotalsViewCell.swift in Sources */,
@@ -739,20 +741,17 @@
 				016A03FD204CA86C00576CE8 /* ExchangeRateService.swift in Sources */,
 				85CCDAE51FECFA6400E8C7CB /* CKExpense.swift in Sources */,
 				85BB1FA11FFA820B0090F816 /* GroupedExpenseModel.swift in Sources */,
-				857764B41FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift in Sources */,
 				852F5D762041C020006B1AB9 /* CKAccount.swift in Sources */,
 				8527013D1FF817D900D4076A /* Model.swift in Sources */,
-				85BB1FA41FFAA63C0090F816 /* GroupedExpenseModelTest.swift in Sources */,
 				016A03FE204CA9BB00576CE8 /* CKNamedItemDAO.swift in Sources */,
-				85CCDAEA1FED0BC500E8C7CB /* TestData.swift in Sources */,
-				8527013A1FF8176000D4076A /* SampleData.swift in Sources */,
 				016A03FF204CA9BE00576CE8 /* CKAccountDAO.swift in Sources */,
-				016A03FC204CA84B00576CE8 /* ExchangeRateServiceTest.swift in Sources */,
 				016A0401204CA9C400576CE8 /* CKSubscriptionManager.swift in Sources */,
 				852701381FF8174400D4076A /* User.swift in Sources */,
 				857764B51FF5AAEC00CBB925 /* DateIntervalSelection.swift in Sources */,
 				016A0400204CA9C100576CE8 /* CKUserDAO.swift in Sources */,
+				85418CAD2076C95100B45798 /* CDAccountDAO.swift in Sources */,
 				016A0402204CA9C600576CE8 /* CKExpensesDAO.swift in Sources */,
+				85418CAC2076C94D00B45798 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,6 +813,15 @@
 				85C9140020743ED600A770A8 /* de */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		85418CB02076D47900B45798 /* DefaultValues.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				85418CAF2076D47900B45798 /* Base */,
+				85418CB12076D48500B45798 /* de */,
+			);
+			name = DefaultValues.plist;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
