@@ -56,14 +56,24 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
                 var imported = 0
                 for row in rows {
                     let columns = row.components(separatedBy: "\t")
-                    if columns.count >= 6 {
+                    if columns.count >= 10 {
                         let date = dateFormat.date(from: columns[0])
                         let amount = (columns[1] as NSString).doubleValue
                         let accountName = columns[2]
                         let category = columns[3]
                         let project = columns[4]
                         let comment = columns[5]
-                        Model.sharedInstance.addExpense(date: date!, categoryName: category, accountName: accountName, projectName: project, amount: amount, comment: comment)
+                        var venueId : String? = nil
+                        var venueName : String? = nil
+                        var venueLat : Double = Double.nan
+                        var venueLng : Double = Double.nan
+                        if columns[6].count > 0 {
+                            venueId = columns[6]
+                            venueName = columns[7]
+                            venueLat = (columns[8] as NSString).doubleValue
+                            venueLng = (columns[9] as NSString).doubleValue
+                        }
+                        Model.sharedInstance.addExpense(date: date!, categoryName: category, accountName: accountName, projectName: project, amount: amount, comment: comment, venueId: venueId, venueName: venueName, venueLat: venueLat, venueLng: venueLng)
                         imported = imported + 1
                     }
                 }

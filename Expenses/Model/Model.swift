@@ -246,10 +246,10 @@ class Model {
         }
     }*/
 
-    func addExpense(date: Date, categoryName : String, accountName : String, projectName: String, amount: Double, comment: String) {
+    func addExpense(date: Date, categoryName : String, accountName : String, projectName: String, amount: Double, comment: String, venueId: String?, venueName: String?, venueLat: Double, venueLng: Double) {
         let account = getAccount(accountName: accountName)
         if account != nil {
-            addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment)
+            addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, venueId: venueId, venueName: venueName, venueLat: venueLat, venueLng: venueLng)
         } else {
             let (account, error) = createAccount(accountName: accountName)
             guard error == nil else {
@@ -257,11 +257,11 @@ class Model {
                 self.cloudAccessError(message: message, error: error! as NSError)
                 return
             }
-            self.addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment)
+            self.addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, venueId: venueId, venueName: venueName, venueLat: venueLat, venueLng: venueLng)
         }
     }
     
-    func addExpense(date: Date, categoryName : String, account : Account, projectName: String, amount: Double, comment: String) {
+    func addExpense(date: Date, categoryName : String, account : Account, projectName: String, amount: Double, comment: String, venueId: String?, venueName: String?, venueLat: Double, venueLng: Double) {
         let expense = CDExpensesDAO.sharedInstance.create()
         expense?.date = date
         expense?.category = categoryName
@@ -269,6 +269,10 @@ class Model {
         expense?.project = projectName
         expense?.amount = amount
         expense?.comment = comment
+        expense?.venueId = venueId
+        expense?.venueName = venueName
+        expense?.venueLat = venueLat
+        expense?.venueLng = venueLng
         updateExpense(expense: expense!, isNewExpense: true)
     }
         
@@ -306,9 +310,19 @@ class Model {
                 let expense = expenseByDateModel!.expense(inSection: section, row: row)
                 let dateString = dateFormat.string(from: expense.date!)
                 let amountString = String(expense.amount)
-                csv += "\(dateString)\t\(amountString)\t\(expense.account!.accountName!)\t\(expense.category!)\t\(expense.project!)\t\(expense.comment!)\t \n"
+                var venueLatString : String? = nil
+                var venueLngString : String? = nil
+                if expense.venueId != nil {
+                    venueLatString = String(expense.venueLat)
+                    venueLngString = String(expense.venueLng)
+                }
+                csv += "\(dateString)\t\(amountString)\t\(csvString(string: expense.account!.accountName))\t\(csvString(string: expense.category!))\t\(csvString(string: expense.project!))\t\(csvString(string: expense.comment!))\t\(csvString(string: expense.venueId))\t\(csvString(string: expense.venueName))\t\(csvString(string: venueLatString))\t\(csvString(string: venueLngString))\n"
             }
         }
         return csv
+    }
+    
+    func csvString(string : String?) -> String {
+        return string != nil ? string! : ""
     }
 }
