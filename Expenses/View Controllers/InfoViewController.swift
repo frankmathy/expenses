@@ -10,6 +10,8 @@ import UIKit
 import MobileCoreServices
 
 class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UINavigationControllerDelegate {
+    
+    final let helpUrl = "https://github.com/frankmathy/expenses/wiki/UserGuide"
 
     @IBAction func importDataPressed(_ sender: UIButton) {
         let picker = UIDocumentPickerViewController(documentTypes: [kUTTypePlainText as String], in: .import)
@@ -28,6 +30,11 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
         alert.addAction(no)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    @IBAction func helpButtonPressed(_ sender: UIButton) {
+        UIApplication.shared.open(URL(string: helpUrl)!, options: [:], completionHandler: nil)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

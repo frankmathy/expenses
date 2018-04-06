@@ -37,9 +37,9 @@ class ExpenseDetailsViewController: UITableViewController {
             navigationItem.title = NSLocalizedString("Add Expense", comment: "")
             expense = CDExpensesDAO.sharedInstance.create()
             expense?.date = Date()
-            expense?.category = SampleData.categoryGroceries
+            //expense?.category = SampleData.categoryGroceries
             expense?.account = Model.sharedInstance.getDefaultAccount()
-            expense?.project = SampleData.projectNone
+            //expense?.project = SampleData.projectNone
             expense?.amount = 0.0
             expense?.comment = ""
         } else {

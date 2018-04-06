@@ -66,7 +66,12 @@ class Model {
                 self.ownAccountsByRecordId[account.objectID] = account
             }
         } else {
-            createAccount(accountName: SampleData.accountHousehold)
+            let accountNames = PListUtils.loadDefaultValues(forResource: "DefaultValues", itemId: "accounts")
+            if accountNames != nil {
+                for accountName in accountNames! {
+                    _ = createAccount(accountName: accountName)
+                }
+            }
         }
     }
     
