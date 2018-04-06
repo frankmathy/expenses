@@ -19,7 +19,6 @@ class Model {
     
     static let sharedInstance = Model()
 
-    var expenseByRecordId = [NSManagedObjectID : Expense]()
     let expenseByDateModel : (GroupedExpenseModel<Date>)?
     let expenseByCategoryModel : (GroupedExpenseModel<String>)?
     
@@ -176,13 +175,11 @@ class Model {
     }
     
     private func removeAllFromCollections() {
-        self.expenseByRecordId.removeAll()
         self.expenseByDateModel?.removeAll()
         self.expenseByCategoryModel?.removeAll()
     }
     
     private func addExpenseToCollections(expense : Expense) -> Void {
-        self.expenseByRecordId[expense.objectID] = expense
         self.expenseByDateModel?.addExpense(expense: expense)
         self.expenseByCategoryModel?.addExpense(expense: expense)
     }
@@ -195,13 +192,7 @@ class Model {
             self.cloudAccessError(message: message, error: error! as NSError)
             return
         }
-        self.expenseByRecordId[expense.objectID] = expense
-        if isNewExpense {
-            self.expenseByDateModel?.addExpense(expense: expense)
-            self.expenseByCategoryModel?.addExpense(expense: expense)
-        } else {
-            self.refreshExpenseModels()
-        }
+        reloadExpenses()
     }
     
     func removeExpense(expense: Expense) {
@@ -212,23 +203,12 @@ class Model {
             return
         }
         print("Successfully deleted expense wth ID=\(expense.objectID)")
-        self.expenseByRecordId.removeValue(forKey: expense.objectID)
-        self.refreshExpenseModels()
-        self.modelUpdated()
+        reloadExpenses()
     }
     
     func deleteAllExpenses() {
         CDExpensesDAO.sharedInstance.deleteAll()
         reloadExpenses()
-    }
-    
-    func refreshExpenseModels() -> Void {
-        self.expenseByDateModel?.removeAll()
-        self.expenseByCategoryModel?.removeAll()
-        for aExpense in self.expenseByRecordId.values {
-            self.expenseByDateModel?.addExpense(expense: aExpense)
-            self.expenseByCategoryModel?.addExpense(expense: aExpense)
-        }
     }
     
     /* TODO
