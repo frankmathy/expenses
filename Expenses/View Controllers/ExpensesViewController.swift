@@ -222,6 +222,10 @@ extension ExpensesViewController {
     
     @IBAction func saveExpenseDetail(_ segue: UIStoryboardSegue) {
         if let expenseDetailsViewController = segue.source as? ExpenseDetailsViewController, let expense = expenseDetailsViewController.expense {
+            let config = SystemConfig.sharedInstance
+            config.lastCategory = expense.category
+            config.lastProject = expense.project
+            config.lastAccount = expense.account?.accountName
             Model.sharedInstance.updateExpense(expense: expense, isNewExpense: expenseDetailsViewController.newExpense!)
             Model.sharedInstance.modelUpdated()
         }

@@ -34,12 +34,16 @@ class ExpenseDetailsViewController: UITableViewController {
         commentField.addTarget(self, action: #selector(commentTextFieldDidChange), for: .editingChanged)
 
         if newExpense! {
+            let config = SystemConfig.sharedInstance
             navigationItem.title = NSLocalizedString("Add Expense", comment: "")
             expense = CDExpensesDAO.sharedInstance.create()
             expense?.date = Date()
-            //expense?.category = SampleData.categoryGroceries
+            expense?.category = config.lastCategory
             expense?.account = Model.sharedInstance.getDefaultAccount()
-            //expense?.project = SampleData.projectNone
+            if let accountName = config.lastAccount {
+                expense?.account = Model.sharedInstance.getAccount(accountName: accountName)
+            }
+            expense?.project = config.lastProject
             expense?.amount = 0.0
             expense?.comment = ""
         } else {

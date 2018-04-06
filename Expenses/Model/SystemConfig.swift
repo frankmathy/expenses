@@ -17,6 +17,10 @@ class SystemConfig {
     let KeyCurrencyCode = "CurrencyCode"
     let KeyCurrencySymbol = "CurrencySymbol"
 
+    let KeyLastCategory = "LastCategory"
+    let KeyLastProject = "LastProject"
+    let KeyLastAccount = "LastAccount"
+
     var appCurrencyCode: String {
         get {
             var currencyCode = userDefaults.string(forKey: KeyCurrencyCode)
@@ -41,5 +45,33 @@ class SystemConfig {
         }
     }
     
-
+    var lastCategory: String? {
+        get {
+            return userDefaults.string(forKey: KeyLastCategory)
+        }
+        
+        set(category) {
+            userDefaults.set(category, forKey: KeyLastCategory)
+        }
+    }
+    
+    var lastProject: String? {
+        get {
+            return userDefaults.string(forKey: KeyLastProject)
+        }
+        
+        set(category) {
+            userDefaults.set(category, forKey: KeyLastProject)
+        }
+    }
+    
+    var lastAccount: String? {
+        get {
+            return userDefaults.string(forKey: KeyLastAccount)
+        }
+        
+        set(category) {
+            userDefaults.set(category, forKey: KeyLastAccount)
+        }
+    }
 }
