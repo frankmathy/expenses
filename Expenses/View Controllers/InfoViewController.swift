@@ -77,8 +77,7 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
                         imported = imported + 1
                     }
                 }
-                Model.sharedInstance.modelUpdated()
-                Model.sharedInstance.setDateIntervalType(dateIntervalType: DateIntervalType.Week)
+                Model.sharedInstance.reloadExpenses()
                 ViewControllerUtils.showAlert(title: NSLocalizedString("Import succesful", comment: ""), message: String(format: NSLocalizedString("Imported d expenses from s", comment: ""), imported, (urls[0].lastPathComponent)), viewController: self)
              } catch {
                 ViewControllerUtils.showAlert(title: NSLocalizedString("Error importing Expenses", comment: ""), message: String(format: NSLocalizedString("Importing from s failed.", comment: ""), (urls[0].lastPathComponent)), viewController: self)
