@@ -55,7 +55,7 @@ class Model {
         ownAccountsByRecordId.removeAll()
         let (accounts, error) = CDAccountDAO.sharedInstance.load()
         guard error == nil else {
-            let message = NSLocalizedString("Error loading accounts from iCloud", comment: "")
+            let message = NSLocalizedString("Error loading accounts", comment: "")
             self.cloudAccessError(message: message, error: error! as NSError)
             return
         }
@@ -91,13 +91,18 @@ class Model {
     }
     
     func createAccount(accountName : String) -> (Account?, Error?) {
+        let config = SystemConfig.sharedInstance
+        
         let account = CDAccountDAO.sharedInstance.create()
         account?.accountName = accountName
+        account?.currencyCode = config.appCurrencyCode
+        account?.currencySymbol = config.appCurrencySymbol
+        
         self.ownAccountsByName[account!.accountName!] = account
         self.ownAccountsByRecordId[account!.objectID] = account
         let error = CoreDataUtil.sharedInstance.saveChanges()
         guard error == nil else {
-            let message = NSLocalizedString("Error saving new account \(accountName) to iCloud", comment: "")
+            let message = NSLocalizedString("Error saving new account \(accountName)", comment: "")
             self.cloudAccessError(message: message, error: error! as NSError)
             return (account, error)
         }
@@ -233,7 +238,7 @@ class Model {
         } else {
             let (account, error) = createAccount(accountName: accountName)
             guard error == nil else {
-                let message = NSLocalizedString("Error creating account in iCloud", comment: "")
+                let message = NSLocalizedString("Error creating account", comment: "")
                 self.cloudAccessError(message: message, error: error! as NSError)
                 return
             }

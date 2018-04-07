@@ -2,6 +2,8 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Account" representedClassName="Account" syncable="YES" codeGenerationType="class">
         <attribute name="accountName" attributeType="String" syncable="YES"/>
+        <attribute name="currencyCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currencySymbol" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Expense" representedClassName="Expense" syncable="YES" codeGenerationType="class">
         <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -20,7 +22,7 @@
         <attribute name="listName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Account" positionX="-180" positionY="-243" width="128" height="60"/>
+        <element name="Account" positionX="-180" positionY="-243" width="128" height="90"/>
         <element name="Expense" positionX="97" positionY="-243" width="128" height="193"/>
         <element name="NamedItem" positionX="-308" positionY="-135" width="128" height="75"/>
     </elements>

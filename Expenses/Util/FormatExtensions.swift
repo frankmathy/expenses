@@ -66,7 +66,7 @@ extension Float {
         guard self != 0 else {
             return ""
         }
-        return Locale.current.currencySymbol! + self.asLocaleCurrency.trimmingCharacters(in: .whitespaces)
+        return SystemConfig.sharedInstance.appCurrencySymbol + self.asLocaleCurrency.trimmingCharacters(in: .whitespaces)
     }
 }
 
@@ -86,7 +86,7 @@ extension Double {
         guard self != 0 else {
             return ""
         }
-        return Locale.current.currencySymbol! + self.asLocaleCurrency.trimmingCharacters(in: .whitespaces)
+        return SystemConfig.sharedInstance.appCurrencySymbol + self.asLocaleCurrency.trimmingCharacters(in: .whitespaces)
     }
 }
 
