@@ -6,7 +6,7 @@
   Copyright © 2017 Frank Mathy. All rights reserved.
 */
 
-"Expenses" = "Ausgaben";
+"Expenses" = "ExpenseKeeper";
 "OK" = "OK";
 "Edit Expense" = "Ausgabe ändern";
 "Add Expense" = "Ausgabe hinzufügen";
@@ -14,7 +14,7 @@
 "Cancel" = "Abbrechen";
 "LogIntoICloud" = "Melden Sie sich in der iCloud an diesem Gerät an und stellen Sie sicher, dass iCloud drive eingeschaltet ist.";
 "Reloading Expenses" = "Lade Ausgaben...";
-"Error loading expenses from iCloud" = "Fehler beim Laden der Ausgaben aus iCloud";
+"Error loading expenses from iCloud" = "Fehler beim Laden der Ausgaben";
 "Error saving expense record" = "Fehler beim Speichern der Ausgabe";
 "Error deleting expense record" = "Fehler beim Löschen der Ausgabe";
 "Error reading iCloud subscriptions" = "Fehler bei Lesen der iCloud Subscriptions";
