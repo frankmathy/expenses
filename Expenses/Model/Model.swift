@@ -281,7 +281,7 @@ class Model {
             let dateFormat = DateFormatter()
             dateFormat.dateFormat = "dd.MM."
             let startDateString = dateFormat.string(from: Model.sharedInstance.dateIntervalSelection.startDate!)
-            dateFormat.dateFormat = "dd.MM.yyyy"
+            dateFormat.dateFormat = "dd.MM.yy"
             let endDateString = dateFormat.string(from: Model.sharedInstance.dateIntervalSelection.endDate!)
             return startDateString + "-" + endDateString
         }
