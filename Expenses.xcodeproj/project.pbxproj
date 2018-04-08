@@ -210,13 +210,6 @@
 			path = CloudKit;
 			sourceTree = "<group>";
 		};
-		010BA3F12078C3AE00AD42EE /* html */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = html;
-			sourceTree = "<group>";
-		};
 		0195738A204C3FB10035B19A /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,7 +295,6 @@
 		852F27C31FCA2C0C006988A5 /* Expenses */ = {
 			isa = PBXGroup;
 			children = (
-				010BA3F12078C3AE00AD42EE /* html */,
 				852F27CD1FCA2C0C006988A5 /* LaunchScreen.storyboard */,
 				852F27C81FCA2C0C006988A5 /* Main.storyboard */,
 				852F27CB1FCA2C0C006988A5 /* Assets.xcassets */,

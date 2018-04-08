@@ -620,11 +620,18 @@
                                 <segue destination="WdM-Yb-FVD" kind="unwind" unwindAction="cancelToExpensesViewController:" id="f1i-1b-sfc"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="hxo-sG-mne">
-                            <connections>
-                                <segue destination="WdM-Yb-FVD" kind="unwind" unwindAction="saveExpenseDetail:" id="vHU-Bm-TgA"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="save" id="hxo-sG-mne">
+                                <connections>
+                                    <segue destination="WdM-Yb-FVD" kind="unwind" unwindAction="saveExpenseDetail:" id="vHU-Bm-TgA"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="Help" id="HUN-KA-Y1n">
+                                <connections>
+                                    <action selector="onHelpButtonPressed:" destination="veN-7C-ofw" id="3OI-ma-JyF"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="accountField" destination="iUo-lt-YbS" id="v26-fi-KdQ"/>

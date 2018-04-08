@@ -21,6 +21,7 @@ class SystemConfig {
     let KeyLastProject = "LastProject"
     let KeyLastAccount = "LastAccount"
     let KeyMainScreenHelpWasDisplayed = "MainScreenHelpWasDisplayed"
+    let KeyExpenseDetailsScreenHelpWasDisplayed = "ExpenseDetailsScreenHelpWasDisplayed"
 
     var appCurrencyCode: String {
         get {
@@ -83,6 +84,16 @@ class SystemConfig {
         
         set(category) {
             userDefaults.set(category, forKey: KeyMainScreenHelpWasDisplayed)
+        }
+    }
+    
+    var expenseDetailsScreenHelpWasDisplayed: Bool {
+        get {
+            return userDefaults.bool(forKey: KeyExpenseDetailsScreenHelpWasDisplayed)
+        }
+        
+        set(category) {
+            userDefaults.set(category, forKey: KeyExpenseDetailsScreenHelpWasDisplayed)
         }
     }
     

@@ -19,7 +19,6 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
     let helpTextIds = [
         "Help.Main.ExpenseList", "Help.Main.DateSelector", "Help.Main.AddButton", "Help.Main.ShareButton", "Help.Main.EditButton" ]
 
-    
     private var selectedExpense : Expense?
     
     private let refreshTool = UIRefreshControl()
@@ -63,7 +62,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+    
         if !SystemConfig.sharedInstance.mainScreenHelpWasDisplayed {
             SystemConfig.sharedInstance.mainScreenHelpWasDisplayed = true
             self.coachMarksController.start(on: self)
@@ -80,7 +79,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
     }
     
     func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
-        return 5
+        return helpTextIds.count
     }
     
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {

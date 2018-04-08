@@ -43,9 +43,15 @@
 "Yes" = "Ja";
 "No" = "Nein";
 "Next" = "Weiter";
+"Done" = "Fertig";
 
 "Help.Main.ExpenseList" = "Liste der Ausgaben. Klicke auf Ausgabe zum Bearbeiten.";
 "Help.Main.DateSelector" = "Klick auf Datum um Datumsbereich zu ändern (Woche, Monat, Jahr, Alle). Klick auf Pfeile um vorwärts / rückwärts zu springen.";
 "Help.Main.AddButton" = "Neue Ausgabe hinzufügen";
 "Help.Main.ShareButton" = "Teilen / exportieren der sichtbaren Ausgaben (als CSV-Datei)";
 "Help.Main.EditButton" = "Löschmodus aktivieren";
+
+"Help.ExpenseDetails.General" = "Ausgabendetails hier und darunter eingeben";
+"Help.ExpenseDetails.Location" = "Klick hier um einen Foursquare-Ort zuzuordnen";
+"Help.ExpenseDetails.Comment" = "Beliebigen Kommentar hier eingeben";
+"Help.ExpenseDetails.Save" = "Speichern der Ausgabe";
