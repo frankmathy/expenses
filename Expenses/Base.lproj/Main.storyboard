@@ -6,7 +6,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -854,32 +853,6 @@
             </objects>
             <point key="canvasLocation" x="5924" y="822"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="ws7-tz-A6d">
-            <objects>
-                <viewController id="6AK-Lr-nhB" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Nv7-ql-L81">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="H9b-cq-3dV">
-                                <rect key="frame" x="8" y="28" width="359" height="267"/>
-                            </mapView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="H9b-cq-3dV" firstAttribute="leading" secondItem="cmB-fU-1rD" secondAttribute="leading" constant="8" id="2YJ-FH-fnv"/>
-                            <constraint firstItem="H9b-cq-3dV" firstAttribute="height" secondItem="Nv7-ql-L81" secondAttribute="height" multiplier="0.4" id="9WX-Da-UpG"/>
-                            <constraint firstItem="cmB-fU-1rD" firstAttribute="trailing" secondItem="H9b-cq-3dV" secondAttribute="trailing" constant="8" id="i92-4l-aaX"/>
-                            <constraint firstItem="H9b-cq-3dV" firstAttribute="top" secondItem="cmB-fU-1rD" secondAttribute="top" constant="8" id="mSe-1m-jbH"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="cmB-fU-1rD"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NKN-Mz-bX0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5924" y="1520"/>
-        </scene>
         <!--Expenses-->
         <scene sceneID="umg-CB-hFa">
             <objects>
@@ -1024,7 +997,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="center" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="xGl-Cy-2pJ">
-                                <rect key="frame" x="10" y="210" width="355" height="247"/>
+                                <rect key="frame" x="10" y="230" width="355" height="207"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Expenses" translatesAutoresizingMaskIntoConstraints="NO" id="CQ1-xh-cAZ">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="60"/>
@@ -1041,8 +1014,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPX-fP-9Bv">
-                                        <rect key="frame" x="0.0" y="124" width="355" height="40"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPX-fP-9Bv">
+                                        <rect key="frame" x="0.0" y="124" width="355" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Help"/>
                                         <connections>
@@ -1050,7 +1023,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NU-8r-FNc">
-                                        <rect key="frame" x="0.0" y="164" width="355" height="41"/>
+                                        <rect key="frame" x="0.0" y="124" width="355" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Import Expenses"/>
                                         <connections>
@@ -1058,7 +1031,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnS-mZ-l4d">
-                                        <rect key="frame" x="0.0" y="205" width="355" height="42"/>
+                                        <rect key="frame" x="0.0" y="165" width="355" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Delete All Expenses">
                                             <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
