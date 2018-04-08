@@ -46,6 +46,10 @@
 "No" = "Nein";
 "Next" = "Weiter";
 "Done" = "Fertig";
+"Edit" = "Ändern";
+"Delete" = "Löschen";
+"Delete account" = "Konto löschen: ";
+"Edit account" = "Konto bearbeiten";
 
 "Help.Main.ExpenseList" = "Liste der Ausgaben. Klicke auf Ausgabe zum Bearbeiten.";
 "Help.Main.DateSelector" = "Klick auf Datum um Datumsbereich zu ändern (Woche, Monat, Jahr, Alle). Klick auf Pfeile um vorwärts / rückwärts zu springen.";

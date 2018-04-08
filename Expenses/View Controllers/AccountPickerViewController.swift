@@ -56,6 +56,53 @@ class AccountPickerViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteAction = UITableViewRowAction(style: .normal, title: NSLocalizedString("Delete", comment: "")) { (action, indexPath) in
+            let account = self.accounts[indexPath.row]
+            self.deleteAccount(account: account)
+        }
+        deleteAction.backgroundColor = .red
+
+        let renameAction = UITableViewRowAction(style: .normal, title: NSLocalizedString("Edit", comment: "")) { (action, indexPath) in
+            let account = self.accounts[indexPath.row]
+            self.editAccount(account: account)
+        }
+        renameAction.backgroundColor = .blue
+        
+        return [renameAction, deleteAction]
+    }
+    
+    func deleteAccount(account : Account) {
+        let alert = UIAlertController(title: NSLocalizedString("Expenses", comment: ""), message: NSLocalizedString("Delete account", comment: "")  + account.accountName! + "?", preferredStyle: .alert)
+        let yes = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive, handler: { (action) -> Void in
+            CDAccountDAO.sharedInstance.delete(account: account)
+            Model.sharedInstance.loadAccounts()
+            self.accounts = Model.sharedInstance.getAccounts()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        })
+        let no = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default, handler: { (action) -> Void in })
+        alert.addAction(yes)
+        alert.addAction(no)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func editAccount(account : Account) {
+        ViewControllerUtils.showTextEntryAlert(title: NSLocalizedString("Edit Account", comment: ""), message: NSLocalizedString("Enter new account name.", comment: ""), fieldName: NSLocalizedString("Name", comment: ""), fieldValue: account.accountName, viewController: self) { (itemString) in
+            if itemString != "" {
+                account.accountName = itemString
+                CDAccountDAO.sharedInstance.save()
+                Model.sharedInstance.loadAccounts()
+                self.accounts = Model.sharedInstance.getAccounts()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "SaveAccount",
             let cell = sender as? UITableViewCell,

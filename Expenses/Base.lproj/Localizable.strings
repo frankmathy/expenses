@@ -46,6 +46,10 @@
 "No" = "No";
 "Next" = "Next";
 "Done" = "Done";
+"Edit" = "Edit";
+"Delete" = "Delete";
+"Delete account" = "Delete account: ";
+"Edit account" = "Edit account";
 
 "Help.Main.ExpenseList" = "List of expenses. Click an expense to edit it.";
 "Help.Main.DateSelector" = "Click date label to change visible time period type (week, month, year, all). Click arrows to move forward / backward in time.";

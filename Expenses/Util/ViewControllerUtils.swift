@@ -16,7 +16,7 @@ class ViewControllerUtils {
         viewController.present(alertController, animated: true, completion: nil)
     }
     
-    static func showTextEntryAlert(title : String, message : String, fieldName : String, viewController : UIViewController, onSavePressed : @escaping (_ inputString: String) -> Void) {
+    static func showTextEntryAlert(title : String, message : String, fieldName : String, fieldValue : String? = nil, viewController : UIViewController, onSavePressed : @escaping (_ inputString: String) -> Void) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default))
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Save", comment: ""), style: .default) { (alertAction) in
@@ -27,6 +27,9 @@ class ViewControllerUtils {
         alertController.addTextField { (textField) in
             textField.placeholder = fieldName
             textField.textAlignment = .left
+            if fieldValue != nil {
+                textField.text = fieldValue
+            }
         }
         
         viewController.present(alertController, animated: true, completion: nil)

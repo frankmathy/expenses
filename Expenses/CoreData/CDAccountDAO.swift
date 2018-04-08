@@ -43,4 +43,15 @@ class CDAccountDAO {
             return (nil, error)
         }
     }
+    
+    func delete(account : Account) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        managedContext.delete(account)
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not delete account. \(error), \(error.userInfo)")
+        }
+    }
 }
