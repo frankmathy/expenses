@@ -29,7 +29,9 @@
 "Category" = "Kategorie";
 "Project" = "Projekt";
 "Add New Item" = "Neuen Eintrag hinzufügen";
+"Add New Account" = "Neues Konto hinzufügen";
 "Enter Item Name." = "Namen des Eintrag eingeben.";
+"Enter Account Name." = "Namen des Kontos eingeben.";
 "Name" = "Name";
 "Save" = "Speichern";
 "Selected Venue" = "Ort: ";

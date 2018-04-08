@@ -20,6 +20,16 @@ class CDAccountDAO {
         return Account(context: managedContext)
     }
     
+    func save() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
     func load() -> ([Account]?, Error?) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return (nil, nil)}
         let managedContext = appDelegate.persistentContainer.viewContext

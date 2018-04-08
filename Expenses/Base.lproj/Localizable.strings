@@ -29,7 +29,9 @@
 "Category" = "Category";
 "Project" = "Project";
 "Add New Item" = "Add New Item";
+"Add New Account" = "Add New Account";
 "Enter Item Name." = "Enter Item Name.";
+"Enter Account Name." = "Enter Account Name.";
 "Name" = "Name";
 "Save" = "Save";
 "Selected Venue" = "Venue: ";

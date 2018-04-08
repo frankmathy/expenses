@@ -854,6 +854,11 @@
                                 <segue destination="5ZJ-Ie-4kf" kind="unwind" unwindAction="unwindCancelExpenseAccountWithSegue:" id="UAA-Re-VPe"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="b1u-eF-dfN">
+                            <connections>
+                                <action selector="onAddButtonPressed:" destination="Co0-yj-OUP" id="mez-rY-0Uz"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L35-Tq-qh9" userLabel="First Responder" sceneMemberID="firstResponder"/>

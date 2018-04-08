@@ -39,6 +39,23 @@ class AccountPickerViewController: UITableViewController {
         return cell
     }
     
+    @IBAction func onAddButtonPressed(_ sender: UIBarButtonItem) {
+        ViewControllerUtils.showTextEntryAlert(title: NSLocalizedString("Add New Account", comment: ""), message: NSLocalizedString("Enter Account Name.", comment: ""), fieldName: NSLocalizedString("Name", comment: ""), viewController: self) { (itemString) in
+            if itemString != "" {
+                let account = CDAccountDAO.sharedInstance.create()
+                account?.currencyCode = SystemConfig.sharedInstance.appCurrencyCode
+                account?.currencySymbol = SystemConfig.sharedInstance.appCurrencySymbol
+                account?.accountName = itemString
+                CDAccountDAO.sharedInstance.save()
+                Model.sharedInstance.loadAccounts()
+                self.accounts = Model.sharedInstance.getAccounts()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "SaveAccount",
             let cell = sender as? UITableViewCell,
