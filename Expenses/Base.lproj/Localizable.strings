@@ -57,3 +57,6 @@
 "Help.ExpenseDetails.Save" = "Save the expense";
 
 "Help.ExpenseReport.Main" = "Report with the accrued Expense costs by category";
+
+"Help.Info.Import" = "Import CSV file with expenses (i.e. from previous export)";
+"Help.Info.DeleteAll" = "Delete all expenses. Caution: All expenses will be deleted (after security question)!";

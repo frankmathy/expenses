@@ -1074,7 +1074,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GrA-n0-Iyq"/>
                     </view>
-                    <navigationItem key="navigationItem" id="rVh-a8-GfW"/>
+                    <navigationItem key="navigationItem" id="rVh-a8-GfW">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="Help" id="N2E-P4-Agk">
+                            <connections>
+                                <action selector="onHelpButtonPressed:" destination="8sw-YT-JQ7" id="8yJ-Po-Q9u"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="deleteAllButton" destination="cnS-mZ-l4d" id="ioZ-uR-xfr"/>
+                        <outlet property="importButton" destination="0NU-8r-FNc" id="D68-FD-Cgd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Kf-4v-1R4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

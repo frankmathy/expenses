@@ -8,11 +8,19 @@
 
 import UIKit
 import MobileCoreServices
+import Instructions
 
-class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UINavigationControllerDelegate {
+class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UINavigationControllerDelegate, CoachMarksControllerDataSource, CoachMarksControllerDelegate {
     
     final let helpUrl = "https://github.com/frankmathy/expenses/wiki/UserGuide"
-
+    
+    let coachMarksController = CoachMarksController()
+    
+    let helpTextIds = [ "Help.Info.Import", "Help.Info.DeleteAll" ]
+    
+    @IBOutlet weak var importButton: UIButton!
+    @IBOutlet weak var deleteAllButton: UIButton!
+    
     @IBAction func importDataPressed(_ sender: UIButton) {
         let picker = UIDocumentPickerViewController(documentTypes: [kUTTypePlainText as String], in: .import)
         picker.delegate = self
@@ -35,18 +43,46 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
         UIApplication.shared.open(URL(string: helpUrl)!, options: [:], completionHandler: nil)
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.coachMarksController.dataSource = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !SystemConfig.sharedInstance.infoScreenHelpWasDisplayed {
+            SystemConfig.sharedInstance.infoScreenHelpWasDisplayed = true
+            self.coachMarksController.start(on: self)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.coachMarksController.stop(immediately: true)
+    }
+    
+    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
+        return helpTextIds.count
+    }
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
+        switch index {
+        case 0:
+            return coachMarksController.helper.makeCoachMark(for: importButton)
+        case 1:
+            return coachMarksController.helper.makeCoachMark(for: deleteAllButton)
+        default:
+            return coachMarksController.helper.makeCoachMark(for: self.view)
+        }
+    }
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
+        let coachViews = coachMarksController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: coachMark.arrowOrientation)
+        coachViews.bodyView.hintLabel.text = NSLocalizedString(helpTextIds[index], comment: "")
+        coachViews.bodyView.nextLabel.text = NSLocalizedString(index < helpTextIds.count-1  ? "Next" : "Done", comment: "")
+        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
+    }
+
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         if urls.count > 0 {
              do {
@@ -92,4 +128,9 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
     }
+    
+    @IBAction func onHelpButtonPressed(_ sender: UIBarButtonItem) {
+        self.coachMarksController.start(on: self)
+    }
+    
 }

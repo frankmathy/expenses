@@ -57,3 +57,6 @@
 "Help.ExpenseDetails.Save" = "Speichern der Ausgabe";
 
 "Help.ExpenseReport.Main" = "Bericht mit den summierten Ausgabenkosten nach Kategorie";
+
+"Help.Info.Import" = "Importiere CSV-Datei mit Ausgaben (z.B. von vorhergehendem Export)";
+"Help.Info.DeleteAll" = "Lösche alle Ausgaben Vorsicht: Alle Ausgaben werden gelöscht (nach eine Sicherheitsabfrage)!";
