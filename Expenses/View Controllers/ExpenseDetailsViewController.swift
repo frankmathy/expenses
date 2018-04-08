@@ -38,12 +38,28 @@ class ExpenseDetailsViewController: UITableViewController {
             navigationItem.title = NSLocalizedString("Add Expense", comment: "")
             expense = CDExpensesDAO.sharedInstance.create()
             expense?.date = Date()
-            expense?.category = config.lastCategory
+            if config.lastCategory != nil {
+                expense?.category = config.lastCategory
+            } else {
+                let (categories, error) = CDNamedItemDAO.sharedInstance.load(itemType: NamedItemPickerViewController.TYPE_CATEGORIES)
+                if error == nil && categories != nil && (categories?.count)! > 0 {
+                    expense?.category = categories?[0].itemName
+                    config.lastCategory = expense?.category
+                }
+            }
             expense?.account = Model.sharedInstance.getDefaultAccount()
             if let accountName = config.lastAccount {
                 expense?.account = Model.sharedInstance.getAccount(accountName: accountName)
             }
-            expense?.project = config.lastProject
+            if config.lastProject != nil {
+                expense?.project = config.lastProject
+            } else {
+                let (projects, error) = CDNamedItemDAO.sharedInstance.load(itemType: NamedItemPickerViewController.TYPE_PROJECTS)
+                if error == nil && projects != nil && (projects?.count)! > 0 {
+                    expense?.project = projects?[0].itemName
+                    config.lastProject = expense?.project
+                }
+            }
             expense?.amount = 0.0
             expense?.comment = ""
         } else {

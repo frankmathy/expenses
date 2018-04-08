@@ -36,24 +36,6 @@ class NamedItemPickerViewController: UITableViewController {
             return
         }
         self.valueList = namedItems
-        if self.valueList?.count == 0 {
-            // Initialize with default values
-            let itemStrings = PListUtils.loadDefaultValues(forResource: "DefaultValues", itemId: self.itemType!)
-            if itemStrings != nil {
-                for itemString in itemStrings! {
-                    let newItem = CDNamedItemDAO.sharedInstance.create()
-                    newItem?.itemName = itemString
-                    newItem?.listName = self.itemType
-                    self.valueList?.append(newItem!)
-                    CDNamedItemDAO.sharedInstance.save(item: newItem!)
-                }
-
-                // Update table
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-        }
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let values = valueList else {
@@ -112,7 +94,7 @@ class NamedItemPickerViewController: UITableViewController {
                     self.tableView.reloadData()
                 }
                 
-                CDNamedItemDAO.sharedInstance.save(item: newItem!)
+                CDNamedItemDAO.sharedInstance.save()
             }
         }
     }

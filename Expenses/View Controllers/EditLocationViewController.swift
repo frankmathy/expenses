@@ -138,9 +138,11 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
     }
     
     func showLocationAlert() {
+        /* TODO Not correctly displaying, fix later
         let alert = UIAlertController(title: NSLocalizedString("Location Disabled", comment: ""), message: NSLocalizedString("Please enable location", comment: ""), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
+ */
     }
 
     func centerMapOnLocation(location: CLLocation) {

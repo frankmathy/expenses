@@ -20,7 +20,7 @@ class CDNamedItemDAO {
         return NamedItem(context: managedContext)
     }
     
-    func save(item : NamedItem) {
+    func save() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         do {
@@ -29,7 +29,7 @@ class CDNamedItemDAO {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
-    
+
     func load(itemType : String) -> ([NamedItem]?, Error?) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return (nil, nil) }
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -37,7 +37,23 @@ class CDNamedItemDAO {
         namedItemFetch.predicate = NSPredicate(format: "listName == %@", itemType)
         namedItemFetch.sortDescriptors = [NSSortDescriptor(key: "itemName", ascending: true)]
         do {
-            let items = try managedContext.fetch(namedItemFetch)
+            var items = try managedContext.fetch(namedItemFetch)
+            
+            // If not available, load defaults if available
+            if items.count == 0 {
+                // Initialize with default values
+                let itemStrings = PListUtils.loadDefaultValues(forResource: "DefaultValues", itemId: itemType)
+                if itemStrings != nil {
+                    for itemString in itemStrings! {
+                        let newItem = CDNamedItemDAO.sharedInstance.create()
+                        newItem?.itemName = itemString
+                        newItem?.listName = itemType
+                        items.append(newItem!)
+                    }
+                    save()
+                }
+            }
+            
             return (items, nil)
         } catch let error as NSError {
             print("Could not load. \(error), \(error.userInfo)")
