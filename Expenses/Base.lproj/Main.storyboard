@@ -225,6 +225,11 @@
                                     <action selector="shareButtonPressed:" destination="Ccm-JH-a5y" id="ZZc-Cc-h0t"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem image="Help" id="xBv-eo-jDf">
+                                <connections>
+                                    <action selector="helpButtonPressed:" destination="Ccm-JH-a5y" id="mES-b9-j2j"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -1172,6 +1177,7 @@
         <image name="Euro" width="50" height="50"/>
         <image name="Expenses" width="60" height="60"/>
         <image name="FilterOff" width="50" height="50"/>
+        <image name="Help" width="25" height="25"/>
         <image name="Info" width="25" height="25"/>
         <image name="Location" width="60" height="60"/>
         <image name="Project" width="50" height="50"/>

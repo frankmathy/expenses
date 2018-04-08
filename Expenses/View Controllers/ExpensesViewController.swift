@@ -75,6 +75,10 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
         self.coachMarksController.stop(immediately: true)
     }
     
+    @IBAction func helpButtonPressed(_ sender: UIBarButtonItem) {
+        self.coachMarksController.start(on: self)
+    }
+    
     func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
         return 5
     }
