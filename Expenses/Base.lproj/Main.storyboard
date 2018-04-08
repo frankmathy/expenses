@@ -229,7 +229,9 @@
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addExpenseButton" destination="Xbu-vw-OZ1" id="drL-5S-msF"/>
                         <outlet property="searchDisplayController" destination="3uE-Fl-kBt" id="nWm-o4-gQ2"/>
+                        <outlet property="shareButton" destination="74O-EJ-1VH" id="0h2-Lf-xeW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5nj-nM-L6g" userLabel="First Responder" sceneMemberID="firstResponder"/>

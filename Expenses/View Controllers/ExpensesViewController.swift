@@ -7,8 +7,19 @@
 //
 
 import UIKit
+import Instructions
 
-class ExpensesViewController: UITableViewController, ModelDelegate {
+class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksControllerDataSource, CoachMarksControllerDelegate {
+    
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var addExpenseButton: UIBarButtonItem!
+    
+    let coachMarksController = CoachMarksController()
+    
+    let helpTextIds = [
+        "Help.Main.ExpenseList", "Help.Main.DateSelector", "Help.Main.AddButton", "Help.Main.ShareButton", "Help.Main.EditButton" ]
+
+    
     private var selectedExpense : Expense?
     
     private let refreshTool = UIRefreshControl()
@@ -21,6 +32,8 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.coachMarksController.dataSource = self
 
         // Remove blank table row lines
         self.tableView.tableFooterView = UIView()
@@ -46,6 +59,74 @@ class ExpensesViewController: UITableViewController, ModelDelegate {
         Model.sharedInstance.addObserver(observer: self)
         Model.sharedInstance.loadAccounts()
         self.reloadExpenses(refreshPulled: false)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !SystemConfig.sharedInstance.mainScreenHelpWasDisplayed {
+            SystemConfig.sharedInstance.mainScreenHelpWasDisplayed = true
+            self.coachMarksController.start(on: self)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.coachMarksController.stop(immediately: true)
+    }
+    
+    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
+        return 5
+    }
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
+        switch index {
+        case 0:
+            let x = UIScreen.main.bounds.width / 2
+            let y = UIScreen.main.bounds.height / 2
+            let frame = CGRect(x: x, y: y, width: 0, height: 0)
+            let overlayImage = createInvisibleImage(cellFrame: frame)
+            self.navigationController?.view.addSubview(overlayImage)
+            return coachMarksController.helper.makeCoachMark(for: overlayImage)
+        case 1:
+            var cellFrame: CGRect = CGRect()
+            let app = UIApplication.shared
+            cellFrame.origin.y = self.navigationController!.navigationBar.frame.size.height + app.statusBarFrame.size.height
+            cellFrame.origin.x = tableView.frame.origin.x
+            cellFrame.size = CGSize(width: tableView.frame.size.width, height: self.tableView.rowHeight)
+            let overlayImage = createInvisibleImage(cellFrame: cellFrame)
+            self.navigationController?.view.addSubview(overlayImage)
+            return coachMarksController.helper.makeCoachMark(for: overlayImage)
+        case 2:
+            let barButton = addExpenseButton.value(forKey: "view") as! UIView
+            return coachMarksController.helper.makeCoachMark(for: barButton)
+        case 3:
+            let barButton = shareButton.value(forKey: "view") as! UIView
+            return coachMarksController.helper.makeCoachMark(for: barButton)
+        case 4:
+            let editButtonItem = navigationItem.leftBarButtonItem
+            let barButton = editButtonItem?.value(forKey: "view") as! UIView
+            return coachMarksController.helper.makeCoachMark(for: barButton)
+        default:
+            return coachMarksController.helper.makeCoachMark(for: self.view)
+        }
+    }
+    
+    private func createInvisibleImage(cellFrame: CGRect) -> UIImageView {
+        let overlayImage = UIImageView(frame: cellFrame)
+        overlayImage.image = UIImage(named: "arrow_horiz_right_short")
+        overlayImage.contentMode = .center
+        overlayImage.isHidden=true
+        return overlayImage
+    }
+    
+
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
+        let coachViews = coachMarksController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: coachMark.arrowOrientation)
+        coachViews.bodyView.hintLabel.text = NSLocalizedString(helpTextIds[index], comment: "")
+        coachViews.bodyView.nextLabel.text = NSLocalizedString(index < helpTextIds.count-1  ? "Next" : "OK", comment: "")
+        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
     }
     
     func modelUpdated() {
