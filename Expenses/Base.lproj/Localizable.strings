@@ -55,3 +55,5 @@
 "Help.ExpenseDetails.Location" = "Click here to assign a Foursquare venue";
 "Help.ExpenseDetails.Comment" = "Enter any comment here";
 "Help.ExpenseDetails.Save" = "Save the expense";
+
+"Help.ExpenseReport.Main" = "Report with the accrued Expense costs by category";

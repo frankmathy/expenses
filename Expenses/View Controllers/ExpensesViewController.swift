@@ -123,8 +123,6 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
         return overlayImage
     }
     
-
-    
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
         let coachViews = coachMarksController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: coachMark.arrowOrientation)
         coachViews.bodyView.hintLabel.text = NSLocalizedString(helpTextIds[index], comment: "")

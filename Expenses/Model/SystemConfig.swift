@@ -22,6 +22,8 @@ class SystemConfig {
     let KeyLastAccount = "LastAccount"
     let KeyMainScreenHelpWasDisplayed = "MainScreenHelpWasDisplayed"
     let KeyExpenseDetailsScreenHelpWasDisplayed = "ExpenseDetailsScreenHelpWasDisplayed"
+    let KeyExpenseReportScreenHelpWasDisplayed = "ExpenseReportScreenHelpWasDisplayed"
+    let KeyInfoScreenHelpWasDisplayed = "InfoScreenHelpWasDisplayed"
 
     var appCurrencyCode: String {
         get {
@@ -97,5 +99,23 @@ class SystemConfig {
         }
     }
     
-
+    var expenseReportScreenHelpWasDisplayed: Bool {
+        get {
+            return userDefaults.bool(forKey: KeyExpenseReportScreenHelpWasDisplayed)
+        }
+        
+        set(category) {
+            userDefaults.set(category, forKey: KeyExpenseReportScreenHelpWasDisplayed)
+        }
+    }
+    
+    var infoScreenHelpWasDisplayed: Bool {
+        get {
+            return userDefaults.bool(forKey: KeyInfoScreenHelpWasDisplayed)
+        }
+        
+        set(category) {
+            userDefaults.set(category, forKey: KeyInfoScreenHelpWasDisplayed)
+        }
+    }
 }

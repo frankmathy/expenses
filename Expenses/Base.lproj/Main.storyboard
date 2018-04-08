@@ -933,7 +933,13 @@
                             <outlet property="delegate" destination="vex-bh-bZE" id="JGV-eo-cVu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Expense Totals" id="smR-fC-S2K"/>
+                    <navigationItem key="navigationItem" title="Expense Totals" id="smR-fC-S2K">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="Help" id="emD-7o-Lzl">
+                            <connections>
+                                <action selector="helpButtonPressed:" destination="vex-bh-bZE" id="7Tz-uO-FHe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cb0-0m-nNv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
