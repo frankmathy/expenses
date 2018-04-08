@@ -5,5 +5,5 @@
   Created by Frank Mathy on 05.12.17.
   Copyright © 2017 Frank Mathy. All rights reserved.
 */
-"CFBundleDisplayName" = "ExpenseKeeper";
-"NSHumanReadableCopyright" = "2017 Frank Mathy - Alle Rechte vorbehalten.";
+"CFBundleDisplayName" = "Expensly";
+"NSHumanReadableCopyright" = "2018 Frank Mathy - Alle Rechte vorbehalten.";

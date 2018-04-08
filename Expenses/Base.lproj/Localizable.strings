@@ -6,7 +6,7 @@
   Copyright © 2017 Frank Mathy. All rights reserved.
 */
 
-"Expenses" = "ExpenseKeeper";
+"Expenses" = "Expensly";
 "OK" = "OK";
 "Edit Expense" = "Edit Expense";
 "Add Expense" = "Add Expense";
@@ -17,8 +17,8 @@
 "Error loading expenses from iCloud" = "Error loading expenses";
 "Error saving expense record" = "Error saving expense record";
 "Error deleting expense record" = "Error deleting expense record";
-"Error reading iCloud subscriptions" = "Error reading iCloud subscriptions";
-"Error adding iCloud subscription" = "Error adding iCloud subscription";
+"Error reading iCloud subscriptions" = "Error reading data subscriptions";
+"Error adding iCloud subscription" = "Error adding data subscription";
 "Set Date Interval" = "Set Date Interval";
 "Today" = "Today";
 "All" = "All";

@@ -102,7 +102,7 @@
 "bRY-6v-fNA.text" = "Ort";
 
 /* Class = "UILabel"; text = "Expenses"; ObjectID = "cCD-NW-ky9"; */
-"cCD-NW-ky9.text" = "Ausgaben";
+"cCD-NW-ky9.text" = "Expensly";
 
 /* Class = "UILabel"; text = "Created by at"; ObjectID = "cDO-mt-heD"; */
 "cDO-mt-heD.text" = "Erstellt von/am";
