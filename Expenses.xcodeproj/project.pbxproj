@@ -140,6 +140,7 @@
 		855032322072BA2D002943C8 /* AppCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppCredentials.swift; path = ../../../../Documents/Development/iOS/FrankMathyCredentials/AppCredentials.swift; sourceTree = "<group>"; };
 		85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseGroupCell.swift; sourceTree = "<group>"; };
 		8553834020781E9300F3CFC2 /* SystemConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemConfig.swift; sourceTree = "<group>"; };
+		855CE78B207C04DD00E7802D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8564BC4E1FF1C28100B73D52 /* Expenses.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Expenses.entitlements; sourceTree = "<group>"; };
 		857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIntervalSelection.swift; sourceTree = "<group>"; };
 		857764B31FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIntervalSelectionTests.swift; sourceTree = "<group>"; };
@@ -809,6 +810,7 @@
 			children = (
 				852F27CE1FCA2C0C006988A5 /* Base */,
 				85C9140020743ED600A770A8 /* de */,
+				855CE78B207C04DD00E7802D /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

@@ -62,7 +62,7 @@
 /* Class = "UILabel"; text = "Category"; ObjectID = "vsP-3P-XX3"; */
 "vsP-3P-XX3.text" = "Category";
 
-/* Class = "UIButton"; normalTitle = "Import Data"; ObjectID = "0NU-8r-FNc"; */
+/* Class = "UIButton"; normalTitle = "Import Expenses"; ObjectID = "0NU-8r-FNc"; */
 "0NU-8r-FNc.normalTitle" = "";
 
 /* Class = "UILabel"; text = "CategoryName"; ObjectID = "48F-6C-OHj"; */
@@ -95,7 +95,7 @@
 /* Class = "UILabel"; text = "Venue"; ObjectID = "bRY-6v-fNA"; */
 "bRY-6v-fNA.text" = "";
 
-/* Class = "UILabel"; text = "Expenses"; ObjectID = "cCD-NW-ky9"; */
+/* Class = "UILabel"; text = "Expensly"; ObjectID = "cCD-NW-ky9"; */
 "cCD-NW-ky9.text" = "";
 
 /* Class = "UILabel"; text = "Created by at"; ObjectID = "cDO-mt-heD"; */
@@ -130,3 +130,27 @@
 
 /* Class = "UILabel"; text = "Address"; ObjectID = "yEz-dR-umQ"; */
 "yEz-dR-umQ.text" = "";
+
+/* Class = "UINavigationItem"; title = "Account"; ObjectID = "Enj-Rf-vfc"; */
+"Enj-Rf-vfc.title" = "";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "HUN-KA-Y1n"; */
+"HUN-KA-Y1n.title" = "";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "N2E-P4-Agk"; */
+"N2E-P4-Agk.title" = "";
+
+/* Class = "UIButton"; normalTitle = "Info"; ObjectID = "UPX-fP-9Bv"; */
+"UPX-fP-9Bv.normalTitle" = "";
+
+/* Class = "UIButton"; normalTitle = "Delete All Expenses"; ObjectID = "cnS-mZ-l4d"; */
+"cnS-mZ-l4d.normalTitle" = "";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "emD-7o-Lzl"; */
+"emD-7o-Lzl.title" = "";
+
+/* Class = "UINavigationItem"; title = "Pick Location"; ObjectID = "lgl-jd-rcl"; */
+"lgl-jd-rcl.title" = "";
+
+/* Class = "UINavigationItem"; title = "Pick"; ObjectID = "ocL-y2-RnE"; */
+"ocL-y2-RnE.title" = "";

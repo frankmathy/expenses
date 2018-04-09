@@ -68,14 +68,8 @@
 /* Class = "UITextField"; placeholder = "Remark"; ObjectID = "hgv-KN-G0T"; */
 "hgv-KN-G0T.placeholder" = "Beschreibung";
 
-/* Class = "UIButton"; normalTitle = "Import Data"; ObjectID = "0NU-8r-FNc"; */
+/* Class = "UIButton"; normalTitle = "Import Expenses"; ObjectID = "0NU-8r-FNc"; */
 "0NU-8r-FNc.normalTitle" = "Importiere Ausgaben";
-
-/* Class = "UILabel"; text = "CategoryName"; ObjectID = "48F-6C-OHj"; */
-/* "48F-6C-OHj.text" = "CategoryName"; */
-
-/* Class = "UIViewController"; title = "InfoViewController"; ObjectID = "8sw-YT-JQ7"; */
-/* "8sw-YT-JQ7.title" = ""; */
 
 /* Class = "UIViewController"; title = "Edit Location"; ObjectID = "AMB-F7-uwc"; */
 "AMB-F7-uwc.title" = "Ort bearbeiten";
@@ -86,12 +80,6 @@
 /* Class = "UITabBarItem"; title = "Expenses"; ObjectID = "Bv8-0j-PxZ"; */
 "Bv8-0j-PxZ.title" = "Ausgaben";
 
-/* Class = "UILabel"; text = "-"; ObjectID = "Gdf-jC-4Kc"; */
-/* "Gdf-jC-4Kc.text" = "";*/
-
-/* Class = "UILabel"; text = "© 2018 Frank Mathy"; ObjectID = "RBR-Do-xeo"; */
-/* "RBR-Do-xeo.text" = ""; */
-
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "RCp-3W-lzO"; */
 "RCp-3W-lzO.normalTitle" = "Knopf";
 
@@ -101,7 +89,7 @@
 /* Class = "UILabel"; text = "Venue"; ObjectID = "bRY-6v-fNA"; */
 "bRY-6v-fNA.text" = "Ort";
 
-/* Class = "UILabel"; text = "Expenses"; ObjectID = "cCD-NW-ky9"; */
+/* Class = "UILabel"; text = "Expensly"; ObjectID = "cCD-NW-ky9"; */
 "cCD-NW-ky9.text" = "Expensly";
 
 /* Class = "UILabel"; text = "Created by at"; ObjectID = "cDO-mt-heD"; */
@@ -130,3 +118,39 @@
 
 /* Class = "UILabel"; text = "Address"; ObjectID = "yEz-dR-umQ"; */
 "yEz-dR-umQ.text" = "Anschrift";
+
+/* Class = "UILabel"; text = "CategoryName"; ObjectID = "48F-6C-OHj"; */
+"48F-6C-OHj.text" = "CategoryName";
+
+/* Class = "UIViewController"; title = "InfoViewController"; ObjectID = "8sw-YT-JQ7"; */
+"8sw-YT-JQ7.title" = "InfoViewController";
+
+/* Class = "UINavigationItem"; title = "Account"; ObjectID = "Enj-Rf-vfc"; */
+"Enj-Rf-vfc.title" = "Konto";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "Gdf-jC-4Kc"; */
+"Gdf-jC-4Kc.text" = "-";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "HUN-KA-Y1n"; */
+"HUN-KA-Y1n.title" = "Element";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "N2E-P4-Agk"; */
+"N2E-P4-Agk.title" = "Element";
+
+/* Class = "UILabel"; text = "© 2018 Frank Mathy"; ObjectID = "RBR-Do-xeo"; */
+"RBR-Do-xeo.text" = "© 2018 Frank Mathy";
+
+/* Class = "UIButton"; normalTitle = "Info"; ObjectID = "UPX-fP-9Bv"; */
+"UPX-fP-9Bv.normalTitle" = "Info";
+
+/* Class = "UIButton"; normalTitle = "Delete All Expenses"; ObjectID = "cnS-mZ-l4d"; */
+"cnS-mZ-l4d.normalTitle" = "Löschen alle Ausgaben";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "emD-7o-Lzl"; */
+"emD-7o-Lzl.title" = "Element";
+
+/* Class = "UINavigationItem"; title = "Pick Location"; ObjectID = "lgl-jd-rcl"; */
+"lgl-jd-rcl.title" = "Wähle Ort";
+
+/* Class = "UINavigationItem"; title = "Pick"; ObjectID = "ocL-y2-RnE"; */
+"ocL-y2-RnE.title" = "Auswahl";
