@@ -51,8 +51,8 @@
 "Delete account" = "Delete account: ";
 "Edit account" = "Edit account";
 
-"Help.Main.ExpenseList" = "List of expenses. Click an expense to edit it.";
-"Help.Main.DateSelector" = "Click date label to change visible time period type (week, month, year, all). Click arrows or swipe left/right to move forward/backward in time.";
+"Help.Main.ExpenseList" = "List of expenses. Swipe left/right to move forward/backward in time. Click an expense to edit it.";
+"Help.Main.DateSelector" = "Click date label to change visible time period type (week, month, year, all). Click arrows to move forward/backward in time.";
 "Help.Main.AddButton" = "Add new expense";
 "Help.Main.ShareButton" = "Share / export visible expenses (as CSV file)";
 "Help.Main.EditButton" = "Start deletion mode";

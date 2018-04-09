@@ -51,8 +51,8 @@
 "Delete account" = "Konto löschen: ";
 "Edit account" = "Konto bearbeiten";
 
-"Help.Main.ExpenseList" = "Liste der Ausgaben. Klicke auf Ausgabe zum Bearbeiten.";
-"Help.Main.DateSelector" = "Klick auf Datum um Datumsbereich zu ändern (Woche, Monat, Jahr, Alle). Klick auf Pfeile oder wische links/rechts um vorwärts/rückwärts zu springen.";
+"Help.Main.ExpenseList" = "Liste der Ausgaben. Wische links/rechts um vorwärts/rückwärts zu springen. Klicke auf Ausgabe zum Bearbeiten.";
+"Help.Main.DateSelector" = "Klick auf Datum um Datumsbereich zu ändern (Woche, Monat, Jahr, Alle). Klick auf Pfeile um vorwärts/rückwärts zu springen.";
 "Help.Main.AddButton" = "Neue Ausgabe hinzufügen";
 "Help.Main.ShareButton" = "Teilen / exportieren der sichtbaren Ausgaben (als CSV-Datei)";
 "Help.Main.EditButton" = "Löschmodus aktivieren";
