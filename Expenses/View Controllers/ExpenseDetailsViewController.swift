@@ -210,8 +210,7 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
         super.prepare(for: segue, sender: sender)
         switch segue.identifier ?? "" {
         case "PickCategory":
-            let nav = segue.destination as? UINavigationController
-            guard let pickerController = nav?.topViewController as? NamedItemPickerViewController else {
+            guard let pickerController = segue.destination as? NamedItemPickerViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             pickerController.title = NSLocalizedString("Category", comment: "")
@@ -219,8 +218,7 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
             pickerController.selectedValue = expense?.category
 
         case "PickProject":
-            let nav = segue.destination as? UINavigationController
-            guard let pickerController = nav?.topViewController as? NamedItemPickerViewController else {
+            guard let pickerController = segue.destination as? NamedItemPickerViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             pickerController.title = NSLocalizedString("Project", comment: "")
@@ -241,8 +239,7 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
             pickerController.selectedValue = expense?.account
             
         case "PickLocation":
-            let nav = segue.destination as? UINavigationController
-            guard let pickerController = nav?.topViewController as? EditLocationViewController else {
+            guard let pickerController = segue.destination as? EditLocationViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             pickerController.venueId = expense?.venueId
