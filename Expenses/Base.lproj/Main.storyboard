@@ -71,6 +71,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ol1-SQ-rAK">
                                                     <rect key="frame" x="0.0" y="0.0" width="69" height="20"/>
+                                                    <color key="backgroundColor" red="0.30196078430000001" green="0.57254901960000004" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -89,7 +90,7 @@
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="p8K-uZ-DQB" firstAttribute="centerY" secondItem="G5t-PS-wLO" secondAttribute="centerY" id="5wI-mO-Dkh"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="p8K-uZ-DQB" secondAttribute="trailing" constant="22" id="803-Dh-YlZ"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="p8K-uZ-DQB" secondAttribute="trailing" priority="250" constant="22" id="803-Dh-YlZ"/>
                                         <constraint firstItem="SI8-WU-kmt" firstAttribute="leading" secondItem="G5t-PS-wLO" secondAttribute="leading" constant="2" id="Vfs-Ax-Q0q"/>
                                         <constraint firstItem="SI8-WU-kmt" firstAttribute="centerY" secondItem="G5t-PS-wLO" secondAttribute="centerY" id="neK-hz-DqC"/>
                                     </constraints>
