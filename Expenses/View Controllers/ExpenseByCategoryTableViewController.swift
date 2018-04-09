@@ -72,7 +72,7 @@ class ExpenseByCategoryTableViewController: UITableViewController, ModelDelegate
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
         let coachViews = coachMarksController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: coachMark.arrowOrientation)
         coachViews.bodyView.hintLabel.text = NSLocalizedString(helpTextIds[index], comment: "")
-        coachViews.bodyView.nextLabel.text = NSLocalizedString(index < helpTextIds.count-1  ? "Next" : "OK", comment: "")
+        coachViews.bodyView.nextLabel.text = NSLocalizedString(index < helpTextIds.count-1  ? "Next" : "Done", comment: "")
         return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
     }
     
