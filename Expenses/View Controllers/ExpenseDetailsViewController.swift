@@ -232,8 +232,7 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
             datePickerController.date = expense?.date
             
         case "PickAccount":
-            let nav = segue.destination as? UINavigationController
-            guard let pickerController = nav?.topViewController as? AccountPickerViewController else {
+            guard let pickerController = segue.destination as? AccountPickerViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             pickerController.selectedValue = expense?.account

@@ -496,7 +496,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Co0-yj-OUP" kind="show" identifier="pickAccount" id="nrc-hm-Jea"/>
+                                            <segue destination="Co0-yj-OUP" kind="show" identifier="PickAccount" id="nrc-hm-Jea"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="HK3-NV-mtx" userLabel="Project Table View Cell">
