@@ -52,7 +52,7 @@
 "Edit account" = "Edit account";
 
 "Help.Main.ExpenseList" = "List of expenses. Click an expense to edit it.";
-"Help.Main.DateSelector" = "Click date label to change visible time period type (week, month, year, all). Click arrows to move forward / backward in time.";
+"Help.Main.DateSelector" = "Click date label to change visible time period type (week, month, year, all). Click arrows or swipe left/right to move forward/backward in time.";
 "Help.Main.AddButton" = "Add new expense";
 "Help.Main.ShareButton" = "Share / export visible expenses (as CSV file)";
 "Help.Main.EditButton" = "Start deletion mode";
@@ -62,7 +62,7 @@
 "Help.ExpenseDetails.Comment" = "Enter any comment here";
 "Help.ExpenseDetails.Save" = "Save the expense";
 
-"Help.ExpenseReport.Main" = "Report with the accrued Expense costs by category";
+"Help.ExpenseReport.Main" = "Report with the accrued Expense costs by category. Swipe left/right to move forward/backward in time.";
 
 "Help.Info.Import" = "Import CSV file with expenses (i.e. from previous export)";
 "Help.Info.DeleteAll" = "Delete all expenses. Caution: All expenses will be deleted (after security question)!";

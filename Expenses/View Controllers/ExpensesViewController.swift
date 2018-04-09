@@ -50,6 +50,14 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
             tableView.addSubview(refreshTool)
         }
         
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(ExpensesViewController.totalsSwiped(_:)))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(ExpensesViewController.totalsSwiped(_:)))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
         // TODO: For push notifications - quick hack
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.expensesViewController = self
@@ -73,6 +81,14 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.coachMarksController.stop(immediately: true)
+    }
+    
+    @objc func totalsSwiped(_ sender: UISwipeGestureRecognizer) -> Void {
+        if sender.direction == .left {
+            Model.sharedInstance.dateIntervalNext()
+        } else if sender.direction == .right {
+            Model.sharedInstance.dateIntervalPrevious()
+        }
     }
     
     @IBAction func helpButtonPressed(_ sender: UIBarButtonItem) {

@@ -52,7 +52,7 @@
 "Edit account" = "Konto bearbeiten";
 
 "Help.Main.ExpenseList" = "Liste der Ausgaben. Klicke auf Ausgabe zum Bearbeiten.";
-"Help.Main.DateSelector" = "Klick auf Datum um Datumsbereich zu ändern (Woche, Monat, Jahr, Alle). Klick auf Pfeile um vorwärts / rückwärts zu springen.";
+"Help.Main.DateSelector" = "Klick auf Datum um Datumsbereich zu ändern (Woche, Monat, Jahr, Alle). Klick auf Pfeile oder wische links/rechts um vorwärts/rückwärts zu springen.";
 "Help.Main.AddButton" = "Neue Ausgabe hinzufügen";
 "Help.Main.ShareButton" = "Teilen / exportieren der sichtbaren Ausgaben (als CSV-Datei)";
 "Help.Main.EditButton" = "Löschmodus aktivieren";
@@ -62,7 +62,7 @@
 "Help.ExpenseDetails.Comment" = "Beliebigen Kommentar hier eingeben";
 "Help.ExpenseDetails.Save" = "Sichern der Ausgabe";
 
-"Help.ExpenseReport.Main" = "Bericht mit den summierten Ausgabenkosten nach Kategorie";
+"Help.ExpenseReport.Main" = "Bericht mit den summierten Ausgabenkosten nach Kategorie. Wische links/rechts um vorwärts/rückwärts zu springen.";
 
 "Help.Info.Import" = "Importiere CSV-Datei mit Ausgaben (z.B. von vorhergehendem Export)";
 "Help.Info.DeleteAll" = "Lösche alle Ausgaben Vorsicht: Alle Ausgaben werden gelöscht (nach eine Sicherheitsabfrage)!";

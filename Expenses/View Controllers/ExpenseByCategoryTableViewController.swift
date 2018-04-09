@@ -18,9 +18,26 @@ class ExpenseByCategoryTableViewController: UITableViewController, ModelDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         self.coachMarksController.dataSource = self
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(ExpensesViewController.totalsSwiped(_:)))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(ExpensesViewController.totalsSwiped(_:)))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
         // Remove blank table row lines
         self.tableView.tableFooterView = UIView()
         Model.sharedInstance.addObserver(observer: self)
+    }
+    
+    @objc func totalsSwiped(_ sender: UISwipeGestureRecognizer) -> Void {
+        if sender.direction == .left {
+            Model.sharedInstance.dateIntervalNext()
+        } else if sender.direction == .right {
+            Model.sharedInstance.dateIntervalPrevious()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
