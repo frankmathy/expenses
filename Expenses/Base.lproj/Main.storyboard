@@ -220,7 +220,7 @@
                             <barButtonItem systemItem="add" id="Xbu-vw-OZ1">
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <segue destination="Gve-bN-uX2" kind="presentation" identifier="AddExpense" id="KAf-pC-Ahk"/>
+                                    <segue destination="veN-7C-ofw" kind="show" identifier="AddExpense" id="Ipk-h2-So5"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="action" id="74O-EJ-1VH">
@@ -657,7 +657,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dtj-rk-LPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="WdM-Yb-FVD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3752.8000000000002" y="124.58770614692655"/>
+            <point key="canvasLocation" x="3209" y="125"/>
         </scene>
         <!--Date-->
         <scene sceneID="w8k-GJ-jG5">
@@ -963,24 +963,6 @@
             </objects>
             <point key="canvasLocation" x="1478" y="806"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="yqS-uR-2jf">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gve-bN-uX2" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="n7y-dj-gAh">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="veN-7C-ofw" kind="relationship" relationship="rootViewController" id="CHv-ek-rLh"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eS8-p4-4GP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3039.1999999999998" y="554.57271364317842"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="toH-Wb-jA2">
             <objects>
@@ -1177,7 +1159,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bth-1L-yOG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4826" y="823"/>
+            <point key="canvasLocation" x="4801" y="894"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eOc-W8-jWG">
@@ -1217,6 +1199,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NS6-py-hTY"/>
-        <segue reference="tP5-Tm-Y7f"/>
+        <segue reference="Ipk-h2-So5"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -224,10 +224,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
         super.prepare(for: segue, sender: sender)
         switch segue.identifier ?? "" {
         case "AddExpense":
-            guard let navigationController = segue.destination as? UINavigationController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            guard let expenseDetailsViewController = navigationController.topViewController as? ExpenseDetailsViewController else {
+            guard let expenseDetailsViewController = segue.destination as? ExpenseDetailsViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             print("Adding a new expense.")
