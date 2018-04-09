@@ -20,6 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" red="0.30196078430000001" green="0.57254901960000004" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TotalsCell" rowHeight="54" id="D6j-Rb-gpe" userLabel="TotalsCell" customClass="TotalsViewCell" customModule="Expenses" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="54"/>
@@ -83,7 +84,8 @@
                                             </subviews>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" red="0.30196078430000001" green="0.57254901960000004" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="p8K-uZ-DQB" firstAttribute="centerY" secondItem="G5t-PS-wLO" secondAttribute="centerY" id="5wI-mO-Dkh"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="p8K-uZ-DQB" secondAttribute="trailing" id="803-Dh-YlZ"/>
@@ -128,6 +130,7 @@
                                             </constraints>
                                         </stackView>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.74715266270000003" green="0.85951117330000004" blue="0.98587031579999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="gaF-Zx-au5" firstAttribute="bottom" secondItem="ElU-SO-ppS" secondAttribute="bottomMargin" id="Dfl-IJ-aqD"/>
                                         <constraint firstAttribute="trailing" secondItem="gaF-Zx-au5" secondAttribute="trailing" constant="38" id="JFt-x9-zzU"/>
@@ -135,7 +138,6 @@
                                         <constraint firstItem="gaF-Zx-au5" firstAttribute="top" secondItem="ElU-SO-ppS" secondAttribute="topMargin" id="Q29-W9-6Te"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dateLabel" destination="T7p-PX-PRF" id="ERU-Qn-oUb"/>
                                     <outlet property="totalAmountLabel" destination="g44-fM-6p8" id="nse-A4-J3w"/>
@@ -216,16 +218,19 @@
                     <navigationItem key="navigationItem" title="Expenses" id="8ep-K8-SIY">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="Xbu-vw-OZ1">
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <segue destination="Gve-bN-uX2" kind="presentation" identifier="AddExpense" id="KAf-pC-Ahk"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="action" id="74O-EJ-1VH">
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="shareButtonPressed:" destination="Ccm-JH-a5y" id="ZZc-Cc-h0t"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="Help" id="xBv-eo-jDf">
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="helpButtonPressed:" destination="Ccm-JH-a5y" id="mES-b9-j2j"/>
                                 </connections>
@@ -872,9 +877,13 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BQT-fR-m3J" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Expenses" image="ShoppingCart" id="Bv8-0j-PxZ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="gW4-jv-the">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="gW4-jv-the">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.22819012686727366" green="0.43494418856236167" blue="0.6532558692893401" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -940,6 +949,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Expense Totals" id="smR-fC-S2K">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="Help" id="emD-7o-Lzl">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="helpButtonPressed:" destination="vex-bh-bZE" id="7Tz-uO-FHe"/>
                             </connections>
@@ -977,6 +987,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.22819012690000001" green="0.4349441886" blue="0.65325586930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                <color key="value" red="0.74715266270000003" green="0.85951117330000004" blue="0.98587031579999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="BQT-fR-m3J" kind="relationship" relationship="viewControllers" id="d2Q-RA-E5V"/>
@@ -997,6 +1014,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="gT9-he-IH7">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.22819012690000001" green="0.4349441886" blue="0.65325586930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1016,7 +1037,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="center" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="xGl-Cy-2pJ">
-                                <rect key="frame" x="10" y="230" width="355" height="207"/>
+                                <rect key="frame" x="10" y="210" width="355" height="247"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Expenses" translatesAutoresizingMaskIntoConstraints="NO" id="CQ1-xh-cAZ">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="60"/>
@@ -1033,16 +1054,16 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPX-fP-9Bv">
-                                        <rect key="frame" x="0.0" y="124" width="355" height="0.0"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPX-fP-9Bv">
+                                        <rect key="frame" x="0.0" y="124" width="355" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Help"/>
+                                        <state key="normal" title="Info"/>
                                         <connections>
                                             <action selector="helpButtonPressed:" destination="8sw-YT-JQ7" eventType="touchUpInside" id="J76-tu-nKI"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NU-8r-FNc">
-                                        <rect key="frame" x="0.0" y="124" width="355" height="41"/>
+                                        <rect key="frame" x="0.0" y="164" width="355" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Import Expenses"/>
                                         <connections>
@@ -1050,7 +1071,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnS-mZ-l4d">
-                                        <rect key="frame" x="0.0" y="165" width="355" height="42"/>
+                                        <rect key="frame" x="0.0" y="205" width="355" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Delete All Expenses">
                                             <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1081,6 +1102,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="rVh-a8-GfW">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="Help" id="N2E-P4-Agk">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="onHelpButtonPressed:" destination="8sw-YT-JQ7" id="8yJ-Po-Q9u"/>
                             </connections>
@@ -1104,6 +1126,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AYg-Uh-oav">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.22819012690000001" green="0.4349441886" blue="0.65325586930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -12,7 +12,7 @@ import Instructions
 
 class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UINavigationControllerDelegate, CoachMarksControllerDataSource, CoachMarksControllerDelegate {
     
-    final let helpUrl = "https://github.com/frankmathy/expenses/wiki/UserGuide"
+    final let infoUrl = "https://expenslyapp.wordpress.com"
     
     let coachMarksController = CoachMarksController()
     
@@ -40,7 +40,7 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
     }
     
     @IBAction func helpButtonPressed(_ sender: UIButton) {
-        UIApplication.shared.open(URL(string: helpUrl)!, options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string: infoUrl)!, options: [:], completionHandler: nil)
     }
     
     override func viewDidLoad() {

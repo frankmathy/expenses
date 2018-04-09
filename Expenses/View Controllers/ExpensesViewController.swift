@@ -55,6 +55,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
         appDelegate.expensesViewController = self
         
         navigationItem.leftBarButtonItem = editButtonItem
+        editButtonItem.tintColor = .white
         Model.sharedInstance.addObserver(observer: self)
         Model.sharedInstance.loadAccounts()
         self.reloadExpenses(refreshPulled: false)
