@@ -6,6 +6,8 @@
   Copyright © 2017 Frank Mathy. All rights reserved.
 */
 
+"HomepageUrl" = "https://expenslyapp.wordpress.com/home";
+
 "Expenses" = "Expensly";
 "OK" = "OK";
 "Edit Expense" = "Edit Expense";

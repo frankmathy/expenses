@@ -12,8 +12,6 @@ import Instructions
 
 class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UINavigationControllerDelegate, CoachMarksControllerDataSource, CoachMarksControllerDelegate {
     
-    final let infoUrl = "https://expenslyapp.wordpress.com"
-    
     let coachMarksController = CoachMarksController()
     
     let helpTextIds = [ "Help.Info.Import", "Help.Info.DeleteAll" ]
@@ -40,7 +38,7 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
     }
     
     @IBAction func helpButtonPressed(_ sender: UIButton) {
-        UIApplication.shared.open(URL(string: infoUrl)!, options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string: NSLocalizedString("HomepageUrl", comment: ""))!, options: [:], completionHandler: nil)
     }
     
     override func viewDidLoad() {
