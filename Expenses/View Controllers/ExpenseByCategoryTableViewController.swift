@@ -105,22 +105,25 @@ class ExpenseByCategoryTableViewController: UITableViewController, ModelDelegate
             fatalError("The dequeued cell is not an instance of ExpenseByCategoryTableViewCell.")
         }
         
+        var font : UIFont
         if indexPath.row == 0 {
             cell.categoryName.text = Model.sharedInstance.dateIntervalSelectionText()
-            cell.categoryName.font = UIFont.boldSystemFont(ofSize: cell.categoryName.font.pointSize)
+            font = UIFont.boldSystemFont(ofSize: cell.categoryName.font.pointSize)
             cell.amountLabel.text = ""
         } else if indexPath.row == self.tableView(tableView, numberOfRowsInSection: 0) - 1 {
             cell.categoryName.text = "Total"
-            cell.categoryName.font = UIFont.boldSystemFont(ofSize: cell.categoryName.font.pointSize)
             let totalAmount = Model.sharedInstance.expenseByCategoryModel?.grandTotal
+            font = UIFont.boldSystemFont(ofSize: cell.categoryName.font.pointSize)
             cell.amountLabel.text = totalAmount?.currencyInputFormatting()
-            cell.amountLabel.font = UIFont.boldSystemFont(ofSize: cell.amountLabel.font.pointSize)
         } else {
             let categoryName = Model.sharedInstance.expenseByCategoryModel?.sectionCategoryKey(inSection: indexPath.row - 1)
             let categoryAmount = Model.sharedInstance.expenseByCategoryModel?.totalAmount(forExpenseKey: categoryName!)
+            font = UIFont.systemFont(ofSize: cell.categoryName.font.pointSize)
             cell.categoryName.text = categoryName
             cell.amountLabel.text = categoryAmount?.currencyInputFormatting()
         }
+        cell.categoryName.font = font
+        cell.amountLabel.font = font
         return cell
     }
 }
