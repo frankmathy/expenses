@@ -190,7 +190,8 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
             fatalError("The dequeued cell is not an instance of ExpenseCell.")
         }
         let expense = Model.sharedInstance.expenseByDateModel!.expense(inSection: indexPath.section-1, row: indexPath.row)
-        expenseCell.amountLabel.text = expense.amount.currencyInputFormatting()
+        let currencySymbol = expense.account?.currencySymbol != nil ? expense.account?.currencySymbol : ""
+        expenseCell.amountLabel.text = expense.amount.currencyInputFormatting(currencySymbol: currencySymbol!)
         expenseCell.accountLabel.text = expense.account?.accountName
         expenseCell.categoryLabel.text = expense.category
         if expense.venueName != nil {
@@ -218,7 +219,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
             if totalsCell == nil {
                 fatalError("The queued cell is not an instance of TotalsCell")
             }
-            totalsCell?.amountLabel.text = Model.sharedInstance.expenseByDateModel!.grandTotal.currencyInputFormatting()
+            totalsCell?.amountLabel.text = Model.sharedInstance.expenseByDateModel!.grandTotal.currencyInputFormatting(currencySymbol: SystemConfig.sharedInstance.appCurrencySymbol)
             updateDateIntervalFields()
             return totalsCell
         } else {
@@ -226,7 +227,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
                 fatalError("The queued cell is not an instance of ExpenseGroupCell")
             }
             headerCell.dateLabel.text = Model.sharedInstance.expenseByDateModel!.sectionCategoryKey(inSection: section - 1)!.asLocaleWeekdayDateString
-            headerCell.totalAmountLabel.text = Model.sharedInstance.expenseByDateModel?.totalAmount(inSection: section - 1).currencyInputFormatting()
+            headerCell.totalAmountLabel.text = Model.sharedInstance.expenseByDateModel?.totalAmount(inSection: section - 1).currencyInputFormatting(currencySymbol: SystemConfig.sharedInstance.appCurrencySymbol)
             return headerCell
         }
     }

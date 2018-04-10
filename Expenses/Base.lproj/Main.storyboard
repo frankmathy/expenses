@@ -30,7 +30,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SI8-WU-kmt">
-                                            <rect key="frame" x="2" y="15" width="81" height="24"/>
+                                            <rect key="frame" x="2" y="15" width="57" height="24"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyd-BE-PVO" userLabel="DateLeftButton">
                                                     <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -53,8 +53,20 @@
                                                         <action selector="dateRangeButtonPressed:" destination="D6j-Rb-gpe" eventType="touchUpInside" id="4oP-g5-2Yz"/>
                                                     </connections>
                                                 </button>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="p8K-uZ-DQB">
+                                            <rect key="frame" x="269" y="15" width="101" height="24"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ol1-SQ-rAK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="69" height="24"/>
+                                                    <color key="backgroundColor" red="0.30196078430000001" green="0.57254901960000004" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdn-Re-D26" userLabel="DateRightButton">
-                                                    <rect key="frame" x="57" y="0.0" width="24" height="24"/>
+                                                    <rect key="frame" x="77" y="0.0" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="Ht1-z8-bBC"/>
                                                         <constraint firstAttribute="width" constant="24" id="zxj-B5-SKC"/>
@@ -66,31 +78,12 @@
                                                 </button>
                                             </subviews>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="p8K-uZ-DQB">
-                                            <rect key="frame" x="268" y="17" width="69" height="20"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ol1-SQ-rAK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="69" height="20"/>
-                                                    <color key="backgroundColor" red="0.30196078430000001" green="0.57254901960000004" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCp-3W-lzO">
-                                                    <rect key="frame" x="-268" y="0.0" width="0.0" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="fyI-8Q-ie5"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button" image="FilterOff"/>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.30196078430000001" green="0.57254901960000004" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="p8K-uZ-DQB" firstAttribute="centerY" secondItem="G5t-PS-wLO" secondAttribute="centerY" id="5wI-mO-Dkh"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="p8K-uZ-DQB" secondAttribute="trailing" priority="250" constant="22" id="803-Dh-YlZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="p8K-uZ-DQB" secondAttribute="trailing" priority="250" constant="5" id="803-Dh-YlZ"/>
                                         <constraint firstItem="SI8-WU-kmt" firstAttribute="leading" secondItem="G5t-PS-wLO" secondAttribute="leading" constant="2" id="Vfs-Ax-Q0q"/>
                                         <constraint firstItem="SI8-WU-kmt" firstAttribute="centerY" secondItem="G5t-PS-wLO" secondAttribute="centerY" id="neK-hz-DqC"/>
                                     </constraints>
@@ -1143,7 +1136,6 @@
         <image name="CategoryReport" width="30" height="30"/>
         <image name="Euro" width="50" height="50"/>
         <image name="Expenses" width="60" height="60"/>
-        <image name="FilterOff" width="50" height="50"/>
         <image name="Help" width="25" height="25"/>
         <image name="Info" width="25" height="25"/>
         <image name="Location" width="60" height="60"/>

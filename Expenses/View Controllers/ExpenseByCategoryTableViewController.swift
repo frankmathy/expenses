@@ -131,13 +131,13 @@ class ExpenseByCategoryTableViewController: UITableViewController, ModelDelegate
             cell.categoryName.text = "Total"
             let totalAmount = Model.sharedInstance.expenseByCategoryModel?.grandTotal
             font = UIFont.boldSystemFont(ofSize: cell.categoryName.font.pointSize)
-            cell.amountLabel.text = totalAmount?.currencyInputFormatting()
+            cell.amountLabel.text = totalAmount?.currencyInputFormatting(currencySymbol: SystemConfig.sharedInstance.appCurrencySymbol)
         } else {
             let categoryName = Model.sharedInstance.expenseByCategoryModel?.sectionCategoryKey(inSection: indexPath.row - 1)
             let categoryAmount = Model.sharedInstance.expenseByCategoryModel?.totalAmount(forExpenseKey: categoryName!)
             font = UIFont.systemFont(ofSize: cell.categoryName.font.pointSize)
             cell.categoryName.text = categoryName
-            cell.amountLabel.text = categoryAmount?.currencyInputFormatting()
+            cell.amountLabel.text = categoryAmount?.currencyInputFormatting(currencySymbol: SystemConfig.sharedInstance.appCurrencySymbol)
         }
         cell.categoryName.font = font
         cell.amountLabel.font = font

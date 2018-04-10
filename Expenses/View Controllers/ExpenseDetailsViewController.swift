@@ -71,7 +71,8 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
         } else {
             navigationItem.title = NSLocalizedString("Edit Expense", comment: "")
         }
-        amountTextField.text = expense!.amount.currencyInputFormatting()
+        let currencySymbol = expense?.account != nil ? expense?.account?.currencySymbol : ""
+        amountTextField.text = expense!.amount.currencyInputFormatting(currencySymbol: currencySymbol!)
         dateField.text = expense!.date!.asLocaleDateTimeString
         categoryField.text = expense!.category
         accountField.text = expense!.account?.accountName
@@ -188,7 +189,7 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
     
     
     @objc func amountTextFieldDidChange(_ textField: UITextField) {
-        if let amountString = textField.text?.currencyInputFormatting() {
+        if let amountString = textField.text?.currencyInputFormatting(currencySymbol: SystemConfig.sharedInstance.appCurrencySymbol) {
             textField.text = amountString
             expense?.amount = amountString.parseCurrencyValue()
             updateSaveButtonState()
@@ -284,7 +285,6 @@ extension ExpenseDetailsViewController {
     @IBAction func unwindWithSelectedAccount(segue: UIStoryboardSegue) {
         if let accountController = segue.source as? AccountPickerViewController {
             expense?.account = accountController.selectedValue
-            print(expense?.account?.accountName)
             self.accountField.text = expense?.account?.accountName
             updateSaveButtonState()
         }

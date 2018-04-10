@@ -81,12 +81,12 @@ extension Double {
         return formatter.string(from: NSNumber.init(value: self))!
     }
     
-    func currencyInputFormatting() -> String {
+    func currencyInputFormatting(currencySymbol : String) -> String {
         // if first number is 0 or all numbers were deleted
         guard self != 0 else {
             return ""
         }
-        return SystemConfig.sharedInstance.appCurrencySymbol + self.asLocaleCurrency.trimmingCharacters(in: .whitespaces)
+        return currencySymbol + self.asLocaleCurrency.trimmingCharacters(in: .whitespaces)
     }
 }
 
@@ -95,13 +95,13 @@ extension String {
     func parseCurrencyValue() -> Double {
         var amountWithPrefix = self
         let regex = try! NSRegularExpression(pattern: "[^0-9]", options: .caseInsensitive)
-        amountWithPrefix = regex.stringByReplacingMatches(in: amountWithPrefix, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, self.characters.count), withTemplate: "")
+        amountWithPrefix = regex.stringByReplacingMatches(in: amountWithPrefix, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, self.count), withTemplate: "")
         let value = (amountWithPrefix as NSString).doubleValue
         return value / 100
     }
     
     // formatting text for currency textField
-    func currencyInputFormatting() -> String {
-        return self.parseCurrencyValue().currencyInputFormatting()
+    func currencyInputFormatting(currencySymbol : String) -> String {
+        return self.parseCurrencyValue().currencyInputFormatting(currencySymbol: currencySymbol)
     }
 }
