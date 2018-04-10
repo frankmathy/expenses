@@ -74,7 +74,7 @@ class AccountPickerViewController: UITableViewController {
     }
     
     func deleteAccount(account : Account) {
-        let alert = UIAlertController(title: NSLocalizedString("Expenses", comment: ""), message: NSLocalizedString("Delete account", comment: "")  + account.accountName! + "?", preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("Expenses", comment: ""), message: NSLocalizedString("Delete account", comment: "")  + account.accountName! + "?", preferredStyle: .actionSheet)
         let yes = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive, handler: { (action) -> Void in
             CDAccountDAO.sharedInstance.delete(account: account)
             Model.sharedInstance.loadAccounts()

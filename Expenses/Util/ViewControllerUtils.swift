@@ -11,13 +11,13 @@ import UIKit
 class ViewControllerUtils {
     
     static func showAlert(title : String, message : String,  viewController : UIViewController) -> Void {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
         viewController.present(alertController, animated: true, completion: nil)
     }
     
     static func showTextEntryAlert(title : String, message : String, fieldName : String, fieldValue : String? = nil, viewController : UIViewController, onSavePressed : @escaping (_ inputString: String) -> Void) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default))
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Save", comment: ""), style: .default) { (alertAction) in
             let nameField = alertController.textFields![0] as UITextField

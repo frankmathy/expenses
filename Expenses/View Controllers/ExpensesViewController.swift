@@ -276,7 +276,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
             } else {
                 body = error.localizedDescription
             }
-            let alertController = UIAlertController(title: message, message: body, preferredStyle: .alert)
+            let alertController = UIAlertController(title: message, message: body, preferredStyle: .actionSheet)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         }

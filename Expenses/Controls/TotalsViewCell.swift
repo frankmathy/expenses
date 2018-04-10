@@ -15,7 +15,7 @@ class TotalsViewCell: UITableViewCell {
     @IBOutlet weak var dateRightButton: UIButton!
     
     @IBAction func dateRangeButtonPressed(_ sender: UIButton) {
-        let alert = UIAlertController(title: NSLocalizedString("Expenses", comment: ""), message: NSLocalizedString("Set Date Interval", comment: ""), preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("Expenses", comment: ""), message: NSLocalizedString("Set Date Interval", comment: ""), preferredStyle: .actionSheet)
         let actionToday = UIAlertAction(title: NSLocalizedString("Today", comment: ""), style: .default, handler: { (action) -> Void in
             Model.sharedInstance.setDateToday()
         })

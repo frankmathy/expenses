@@ -27,7 +27,7 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
     }
     
     @IBAction func deleteAllExpensesPressed(_ sender: Any) {
-        let alert = UIAlertController(title: NSLocalizedString("Expenses", comment: ""), message: NSLocalizedString("Delete all Expenses?", comment: ""), preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("Expenses", comment: ""), message: NSLocalizedString("Delete all Expenses?", comment: ""), preferredStyle: .actionSheet)
         let yes = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive, handler: { (action) -> Void in
             Model.sharedInstance.deleteAllExpenses()
         })
