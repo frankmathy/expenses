@@ -17,7 +17,7 @@ class ViewControllerUtils {
     }
     
     static func showTextEntryAlert(title : String, message : String, fieldName : String, fieldValue : String? = nil, viewController : UIViewController, onSavePressed : @escaping (_ inputString: String) -> Void) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default))
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Save", comment: ""), style: .default) { (alertAction) in
             let nameField = alertController.textFields![0] as UITextField
