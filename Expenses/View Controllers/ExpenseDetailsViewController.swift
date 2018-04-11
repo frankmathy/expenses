@@ -71,7 +71,7 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
         } else {
             navigationItem.title = NSLocalizedString("Edit Expense", comment: "")
         }
-        let currencySymbol = expense?.account != nil ? expense?.account?.currencySymbol : ""
+        let currencySymbol = expense?.account != nil && expense?.account?.currencySymbol != nil ? expense?.account?.currencySymbol : ""
         amountTextField.text = expense!.amount.currencyInputFormatting(currencySymbol: currencySymbol!)
         dateField.text = expense!.date!.asLocaleDateTimeString
         categoryField.text = expense!.category
