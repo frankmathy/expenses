@@ -1022,26 +1022,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="center" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="xGl-Cy-2pJ">
-                                <rect key="frame" x="10" y="210" width="355" height="247"/>
+                            <stackView opaque="NO" contentMode="center" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="xGl-Cy-2pJ">
+                                <rect key="frame" x="10" y="188" width="355" height="291.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Expenses" translatesAutoresizingMaskIntoConstraints="NO" id="CQ1-xh-cAZ">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="60"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expensly" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCD-NW-ky9">
-                                        <rect key="frame" x="0.0" y="60" width="355" height="38.5"/>
+                                        <rect key="frame" x="0.0" y="64" width="355" height="38.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© 2018 Frank Mathy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBR-Do-xeo">
-                                        <rect key="frame" x="0.0" y="98.5" width="355" height="25.5"/>
+                                        <rect key="frame" x="0.0" y="106.5" width="355" height="25.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47k-dZ-muc">
+                                        <rect key="frame" x="0.0" y="136" width="355" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPX-fP-9Bv">
-                                        <rect key="frame" x="0.0" y="124" width="355" height="40"/>
+                                        <rect key="frame" x="0.0" y="159.5" width="355" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Info"/>
                                         <connections>
@@ -1049,7 +1055,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NU-8r-FNc">
-                                        <rect key="frame" x="0.0" y="164" width="355" height="41"/>
+                                        <rect key="frame" x="0.0" y="204.5" width="355" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Import Expenses"/>
                                         <connections>
@@ -1057,7 +1063,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnS-mZ-l4d">
-                                        <rect key="frame" x="0.0" y="205" width="355" height="42"/>
+                                        <rect key="frame" x="0.0" y="249.5" width="355" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Delete All Expenses">
                                             <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1068,12 +1074,13 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="UPX-fP-9Bv" firstAttribute="centerX" secondItem="xGl-Cy-2pJ" secondAttribute="centerX" id="33P-Z1-L9D"/>
                                     <constraint firstAttribute="trailing" secondItem="CQ1-xh-cAZ" secondAttribute="trailing" id="5eM-l6-4AG"/>
                                     <constraint firstItem="UPX-fP-9Bv" firstAttribute="centerX" secondItem="xGl-Cy-2pJ" secondAttribute="centerX" id="7S9-fr-jbd"/>
                                     <constraint firstItem="cnS-mZ-l4d" firstAttribute="centerX" secondItem="xGl-Cy-2pJ" secondAttribute="centerX" id="8Dk-kh-6b6"/>
                                     <constraint firstItem="cCD-NW-ky9" firstAttribute="trailing" secondItem="RBR-Do-xeo" secondAttribute="trailing" id="CGS-fM-fx3"/>
+                                    <constraint firstItem="47k-dZ-muc" firstAttribute="centerX" secondItem="xGl-Cy-2pJ" secondAttribute="centerX" id="NoL-EG-lXj"/>
                                     <constraint firstItem="CQ1-xh-cAZ" firstAttribute="trailing" secondItem="cCD-NW-ky9" secondAttribute="trailing" id="Pij-Cx-KjB"/>
-                                    <constraint firstItem="0NU-8r-FNc" firstAttribute="top" secondItem="RBR-Do-xeo" secondAttribute="bottom" constant="40" id="lcg-1O-gpB"/>
                                     <constraint firstItem="0NU-8r-FNc" firstAttribute="centerX" secondItem="xGl-Cy-2pJ" secondAttribute="centerX" id="zic-4E-n0S"/>
                                 </constraints>
                             </stackView>
@@ -1097,6 +1104,7 @@
                     <connections>
                         <outlet property="deleteAllButton" destination="cnS-mZ-l4d" id="ioZ-uR-xfr"/>
                         <outlet property="importButton" destination="0NU-8r-FNc" id="D68-FD-Cgd"/>
+                        <outlet property="versionLabel" destination="47k-dZ-muc" id="yjI-de-oys"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Kf-4v-1R4" userLabel="First Responder" sceneMemberID="firstResponder"/>

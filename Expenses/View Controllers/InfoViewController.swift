@@ -18,6 +18,7 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
     
     @IBOutlet weak var importButton: UIButton!
     @IBOutlet weak var deleteAllButton: UIButton!
+    @IBOutlet weak var versionLabel: UILabel!
     
     @IBAction func importDataPressed(_ sender: UIButton) {
         let picker = UIDocumentPickerViewController(documentTypes: [kUTTypePlainText as String], in: .import)
@@ -44,6 +45,10 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.coachMarksController.dataSource = self
+        let dictionary = Bundle.main.infoDictionary
+        let version = dictionary!["CFBundleShortVersionString"] as! String
+        let build = dictionary!["CFBundleVersion"] as! String
+        versionLabel.text = "Version " + version + " build " + build
     }
     
     override func viewDidAppear(_ animated: Bool) {
