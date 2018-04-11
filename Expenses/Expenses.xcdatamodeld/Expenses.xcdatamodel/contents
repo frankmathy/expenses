@@ -4,6 +4,7 @@
         <attribute name="accountName" attributeType="String" syncable="YES"/>
         <attribute name="currencyCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="currencySymbol" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Expense" inverseName="account" inverseEntity="Expense" syncable="YES"/>
     </entity>
     <entity name="Expense" representedClassName="Expense" syncable="YES" codeGenerationType="class">
         <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -15,15 +16,15 @@
         <attribute name="venueLat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="venueLng" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="venueName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="account" maxCount="1" deletionRule="Nullify" destinationEntity="Account" syncable="YES"/>
+        <relationship name="account" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="expenses" inverseEntity="Account" syncable="YES"/>
     </entity>
     <entity name="NamedItem" representedClassName="NamedItem" syncable="YES" codeGenerationType="class">
         <attribute name="itemName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="listName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Account" positionX="-180" positionY="-243" width="128" height="90"/>
-        <element name="Expense" positionX="97" positionY="-243" width="128" height="193"/>
+        <element name="Account" positionX="-180" positionY="-243" width="128" height="105"/>
+        <element name="Expense" positionX="97" positionY="-243" width="128" height="195"/>
         <element name="NamedItem" positionX="-308" positionY="-135" width="128" height="75"/>
     </elements>
 </model>
