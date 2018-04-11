@@ -9,12 +9,6 @@
 /* Begin PBXBuildFile section */
 		012E92D11FF264B5004AF427 /* CloudUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012E92D01FF264B5004AF427 /* CloudUserInfo.swift */; };
 		016A03FD204CA86C00576CE8 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195738B204C3FF30035B19A /* ExchangeRateService.swift */; };
-		016A03FE204CA9BB00576CE8 /* CKNamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195737C204AD4E80035B19A /* CKNamedItemDAO.swift */; };
-		016A03FF204CA9BE00576CE8 /* CKAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D58FF6204AE48900FD4346 /* CKAccountDAO.swift */; };
-		016A0400204CA9C100576CE8 /* CKUserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F60204AF9BB0016FCBF /* CKUserDAO.swift */; };
-		016A0401204CA9C400576CE8 /* CKSubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F62204B0FF10016FCBF /* CKSubscriptionManager.swift */; };
-		016A0402204CA9C600576CE8 /* CKExpensesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F64204B13930016FCBF /* CKExpensesDAO.swift */; };
-		016A0403204CA9E300576CE8 /* CKNamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D67AA920398FDB00F7AC1C /* CKNamedItem.swift */; };
 		0191900D204DF1EB003BC332 /* EditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0191900C204DF1EB003BC332 /* EditLocationViewController.swift */; };
 		0195737D204AD4E90035B19A /* CKNamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195737C204AD4E80035B19A /* CKNamedItemDAO.swift */; };
 		0195738C204C3FF30035B19A /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195738B204C3FF30035B19A /* ExchangeRateService.swift */; };
@@ -30,9 +24,6 @@
 		851E0F61204AF9BB0016FCBF /* CKUserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F60204AF9BB0016FCBF /* CKUserDAO.swift */; };
 		851E0F63204B0FF10016FCBF /* CKSubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F62204B0FF10016FCBF /* CKSubscriptionManager.swift */; };
 		851E0F65204B13930016FCBF /* CKExpensesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F64204B13930016FCBF /* CKExpensesDAO.swift */; };
-		852701381FF8174400D4076A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CA6A7F1FD9CAF90047B344 /* User.swift */; };
-		8527013C1FF817C000D4076A /* CloudUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012E92D01FF264B5004AF427 /* CloudUserInfo.swift */; };
-		8527013D1FF817D900D4076A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAF21FED77EC00E8C7CB /* Model.swift */; };
 		85282C0C1FF00413009090F9 /* TotalsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85282C0B1FF00413009090F9 /* TotalsViewCell.swift */; };
 		852A52471FF94C7B006C4767 /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852A52461FF94C7A006C4767 /* ViewControllerUtils.swift */; };
 		852F27C51FCA2C0C006988A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27C41FCA2C0C006988A5 /* AppDelegate.swift */; };
@@ -42,12 +33,9 @@
 		852F27E51FCA2C0C006988A5 /* ExpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27E41FCA2C0C006988A5 /* ExpensesUITests.swift */; };
 		852F27F71FCA316E006988A5 /* CKExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* CKExpense.swift */; };
 		852F5D75204187E6006B1AB9 /* CKAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* CKAccount.swift */; };
-		852F5D762041C020006B1AB9 /* CKAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* CKAccount.swift */; };
 		8534868E2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8534868D2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift */; };
 		8540BDF020719BF200A246BA /* FoursquareClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8540BDEF20719BF200A246BA /* FoursquareClient.swift */; };
 		8540BDF220719C6500A246BA /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8540BDF120719C6500A246BA /* SwiftyJSON.swift */; };
-		85418CAC2076C94D00B45798 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27C41FCA2C0C006988A5 /* AppDelegate.swift */; };
-		85418CAD2076C95100B45798 /* CDAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A872B620535A420099F7C8 /* CDAccountDAO.swift */; };
 		85418CAE2076D47900B45798 /* DefaultValues.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85418CB02076D47900B45798 /* DefaultValues.plist */; };
 		85418CB32076D6C000B45798 /* PListUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85418CB22076D6C000B45798 /* PListUtils.swift */; };
 		854229A02053F0FE007A4282 /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8542299F2053F0FE007A4282 /* CoreDataUtil.swift */; };
@@ -55,19 +43,15 @@
 		85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */; };
 		8553834120781E9300F3CFC2 /* SystemConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8553834020781E9300F3CFC2 /* SystemConfig.swift */; };
 		857764B21FF5A7ED00CBB925 /* DateIntervalSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */; };
-		857764B51FF5AAEC00CBB925 /* DateIntervalSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */; };
 		859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859CEC951FCB20630028C9E7 /* FormatExtensions.swift */; };
 		85A872B5205359D20099F7C8 /* CDNamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A872B4205359D20099F7C8 /* CDNamedItemDAO.swift */; };
 		85A872B720535A420099F7C8 /* CDAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A872B620535A420099F7C8 /* CDAccountDAO.swift */; };
 		85A872B920535A8D0099F7C8 /* CDExpensesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A872B820535A8D0099F7C8 /* CDExpensesDAO.swift */; };
 		85BB1FA01FFA820B0090F816 /* GroupedExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1F9F1FFA820B0090F816 /* GroupedExpenseModel.swift */; };
-		85BB1FA11FFA820B0090F816 /* GroupedExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1F9F1FFA820B0090F816 /* GroupedExpenseModel.swift */; };
 		85BB1FA61FFADB050090F816 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1FA51FFADB050090F816 /* InfoViewController.swift */; };
 		85BB1FAC1FFAE6D50090F816 /* ExpenseByCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1FAB1FFAE6D50090F816 /* ExpenseByCategoryCell.swift */; };
 		85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */; };
 		85CA6A801FD9CAF90047B344 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CA6A7F1FD9CAF90047B344 /* User.swift */; };
-		85CCDAE51FECFA6400E8C7CB /* CKExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* CKExpense.swift */; };
-		85CCDAE81FECFF7800E8C7CB /* FormatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859CEC951FCB20630028C9E7 /* FormatExtensions.swift */; };
 		85CCDAF31FED77EC00E8C7CB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAF21FED77EC00E8C7CB /* Model.swift */; };
 		85D58FF7204AE48900FD4346 /* CKAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D58FF6204AE48900FD4346 /* CKAccountDAO.swift */; };
 		85D67AAA20398FDB00F7AC1C /* CKNamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D67AA920398FDB00F7AC1C /* CKNamedItem.swift */; };
@@ -734,23 +718,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8527013C1FF817C000D4076A /* CloudUserInfo.swift in Sources */,
-				85CCDAE81FECFF7800E8C7CB /* FormatExtensions.swift in Sources */,
-				016A0403204CA9E300576CE8 /* CKNamedItem.swift in Sources */,
 				016A03FD204CA86C00576CE8 /* ExchangeRateService.swift in Sources */,
-				85CCDAE51FECFA6400E8C7CB /* CKExpense.swift in Sources */,
-				85BB1FA11FFA820B0090F816 /* GroupedExpenseModel.swift in Sources */,
-				852F5D762041C020006B1AB9 /* CKAccount.swift in Sources */,
-				8527013D1FF817D900D4076A /* Model.swift in Sources */,
-				016A03FE204CA9BB00576CE8 /* CKNamedItemDAO.swift in Sources */,
-				016A03FF204CA9BE00576CE8 /* CKAccountDAO.swift in Sources */,
-				016A0401204CA9C400576CE8 /* CKSubscriptionManager.swift in Sources */,
-				852701381FF8174400D4076A /* User.swift in Sources */,
-				857764B51FF5AAEC00CBB925 /* DateIntervalSelection.swift in Sources */,
-				016A0400204CA9C100576CE8 /* CKUserDAO.swift in Sources */,
-				85418CAD2076C95100B45798 /* CDAccountDAO.swift in Sources */,
-				016A0402204CA9C600576CE8 /* CKExpensesDAO.swift in Sources */,
-				85418CAC2076C94D00B45798 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
