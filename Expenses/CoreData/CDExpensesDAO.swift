@@ -66,8 +66,8 @@ class CDExpensesDAO {
             try managedContext.execute(deleteRequest)
             try managedContext.save()
         }
-        catch {
-            print("Error deleting all expenses")
+        catch let error as NSError {
+            print("Error deleting all expenses: \(error), \(error.userInfo)")
         }
     }
 }
