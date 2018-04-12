@@ -60,7 +60,8 @@ class AccountPickerViewController: UITableViewController {
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: NSLocalizedString("Delete", comment: "")) { (action, indexPath) in
             let account = self.accounts[indexPath.row]
-            self.deleteAccount(account: account)
+            let cell = tableView.cellForRow(at: indexPath)
+            self.deleteAccount(account: account, cell: cell!)
         }
         deleteAction.backgroundColor = .red
 
@@ -73,8 +74,9 @@ class AccountPickerViewController: UITableViewController {
         return [renameAction, deleteAction]
     }
     
-    func deleteAccount(account : Account) {
+    func deleteAccount(account : Account, cell : UITableViewCell) {
         let alert = UIAlertController(title: NSLocalizedString("Expenses", comment: ""), message: NSLocalizedString("Delete account", comment: "")  + account.accountName! + "?", preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.sourceView = cell
         let yes = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive, handler: { (action) -> Void in
             CDAccountDAO.sharedInstance.delete(account: account)
             Model.sharedInstance.loadAccounts()

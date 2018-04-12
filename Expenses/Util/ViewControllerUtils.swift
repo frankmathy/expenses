@@ -12,6 +12,7 @@ class ViewControllerUtils {
     
     static func showAlert(title : String, message : String,  viewController : UIViewController) -> Void {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        alertController.popoverPresentationController?.sourceView = viewController.view
         alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
         viewController.present(alertController, animated: true, completion: nil)
     }

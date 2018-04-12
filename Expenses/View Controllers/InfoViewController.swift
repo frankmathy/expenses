@@ -22,6 +22,7 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
     
     @IBAction func importDataPressed(_ sender: UIButton) {
         let picker = UIDocumentPickerViewController(documentTypes: [kUTTypePlainText as String], in: .import)
+        picker.popoverPresentationController?.barButtonItem = sender as! UIBarButtonItem
         picker.delegate = self
         picker.modalPresentationStyle = .formSheet
         self.present(picker, animated: true, completion: nil)
@@ -29,6 +30,7 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
     
     @IBAction func deleteAllExpensesPressed(_ sender: Any) {
         let alert = UIAlertController(title: NSLocalizedString("Expenses", comment: ""), message: NSLocalizedString("Delete all Expenses?", comment: ""), preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.sourceView = sender as! UIButton
         let yes = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive, handler: { (action) -> Void in
             Model.sharedInstance.deleteAllExpenses()
         })

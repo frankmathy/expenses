@@ -277,6 +277,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
                 body = error.localizedDescription
             }
             let alertController = UIAlertController(title: message, message: body, preferredStyle: .actionSheet)
+            alertController.popoverPresentationController?.sourceView = self.view
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         }
@@ -298,6 +299,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
         do {
             try csv.write(to: path, atomically: true, encoding: String.Encoding.utf8)
             let vc = UIActivityViewController(activityItems: [path], applicationActivities: [])
+            vc.popoverPresentationController?.barButtonItem = sender as! UIBarButtonItem
             vc.excludedActivityTypes = [
                 UIActivityType.assignToContact,
                 UIActivityType.saveToCameraRoll,
