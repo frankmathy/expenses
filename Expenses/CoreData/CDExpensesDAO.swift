@@ -60,14 +60,16 @@ class CDExpensesDAO {
     func deleteAll() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CDExpensesDAO.entityName)
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        let expenseFetch = NSFetchRequest<Expense>(entityName: CDExpensesDAO.entityName)
         do {
-            try managedContext.execute(deleteRequest)
+            let expenses = try managedContext.fetch(expenseFetch)
+            for expense in expenses {
+                managedContext.delete(expense)
+            }
             try managedContext.save()
-        }
-        catch let error as NSError {
-            print("Error deleting all expenses: \(error), \(error.userInfo)")
+            print("Deleted \(expenses.count) expenses")
+        } catch let error as NSError {
+            print("Error deletimg all expenses. \(error), \(error.userInfo)")
         }
     }
 }

@@ -330,6 +330,7 @@ extension ExpensesViewController {
             config.lastProject = expense.project
             config.lastAccount = expense.account?.accountName
             Model.sharedInstance.updateExpense(expense: expense, isNewExpense: expenseDetailsViewController.newExpense!)
+            Model.sharedInstance.reloadExpenses()
             Model.sharedInstance.modelUpdated()
         }
     }

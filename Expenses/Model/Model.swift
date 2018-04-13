@@ -114,6 +114,7 @@ class Model {
     }
     
     func cloudAccessError(message: String, error: NSError) {
+        print(message + ": " + error.description)
         for observer in self.delegates {
             observer.cloudAccessError(message: message, error: error)
         }
@@ -197,7 +198,6 @@ class Model {
             self.cloudAccessError(message: message, error: error! as NSError)
             return
         }
-        reloadExpenses()
     }
     
     func removeExpense(expense: Expense) {
