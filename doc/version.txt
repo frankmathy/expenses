@@ -1,6 +1,9 @@
 Expensly - Release Notes
 ========================
 
+(C) 2018 Frank Mathy
+http://expenslyapp.wordpress.com
+
 Version 1.1 - TBD
 -----------------
 - Rename account to budget #87
