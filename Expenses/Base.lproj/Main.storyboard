@@ -361,7 +361,7 @@
                                         </tableViewCellContentView>
                                         <accessibility key="accessibilityConfiguration" label="Date"/>
                                         <connections>
-                                            <segue destination="8PS-Ws-kX2" kind="presentation" identifier="PickDate" id="bwb-6h-3XK"/>
+                                            <segue destination="8PS-Ws-kX2" kind="show" identifier="PickDate" id="bwb-6h-3XK"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="mz8-0I-KPj" userLabel="Location Cell">
@@ -662,28 +662,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0yb-v5-meR">
-                                <rect key="frame" x="0.0" y="20" width="375" height="282"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="216"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Expense Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXq-Sd-pAa">
-                                        <rect key="frame" x="59" y="0.0" width="257" height="30"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fgC-0M-HUd">
-                                        <rect key="frame" x="27.5" y="30" width="320" height="216"/>
+                                        <rect key="frame" x="27.5" y="0.0" width="320" height="216"/>
                                         <date key="date" timeIntervalSinceReferenceDate="535503156.65587598">
                                             <!--2017-12-20 22:52:36 +0000-->
                                         </date>
                                     </datePicker>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGn-dj-7Cu">
-                                        <rect key="frame" x="172.5" y="246" width="30" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="OK"/>
-                                        <connections>
-                                            <segue destination="RNc-fE-fqc" kind="unwind" identifier="SaveDate" unwindAction="unwindWithSelectedDateWithSegue:" id="33b-hu-MwE"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -695,6 +681,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="G8F-gQ-1PG"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Date" id="sW2-I1-dER">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="jeB-ur-bKr">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="RNc-fE-fqc" kind="unwind" unwindAction="unwindCancelDateWithSegue:" id="Sxk-tN-30n"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="YCi-iH-R4M">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="RNc-fE-fqc" kind="unwind" identifier="SaveDate" unwindAction="unwindWithSelectedDateWithSegue:" id="omI-vV-aZp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="datePicker" destination="fgC-0M-HUd" id="tEN-o9-vUf"/>
                     </connections>
