@@ -80,6 +80,10 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
             if expense?.currency == nil {
                 expense?.currency = SystemConfig.sharedInstance.appCurrencyCode
             }
+            // For schema migration
+            if expense?.amountForeignCcy == 0.0 {
+                expense?.amountForeignCcy = (expense?.amount)!
+            }
         }
         amountTextField.text = expense!.amountForeignCcy.asLocaleCurrency
         dateField.text = expense!.date!.asLocaleDateTimeString
