@@ -8,6 +8,10 @@ target 'Expenses' do
 
   # Pods for Expenses
   pod 'Instructions', '~> 1.0.0'
+  
+  # Pods for ActionSheetPicker
+  # https://github.com/skywinder/ActionSheetPicker-3.0
+  pod 'ActionSheetPicker-3.0', '~> 2.3.0'
 
   target 'ExpensesTests' do
     inherit! :search_paths

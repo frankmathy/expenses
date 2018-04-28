@@ -9,10 +9,13 @@
 import UIKit
 import MapKit
 import Instructions
+import ActionSheetPicker_3_0
 
 class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerDataSource, CoachMarksControllerDelegate {
 
     @IBOutlet weak var amountTextField: UITextField!
+    @IBOutlet weak var convertedAmountField: UILabel!
+    @IBOutlet weak var convertedAmountCell: UITableViewCell!
     @IBOutlet weak var currencyLabel: UIButton!
     @IBOutlet weak var dateField: UILabel!
     @IBOutlet weak var categoryField: UILabel!
@@ -34,6 +37,7 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
     
     let helpTextIds = [ "Help.ExpenseDetails.General", "Help.ExpenseDetails.Location", "Help.ExpenseDetails.Comment", "Help.ExpenseDetails.Save" ]
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.coachMarksController.dataSource = self
@@ -77,56 +81,15 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
                 expense?.currency = SystemConfig.sharedInstance.appCurrencyCode
             }
         }
-        amountTextField.text = expense!.amount.asLocaleCurrency
-        let currencySymbol = ExchangeRateService.getSymbol(forCurrencyCode: (expense?.currency)!)
-        currencyLabel.setTitle(currencySymbol != nil ? currencySymbol : expense?.currency, for: .normal)
+        amountTextField.text = expense!.amountForeignCcy.asLocaleCurrency
         dateField.text = expense!.date!.asLocaleDateTimeString
         categoryField.text = expense!.category
         accountField.text = expense!.account?.accountName
         projectField.text = expense!.project
         commentField.text = expense!.comment
+        updateCurrencyButton()
         updateLocationField()
-        
-        // Show creation details if available
-        /* TODO
-        let creatorUserRecordId = expense!.creatorUserRecordID
-        let creationDate = expense!.creationDate
-        if creatorUserRecordId != nil && creationDate != nil {
-            Model.sharedInstance.getUserInfo(recordName: creatorUserRecordId!, completionHandler: { (userInfo, error) in
-                DispatchQueue.main.async {
-                    if error == nil {
-                        let name = (userInfo?.givenName!)! + " " + (userInfo?.familyName!)!
-                        let dateString = (creationDate?.asLocaleDateLongTimeString)!
-                        self.createdByAt.text = "Created by \(name) at \(dateString)"
-                    } else {
-                        self.createdByAt.text = ""
-                    }
-                }
-            })
-        } else {
-            createdByAt.text = ""
-        } */
-        
-        // Show modification details if available
-        /* TODO
-        let lastModifiedUserRecordId = expense!.lastModifiedUserRecordID
-        let modificationDate = expense!.modificationDate
-        if lastModifiedUserRecordId != nil && modificationDate != nil && modificationDate != creationDate {
-            Model.sharedInstance.getUserInfo(recordName: lastModifiedUserRecordId!, completionHandler: { (userInfo, error) in
-                DispatchQueue.main.async {
-                    if error == nil {
-                        let name = (userInfo?.givenName!)! + " " + (userInfo?.familyName!)!
-                        let dateString = (modificationDate?.asLocaleDateLongTimeString)!
-                        self.editedByAt.text = "Modified by \(name) at \(dateString)"
-                    } else {
-                        self.editedByAt.text = ""
-                    }
-                }
-            })
-        } else {
-            editedByAt.text = ""
-        }*/
-
+        reCalculateAmount()
         updateSaveButtonState()
     }
     
@@ -194,14 +157,41 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
         }
     }
     
-    
     @objc func amountTextFieldDidChange(_ textField: UITextField) {
         if let amountString = textField.text?.decimalInputFormatting() {
             textField.text = amountString
-            expense?.amount = amountString.parseCurrencyValue()
+            expense?.amountForeignCcy = amountString.parseCurrencyValue()
+            reCalculateAmount()
             updateSaveButtonState()
         }
     }
+    
+    fileprivate func updateCurrencyButton() {
+        let currencySymbol = ExchangeRateService.getSymbol(forCurrencyCode: (expense?.currency)!)
+        currencyLabel.setTitle(currencySymbol != nil ? currencySymbol : expense?.currency, for: .normal)
+    }
+    
+    func reCalculateAmount() {
+        let accountCurrency = SystemConfig.sharedInstance.appCurrencyCode
+        if expense?.currency == accountCurrency {
+            expense?.amount = (expense?.amountForeignCcy)!
+            convertedAmountCell.isHidden = true
+        } else {
+            let exchangeService = ExchangeRateService()
+            exchangeService.getRate(baseCcy: (expense?.currency)!, termsCcy: accountCurrency) { (rate, errorMessage) in
+                if errorMessage != nil {
+                    print("Error getting exchange rates: " + errorMessage!)
+                    return
+                }
+                self.expense?.amount = (self.expense?.amountForeignCcy)! * rate!
+                DispatchQueue.main.async {
+                    self.convertedAmountCell.isHidden = false
+                    self.convertedAmountField.text = (self.expense?.amount.asLocaleCurrency)! + " " + ExchangeRateService.getSymbol(forCurrencyCode: accountCurrency)!
+                }
+            }
+        }
+    }
+    
     
     @objc func commentTextFieldDidChange(_ textField: UITextField) {
         if let comment = textField.text {
@@ -209,6 +199,19 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
             updateSaveButtonState()
         }
     }
+    
+    @IBAction func currencyButtonPressed(_ sender: UIButton) {
+        let currencies = ExchangeRateService.availableCurrencies
+        let selection = currencies.index(of: (expense?.currency)!)
+        ActionSheetStringPicker.show(withTitle: "Expense Currency", rows: currencies, initialSelection: selection != nil ? selection! : 0, doneBlock: {
+            picker, selectedIndex, selectedValue in
+            self.expense?.currency = selectedValue as! String
+            self.updateCurrencyButton()
+            self.reCalculateAmount()
+            return
+        }, cancel: {_ in }, origin: sender)
+    }
+    
     
     private func updateSaveButtonState() {
         saveButton.isEnabled = expense!.amount != 0.0 && expense?.category != nil && expense?.account != nil && expense?.project != nil

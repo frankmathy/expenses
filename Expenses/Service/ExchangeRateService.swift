@@ -10,7 +10,7 @@ import Foundation
 
 class ExchangeRateService {
 
-    let availableCurrencies = ["EUR", "USD", "GBP", "JPY", "CHF", "AUD", "BGN", "BRL", "CAD", "CNY", "CZK", "DKK", "HKD", "HRK", "HUF", "IDR", "ILS", "INR", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PLN", "RON", "RUB", "SEK", "SGD", "THB", "TRY", "ZAR"]
+    static let availableCurrencies = ["EUR", "USD", "GBP", "JPY", "CHF", "AUD", "BGN", "BRL", "CAD", "CNY", "CZK", "DKK", "HKD", "HRK", "HUF", "IDR", "ILS", "INR", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PLN", "RON", "RUB", "SEK", "SGD", "THB", "TRY", "ZAR"]
     
     func getRate(baseCcy : String, termsCcy : String, completionHandler: @escaping (Double?, String?) -> Swift.Void) {
         // https://api.fixer.io/latest?base=EUR&symbols=JPY
