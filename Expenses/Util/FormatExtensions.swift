@@ -78,7 +78,7 @@ extension Double {
         formatter.currencySymbol = ""
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
-        return formatter.string(from: NSNumber.init(value: self))!
+        return formatter.string(from: NSNumber.init(value: self))!.trimmingCharacters(in: .whitespaces)
     }
     
     func currencyInputFormatting(currencySymbol : String) -> String {
@@ -86,7 +86,7 @@ extension Double {
         guard self != 0 else {
             return ""
         }
-        return currencySymbol + self.asLocaleCurrency.trimmingCharacters(in: .whitespaces)
+        return currencySymbol + self.asLocaleCurrency
     }
 }
 
@@ -103,5 +103,9 @@ extension String {
     // formatting text for currency textField
     func currencyInputFormatting(currencySymbol : String) -> String {
         return self.parseCurrencyValue().currencyInputFormatting(currencySymbol: currencySymbol)
+    }
+    
+    func decimalInputFormatting() -> String {
+        return self.parseCurrencyValue().asLocaleCurrency
     }
 }

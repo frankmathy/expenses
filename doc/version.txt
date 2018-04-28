@@ -6,10 +6,10 @@ http://expenslyapp.wordpress.com
 
 Version 1.1 - TBD
 -----------------
-- Rename account to budget #87
 - Changed style of expense date view to match application
+- Rename account to budget #87
+- Add Foreign Exchange conversions #24
 
 Version 1.0 - April 14, 2018
 ----------------------------
 - First release to iOS AppStore
-

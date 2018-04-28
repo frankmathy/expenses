@@ -298,24 +298,35 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dTi-o5-m44" userLabel="Amount Text Field">
-                                                    <rect key="frame" x="209" y="5" width="150" height="33.5"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T6n-V3-8dQ">
+                                                    <rect key="frame" x="164" y="5" width="195" height="39"/>
+                                                    <subviews>
+                                                        <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dTi-o5-m44" userLabel="Amount Text Field">
+                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="39"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="150" id="anQ-x2-mT3"/>
+                                                            </constraints>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                        </textField>
+                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ub1-bJ-hes">
+                                                            <rect key="frame" x="150" y="0.0" width="45" height="39"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                            <state key="normal" title="CCY"/>
+                                                        </button>
+                                                    </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="150" id="anQ-x2-mT3"/>
+                                                        <constraint firstItem="ub1-bJ-hes" firstAttribute="centerY" secondItem="T6n-V3-8dQ" secondAttribute="centerY" id="uTf-41-dCw"/>
                                                     </constraints>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                                </textField>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="DQZ-ko-Flr" firstAttribute="top" secondItem="YK8-mH-9Lq" secondAttribute="topMargin" id="CKp-DW-go5"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="dTi-o5-m44" secondAttribute="trailing" id="IKb-a0-v5v"/>
                                                 <constraint firstItem="DQZ-ko-Flr" firstAttribute="leading" secondItem="YK8-mH-9Lq" secondAttribute="leadingMargin" id="KAH-La-vHU"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="DQZ-ko-Flr" secondAttribute="bottom" id="RYq-lI-ePc"/>
                                                 <constraint firstItem="DQZ-ko-Flr" firstAttribute="bottom" secondItem="YK8-mH-9Lq" secondAttribute="bottomMargin" id="RlI-Pv-kCb"/>
-                                                <constraint firstItem="dTi-o5-m44" firstAttribute="top" secondItem="YK8-mH-9Lq" secondAttribute="top" constant="5" id="cf5-5x-9m2"/>
-                                                <constraint firstAttribute="bottom" secondItem="dTi-o5-m44" secondAttribute="bottom" constant="5" id="i3I-M8-jap"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="T6n-V3-8dQ" secondAttribute="trailingMargin" id="zMg-JR-udH"/>
                                                 <constraint firstItem="DQZ-ko-Flr" firstAttribute="top" secondItem="YK8-mH-9Lq" secondAttribute="topMargin" id="zs9-cH-bLT"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -641,6 +652,7 @@
                         <outlet property="categoryField" destination="kLT-Mo-xux" id="0oM-cm-Kcx"/>
                         <outlet property="commentField" destination="hgv-KN-G0T" id="X80-MN-0nm"/>
                         <outlet property="createdByAt" destination="cDO-mt-heD" id="NKm-Ej-k8C"/>
+                        <outlet property="currencyLabel" destination="ub1-bJ-hes" id="xnC-B5-rqo"/>
                         <outlet property="dateField" destination="omh-Li-7ty" id="N0x-Qh-cOc"/>
                         <outlet property="editedByAt" destination="iem-0U-eoV" id="lgz-yE-qzH"/>
                         <outlet property="locationField" destination="Gdf-jC-4Kc" id="WGA-o0-Hcb"/>

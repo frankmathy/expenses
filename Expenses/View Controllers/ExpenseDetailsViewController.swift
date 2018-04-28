@@ -13,6 +13,7 @@ import Instructions
 class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerDataSource, CoachMarksControllerDelegate {
 
     @IBOutlet weak var amountTextField: UITextField!
+    @IBOutlet weak var currencyLabel: UIButton!
     @IBOutlet weak var dateField: UILabel!
     @IBOutlet weak var categoryField: UILabel!
     @IBOutlet weak var accountField: UILabel!
@@ -67,12 +68,18 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
                 }
             }
             expense?.amount = 0.0
+            expense?.amountForeignCcy = 0.0
+            expense?.currency = SystemConfig.sharedInstance.appCurrencyCode
             expense?.comment = ""
         } else {
             navigationItem.title = NSLocalizedString("Edit Expense", comment: "")
+            if expense?.currency == nil {
+                expense?.currency = SystemConfig.sharedInstance.appCurrencyCode
+            }
         }
-        let currencySymbol = expense?.account != nil && expense?.account?.currencySymbol != nil ? expense?.account?.currencySymbol : ""
-        amountTextField.text = expense!.amount.currencyInputFormatting(currencySymbol: currencySymbol!)
+        amountTextField.text = expense!.amount.asLocaleCurrency
+        let currencySymbol = ExchangeRateService.getSymbol(forCurrencyCode: (expense?.currency)!)
+        currencyLabel.setTitle(currencySymbol != nil ? currencySymbol : expense?.currency, for: .normal)
         dateField.text = expense!.date!.asLocaleDateTimeString
         categoryField.text = expense!.category
         accountField.text = expense!.account?.accountName
@@ -189,7 +196,7 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
     
     
     @objc func amountTextFieldDidChange(_ textField: UITextField) {
-        if let amountString = textField.text?.currencyInputFormatting(currencySymbol: SystemConfig.sharedInstance.appCurrencySymbol) {
+        if let amountString = textField.text?.decimalInputFormatting() {
             textField.text = amountString
             expense?.amount = amountString.parseCurrencyValue()
             updateSaveButtonState()
