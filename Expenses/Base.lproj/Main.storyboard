@@ -168,13 +168,13 @@
                                                     <rect key="frame" x="0.0" y="28" width="321" height="20.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wD-j6-rD1">
-                                                            <rect key="frame" x="0.0" y="0.0" width="249.5" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="257.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcb-Jo-yoF" userLabel="Account">
-                                                            <rect key="frame" x="257.5" y="0.0" width="63.5" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Budget" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcb-Jo-yoF" userLabel="Account">
+                                                            <rect key="frame" x="265.5" y="0.0" width="55.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -467,7 +467,7 @@
                                                                 <constraint firstAttribute="height" constant="24" id="VVZ-Rm-cKg"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGK-cV-r8Y">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Budget" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGK-cV-r8Y">
                                                             <rect key="frame" x="30" y="0.0" width="149.5" height="22"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <nil key="textColor"/>
@@ -829,7 +829,7 @@
             </objects>
             <point key="canvasLocation" x="4750" y="124"/>
         </scene>
-        <!--Account-->
+        <!--Budget-->
         <scene sceneID="hLU-7S-oAB">
             <objects>
                 <tableViewController id="Co0-yj-OUP" customClass="AccountPickerViewController" customModule="Expenses" customModuleProvider="target" sceneMemberID="viewController">
@@ -855,7 +855,7 @@
                             <outlet property="delegate" destination="Co0-yj-OUP" id="b8b-gt-8yk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Account" id="Enj-Rf-vfc">
+                    <navigationItem key="navigationItem" title="Budget" id="Enj-Rf-vfc">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ipf-33-CX8">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>

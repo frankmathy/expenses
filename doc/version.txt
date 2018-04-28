@@ -3,6 +3,7 @@ Expensly - Release Notes
 
 Version 1.1 - TBD
 -----------------
+- Rename account to budget #87
 - Changed style of expense date view to match application
 
 Version 1.0 - April 14, 2018

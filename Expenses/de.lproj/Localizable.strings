@@ -27,13 +27,13 @@
 "Week" = "Woche";
 "Month" = "Monat";
 "Year" = "Jahr";
-"Account" = "Konto";
+"Account" = "Budget";
 "Category" = "Kategorie";
 "Project" = "Projekt";
 "Add New Item" = "Neuen Eintrag hinzufügen";
-"Add New Account" = "Neues Konto hinzufügen";
+"Add New Account" = "Neues Budget hinzufügen";
 "Enter Item Name." = "Namen des Eintrag eingeben.";
-"Enter Account Name." = "Namen des Kontos eingeben.";
+"Enter Account Name." = "Namen des Budgets eingeben.";
 "Name" = "Name";
 "Save" = "Sichern";
 "Selected Venue" = "Ort: ";
@@ -50,8 +50,9 @@
 "Done" = "Fertig";
 "Edit" = "Ändern";
 "Delete" = "Löschen";
-"Delete account" = "Konto löschen: ";
-"Edit account" = "Konto bearbeiten";
+"Delete account" = "Budget löschen: ";
+"Edit account" = "Budget bearbeiten";
+"Enter new account name." = "Neuen Budgetnamen eingeben.";
 
 "Help.Main.ExpenseList" = "Liste der Ausgaben. Wische links/rechts um vorwärts/rückwärts zu springen. Klicke auf Ausgabe zum Bearbeiten.";
 "Help.Main.DateSelector" = "Klick auf Datum um Datumsbereich zu ändern (Woche, Monat, Jahr, Alle). Klick auf Pfeile um vorwärts/rückwärts zu springen.";

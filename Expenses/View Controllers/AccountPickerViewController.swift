@@ -92,7 +92,7 @@ class AccountPickerViewController: UITableViewController {
     }
     
     func editAccount(account : Account) {
-        ViewControllerUtils.showTextEntryAlert(title: NSLocalizedString("Edit Account", comment: ""), message: NSLocalizedString("Enter new account name.", comment: ""), fieldName: NSLocalizedString("Name", comment: ""), fieldValue: account.accountName, viewController: self) { (itemString) in
+        ViewControllerUtils.showTextEntryAlert(title: NSLocalizedString("Edit account", comment: ""), message: NSLocalizedString("Enter new account name.", comment: ""), fieldName: NSLocalizedString("Name", comment: ""), fieldValue: account.accountName, viewController: self) { (itemString) in
             if itemString != "" {
                 account.accountName = itemString
                 CDAccountDAO.sharedInstance.save()

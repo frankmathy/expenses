@@ -27,13 +27,13 @@
 "Week" = "Week";
 "Month" = "Month";
 "Year" = "Year";
-"Account" = "Account";
+"Account" = "Budget";
 "Category" = "Category";
 "Project" = "Project";
 "Add New Item" = "Add New Item";
-"Add New Account" = "Add New Account";
+"Add New Account" = "Add New Budget";
 "Enter Item Name." = "Enter Item Name.";
-"Enter Account Name." = "Enter Account Name.";
+"Enter Account Name." = "Enter Budget Name.";
 "Name" = "Name";
 "Save" = "Save";
 "Selected Venue" = "Venue: ";
@@ -50,8 +50,9 @@
 "Done" = "Done";
 "Edit" = "Edit";
 "Delete" = "Delete";
-"Delete account" = "Delete account: ";
-"Edit account" = "Edit account";
+"Delete account" = "Delete Budget: ";
+"Edit account" = "Edit Budget";
+"Enter new account name." = "Enter new budget name.";
 
 "Help.Main.ExpenseList" = "List of expenses. Swipe left/right to move forward/backward in time. Click an expense to edit it.";
 "Help.Main.DateSelector" = "Click date label to change visible time period type (week, month, year, all). Click arrows to move forward/backward in time.";
