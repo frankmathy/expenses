@@ -21,6 +21,7 @@
 		3772B304FD492B522EFF83D4 /* Pods_ExpensesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C748394FE5DBA4CF998A05D2 /* Pods_ExpensesTests.framework */; };
 		4974BC354BC26F3BD1057AF1 /* Pods_Expenses.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C4A0BB66FBDA14DE298997 /* Pods_Expenses.framework */; };
 		8504827C2055E1270012BE0C /* Expenses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8504827A2055E1270012BE0C /* Expenses.xcdatamodeld */; };
+		8504C3BB20947DC20022A192 /* version.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8504C3BA20947DC20022A192 /* version.txt */; };
 		851E0F61204AF9BB0016FCBF /* CKUserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F60204AF9BB0016FCBF /* CKUserDAO.swift */; };
 		851E0F63204B0FF10016FCBF /* CKSubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F62204B0FF10016FCBF /* CKSubscriptionManager.swift */; };
 		851E0F65204B13930016FCBF /* CKExpensesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F64204B13930016FCBF /* CKExpensesDAO.swift */; };
@@ -96,6 +97,7 @@
 		1A744121248DFBFA4B5AEA36 /* Pods-Expenses.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expenses.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Expenses/Pods-Expenses.debug.xcconfig"; sourceTree = "<group>"; };
 		7FA2D63C6D6FA18FD88BE0F0 /* Pods-ExpensesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpensesUITests/Pods-ExpensesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8504827B2055E1270012BE0C /* Expenses.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Expenses.xcdatamodel; sourceTree = "<group>"; };
+		8504C3BA20947DC20022A192 /* version.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = version.txt; sourceTree = "<group>"; };
 		851E0F60204AF9BB0016FCBF /* CKUserDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKUserDAO.swift; sourceTree = "<group>"; };
 		851E0F62204B0FF10016FCBF /* CKSubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKSubscriptionManager.swift; sourceTree = "<group>"; };
 		851E0F64204B13930016FCBF /* CKExpensesDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKExpensesDAO.swift; sourceTree = "<group>"; };
@@ -203,6 +205,14 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		8504C3B920947DA90022A192 /* doc */ = {
+			isa = PBXGroup;
+			children = (
+				8504C3BA20947DC20022A192 /* version.txt */,
+			);
+			path = doc;
+			sourceTree = "<group>";
+		};
 		852701361FF816CC00D4076A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +267,7 @@
 		852F27B81FCA2C0C006988A5 = {
 			isa = PBXGroup;
 			children = (
+				8504C3B920947DA90022A192 /* doc */,
 				858029351FCA430800A7BCBA /* .gitignore */,
 				852F27C31FCA2C0C006988A5 /* Expenses */,
 				852F27D81FCA2C0C006988A5 /* ExpensesTests */,
@@ -484,6 +495,7 @@
 			files = (
 				852F27CF1FCA2C0C006988A5 /* LaunchScreen.storyboard in Resources */,
 				019FCB9E1FD752BA00F478DE /* InfoPlist.strings in Resources */,
+				8504C3BB20947DC20022A192 /* version.txt in Resources */,
 				852F27CC1FCA2C0C006988A5 /* Assets.xcassets in Resources */,
 				852F27CA1FCA2C0C006988A5 /* Main.storyboard in Resources */,
 				85418CAE2076D47900B45798 /* DefaultValues.plist in Resources */,
