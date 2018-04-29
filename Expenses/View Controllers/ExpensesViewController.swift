@@ -194,11 +194,20 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
         expenseCell.amountLabel.text = expense.amount.currencyInputFormatting(currencySymbol: currencySymbol!)
         expenseCell.accountLabel.text = expense.account?.accountName
         expenseCell.categoryLabel.text = expense.category
+        var commentText : String
         if expense.venueName != nil {
-            expenseCell.commentLabel.text = expense.venueName
+            commentText = expense.venueName!
         } else {
-            expenseCell.commentLabel.text = expense.comment
+            commentText = expense.comment != nil ? expense.comment! : ""
         }
+        if expense.currency != nil && expense.currency != SystemConfig.sharedInstance.appCurrencyCode {
+            if commentText.count > 0 {
+                commentText = commentText + " "
+            }
+            let symbol = ExchangeRateService.getSymbol(forCurrencyCode: expense.currency!)
+            commentText = commentText + "(" + expense.amountForeignCcy.currencyInputFormatting(currencySymbol: symbol!) + ")"
+        }
+        expenseCell.commentLabel.text = commentText
         return expenseCell
     }
     
