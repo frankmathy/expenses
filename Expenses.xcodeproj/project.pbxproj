@@ -147,6 +147,7 @@
 		85D58FF6204AE48900FD4346 /* CKAccountDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKAccountDAO.swift; sourceTree = "<group>"; };
 		85D67AA920398FDB00F7AC1C /* CKNamedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKNamedItem.swift; sourceTree = "<group>"; };
 		85F7C8AE1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItemPickerViewController.swift; sourceTree = "<group>"; };
+		85F914EB20964E1B00DA71F3 /* Expenses 1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Expenses 1.1.xcdatamodel"; sourceTree = "<group>"; };
 		92C4A0BB66FBDA14DE298997 /* Pods_Expenses.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Expenses.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C748394FE5DBA4CF998A05D2 /* Pods_ExpensesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpensesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C972D05A9ED12A8424059ACA /* Pods-ExpensesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpensesUITests/Pods-ExpensesUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1075,9 +1076,10 @@
 		8504827A2055E1270012BE0C /* Expenses.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				85F914EB20964E1B00DA71F3 /* Expenses 1.1.xcdatamodel */,
 				8504827B2055E1270012BE0C /* Expenses.xcdatamodel */,
 			);
-			currentVersion = 8504827B2055E1270012BE0C /* Expenses.xcdatamodel */;
+			currentVersion = 85F914EB20964E1B00DA71F3 /* Expenses 1.1.xcdatamodel */;
 			path = Expenses.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
