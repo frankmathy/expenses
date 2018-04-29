@@ -15,8 +15,9 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
 
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var convertedAmountField: UILabel!
-    @IBOutlet weak var convertedAmountCell: UITableViewCell!
     @IBOutlet weak var currencyLabel: UIButton!
+    @IBOutlet weak var rateInfoLabel: UILabel!
+    @IBOutlet weak var ccyConversionInfoView: UIStackView!
     @IBOutlet weak var dateField: UILabel!
     @IBOutlet weak var categoryField: UILabel!
     @IBOutlet weak var accountField: UILabel!
@@ -179,7 +180,9 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
         let accountCurrency = SystemConfig.sharedInstance.appCurrencyCode
         if expense?.currency == accountCurrency {
             expense?.amount = (expense?.amountForeignCcy)!
-            convertedAmountCell.isHidden = true
+            ccyConversionInfoView.isHidden = true
+            tableView.beginUpdates()
+            tableView.endUpdates()
         } else {
             let exchangeService = ExchangeRateService()
             exchangeService.getRate(baseCcy: (expense?.currency)!, termsCcy: accountCurrency) { (rate, errorMessage) in
@@ -189,8 +192,13 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
                 }
                 self.expense?.amount = (self.expense?.amountForeignCcy)! * rate!
                 DispatchQueue.main.async {
-                    self.convertedAmountCell.isHidden = false
+                    self.ccyConversionInfoView.isHidden = false
+                    self.tableView.beginUpdates()
+                    self.tableView.endUpdates()
                     self.convertedAmountField.text = (self.expense?.amount.asLocaleCurrency)! + " " + ExchangeRateService.getSymbol(forCurrencyCode: accountCurrency)!
+                    let rateString = rate?.asRate
+                    let ccyPairString = (self.expense!).currency! + "/" + accountCurrency
+                    self.rateInfoLabel.text = "\(ccyPairString)=\(rateString!)"
                 }
             }
         }

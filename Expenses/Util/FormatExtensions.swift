@@ -88,6 +88,14 @@ extension Double {
         }
         return currencySymbol + self.asLocaleCurrency
     }
+    
+    var asRate:String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 4
+        return formatter.string(from: NSNumber.init(value: self))!.trimmingCharacters(in: .whitespaces)
+    }
 }
 
 extension String {
