@@ -284,7 +284,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="U5m-MZ-ElG">
                                                     <rect key="frame" x="16" y="11" width="343" height="22"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="ySt-ex-Nih">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ySt-ex-Nih">
                                                             <rect key="frame" x="0.0" y="0.0" width="343" height="19"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Euro" translatesAutoresizingMaskIntoConstraints="NO" id="rBp-Rt-lKH">
@@ -295,13 +295,13 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Er5-dM-cOp">
-                                                                    <rect key="frame" x="25" y="0.0" width="136" height="19"/>
+                                                                    <rect key="frame" x="30" y="0.0" width="121" height="19"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dTi-o5-m44" userLabel="Amount Text Field">
-                                                                    <rect key="frame" x="162" y="0.0" width="150" height="19"/>
+                                                                    <rect key="frame" x="157" y="0.0" width="150" height="19"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="150" id="anQ-x2-mT3"/>
                                                                     </constraints>
@@ -1187,6 +1187,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="KER-RM-hli"/>
-        <segue reference="Ipk-h2-So5"/>
+        <segue reference="tP5-Tm-Y7f"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -49,7 +49,7 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
             let config = SystemConfig.sharedInstance
             navigationItem.title = NSLocalizedString("Add Expense", comment: "")
             expense = CDExpensesDAO.sharedInstance.create()
-            expense?.date = Date()
+            expense?.date = NSDate()
             if config.lastCategory != nil {
                 expense?.category = config.lastCategory
             } else {
@@ -73,7 +73,6 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
                 }
             }
             expense?.amount = 0.0
-            expense?.amountForeignCcy = 0.0
             expense?.currency = SystemConfig.sharedInstance.appCurrencyCode
             expense?.comment = ""
         } else {
@@ -81,13 +80,9 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
             if expense?.currency == nil {
                 expense?.currency = SystemConfig.sharedInstance.appCurrencyCode
             }
-            // For schema migration
-            if expense?.amountForeignCcy == 0.0 {
-                expense?.amountForeignCcy = (expense?.amount)!
-            }
         }
-        amountTextField.text = expense!.amountForeignCcy.asLocaleCurrency
-        dateField.text = expense!.date!.asLocaleDateTimeString
+        amountTextField.text = expense!.amount.asLocaleCurrency
+        dateField.text = (expense!.date! as Date).asLocaleDateTimeString
         categoryField.text = expense!.category
         accountField.text = expense!.account?.accountName
         projectField.text = expense!.project
@@ -165,7 +160,7 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
     @objc func amountTextFieldDidChange(_ textField: UITextField) {
         if let amountString = textField.text?.decimalInputFormatting() {
             textField.text = amountString
-            expense?.amountForeignCcy = amountString.parseCurrencyValue()
+            expense?.amount = amountString.parseCurrencyValue()
             reCalculateAmount()
             updateSaveButtonState()
         }
@@ -179,7 +174,7 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
     func reCalculateAmount() {
         let accountCurrency = SystemConfig.sharedInstance.appCurrencyCode
         if expense?.currency == accountCurrency {
-            expense?.amount = (expense?.amountForeignCcy)!
+            expense?.amount = (expense?.amount)!
             ccyConversionInfoView.isHidden = true
             tableView.beginUpdates()
             tableView.endUpdates()
@@ -190,12 +185,12 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
                     print("Error getting exchange rates: " + errorMessage!)
                     return
                 }
-                self.expense?.amount = (self.expense?.amountForeignCcy)! * rate!
+                self.expense?.exchangeRate = rate!
                 DispatchQueue.main.async {
                     self.ccyConversionInfoView.isHidden = false
                     self.tableView.beginUpdates()
                     self.tableView.endUpdates()
-                    self.convertedAmountField.text = (self.expense?.amount.asLocaleCurrency)! + " " + ExchangeRateService.getSymbol(forCurrencyCode: accountCurrency)!
+                    self.convertedAmountField.text = (self.expense?.amountAccountCcy!.asLocaleCurrency)! + " " + ExchangeRateService.getSymbol(forCurrencyCode: accountCurrency)!
                     let rateString = rate?.asRate
                     let ccyPairString = (self.expense!).currency! + "/" + accountCurrency
                     self.rateInfoLabel.text = "\(ccyPairString)=\(rateString!)"
@@ -252,7 +247,7 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
             guard let datePickerController = segue.destination as? DateTimePickerViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            datePickerController.date = expense?.date
+            datePickerController.date = expense?.date as! Date
             
         case "PickAccount":
             guard let pickerController = segue.destination as? AccountPickerViewController else {
@@ -293,8 +288,8 @@ extension ExpenseDetailsViewController {
     
     @IBAction func unwindWithSelectedDate(segue: UIStoryboardSegue) {
         if let pickerController = segue.source as? DateTimePickerViewController {
-            expense?.date = pickerController.date!
-            dateField.text = expense!.date?.asLocaleDateTimeString
+            expense?.date = pickerController.date! as NSDate
+            dateField.text = pickerController.date!.asLocaleDateTimeString
         }
     }
     

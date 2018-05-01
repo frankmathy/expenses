@@ -43,9 +43,9 @@ class GroupedExpenseModel<ExpenseKey : Hashable> {
             totalsForKey[groupCategory] = 0.0
         }
         expensesForKey[groupCategory]?.append(expense)
-        expensesForKey[groupCategory]?.sort { $0.date! > $1.date! }
-        totalsForKey[groupCategory] = totalsForKey[groupCategory]! + expense.amount
-        grandTotal = grandTotal + expense.amount
+        expensesForKey[groupCategory]?.sort { ($0.date! as Date) > ($1.date! as Date) }
+        totalsForKey[groupCategory] = totalsForKey[groupCategory]! + expense.amountAccountCcy!
+        grandTotal = grandTotal + expense.amountAccountCcy!
     }
     
     func removeAll() {
@@ -95,7 +95,7 @@ class GroupedExpenseModel<ExpenseKey : Hashable> {
     func removeExpense(inSection: Int, row: Int) {
         let key = sectionCategoryKey(inSection: inSection)
         if key != nil {
-            let expenseAmount = expensesForKey[key!]![row].amount
+            let expenseAmount = expensesForKey[key!]![row].amountAccountCcy!
             totalsForKey[key!] = totalsForKey[key!]! - expenseAmount
             grandTotal = grandTotal - expenseAmount
             expensesForKey[key!]!.remove(at: row)

@@ -191,7 +191,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
         }
         let expense = Model.sharedInstance.expenseByDateModel!.expense(inSection: indexPath.section-1, row: indexPath.row)
         let currencySymbol = expense.account?.currencySymbol != nil ? expense.account?.currencySymbol : ""
-        expenseCell.amountLabel.text = expense.amount.currencyInputFormatting(currencySymbol: currencySymbol!)
+        expenseCell.amountLabel.text = expense.amountAccountCcy?.currencyInputFormatting(currencySymbol: currencySymbol!)
         expenseCell.accountLabel.text = expense.account?.accountName
         expenseCell.categoryLabel.text = expense.category
         var commentText : String
@@ -205,7 +205,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
                 commentText = commentText + " "
             }
             let symbol = ExchangeRateService.getSymbol(forCurrencyCode: expense.currency!)
-            commentText = commentText + "(" + expense.amountForeignCcy.currencyInputFormatting(currencySymbol: symbol!) + ")"
+            commentText = commentText + " - " + expense.amount.currencyInputFormatting(currencySymbol: symbol!)
         }
         expenseCell.commentLabel.text = commentText
         return expenseCell

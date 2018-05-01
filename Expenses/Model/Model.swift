@@ -35,7 +35,7 @@ class Model {
     init() {
         // Create model grouped by date
         expenseByDateModel = GroupedExpenseModel<Date>(getKeyFunction: { (expense) -> Date in
-            Calendar.current.startOfDay(for: expense.date!)
+            Calendar.current.startOfDay(for: expense.date! as Date)
         }, compareKeysFunction: { (d1, d2) -> Bool in
             return d1.compare(d2) != ComparisonResult.orderedAscending
         })
@@ -248,7 +248,7 @@ class Model {
     
     func addExpense(date: Date, categoryName : String, account : Account, projectName: String, amount: Double, comment: String, venueId: String?, venueName: String?, venueLat: Double, venueLng: Double) {
         let expense = CDExpensesDAO.sharedInstance.create()
-        expense?.date = date
+        expense?.date = date as NSDate
         expense?.category = categoryName
         expense?.account = account
         expense?.project = projectName
@@ -293,7 +293,7 @@ class Model {
         for section in 0..<(expenseByDateModel!.sectionCount()) {
             for row in 0..<(expenseByDateModel!.expensesCount(inSection: section)) {
                 let expense = expenseByDateModel!.expense(inSection: section, row: row)
-                let dateString = dateFormat.string(from: expense.date!)
+                let dateString = dateFormat.string(from: expense.date! as Date)
                 let amountString = String(expense.amount)
                 var venueLatString : String? = nil
                 var venueLngString : String? = nil

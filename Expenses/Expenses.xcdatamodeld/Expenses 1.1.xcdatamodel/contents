@@ -6,13 +6,13 @@
         <attribute name="currencySymbol" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Expense" inverseName="account" inverseEntity="Expense" syncable="YES"/>
     </entity>
-    <entity name="Expense" representedClassName="Expense" syncable="YES" codeGenerationType="class">
+    <entity name="Expense" representedClassName="Expense" syncable="YES">
         <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="amountForeignCcy" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="category" attributeType="String" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="exchangeRate" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="project" attributeType="String" syncable="YES"/>
         <attribute name="venueId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="venueLat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
