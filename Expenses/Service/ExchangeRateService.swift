@@ -7,14 +7,41 @@
 //
 
 import Foundation
+import CoreData
 
 class ExchangeRateService {
 
+    static let sharedInstance = ExchangeRateService()
+    
     static let availableCurrencies = ["EUR", "USD", "GBP", "JPY", "CHF", "AUD", "BGN", "BRL", "CAD", "CNY", "CZK", "DKK", "HKD", "HRK", "HUF", "IDR", "ILS", "INR", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PLN", "RON", "RUB", "SEK", "SGD", "THB", "TRY", "ZAR"]
     
+    var exchangeRateCache : [String : Double]?
+    
     func getRate(baseCcy : String, termsCcy : String, completionHandler: @escaping (Double?, String?) -> Swift.Void) {
-        // https://api.fixer.io/latest?base=EUR&symbols=JPY
-        let urlString = "https://api.fixer.io/latest?base=\(baseCcy)&symbols=\(termsCcy)"
+        if exchangeRateCache == nil {
+            getExchangeRates(forCurrency: termsCcy) { (ratesResultsMap, error) in
+                guard error == nil else {
+                    completionHandler(0.0, error?.localizedDescription)
+                    return
+                }
+                self.exchangeRateCache = ratesResultsMap
+                guard let rate = self.exchangeRateCache![baseCcy] else {
+                    completionHandler(nil, "No rate available")
+                    return
+                }
+                completionHandler(rate, nil)
+            }
+        } else {
+            guard let rate = exchangeRateCache![baseCcy] else {
+                completionHandler(nil, "No rate available")
+                return
+            }
+            completionHandler(rate, nil)
+        }
+    }
+    
+    func getExchangeRates(forCurrency ccy : String, completionHandler: @escaping ([String : Double]?, Error?) -> Swift.Void) {
+        let urlString = "https://www.floatrates.com/daily/\(ccy).json"
         guard let url = URL(string: urlString) else {
             print("Url \(urlString) is not valid")
             return
@@ -24,42 +51,37 @@ class ExchangeRateService {
         let task = session.dataTask(with: urlRequest) { (data, response, error) in
             guard error == nil else {
                 print(error!.localizedDescription)
-                completionHandler(nil, error!.localizedDescription)
+                completionHandler(nil, error)
                 return
             }
             if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode != 200 {
                     let errorMessage = "Error fetching data, HTTP status code \(httpResponse.statusCode)"
                     print(errorMessage)
-                    completionHandler(nil, errorMessage)
+                    completionHandler(nil, error)
                     return
                 }
             }
             guard let data = data else {
                 let errorMessage = "No data received"
                 print(errorMessage)
-                completionHandler(nil, errorMessage)
+                completionHandler(nil, NSError(domain: errorMessage, code: 1, userInfo: nil))
                 return
             }
+            var ratesByCcy = [String : Double]()
             do {
-                guard let exchangeDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else {
-                    let errorMessage = "Could not convert JSON to dictionary"
-                    print(errorMessage)
-                    completionHandler(nil, errorMessage)
-                    return
+                let json = try JSON(data: data)
+                for (_,subJson):(String, JSON) in json {
+                    let code = subJson["code"].string
+                    let inverseRate = subJson["rate"].double
+                    ratesByCcy[code!] = 1.0 / inverseRate!
                 }
-                if let rates = exchangeDict["rates"], let rate = rates[termsCcy] as? Double {
-                    completionHandler(rate, nil)
-                } else {
-                    let errorMessage = "No rate for \(termsCcy) in result"
-                    print(errorMessage)
-                    completionHandler(nil, errorMessage)
-                }
+                completionHandler(ratesByCcy, nil)
             }
             catch {
                 let errorMessage = "Error trying to convert JSON to dictionary"
                 print(errorMessage)
-                completionHandler(nil, errorMessage)
+                completionHandler(nil, NSError(domain: errorMessage, code: 1, userInfo: nil))
             }
         }
         task.resume()
