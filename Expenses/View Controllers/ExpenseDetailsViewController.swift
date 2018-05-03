@@ -179,8 +179,7 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
             tableView.beginUpdates()
             tableView.endUpdates()
         } else {
-            let exchangeService = ExchangeRateService()
-            exchangeService.getRate(baseCcy: (expense?.currency)!, termsCcy: accountCurrency) { (rate, errorMessage) in
+            ExchangeRateService.sharedInstance.getRate(baseCcy: (expense?.currency)!, termsCcy: accountCurrency) { (rate, errorMessage) in
                 if errorMessage != nil {
                     print("Error getting exchange rates: " + errorMessage!)
                     return
