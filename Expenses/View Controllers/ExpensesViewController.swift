@@ -8,6 +8,7 @@
 
 import UIKit
 import Instructions
+import Firebase
 
 class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksControllerDataSource, CoachMarksControllerDelegate {
     
@@ -76,6 +77,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
             SystemConfig.sharedInstance.mainScreenHelpWasDisplayed = true
             self.coachMarksController.start(on: self)
         }
+        Analytics.logEvent("expense_list_opened", parameters: [:])
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -219,6 +221,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
         if editingStyle == .delete {
             let expense = Model.sharedInstance.expenseByDateModel?.expense(inSection: indexPath.section-1, row: indexPath.row)
             Model.sharedInstance.removeExpense(expense: expense!)
+            Analytics.logEvent("delete_expense", parameters: [:])
         }
     }
     
@@ -320,6 +323,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
                 UIActivityType.openInIBooks
             ]
             present(vc, animated: true, completion: nil)
+            Analytics.logEvent(AnalyticsEventShare, parameters: [:])
         } catch {
         }
     }
@@ -338,9 +342,11 @@ extension ExpensesViewController {
             config.lastCategory = expense.category
             config.lastProject = expense.project
             config.lastAccount = expense.account?.accountName
-            Model.sharedInstance.updateExpense(expense: expense, isNewExpense: expenseDetailsViewController.newExpense!)
+            let newExpense = expenseDetailsViewController.newExpense!
+            Model.sharedInstance.updateExpense(expense: expense, isNewExpense: newExpense)
             Model.sharedInstance.reloadExpenses()
             Model.sharedInstance.modelUpdated()
+            Analytics.logEvent("edit_expense", parameters: ["new_expense" : newExpense as NSObject])
         }
     }
 }

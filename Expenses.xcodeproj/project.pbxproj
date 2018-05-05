@@ -49,6 +49,7 @@
 		85A872B5205359D20099F7C8 /* CDNamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A872B4205359D20099F7C8 /* CDNamedItemDAO.swift */; };
 		85A872B720535A420099F7C8 /* CDAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A872B620535A420099F7C8 /* CDAccountDAO.swift */; };
 		85A872B920535A8D0099F7C8 /* CDExpensesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A872B820535A8D0099F7C8 /* CDExpensesDAO.swift */; };
+		85AA470B209E10F5006CC28F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85AA470A209E10F5006CC28F /* GoogleService-Info.plist */; };
 		85BB1FA01FFA820B0090F816 /* GroupedExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1F9F1FFA820B0090F816 /* GroupedExpenseModel.swift */; };
 		85BB1FA61FFADB050090F816 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1FA51FFADB050090F816 /* InfoViewController.swift */; };
 		85BB1FAC1FFAE6D50090F816 /* ExpenseByCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB1FAB1FFAE6D50090F816 /* ExpenseByCategoryCell.swift */; };
@@ -138,6 +139,7 @@
 		85A872B4205359D20099F7C8 /* CDNamedItemDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDNamedItemDAO.swift; sourceTree = "<group>"; };
 		85A872B620535A420099F7C8 /* CDAccountDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDAccountDAO.swift; sourceTree = "<group>"; };
 		85A872B820535A8D0099F7C8 /* CDExpensesDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDExpensesDAO.swift; sourceTree = "<group>"; };
+		85AA470A209E10F5006CC28F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Documents/Development/iOS/FrankMathyCredentials/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85BB1F9F1FFA820B0090F816 /* GroupedExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedExpenseModel.swift; sourceTree = "<group>"; };
 		85BB1FA21FFAA63C0090F816 /* GroupedExpenseModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedExpenseModelTest.swift; sourceTree = "<group>"; };
 		85BB1FA51FFADB050090F816 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				019FCB9C1FD752BA00F478DE /* InfoPlist.strings */,
 				85418CB02076D47900B45798 /* DefaultValues.plist */,
 				855032322072BA2D002943C8 /* AppCredentials.swift */,
+				85AA470A209E10F5006CC28F /* GoogleService-Info.plist */,
 				852701371FF816D400D4076A /* View Controllers */,
 				8527013B1FF8177300D4076A /* Controls */,
 				852701361FF816CC00D4076A /* Model */,
@@ -508,6 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				852F27CF1FCA2C0C006988A5 /* LaunchScreen.storyboard in Resources */,
+				85AA470B209E10F5006CC28F /* GoogleService-Info.plist in Resources */,
 				019FCB9E1FD752BA00F478DE /* InfoPlist.strings in Resources */,
 				8504C3BB20947DC20022A192 /* version.txt in Resources */,
 				852F27CC1FCA2C0C006988A5 /* Assets.xcassets in Resources */,
@@ -590,12 +594,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Expenses/Pods-Expenses-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Instructions/Instructions.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Instructions.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AccountPickerViewController: UITableViewController {
 
@@ -52,6 +53,7 @@ class AccountPickerViewController: UITableViewController {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
+                Analytics.logEvent("account_edited", parameters: ["action" : "add" as NSObject])
             }
         }
     }
@@ -84,6 +86,7 @@ class AccountPickerViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+            Analytics.logEvent("account_edited", parameters: ["action" : "delete" as NSObject])
         })
         let no = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default, handler: { (action) -> Void in })
         alert.addAction(yes)
@@ -101,6 +104,7 @@ class AccountPickerViewController: UITableViewController {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
+                Analytics.logEvent("account_edited", parameters: ["action" : "rename" as NSObject])
             }
         }
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-/* import UserNotifications */
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate /* , UNUserNotificationCenterDelegate */ {
@@ -18,14 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate /* , UNUserNotificationCen
     var expensesViewController : ExpensesViewController?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-/* Commented out until notifications needed again */
-/*        UNUserNotificationCenter.current().delegate = self
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { authorized, error in
-            if error != nil {
-                return
-            }
-        })
-        application.registerForRemoteNotifications() */
+        FirebaseApp.configure()
         return true
     }
     
