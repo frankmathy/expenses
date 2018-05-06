@@ -17,20 +17,17 @@ class CDExpensesDAO {
     static let entityName = "Expense"
 
     func create() -> Expense? {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        return Expense(context: managedContext)
+        return Expense(context: CoreDataUtil.sharedInstance.managedObjectContext!)
     }
     
     func load(dateIntervalSelection : DateIntervalSelection) -> (expenses: [Expense]?, error: NSError?) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return (nil, nil) }
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = CoreDataUtil.sharedInstance.managedObjectContext
         let expenseFetch = NSFetchRequest<Expense>(entityName: CDExpensesDAO.entityName)
         if dateIntervalSelection.dateIntervalType != DateIntervalType.All {
             expenseFetch.predicate = NSPredicate(format: "date >= %@ and date <= %@", dateIntervalSelection.startDate! as NSDate, dateIntervalSelection.endDate! as NSDate)
         }
         do {
-            let items = try managedContext.fetch(expenseFetch)
+            let items = try managedContext!.fetch(expenseFetch)
             return (items, nil)
         } catch let error as NSError {
             print("Could not load. \(error), \(error.userInfo)")
@@ -38,15 +35,8 @@ class CDExpensesDAO {
         }
     }
     
-    func cancelChanges() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        try managedContext.reset()
-    }
-    
     func delete(expense: Expense) -> NSError? {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return NSError(domain: CDExpensesDAO.entityName, code: 1, userInfo: nil) }
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = CoreDataUtil.sharedInstance.managedObjectContext!
         managedContext.delete(expense)
         do {
             try managedContext.save()
@@ -58,8 +48,7 @@ class CDExpensesDAO {
     }
     
     func deleteAll() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = CoreDataUtil.sharedInstance.managedObjectContext!
         let expenseFetch = NSFetchRequest<Expense>(entityName: CDExpensesDAO.entityName)
         do {
             let expenses = try managedContext.fetch(expenseFetch)

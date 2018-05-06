@@ -47,7 +47,13 @@ class AccountPickerViewController: UITableViewController {
                 account?.currencyCode = SystemConfig.sharedInstance.appCurrencyCode
                 account?.currencySymbol = SystemConfig.sharedInstance.appCurrencySymbol
                 account?.accountName = itemString
-                CDAccountDAO.sharedInstance.save()
+                do {
+                    try CoreDataUtil.sharedInstance.saveChanges()
+                } catch {
+                    // TODO Proper error handling: Show message to user
+                    print("Error saving account: \(error.localizedDescription)")
+                    return
+                }
                 Model.sharedInstance.loadAccounts()
                 self.accounts = Model.sharedInstance.getAccounts()
                 DispatchQueue.main.async {
@@ -98,7 +104,13 @@ class AccountPickerViewController: UITableViewController {
         ViewControllerUtils.showTextEntryAlert(title: NSLocalizedString("Edit account", comment: ""), message: NSLocalizedString("Enter new account name.", comment: ""), fieldName: NSLocalizedString("Name", comment: ""), fieldValue: account.accountName, viewController: self) { (itemString) in
             if itemString != "" {
                 account.accountName = itemString
-                CDAccountDAO.sharedInstance.save()
+                do {
+                    try CoreDataUtil.sharedInstance.saveChanges()
+                } catch {
+                    // TODO Proper error handling - show message to user
+                    print("Error saving account: \(error.localizedDescription)")
+                    return
+                }
                 Model.sharedInstance.loadAccounts()
                 self.accounts = Model.sharedInstance.getAccounts()
                 DispatchQueue.main.async {

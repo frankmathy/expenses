@@ -19,7 +19,7 @@ class ExchangeRateService {
     
     func getRate(baseCcy : String, termsCcy : String, completionHandler: @escaping (Double?, String?) -> Swift.Void) {
         if exchangeRateCache == nil {
-            getExchangeRates(forCurrency: termsCcy) { (ratesResultsMap, error) in
+            getExchangeRatesFromFloatRates(forCurrency: termsCcy) { (ratesResultsMap, error) in
                 guard error == nil else {
                     completionHandler(0.0, error?.localizedDescription)
                     return
@@ -40,7 +40,12 @@ class ExchangeRateService {
         }
     }
     
-    func getExchangeRates(forCurrency ccy : String, completionHandler: @escaping ([String : Double]?, Error?) -> Swift.Void) {
+    /*
+    func getRateFromCoreData(baseCcy : String, termsCcy : String, date : Date) -> Double? {
+        
+    }*/
+    
+    func getExchangeRatesFromFloatRates(forCurrency ccy : String, completionHandler: @escaping ([String : Double]?, Error?) -> Swift.Void) {
         let urlString = "https://www.floatrates.com/daily/\(ccy).json"
         guard let url = URL(string: urlString) else {
             print("Url \(urlString) is not valid")

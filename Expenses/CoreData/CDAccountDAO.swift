@@ -15,24 +15,12 @@ class CDAccountDAO {
     static let sharedInstance = CDAccountDAO()
     
     func create() -> Account? {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = CoreDataUtil.sharedInstance.managedObjectContext!
         return Account(context: managedContext)
     }
     
-    func save() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
-    
     func load() -> ([Account]?, Error?) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return (nil, nil)}
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = CoreDataUtil.sharedInstance.managedObjectContext!
         let accountFetch = NSFetchRequest<Account>(entityName: "Account")
         accountFetch.sortDescriptors = [NSSortDescriptor(key: "accountName", ascending: true)]
         do {
@@ -45,8 +33,7 @@ class CDAccountDAO {
     }
     
     func delete(account : Account) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = CoreDataUtil.sharedInstance.managedObjectContext!
         managedContext.delete(account)
         do {
             try managedContext.save()

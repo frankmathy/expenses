@@ -215,6 +215,7 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
             self.expense?.currency = selectedValue as! String
             self.updateCurrencyButton()
             self.reCalculateAmount()
+            Analytics.logEvent("edit_expense", parameters: ["action" : "set_currency" as NSObject, "currency" : selectedValue as! NSObject])
             return
         }, cancel: {_ in }, origin: sender)
     }
@@ -319,7 +320,7 @@ extension ExpenseDetailsViewController {
             expense?.venueName = pickerController.venueName
             expense?.venueLng = pickerController.venueLng!
             expense?.venueLat = pickerController.venueLat!
-            Analytics.logEvent("select_expense_location", parameters: [:])
+            Analytics.logEvent("edit_expense", parameters: ["action" : "update_location" as NSObject])
         }
         updateLocationField()
     }

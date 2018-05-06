@@ -21,16 +21,11 @@ class CoreDataUtil {
         }
     }
     
-    func saveChanges() -> NSError? {
-        guard let context = managedObjectContext else { return nil }
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                return nserror
-            }
-        }
-        return nil
+    func saveChanges() throws {
+        try managedObjectContext!.save()
+    }
+    
+    func rollbackChanges() {
+        managedObjectContext!.reset()
     }
 }

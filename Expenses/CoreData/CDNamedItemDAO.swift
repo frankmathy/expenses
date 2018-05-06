@@ -15,24 +15,11 @@ class CDNamedItemDAO {
     static let sharedInstance = CDNamedItemDAO()
 
     func create() -> NamedItem? {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        return NamedItem(context: managedContext)
+        return NamedItem(context: CoreDataUtil.sharedInstance.managedObjectContext!)
     }
     
-    func save() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
-
     func load(itemType : String) -> ([NamedItem]?, Error?) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return (nil, nil) }
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = CoreDataUtil.sharedInstance.managedObjectContext!
         let namedItemFetch = NSFetchRequest<NamedItem>(entityName: "NamedItem")
         namedItemFetch.predicate = NSPredicate(format: "listName == %@", itemType)
         namedItemFetch.sortDescriptors = [NSSortDescriptor(key: "itemName", ascending: true)]
@@ -50,7 +37,12 @@ class CDNamedItemDAO {
                         newItem?.listName = itemType
                         items.append(newItem!)
                     }
-                    save()
+                    do {
+                        try CoreDataUtil.sharedInstance.saveChanges()
+                    } catch {
+                        // TODO Error handling
+                        print("Error saving named item: \(error.localizedDescription)")
+                    }
                 }
             }
             
@@ -62,11 +54,10 @@ class CDNamedItemDAO {
     }
     
     func delete(item : NamedItem) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        managedContext.delete(item)
+        let managedContext = CoreDataUtil.sharedInstance.managedObjectContext
+        managedContext!.delete(item)
         do {
-            try managedContext.save()
+            try managedContext!.save()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }

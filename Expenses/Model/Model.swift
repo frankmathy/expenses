@@ -92,7 +92,6 @@ class Model {
     
     func createAccount(accountName : String) -> (Account?, Error?) {
         let config = SystemConfig.sharedInstance
-        
         let account = CDAccountDAO.sharedInstance.create()
         account?.accountName = accountName
         account?.currencyCode = config.appCurrencyCode
@@ -100,13 +99,14 @@ class Model {
         
         self.ownAccountsByName[account!.accountName!] = account
         self.ownAccountsByRecordId[account!.objectID] = account
-        let error = CoreDataUtil.sharedInstance.saveChanges()
-        guard error == nil else {
+        do {
+            try CoreDataUtil.sharedInstance.saveChanges()
+        } catch {
             let message = NSLocalizedString("Error saving new account \(accountName)", comment: "")
-            self.cloudAccessError(message: message, error: error! as NSError)
+            self.cloudAccessError(message: message, error: error as NSError)
             return (account, error)
         }
-        return (account, error)
+        return (account, nil)
     }
     
     func addObserver(observer : ModelDelegate) {
@@ -192,10 +192,11 @@ class Model {
     
     // Add or update Expense
     func updateExpense(expense: Expense, isNewExpense: Bool) {
-        let error = CoreDataUtil.sharedInstance.saveChanges()
-        guard error == nil else {
+        do {
+            try CoreDataUtil.sharedInstance.saveChanges()
+        } catch {
             let message = NSLocalizedString("Error saving expense record", comment: "")
-            self.cloudAccessError(message: message, error: error! as NSError)
+            self.cloudAccessError(message: message, error: error as NSError)
             return
         }
     }

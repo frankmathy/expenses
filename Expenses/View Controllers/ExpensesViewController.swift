@@ -332,7 +332,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
 
 extension ExpensesViewController {
     @IBAction func cancelToExpensesViewController(_ segue: UIStoryboardSegue) {
-        CDExpensesDAO.sharedInstance.cancelChanges()
+        CoreDataUtil.sharedInstance.rollbackChanges()
         self.reloadExpenses(refreshPulled: false)
     }
     
@@ -346,7 +346,7 @@ extension ExpensesViewController {
             Model.sharedInstance.updateExpense(expense: expense, isNewExpense: newExpense)
             Model.sharedInstance.reloadExpenses()
             Model.sharedInstance.modelUpdated()
-            Analytics.logEvent("edit_expense", parameters: ["new_expense" : newExpense as NSObject])
+            Analytics.logEvent("edit_expense", parameters: ["action" : (newExpense ? "add" : "update") as NSObject])
         }
     }
 }
