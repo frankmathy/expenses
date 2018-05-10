@@ -22,7 +22,7 @@
 "Error reading iCloud subscriptions" = "Fehler bei Lesen der iCloud Subscriptions";
 "Error adding iCloud subscription" = "Fehler beim Hinzufügen der iCloud Subscription";
 "Set Date Interval" = "Datumsintervall wählen";
-"Today" = "Heute";
+"Today" = "Aktuelles Datum";
 "All" = "Gesamt";
 "Week" = "Woche";
 "Month" = "Monat";
@@ -61,6 +61,7 @@
 "Help.Main.EditButton" = "Löschmodus aktivieren";
 
 "Help.ExpenseDetails.General" = "Ausgabendetails hier und darunter eingeben";
+"Help.ExpenseDetails.Currency" = "Ausgabenwährung wählen";
 "Help.ExpenseDetails.Location" = "Klick hier um einen Foursquare-Ort zuzuordnen";
 "Help.ExpenseDetails.Comment" = "Beliebigen Kommentar hier eingeben";
 "Help.ExpenseDetails.Save" = "Sichern der Ausgabe";
@@ -68,4 +69,4 @@
 "Help.ExpenseReport.Main" = "Bericht mit den summierten Ausgabenkosten nach Kategorie. Wische links/rechts um vorwärts/rückwärts zu springen.";
 
 "Help.Info.Import" = "Importiere CSV-Datei mit Ausgaben (z.B. von vorhergehendem Export)";
-"Help.Info.DeleteAll" = "Lösche alle Ausgaben Vorsicht: Alle Ausgaben werden gelöscht (nach eine Sicherheitsabfrage)!";
+"Help.Info.DeleteAll" = "Lösche alle Ausgaben. Vorsicht: Alle Ausgaben werden gelöscht (nach einer Sicherheitsabfrage)!";

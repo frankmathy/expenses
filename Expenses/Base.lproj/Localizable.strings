@@ -61,6 +61,7 @@
 "Help.Main.EditButton" = "Start deleting expenses";
 
 "Help.ExpenseDetails.General" = "Enter expense details here and below";
+"Help.ExpenseDetails.Currency" = "Select expense currency";
 "Help.ExpenseDetails.Location" = "Click here to assign a Foursquare venue";
 "Help.ExpenseDetails.Comment" = "Enter any comment here";
 "Help.ExpenseDetails.Save" = "Save the expense";

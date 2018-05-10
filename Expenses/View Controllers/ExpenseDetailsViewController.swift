@@ -37,7 +37,7 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
     
     let coachMarksController = CoachMarksController()
     
-    let helpTextIds = [ "Help.ExpenseDetails.General", "Help.ExpenseDetails.Location", "Help.ExpenseDetails.Comment", "Help.ExpenseDetails.Save" ]
+    let helpTextIds = [ "Help.ExpenseDetails.General", "Help.ExpenseDetails.Currency", "Help.ExpenseDetails.Location", "Help.ExpenseDetails.Comment", "Help.ExpenseDetails.Save" ]
     
 
     override func viewDidLoad() {
@@ -117,10 +117,12 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
         case 0:
             return coachMarksController.helper.makeCoachMark(for: amountTextField)
         case 1:
-            return coachMarksController.helper.makeCoachMark(for: locationField)
+            return coachMarksController.helper.makeCoachMark(for: currencyLabel)
         case 2:
-            return coachMarksController.helper.makeCoachMark(for: commentField)
+            return coachMarksController.helper.makeCoachMark(for: locationField)
         case 3:
+            return coachMarksController.helper.makeCoachMark(for: commentField)
+        case 4:
             let s = saveButton?.value(forKey: "view") as! UIView
             return coachMarksController.helper.makeCoachMark(for: s)
         default:
