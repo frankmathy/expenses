@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		012E92D11FF264B5004AF427 /* CloudUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012E92D01FF264B5004AF427 /* CloudUserInfo.swift */; };
 		0191900D204DF1EB003BC332 /* EditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0191900C204DF1EB003BC332 /* EditLocationViewController.swift */; };
-		0195737D204AD4E90035B19A /* CKNamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195737C204AD4E80035B19A /* CKNamedItemDAO.swift */; };
 		0195738C204C3FF30035B19A /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195738B204C3FF30035B19A /* ExchangeRateService.swift */; };
 		019FCB9E1FD752BA00F478DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 019FCB9C1FD752BA00F478DE /* InfoPlist.strings */; };
 		01BAF5F01FD753DC002E892A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01BAF5EE1FD753DC002E892A /* Localizable.strings */; };
@@ -23,9 +22,6 @@
 		8503F82F2098E7B80037F6B4 /* Expense+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8503F82D2098E7B80037F6B4 /* Expense+CoreDataProperties.swift */; };
 		8504827C2055E1270012BE0C /* Expenses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8504827A2055E1270012BE0C /* Expenses.xcdatamodeld */; };
 		8504C3BB20947DC20022A192 /* version.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8504C3BA20947DC20022A192 /* version.txt */; };
-		851E0F61204AF9BB0016FCBF /* CKUserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F60204AF9BB0016FCBF /* CKUserDAO.swift */; };
-		851E0F63204B0FF10016FCBF /* CKSubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F62204B0FF10016FCBF /* CKSubscriptionManager.swift */; };
-		851E0F65204B13930016FCBF /* CKExpensesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E0F64204B13930016FCBF /* CKExpensesDAO.swift */; };
 		85282C0C1FF00413009090F9 /* TotalsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85282C0B1FF00413009090F9 /* TotalsViewCell.swift */; };
 		852A52471FF94C7B006C4767 /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852A52461FF94C7A006C4767 /* ViewControllerUtils.swift */; };
 		852F27C51FCA2C0C006988A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27C41FCA2C0C006988A5 /* AppDelegate.swift */; };
@@ -33,8 +29,6 @@
 		852F27CC1FCA2C0C006988A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 852F27CB1FCA2C0C006988A5 /* Assets.xcassets */; };
 		852F27CF1FCA2C0C006988A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852F27CD1FCA2C0C006988A5 /* LaunchScreen.storyboard */; };
 		852F27E51FCA2C0C006988A5 /* ExpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27E41FCA2C0C006988A5 /* ExpensesUITests.swift */; };
-		852F27F71FCA316E006988A5 /* CKExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F27F61FCA316E006988A5 /* CKExpense.swift */; };
-		852F5D75204187E6006B1AB9 /* CKAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852F5D74204187E6006B1AB9 /* CKAccount.swift */; };
 		8534868E2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8534868D2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift */; };
 		8540BDF020719BF200A246BA /* FoursquareClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8540BDEF20719BF200A246BA /* FoursquareClient.swift */; };
 		8540BDF220719C6500A246BA /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8540BDF120719C6500A246BA /* SwiftyJSON.swift */; };
@@ -45,6 +39,7 @@
 		85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85531DDC1FEC7A96000C5AD4 /* ExpenseGroupCell.swift */; };
 		8553834120781E9300F3CFC2 /* SystemConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8553834020781E9300F3CFC2 /* SystemConfig.swift */; };
 		857764B21FF5A7ED00CBB925 /* DateIntervalSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */; };
+		8583F63220A491BC00F209E9 /* GeneralUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8583F63120A491BC00F209E9 /* GeneralUtils.swift */; };
 		859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859CEC951FCB20630028C9E7 /* FormatExtensions.swift */; };
 		85A872B5205359D20099F7C8 /* CDNamedItemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A872B4205359D20099F7C8 /* CDNamedItemDAO.swift */; };
 		85A872B720535A420099F7C8 /* CDAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A872B620535A420099F7C8 /* CDAccountDAO.swift */; };
@@ -56,8 +51,6 @@
 		85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BCCC5D1FEB22070083506B /* DateTimePickerViewController.swift */; };
 		85CA6A801FD9CAF90047B344 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CA6A7F1FD9CAF90047B344 /* User.swift */; };
 		85CCDAF31FED77EC00E8C7CB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAF21FED77EC00E8C7CB /* Model.swift */; };
-		85D58FF7204AE48900FD4346 /* CKAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D58FF6204AE48900FD4346 /* CKAccountDAO.swift */; };
-		85D67AAA20398FDB00F7AC1C /* CKNamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D67AA920398FDB00F7AC1C /* CKNamedItem.swift */; };
 		85DDF6E2209F7E8C00E90561 /* CDExchangeRateDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DDF6E1209F7E8C00E90561 /* CDExchangeRateDAO.swift */; };
 		85F7C8AF1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7C8AE1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift */; };
 		FE2F1F0FB7849C919DBFB021 /* Pods_ExpensesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10570977BC269284A71C4DA3 /* Pods_ExpensesUITests.framework */; };
@@ -136,6 +129,7 @@
 		857764B11FF5A7ED00CBB925 /* DateIntervalSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIntervalSelection.swift; sourceTree = "<group>"; };
 		857764B31FF5AA9B00CBB925 /* DateIntervalSelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIntervalSelectionTests.swift; sourceTree = "<group>"; };
 		858029351FCA430800A7BCBA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		8583F63120A491BC00F209E9 /* GeneralUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralUtils.swift; sourceTree = "<group>"; };
 		859CEC951FCB20630028C9E7 /* FormatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatExtensions.swift; sourceTree = "<group>"; };
 		85A872B4205359D20099F7C8 /* CDNamedItemDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDNamedItemDAO.swift; sourceTree = "<group>"; };
 		85A872B620535A420099F7C8 /* CDAccountDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDAccountDAO.swift; sourceTree = "<group>"; };
@@ -266,6 +260,7 @@
 				8540BDEF20719BF200A246BA /* FoursquareClient.swift */,
 				8540BDF120719C6500A246BA /* SwiftyJSON.swift */,
 				85418CB22076D6C000B45798 /* PListUtils.swift */,
+				8583F63120A491BC00F209E9 /* GeneralUtils.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -468,7 +463,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.iCloud = {
 								enabled = 1;
@@ -714,18 +709,13 @@
 				0191900D204DF1EB003BC332 /* EditLocationViewController.swift in Sources */,
 				0195738C204C3FF30035B19A /* ExchangeRateService.swift in Sources */,
 				8503F82E2098E7B80037F6B4 /* Expense+CoreDataClass.swift in Sources */,
-				85D67AAA20398FDB00F7AC1C /* CKNamedItem.swift in Sources */,
 				8540BDF220719C6500A246BA /* SwiftyJSON.swift in Sources */,
-				852F5D75204187E6006B1AB9 /* CKAccount.swift in Sources */,
 				01D8344220474BF600AB3C14 /* AccountPickerViewController.swift in Sources */,
 				85418CB32076D6C000B45798 /* PListUtils.swift in Sources */,
 				8540BDF020719BF200A246BA /* FoursquareClient.swift in Sources */,
-				851E0F61204AF9BB0016FCBF /* CKUserDAO.swift in Sources */,
 				85A872B920535A8D0099F7C8 /* CDExpensesDAO.swift in Sources */,
 				854229A02053F0FE007A4282 /* CoreDataUtil.swift in Sources */,
-				851E0F63204B0FF10016FCBF /* CKSubscriptionManager.swift in Sources */,
 				85282C0C1FF00413009090F9 /* TotalsViewCell.swift in Sources */,
-				851E0F65204B13930016FCBF /* CKExpensesDAO.swift in Sources */,
 				85BB1FAC1FFAE6D50090F816 /* ExpenseByCategoryCell.swift in Sources */,
 				852F27C51FCA2C0C006988A5 /* AppDelegate.swift in Sources */,
 				8553834120781E9300F3CFC2 /* SystemConfig.swift in Sources */,
@@ -734,14 +724,12 @@
 				859CEC961FCB20630028C9E7 /* FormatExtensions.swift in Sources */,
 				8504827C2055E1270012BE0C /* Expenses.xcdatamodeld in Sources */,
 				8534868E2044A9C00015D276 /* ExpenseByCategoryTableViewController.swift in Sources */,
-				852F27F71FCA316E006988A5 /* CKExpense.swift in Sources */,
 				85BCCC5E1FEB22070083506B /* DateTimePickerViewController.swift in Sources */,
 				85531DDD1FEC7A96000C5AD4 /* ExpenseGroupCell.swift in Sources */,
 				01FB82AF1FCADEF800DE1BA5 /* ExpenseCell.swift in Sources */,
 				852A52471FF94C7B006C4767 /* ViewControllerUtils.swift in Sources */,
-				0195737D204AD4E90035B19A /* CKNamedItemDAO.swift in Sources */,
-				85D58FF7204AE48900FD4346 /* CKAccountDAO.swift in Sources */,
 				01FB82AB1FCADB1300DE1BA5 /* ExpensesViewController.swift in Sources */,
+				8583F63220A491BC00F209E9 /* GeneralUtils.swift in Sources */,
 				85CCDAF31FED77EC00E8C7CB /* Model.swift in Sources */,
 				85BB1FA61FFADB050090F816 /* InfoViewController.swift in Sources */,
 				85A872B720535A420099F7C8 /* CDAccountDAO.swift in Sources */,

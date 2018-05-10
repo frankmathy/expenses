@@ -7,6 +7,7 @@
         <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Expense" inverseName="account" inverseEntity="Expense" syncable="YES"/>
     </entity>
     <entity name="ExchangeRate" representedClassName="ExchangeRate" syncable="YES" codeGenerationType="class">
+        <attribute name="active" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="baseCcy" attributeType="String" syncable="YES"/>
         <attribute name="rate" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="recordDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -32,7 +33,7 @@
     </entity>
     <elements>
         <element name="Account" positionX="-180" positionY="-243" width="128" height="105"/>
-        <element name="ExchangeRate" positionX="-108" positionY="-144" width="128" height="105"/>
+        <element name="ExchangeRate" positionX="-108" positionY="-144" width="128" height="120"/>
         <element name="Expense" positionX="97" positionY="-243" width="128" height="225"/>
         <element name="NamedItem" positionX="-308" positionY="-135" width="128" height="75"/>
     </elements>

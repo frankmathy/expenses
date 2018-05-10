@@ -15,35 +15,69 @@ class ExchangeRateService {
     
     static let availableCurrencies = ["EUR", "USD", "GBP", "JPY", "CHF", "AUD", "BGN", "BRL", "CAD", "CNY", "CZK", "DKK", "HKD", "HRK", "HUF", "IDR", "ILS", "INR", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PLN", "RON", "RUB", "SEK", "SGD", "THB", "TRY", "ZAR"]
     
-    var exchangeRateCache : [String : Double]?
+    var exchangeRateCache = [String : ExchangeRate]()
     
     func getRate(baseCcy : String, termsCcy : String, completionHandler: @escaping (Double?, String?) -> Swift.Void) {
-        if exchangeRateCache == nil {
-            getExchangeRatesFromFloatRates(forCurrency: termsCcy) { (ratesResultsMap, error) in
-                guard error == nil else {
-                    completionHandler(0.0, error?.localizedDescription)
-                    return
-                }
-                self.exchangeRateCache = ratesResultsMap
-                guard let rate = self.exchangeRateCache![baseCcy] else {
-                    completionHandler(nil, "No rate available")
-                    return
-                }
-                completionHandler(rate, nil)
+        let today = Date().asLocaleDateString
+        
+        var rate : ExchangeRate?
+        
+        // Try to get rate from local cache
+        rate = exchangeRateCache[baseCcy + termsCcy]
+        if rate != nil {
+            // Update in GUI
+            completionHandler(rate?.rate, nil)
+            if rate?.recordDate?.asLocaleDateString == today {
+                // Is from today --> return
+                return
             }
         } else {
-            guard let rate = exchangeRateCache![baseCcy] else {
+            // Try to get rates from local database
+            let (exchangeRate, error) = CDExchangeRateDAO.sharedInstance.get(byCcyPair: baseCcy, termsCcy: termsCcy)
+            if error != nil {
+                print("Error reading exchange rate \(baseCcy)/\(termsCcy) from Core Data: \(error!.localizedDescription)")
+            } else if exchangeRate != nil {
+                // Store in cache
+                exchangeRateCache[baseCcy + termsCcy] = exchangeRate
+                
+                // Show in GUI, even if outdated
+                completionHandler(exchangeRate?.rate, nil)
+                let rateDate = exchangeRate?.recordDate?.asLocaleDateString
+                if rateDate == today {
+                    // No further action if rate is from today
+                    return
+                }
+            }
+        }
+        
+        // Get rate from website
+        getExchangeRatesFromFloatRates(forCurrency: termsCcy) { (ratesResultsMap, error) in
+            guard error == nil else {
                 completionHandler(nil, "No rate available")
                 return
             }
-            completionHandler(rate, nil)
+            if ratesResultsMap != nil  {
+                let rateValue = ratesResultsMap![baseCcy]
+                if rateValue != nil {
+                    completionHandler(rateValue, nil)
+                } else {
+                    print("Currency pair \(baseCcy)/\(termsCcy) not available")
+                    completionHandler(nil, "No rate available")
+                }
+                
+                // Store in local database
+                for (resultBaseCcy, rate) in ratesResultsMap! {
+                    do {
+                        let exchangeRate = try CDExchangeRateDAO.sharedInstance.addCurrentRate(baseCcy: resultBaseCcy, termsCcy: termsCcy, rateValue: rate)
+                        self.exchangeRateCache[resultBaseCcy + termsCcy] = exchangeRate
+                    } catch {
+                        print("Error saving rate for \(resultBaseCcy)/\(termsCcy): \(error.localizedDescription)")
+                    }
+                }
+
+            }
         }
     }
-    
-    /*
-    func getRateFromCoreData(baseCcy : String, termsCcy : String, date : Date) -> Double? {
-        
-    }*/
     
     func getExchangeRatesFromFloatRates(forCurrency ccy : String, completionHandler: @escaping ([String : Double]?, Error?) -> Swift.Void) {
         let urlString = "https://www.floatrates.com/daily/\(ccy).json"
