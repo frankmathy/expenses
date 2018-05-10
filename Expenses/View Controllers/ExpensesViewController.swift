@@ -232,6 +232,8 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
                 fatalError("The queued cell is not an instance of TotalsCell")
             }
             totalsCell?.amountLabel.text = Model.sharedInstance.expenseByDateModel!.grandTotal.currencyInputFormatting(currencySymbol: SystemConfig.sharedInstance.appCurrencySymbol)
+            totalsCell?.dateRangeButton.layer.cornerRadius = 10
+            totalsCell?.dateRangeButton.clipsToBounds = true
             updateDateIntervalFields()
             return totalsCell
         } else {

@@ -30,14 +30,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="53.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SI8-WU-kmt">
-                                            <rect key="frame" x="2" y="15" width="67" height="24"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SI8-WU-kmt" userLabel="Left Stack View">
+                                            <rect key="frame" x="2" y="11" width="89" height="32"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyd-BE-PVO" userLabel="DateLeftButton">
-                                                    <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="26" height="32"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="FwQ-DO-3ZC"/>
-                                                        <constraint firstAttribute="width" constant="24" id="QeH-a9-Qzs"/>
+                                                        <constraint firstAttribute="height" priority="750" constant="24" id="FwQ-DO-3ZC"/>
+                                                        <constraint firstAttribute="width" constant="26" id="QeH-a9-Qzs"/>
                                                     </constraints>
                                                     <state key="normal" image="ArrowLeft"/>
                                                     <connections>
@@ -45,10 +45,13 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcA-Sh-LGA" userLabel="DateRangeButton">
-                                                    <rect key="frame" x="24" y="0.0" width="43" height="24"/>
+                                                    <rect key="frame" x="26" y="0.0" width="63" height="32"/>
                                                     <color key="backgroundColor" red="0.24313725489999999" green="0.33725490200000002" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="wRB-5D-8Pc"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                                    <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                                     <state key="normal" title="Alle">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -58,21 +61,21 @@
                                                 </button>
                                             </subviews>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="p8K-uZ-DQB">
-                                            <rect key="frame" x="269" y="15" width="101" height="24"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="p8K-uZ-DQB" userLabel="Right Stack View">
+                                            <rect key="frame" x="267" y="11" width="103" height="32"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ol1-SQ-rAK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="69" height="24"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="69" height="32"/>
                                                     <color key="backgroundColor" red="0.30196078430000001" green="0.57254901960000004" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdn-Re-D26" userLabel="DateRightButton">
-                                                    <rect key="frame" x="77" y="0.0" width="24" height="24"/>
+                                                    <rect key="frame" x="77" y="0.0" width="26" height="32"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="Ht1-z8-bBC"/>
-                                                        <constraint firstAttribute="width" constant="24" id="zxj-B5-SKC"/>
+                                                        <constraint firstAttribute="height" constant="32" id="Ht1-z8-bBC"/>
+                                                        <constraint firstAttribute="width" constant="26" id="zxj-B5-SKC"/>
                                                     </constraints>
                                                     <state key="normal" image="ArrowRight"/>
                                                     <connections>
@@ -86,7 +89,7 @@
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="p8K-uZ-DQB" firstAttribute="centerY" secondItem="G5t-PS-wLO" secondAttribute="centerY" id="5wI-mO-Dkh"/>
-                                        <constraint firstAttribute="trailing" secondItem="p8K-uZ-DQB" secondAttribute="trailing" priority="250" constant="5" id="803-Dh-YlZ"/>
+                                        <constraint firstItem="p8K-uZ-DQB" firstAttribute="trailing" secondItem="G5t-PS-wLO" secondAttribute="trailing" priority="250" constant="-5" id="803-Dh-YlZ"/>
                                         <constraint firstItem="SI8-WU-kmt" firstAttribute="leading" secondItem="G5t-PS-wLO" secondAttribute="leading" constant="2" id="Vfs-Ax-Q0q"/>
                                         <constraint firstItem="SI8-WU-kmt" firstAttribute="centerY" secondItem="G5t-PS-wLO" secondAttribute="centerY" id="neK-hz-DqC"/>
                                     </constraints>
