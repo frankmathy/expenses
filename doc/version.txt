@@ -11,6 +11,7 @@ Version 1.1 - TBD
 - Add Foreign Exchange conversions #24
 - Anonymous App Analytics #93
 - Minor code enhancements in Core Data
+- Make date range selection button appear as button #97
 
 Version 1.0 - April 14, 2018
 ----------------------------

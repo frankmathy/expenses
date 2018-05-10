@@ -31,7 +31,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SI8-WU-kmt">
-                                            <rect key="frame" x="2" y="15" width="57" height="24"/>
+                                            <rect key="frame" x="2" y="15" width="67" height="24"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyd-BE-PVO" userLabel="DateLeftButton">
                                                     <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -45,10 +45,12 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcA-Sh-LGA" userLabel="DateRangeButton">
-                                                    <rect key="frame" x="24" y="0.0" width="33" height="24"/>
+                                                    <rect key="frame" x="24" y="0.0" width="43" height="24"/>
+                                                    <color key="backgroundColor" red="0.24313725489999999" green="0.33725490200000002" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                     <state key="normal" title="Alle">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="dateRangeButtonPressed:" destination="D6j-Rb-gpe" eventType="touchUpInside" id="4oP-g5-2Yz"/>
