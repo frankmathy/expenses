@@ -78,8 +78,9 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
             expense?.comment = ""
         } else {
             navigationItem.title = NSLocalizedString("Edit Expense", comment: "")
-            if expense?.currency == nil {
+            if expense?.currency == nil || expense?.currency?.count != 3 {
                 expense?.currency = SystemConfig.sharedInstance.appCurrencyCode
+                expense?.exchangeRate = 1.0
             }
         }
         amountTextField.text = expense!.amount.asLocaleCurrency

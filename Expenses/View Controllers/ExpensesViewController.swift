@@ -202,12 +202,12 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
         } else {
             commentText = expense.comment != nil ? expense.comment! : ""
         }
-        if expense.currency != nil && expense.currency != SystemConfig.sharedInstance.appCurrencyCode {
+        if expense.currency != nil && expense.currency != SystemConfig.sharedInstance.appCurrencyCode && expense.currency?.count == 3 {
             if commentText.count > 0 {
                 commentText = commentText + " - "
             }
             let symbol = ExchangeRateService.getSymbol(forCurrencyCode: expense.currency!)
-            commentText = commentText + expense.amount.currencyInputFormatting(currencySymbol: symbol!)
+            commentText = commentText + expense.amount.currencyInputFormatting(currencySymbol: symbol != nil ? symbol! : expense.currency!)
         }
         expenseCell.commentLabel.text = commentText
         return expenseCell

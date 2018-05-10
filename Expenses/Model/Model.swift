@@ -232,22 +232,22 @@ class Model {
         }
     }*/
 
-    func addExpense(date: Date, categoryName : String, accountName : String, projectName: String, amount: Double, comment: String, venueId: String?, venueName: String?, venueLat: Double, venueLng: Double) -> Expense? {
+    func addExpense(date: Date, categoryName : String, accountName : String, projectName: String, amount: Double, comment: String, venueId: String?, venueName: String?, venueLat: Double, venueLng: Double, currency: String?, exchangeRate: Double) {
         let account = getAccount(accountName: accountName)
         if account != nil {
-            return addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, venueId: venueId, venueName: venueName, venueLat: venueLat, venueLng: venueLng)
+            addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, venueId: venueId, venueName: venueName, venueLat: venueLat, venueLng: venueLng, currency: currency, exchangeRate: exchangeRate)
         } else {
             let (account, error) = createAccount(accountName: accountName)
             guard error == nil else {
                 let message = NSLocalizedString("Error creating account", comment: "")
                 self.cloudAccessError(message: message, error: error! as NSError)
-                return nil
+                return 
             }
-            return self.addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, venueId: venueId, venueName: venueName, venueLat: venueLat, venueLng: venueLng)
+            self.addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, venueId: venueId, venueName: venueName, venueLat: venueLat, venueLng: venueLng, currency: currency, exchangeRate: exchangeRate)
         }
     }
     
-    func addExpense(date: Date, categoryName : String, account : Account, projectName: String, amount: Double, comment: String, venueId: String?, venueName: String?, venueLat: Double, venueLng: Double) -> Expense? {
+    func addExpense(date: Date, categoryName : String, account : Account, projectName: String, amount: Double, comment: String, venueId: String?, venueName: String?, venueLat: Double, venueLng: Double, currency: String?, exchangeRate: Double) {
         let expense = CDExpensesDAO.sharedInstance.create()
         expense?.date = date as NSDate
         expense?.category = categoryName
@@ -259,8 +259,9 @@ class Model {
         expense?.venueName = venueName
         expense?.venueLat = venueLat
         expense?.venueLng = venueLng
+        expense?.currency = currency
+        expense?.exchangeRate = exchangeRate
         updateExpense(expense: expense!, isNewExpense: true)
-        return expense
     }
         
     func getAccount(accountName : String) -> Account? {
@@ -307,14 +308,14 @@ class Model {
                 csv += "\(dateString)\t"
                 csv += "\(amountString)\t"
                 csv += "\(csvString(string: expense.account!.accountName))\t"
-                csv += "\(csvString(string: expense.category!))\t"
-                csv += "\(csvString(string: expense.project!))\t"
-                csv += "\(csvString(string: expense.comment!))\t"
+                csv += "\(csvString(string: expense.category))\t"
+                csv += "\(csvString(string: expense.project))\t"
+                csv += "\(csvString(string: expense.comment))\t"
                 csv += "\(csvString(string: expense.venueId))\t"
                 csv += "\(csvString(string: expense.venueName))\t"
                 csv += "\(csvString(string: venueLatString))\t"
                 csv += "\(csvString(string: venueLngString))\t"
-                csv += "\(csvString(string: expense.currency!))\t"
+                csv += "\(csvString(string: expense.currency))\t"
                 csv += "\(csvString(string: exchangeRateString))\n"
             }
         }

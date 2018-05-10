@@ -16,11 +16,10 @@ public class Expense: NSManagedObject {
         get {
             let currency = self.currency
             let amount = self.amount
-            let systemCurrency = SystemConfig.sharedInstance.appCurrencyCode
             if currency == nil || currency == SystemConfig.sharedInstance.appCurrencyCode {
                 return amount
             } else {
-                return amount != nil && exchangeRate != nil ? amount * exchangeRate : nil
+                return amount != nil && exchangeRate != nil && exchangeRate != 0.0 ? amount * exchangeRate : amount
             }
         }
     }
