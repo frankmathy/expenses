@@ -14,15 +14,12 @@ class CDExchangeRateDAO {
     
     static let sharedInstance = CDExchangeRateDAO()
     
-    func create() -> ExchangeRate? {
-        let managedContext = CoreDataUtil.sharedInstance.managedObjectContext!
-        return ExchangeRate(context: managedContext)
-    }
+    static let ENTITY_NAME = "ExchangeRate"
     
-    func get(baseCcy : String, termsCcy : String) -> (ExchangeRate?, Error?) {
+    func get(byCcyPair baseCcy : String, termsCcy : String) -> (ExchangeRate?, Error?) {
         let managedContext = CoreDataUtil.sharedInstance.managedObjectContext!
-        let rateFetch = NSFetchRequest<ExchangeRate>(entityName: "ExchangeRate")
-        rateFetch.predicate = NSPredicate(format: "baseCcy = %@ and termsCcy = %@",baseCcy, termsCcy)
+        let rateFetch = NSFetchRequest<ExchangeRate>(entityName: CDExchangeRateDAO.ENTITY_NAME)
+        rateFetch.predicate = NSPredicate(format: "baseCcy = %@ and termsCcy = %@ and active=TRUE",baseCcy, termsCcy)
         rateFetch.sortDescriptors = [NSSortDescriptor(key: "recordDate", ascending: false)]
         do {
             let items = try managedContext.fetch(rateFetch)
@@ -33,13 +30,25 @@ class CDExchangeRateDAO {
         }
     }
     
-    func delete(rate : ExchangeRate) {
+    func addCurrentRate(baseCcy : String, termsCcy : String, rateValue : Double) throws -> ExchangeRate {
+        // Mark old rate as recent
         let managedContext = CoreDataUtil.sharedInstance.managedObjectContext!
-        managedContext.delete(rate)
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not delete rate. \(error), \(error.userInfo)")
+        let rateFetch = NSFetchRequest<ExchangeRate>(entityName: CDExchangeRateDAO.ENTITY_NAME)
+        rateFetch.predicate = NSPredicate(format: "baseCcy = %@ and termsCcy = %@ and active=TRUE",baseCcy, termsCcy)
+        let oldRates = try managedContext.fetch(rateFetch)
+        for oldRate in oldRates {
+            oldRate.active = false
         }
+        
+        let rate = ExchangeRate(context: managedContext)
+        rate.baseCcy = baseCcy
+        rate.termsCcy = termsCcy
+        rate.rate = rateValue
+        rate.active = true
+        rate.recordDate = GeneralUtils.removeTimeStamp(fromDate: Date())
+        
+        try managedContext.save()
+        
+        return rate
     }
 }
