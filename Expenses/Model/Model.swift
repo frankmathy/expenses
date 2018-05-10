@@ -232,22 +232,22 @@ class Model {
         }
     }*/
 
-    func addExpense(date: Date, categoryName : String, accountName : String, projectName: String, amount: Double, comment: String, venueId: String?, venueName: String?, venueLat: Double, venueLng: Double) {
+    func addExpense(date: Date, categoryName : String, accountName : String, projectName: String, amount: Double, comment: String, venueId: String?, venueName: String?, venueLat: Double, venueLng: Double) -> Expense? {
         let account = getAccount(accountName: accountName)
         if account != nil {
-            addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, venueId: venueId, venueName: venueName, venueLat: venueLat, venueLng: venueLng)
+            return addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, venueId: venueId, venueName: venueName, venueLat: venueLat, venueLng: venueLng)
         } else {
             let (account, error) = createAccount(accountName: accountName)
             guard error == nil else {
                 let message = NSLocalizedString("Error creating account", comment: "")
                 self.cloudAccessError(message: message, error: error! as NSError)
-                return
+                return nil
             }
-            self.addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, venueId: venueId, venueName: venueName, venueLat: venueLat, venueLng: venueLng)
+            return self.addExpense(date: date, categoryName: categoryName, account: account!, projectName: projectName, amount: amount, comment: comment, venueId: venueId, venueName: venueName, venueLat: venueLat, venueLng: venueLng)
         }
     }
     
-    func addExpense(date: Date, categoryName : String, account : Account, projectName: String, amount: Double, comment: String, venueId: String?, venueName: String?, venueLat: Double, venueLng: Double) {
+    func addExpense(date: Date, categoryName : String, account : Account, projectName: String, amount: Double, comment: String, venueId: String?, venueName: String?, venueLat: Double, venueLng: Double) -> Expense? {
         let expense = CDExpensesDAO.sharedInstance.create()
         expense?.date = date as NSDate
         expense?.category = categoryName
@@ -260,6 +260,7 @@ class Model {
         expense?.venueLat = venueLat
         expense?.venueLng = venueLng
         updateExpense(expense: expense!, isNewExpense: true)
+        return expense
     }
         
     func getAccount(accountName : String) -> Account? {
@@ -296,13 +297,25 @@ class Model {
                 let expense = expenseByDateModel!.expense(inSection: section, row: row)
                 let dateString = dateFormat.string(from: expense.date! as Date)
                 let amountString = String(expense.amount)
+                let exchangeRateString = String(expense.exchangeRate)
                 var venueLatString : String? = nil
                 var venueLngString : String? = nil
                 if expense.venueId != nil {
                     venueLatString = String(expense.venueLat)
                     venueLngString = String(expense.venueLng)
                 }
-                csv += "\(dateString)\t\(amountString)\t\(csvString(string: expense.account!.accountName))\t\(csvString(string: expense.category!))\t\(csvString(string: expense.project!))\t\(csvString(string: expense.comment!))\t\(csvString(string: expense.venueId))\t\(csvString(string: expense.venueName))\t\(csvString(string: venueLatString))\t\(csvString(string: venueLngString))\n"
+                csv += "\(dateString)\t"
+                csv += "\(amountString)\t"
+                csv += "\(csvString(string: expense.account!.accountName))\t"
+                csv += "\(csvString(string: expense.category!))\t"
+                csv += "\(csvString(string: expense.project!))\t"
+                csv += "\(csvString(string: expense.comment!))\t"
+                csv += "\(csvString(string: expense.venueId))\t"
+                csv += "\(csvString(string: expense.venueName))\t"
+                csv += "\(csvString(string: venueLatString))\t"
+                csv += "\(csvString(string: venueLngString))\t"
+                csv += "\(csvString(string: expense.currency!))\t"
+                csv += "\(csvString(string: exchangeRateString))\n"
             }
         }
         return csv

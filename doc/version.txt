@@ -12,6 +12,7 @@ Version 1.1 - TBD
 - Anonymous App Analytics #93
 - Minor code enhancements in Core Data
 - Make date range selection button appear as button #97
+- Export / import should include currency and rate #98
 
 Version 1.0 - April 14, 2018
 ----------------------------

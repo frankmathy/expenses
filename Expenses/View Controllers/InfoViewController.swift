@@ -114,7 +114,11 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
                             venueLat = (columns[8] as NSString).doubleValue
                             venueLng = (columns[9] as NSString).doubleValue
                         }
-                        Model.sharedInstance.addExpense(date: date!, categoryName: category, accountName: accountName, projectName: project, amount: amount, comment: comment, venueId: venueId, venueName: venueName, venueLat: venueLat, venueLng: venueLng)
+                        let expense = Model.sharedInstance.addExpense(date: date!, categoryName: category, accountName: accountName, projectName: project, amount: amount, comment: comment, venueId: venueId, venueName: venueName, venueLat: venueLat, venueLng: venueLng)
+                        if expense != nil && columns.count >= 12 {
+                            expense?.currency = columns[10]
+                            expense?.exchangeRate = (columns[11] as NSString).doubleValue
+                        }
                         imported = imported + 1
                     }
                 }
