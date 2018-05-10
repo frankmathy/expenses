@@ -58,6 +58,7 @@
 		85CCDAF31FED77EC00E8C7CB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCDAF21FED77EC00E8C7CB /* Model.swift */; };
 		85D58FF7204AE48900FD4346 /* CKAccountDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D58FF6204AE48900FD4346 /* CKAccountDAO.swift */; };
 		85D67AAA20398FDB00F7AC1C /* CKNamedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D67AA920398FDB00F7AC1C /* CKNamedItem.swift */; };
+		85DDF6E2209F7E8C00E90561 /* CDExchangeRateDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DDF6E1209F7E8C00E90561 /* CDExchangeRateDAO.swift */; };
 		85F7C8AF1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7C8AE1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift */; };
 		FE2F1F0FB7849C919DBFB021 /* Pods_ExpensesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10570977BC269284A71C4DA3 /* Pods_ExpensesUITests.framework */; };
 /* End PBXBuildFile section */
@@ -151,6 +152,7 @@
 		85CCDAF21FED77EC00E8C7CB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		85D58FF6204AE48900FD4346 /* CKAccountDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKAccountDAO.swift; sourceTree = "<group>"; };
 		85D67AA920398FDB00F7AC1C /* CKNamedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKNamedItem.swift; sourceTree = "<group>"; };
+		85DDF6E1209F7E8C00E90561 /* CDExchangeRateDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDExchangeRateDAO.swift; sourceTree = "<group>"; };
 		85F7C8AE1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItemPickerViewController.swift; sourceTree = "<group>"; };
 		85F914EB20964E1B00DA71F3 /* Expenses 1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Expenses 1.1.xcdatamodel"; sourceTree = "<group>"; };
 		92C4A0BB66FBDA14DE298997 /* Pods_Expenses.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Expenses.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -358,6 +360,7 @@
 				85A872B620535A420099F7C8 /* CDAccountDAO.swift */,
 				85A872B820535A8D0099F7C8 /* CDExpensesDAO.swift */,
 				8542299F2053F0FE007A4282 /* CoreDataUtil.swift */,
+				85DDF6E1209F7E8C00E90561 /* CDExchangeRateDAO.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -748,6 +751,7 @@
 				85CA6A801FD9CAF90047B344 /* User.swift in Sources */,
 				8503F82F2098E7B80037F6B4 /* Expense+CoreDataProperties.swift in Sources */,
 				85A872B5205359D20099F7C8 /* CDNamedItemDAO.swift in Sources */,
+				85DDF6E2209F7E8C00E90561 /* CDExchangeRateDAO.swift in Sources */,
 				85F7C8AF1FE9C6F7008A4ED3 /* NamedItemPickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,7 @@ Version 1.1 - TBD
 - Rename account to budget #87
 - Add Foreign Exchange conversions #24
 - Anonymous App Analytics #93
+- Minor code enhancements in Core Data
 
 Version 1.0 - April 14, 2018
 ----------------------------

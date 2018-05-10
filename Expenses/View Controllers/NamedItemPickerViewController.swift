@@ -95,8 +95,12 @@ class NamedItemPickerViewController: UITableViewController {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                
-                CDNamedItemDAO.sharedInstance.save()
+                do {
+                    try CoreDataUtil.sharedInstance.saveChanges()
+                } catch {
+                    // TODO Error handling
+                    print("Error adding named item: \(error.localizedDescription)")
+                }
                 Analytics.logEvent("nameditem_edited", parameters: ["action" : "add" as NSObject, "type" : self.itemType! as NSObject])
             }
         }
