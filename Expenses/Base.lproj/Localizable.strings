@@ -22,7 +22,7 @@
 "Error reading iCloud subscriptions" = "Error reading data subscriptions";
 "Error adding iCloud subscription" = "Error adding data subscription";
 "Set Date Interval" = "Set Date Interval";
-"Today" = "Today";
+"Today" = "Current Date";
 "All" = "All";
 "Week" = "Week";
 "Month" = "Month";

@@ -35,14 +35,11 @@
 /* Class = "UILabel"; text = "Date"; ObjectID = "T7p-PX-PRF"; */
 "T7p-PX-PRF.text" = "Date";
 
-/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "XGn-dj-7Cu"; */
-"XGn-dj-7Cu.normalTitle" = "OK";
-
 /* Class = "UILabel"; text = "Total"; ObjectID = "g44-fM-6p8"; */
 "g44-fM-6p8.text" = "Total";
 
-/* Class = "UILabel"; text = "Account"; ObjectID = "iGK-cV-r8Y"; */
-"iGK-cV-r8Y.text" = "Account";
+/* Class = "UILabel"; text = "Budget"; ObjectID = "iGK-cV-r8Y"; */
+"iGK-cV-r8Y.text" = "Budget";
 
 /* Class = "UILabel"; text = "Salary Account"; ObjectID = "iUo-lt-YbS"; */
 "iUo-lt-YbS.text" = "Salary Account";
@@ -86,9 +83,6 @@
 /* Class = "UILabel"; text = "© 2018 Frank Mathy"; ObjectID = "RBR-Do-xeo"; */
 "RBR-Do-xeo.text" = "";
 
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "RCp-3W-lzO"; */
-"RCp-3W-lzO.normalTitle" = "";
-
 /* Class = "UITabBarItem"; title = "Info"; ObjectID = "Y6i-tO-GOg"; */
 "Y6i-tO-GOg.title" = "";
 
@@ -100,9 +94,6 @@
 
 /* Class = "UILabel"; text = "Created by at"; ObjectID = "cDO-mt-heD"; */
 "cDO-mt-heD.text" = "";
-
-/* Class = "UILabel"; text = "Change Expense Date"; ObjectID = "hXq-Sd-pAa"; */
-"hXq-Sd-pAa.text" = "";
 
 /* Class = "UIButton"; normalTitle = "Alle"; ObjectID = "hcA-Sh-LGA"; */
 "hcA-Sh-LGA.normalTitle" = "";
@@ -116,7 +107,7 @@
 /* Class = "UITabBarItem"; title = "Category Report"; ObjectID = "kpc-cr-NzQ"; */
 "kpc-cr-NzQ.title" = "";
 
-/* Class = "UILabel"; text = "Account"; ObjectID = "mcb-Jo-yoF"; */
+/* Class = "UILabel"; text = "Budget"; ObjectID = "mcb-Jo-yoF"; */
 "mcb-Jo-yoF.text" = "";
 
 /* Class = "UILabel"; text = "Amount"; ObjectID = "ol1-SQ-rAK"; */
@@ -131,7 +122,7 @@
 /* Class = "UILabel"; text = "Address"; ObjectID = "yEz-dR-umQ"; */
 "yEz-dR-umQ.text" = "";
 
-/* Class = "UINavigationItem"; title = "Account"; ObjectID = "Enj-Rf-vfc"; */
+/* Class = "UINavigationItem"; title = "Budget"; ObjectID = "Enj-Rf-vfc"; */
 "Enj-Rf-vfc.title" = "";
 
 /* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "HUN-KA-Y1n"; */
@@ -154,3 +145,18 @@
 
 /* Class = "UINavigationItem"; title = "Pick"; ObjectID = "ocL-y2-RnE"; */
 "ocL-y2-RnE.title" = "";
+
+/* Class = "UILabel"; text = "Version"; ObjectID = "47k-dZ-muc"; */
+"47k-dZ-muc.text" = "";
+
+/* Class = "UILabel"; text = "AmtBaseCcy"; ObjectID = "Ofu-Dw-Zx1"; */
+"Ofu-Dw-Zx1.text" = "";
+
+/* Class = "UILabel"; text = "RateInfo"; ObjectID = "cZi-zw-7PF"; */
+"cZi-zw-7PF.text" = "";
+
+/* Class = "UINavigationItem"; title = "Date"; ObjectID = "sW2-I1-dER"; */
+"sW2-I1-dER.title" = "";
+
+/* Class = "UIButton"; normalTitle = "€"; ObjectID = "ub1-bJ-hes"; */
+"ub1-bJ-hes.normalTitle" = "";
