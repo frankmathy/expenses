@@ -28,10 +28,30 @@ class CDExpensesDAO {
         }
         do {
             let items = try managedContext!.fetch(expenseFetch)
+            doMigrationIfRequired(expenses: items)
             return (items, nil)
         } catch let error as NSError {
             print("Could not load. \(error), \(error.userInfo)")
             return (nil, error)
+        }
+    }
+    
+    private func doMigrationIfRequired(expenses : [Expense]) {
+        var expensesChanged = 0
+        for expense in expenses {
+            if expense.currency == nil || expense.currency?.count != 3 {
+                expense.currency = expense.account?.currencyCode
+                expense.exchangeRate = 1.0
+                expensesChanged = expensesChanged + 1
+            }
+        }
+        if expensesChanged > 0 {
+            print("\(expensesChanged) expenses were migrated to new data model, committing change")
+            do {
+                try CoreDataUtil.sharedInstance.saveChanges()
+            } catch {
+                print("Error saving migrations: \(error.localizedDescription)")
+            }
         }
     }
     
