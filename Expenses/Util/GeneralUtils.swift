@@ -10,6 +10,6 @@ import Foundation
 
 class GeneralUtils {
     static public func removeTimeStamp(fromDate: Date) -> Date {
-        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: fromDate))
+        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: fromDate))!
     }
 }
