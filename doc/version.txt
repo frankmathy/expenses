@@ -4,8 +4,12 @@ Expensly - Release Notes
 (C) 2018 Frank Mathy
 http://expenslyapp.wordpress.com
 
+Version 1.3 - 
+--------------------------------
+- Watch App #83
+
 Version 1.2 - September 22, 2018
---------------------------
+--------------------------------
 - Fixed bug: Application crashes when using FX rates #100
 - Maps does not center on current location #101
 
