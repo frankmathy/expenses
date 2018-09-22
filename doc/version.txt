@@ -7,6 +7,7 @@ http://expenslyapp.wordpress.com
 Version 1.2 - September 22, 2018
 --------------------------
 - Fixed bug: Application crashes when using FX rates #100
+- Maps does not center on current location #101
 
 Version 1.1 - May 10, 2018
 --------------------------
