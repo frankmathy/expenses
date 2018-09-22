@@ -45,10 +45,13 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
                 switch(CLLocationManager.authorizationStatus()) {
                 case .authorizedWhenInUse:
                     locationManager.startUpdatingLocation()
+                    let location = locationManager.location
+                    if location != nil {
+                        setVisibleLocaction(newLocation: location!)
+                    }
                 default:
                     showLocationAlert()
                 }
-                locationManager.startUpdatingLocation()
             } else {
                 showLocationAlert()
             }
@@ -161,7 +164,7 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
         // Dispose of any resources that can be recreated.
     }
     
-/*    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    /*func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         var pin = mapView.dequeueReusableAnnotationView(withIdentifier: "VenuePin") as! MKPinAnnotationView?
         if pin == nil {
             pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "VenuePin")
@@ -171,15 +174,4 @@ class EditLocationViewController: UIViewController, CLLocationManagerDelegate, M
         pin?.pinTintColor = MKPinAnnotationView.greenPinColor()
         return pin
     }*/
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
