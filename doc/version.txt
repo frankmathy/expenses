@@ -4,8 +4,12 @@ Expensly - Release Notes
 (C) 2018 Frank Mathy
 http://expenslyapp.wordpress.com
 
-Version 1.1 - TBD
------------------
+Version 1.2 - September 22, 2018
+--------------------------
+- Fixed bug: Application crashes when using FX rates #100
+
+Version 1.1 - May 10, 2018
+--------------------------
 - Changed style of expense date view to match application
 - Rename account to budget #87
 - Add Foreign Exchange conversions #24

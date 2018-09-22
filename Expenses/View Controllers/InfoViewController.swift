@@ -28,6 +28,10 @@ class InfoViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPi
         self.present(picker, animated: true, completion: nil)
     }
     
+    @IBAction func resetRatesPressed(_ sender: UIButton) {
+        ExchangeRateService.sharedInstance.clearAllRates()
+    }
+    
     @IBAction func deleteAllExpensesPressed(_ sender: Any) {
         let alert = UIAlertController(title: NSLocalizedString("Expenses", comment: ""), message: NSLocalizedString("Delete all Expenses?", comment: ""), preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = sender as! UIButton

@@ -57,24 +57,25 @@ class ExchangeRateService {
                 return
             }
             if ratesResultsMap != nil  {
-                let rateValue = ratesResultsMap![baseCcy]
-                if rateValue != nil {
-                    completionHandler(rateValue, nil)
-                } else {
-                    print("Currency pair \(baseCcy)/\(termsCcy) not available")
-                    completionHandler(nil, "No rate available")
-                }
-                
-                // Store in local database
-                for (resultBaseCcy, rate) in ratesResultsMap! {
-                    do {
-                        let exchangeRate = try CDExchangeRateDAO.sharedInstance.addCurrentRate(baseCcy: resultBaseCcy, termsCcy: termsCcy, rateValue: rate)
-                        self.exchangeRateCache[resultBaseCcy + termsCcy] = exchangeRate
-                    } catch {
-                        print("Error saving rate for \(resultBaseCcy)/\(termsCcy): \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    let rateValue = ratesResultsMap![baseCcy]
+                    if rateValue != nil {
+                        completionHandler(rateValue, nil)
+                    } else {
+                        print("Currency pair \(baseCcy)/\(termsCcy) not available")
+                        completionHandler(nil, "No rate available")
+                    }
+                    
+                    // Store in local database
+                    for (resultBaseCcy, rate) in ratesResultsMap! {
+                        do {
+                            let exchangeRate = try CDExchangeRateDAO.sharedInstance.addCurrentRate(baseCcy: resultBaseCcy, termsCcy: termsCcy, rateValue: rate)
+                            self.exchangeRateCache[resultBaseCcy + termsCcy] = exchangeRate
+                        } catch {
+                            print("Error saving rate for \(resultBaseCcy)/\(termsCcy): \(error.localizedDescription)")
+                        }
                     }
                 }
-
             }
         }
     }
@@ -124,6 +125,12 @@ class ExchangeRateService {
             }
         }
         task.resume()
+    }
+    
+    func clearAllRates() {
+        exchangeRateCache.removeAll()
+        CDExchangeRateDAO.sharedInstance.removeAll()
+        print("Rates cache and database cleared")
     }
     
     static func getSymbol(forCurrencyCode code: String) -> String? {

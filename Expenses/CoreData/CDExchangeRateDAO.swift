@@ -51,4 +51,20 @@ class CDExchangeRateDAO {
         
         return rate
     }
+    
+    func removeAll() {
+        let managedContext = CoreDataUtil.sharedInstance.managedObjectContext!
+        let rateFetch = NSFetchRequest<ExchangeRate>(entityName: CDExchangeRateDAO.ENTITY_NAME)
+        do {
+            let items = try managedContext.fetch(rateFetch)
+            for item in items {
+                managedContext.delete(item)
+            }
+            try managedContext.save()
+            print("All rates deleted")
+        } catch let error as NSError {
+            print("Could not delete all rates. \(error), \(error.userInfo)")
+            return
+        }
+    }
 }
