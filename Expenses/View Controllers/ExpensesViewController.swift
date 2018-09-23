@@ -9,8 +9,11 @@
 import UIKit
 import Instructions
 import Firebase
+import WatchConnectivity
 
-class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksControllerDataSource, CoachMarksControllerDelegate {
+class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksControllerDataSource, CoachMarksControllerDelegate, WCSessionDelegate {
+    
+    var session: WCSession?
     
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var addExpenseButton: UIBarButtonItem!
@@ -32,6 +35,12 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if(WCSession.isSupported()) {
+            session = WCSession.default
+            session?.delegate = self
+            session?.activate()
+        }
         
         self.coachMarksController.dataSource = self
 
@@ -159,6 +168,7 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
                 self.indicator.hidesWhenStopped = true
             }
             self.tableView.reloadData()
+            self.updateWatchData()
         }
     }
     
@@ -253,6 +263,30 @@ class ExpensesViewController: UITableViewController, ModelDelegate, CoachMarksCo
         if totalsCell != nil {
             totalsCell!.dateRangeButton.setTitle(Model.sharedInstance.dateIntervalSelectionText(), for: .normal)
         }
+    }
+    
+    func updateWatchData() {
+        guard let session = session else { return }
+        let dateString = Model.sharedInstance.dateIntervalSelectionText()
+        let totalString = Model.sharedInstance.expenseByDateModel!.grandTotal.currencyInputFormatting(currencySymbol: SystemConfig.sharedInstance.appCurrencySymbol)
+        let context = ["dateRange" : dateString, "amount" : totalString]
+        do {
+            try session.updateApplicationContext(context)
+        } catch {
+            print("Update application context failed.")
+        }
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        print("sessionDidBecomeInactive")
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        print("sessionDidDeactivate")
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print("session activationState = \(activationState)")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

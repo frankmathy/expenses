@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14313.18" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch38" orientation="portrait">
+    <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -8,12 +8,31 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14238.10"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--Expensly-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Expenses_Watch_App" customModuleProvider="target"/>
+                <controller title="Expensly" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Expenses_Watch_App" customModuleProvider="target">
+                    <items>
+                        <group width="1" alignment="left" layout="vertical" radius="9" id="s59-Ng-4sZ">
+                            <items>
+                                <label alignment="left" verticalAlignment="center" text="---" id="vAO-Tt-onP">
+                                    <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </label>
+                                <label alignment="right" verticalAlignment="center" text="---" textAlignment="left" id="Xqa-rO-k9a">
+                                    <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" red="0.74715266270000003" green="0.85951117330000004" blue="0.98587031579999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <edgeInsets key="margins" left="6" right="6" top="6" bottom="6"/>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="amountField" destination="Xqa-rO-k9a" id="nwz-EI-mRj"/>
+                        <outlet property="dateRangeLabel" destination="vAO-Tt-onP" id="cnq-1f-CVW"/>
+                    </connections>
+                </controller>
             </objects>
-            <point key="canvasLocation" x="164" y="249"/>
+            <point key="canvasLocation" x="163.89743589743591" y="248.89743589743591"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">

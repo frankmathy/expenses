@@ -8,23 +8,46 @@
 
 import WatchKit
 import Foundation
+import WatchConnectivity
 
 
-class InterfaceController: WKInterfaceController {
-
+class InterfaceController: WKInterfaceController, WCSessionDelegate {
+    
+    private var session: WCSession?
+    @IBOutlet weak var dateRangeLabel: WKInterfaceLabel!
+    @IBOutlet weak var amountField: WKInterfaceLabel!
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        // Configure interface objects here.
+        if(WCSession.isSupported()) {
+            session = WCSession.default
+            session?.delegate = self
+            session?.activate()
+        }
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print("WatchkitSession activated with state \(activationState)")
+    }
+    
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        print("Watchkit: Received application context")
+        let dateRange = applicationContext["dateRange"] as? String
+        if dateRange != nil {
+            dateRangeLabel.setText(dateRange)
+        }
+        let amount = applicationContext["amount"] as? String
+        if amount != nil {
+            amountField.setText(amount)
+        }
     }
     
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
     }
     
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
 
