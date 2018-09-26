@@ -7,3 +7,6 @@
 */
 "CFBundleDisplayName" = "Expensly";
 "NSHumanReadableCopyright" = "2018 Frank Mathy - All rights reserved.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Expensly uses location information to show a map with nearby locations when selecting an expense location.";
+"NSLocationAlwaysUsageDescription" = "Expensly uses location information to show a map with nearby locations when selecting an expense location.";
+"NSLocationWhenInUseUsageDescription" = "Expensly uses location information to show a map with nearby locations when selecting an expense location.";

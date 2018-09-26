@@ -7,3 +7,6 @@
 */
 "CFBundleDisplayName" = "Expensly";
 "NSHumanReadableCopyright" = "2018 Frank Mathy - Alle Rechte vorbehalten.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Expensly verwendet Ihre Standortinformation, um eine Karte mit nahegelegenen Orten anzuzeigen, wenn Sie den Ausgabenort wählen.";
+"NSLocationAlwaysUsageDescription" = "Expensly verwendet Ihre Standortinformation, um eine Karte mit nahegelegenen Orten anzuzeigen, wenn Sie den Ausgabenort wählen.";
+"NSLocationWhenInUseUsageDescription" = "Expensly verwendet Ihre Standortinformation, um eine Karte mit nahegelegenen Orten anzuzeigen, wenn Sie den Ausgabenort wählen.";

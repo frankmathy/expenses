@@ -24,12 +24,6 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Expensly uses location information to show a map with nearby locations when selecting an expense location.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Expensly uses location information to show a map with nearby locations when selecting an expense location.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Expensly uses location information to show a map with nearby locations when selecting an expense location.</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
