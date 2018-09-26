@@ -19,17 +19,17 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.2</string>
 	<key>CFBundleVersion</key>
-	<string>45</string>
+	<string>46</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Program requires GPS to determine current location</string>
+	<string>Expensly uses location information to show a map with nearby locations when selecting an expense location.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Program requires GPS to determine current location</string>
+	<string>Expensly uses location information to show a map with nearby locations when selecting an expense location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Program requires GPS to determine current location</string>
+	<string>Expensly uses location information to show a map with nearby locations when selecting an expense location.</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
