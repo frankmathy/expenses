@@ -7,7 +7,6 @@
 
 import UIKit
 import Instructions
-import Firebase
 
 class ExpenseByCategoryTableViewController: UITableViewController, ModelDelegate, CoachMarksControllerDataSource, CoachMarksControllerDelegate {
 
@@ -48,8 +47,6 @@ class ExpenseByCategoryTableViewController: UITableViewController, ModelDelegate
             SystemConfig.sharedInstance.expenseReportScreenHelpWasDisplayed = true
             self.coachMarksController.start(on: self)
         }
-        
-        Analytics.logEvent("category_report_opened", parameters: [:])
     }
     
     override func viewWillDisappear(_ animated: Bool) {

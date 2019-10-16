@@ -395,7 +395,6 @@
 				852F27BE1FCA2C0C006988A5 /* Frameworks */,
 				852F27BF1FCA2C0C006988A5 /* Resources */,
 				55A9A3577B4B73E1C5FE733C /* [CP] Embed Pods Frameworks */,
-				55A09FF8053CCDF22E277C6D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -414,8 +413,6 @@
 				852F27D11FCA2C0C006988A5 /* Sources */,
 				852F27D21FCA2C0C006988A5 /* Frameworks */,
 				852F27D31FCA2C0C006988A5 /* Resources */,
-				CC3CDB2DDE1B6D33D75232B0 /* [CP] Embed Pods Frameworks */,
-				4E07E1029DEDF114C00650E3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -435,8 +432,6 @@
 				852F27DC1FCA2C0C006988A5 /* Sources */,
 				852F27DD1FCA2C0C006988A5 /* Frameworks */,
 				852F27DE1FCA2C0C006988A5 /* Resources */,
-				883DB23DF65E221CA4D3F1FD /* [CP] Embed Pods Frameworks */,
-				89592A4603FFCC893A4840AB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -554,93 +549,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4E07E1029DEDF114C00650E3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExpensesTests/Pods-ExpensesTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		55A09FF8053CCDF22E277C6D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Expenses/Pods-Expenses-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		55A9A3577B4B73E1C5FE733C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Expenses/Pods-Expenses-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Expenses/Pods-Expenses-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Instructions/Instructions.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Instructions.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Expenses/Pods-Expenses-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		883DB23DF65E221CA4D3F1FD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ExpensesUITests/Pods-ExpensesUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-NSData+zlib/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExpensesUITests/Pods-ExpensesUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		89592A4603FFCC893A4840AB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExpensesUITests/Pods-ExpensesUITests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Expenses/Pods-Expenses-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B09C12C112801BEC78DA65AA /* [CP] Check Pods Manifest.lock */ = {
@@ -659,26 +585,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CC3CDB2DDE1B6D33D75232B0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ExpensesTests/Pods-ExpensesTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-NSData+zlib/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExpensesTests/Pods-ExpensesTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CDF6FD79DFFA137CD62DE9F6 /* [CP] Check Pods Manifest.lock */ = {
@@ -946,6 +852,7 @@
 				CODE_SIGN_ENTITLEMENTS = Expenses/Expenses.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = Y2NF3B2C3V;
 				INFOPLIST_FILE = Expenses/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -953,6 +860,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.frankmathy.ios.ExpensesNew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -967,6 +875,7 @@
 				CODE_SIGN_ENTITLEMENTS = Expenses/Expenses.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = Y2NF3B2C3V;
 				INFOPLIST_FILE = Expenses/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -974,6 +883,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.frankmathy.ios.ExpensesNew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

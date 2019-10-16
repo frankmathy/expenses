@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 import Instructions
 import ActionSheetPicker_3_0
-import Firebase
 
 class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerDataSource, CoachMarksControllerDelegate {
     
@@ -218,7 +217,6 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
             self.expense?.currency = selectedValue as! String
             self.updateCurrencyButton()
             self.reCalculateAmount()
-            Analytics.logEvent("edit_expense", parameters: ["action" : "set_currency" as NSObject, "currency" : selectedValue as! NSObject])
             return
         }, cancel: {_ in }, origin: sender)
     }
@@ -323,7 +321,6 @@ extension ExpenseDetailsViewController {
             expense?.venueName = pickerController.venueName
             expense?.venueLng = pickerController.venueLng!
             expense?.venueLat = pickerController.venueLat!
-            Analytics.logEvent("edit_expense", parameters: ["action" : "update_location" as NSObject])
         }
         updateLocationField()
     }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 
 class NamedItemPickerViewController: UITableViewController {
 
@@ -71,7 +70,6 @@ class NamedItemPickerViewController: UITableViewController {
             CDNamedItemDAO.sharedInstance.delete(item: item)
             self.valueList?.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-            Analytics.logEvent("nameditem_edited", parameters: ["action" : "delete" as NSObject, "type" : self.itemType! as NSObject])
         }
     }
     
@@ -101,7 +99,6 @@ class NamedItemPickerViewController: UITableViewController {
                     // TODO Error handling
                     print("Error adding named item: \(error.localizedDescription)")
                 }
-                Analytics.logEvent("nameditem_edited", parameters: ["action" : "add" as NSObject, "type" : self.itemType! as NSObject])
             }
         }
     }
