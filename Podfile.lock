@@ -1,20 +1,16 @@
 PODS:
   - ActionSheetPicker-3.0 (2.3.0)
-  - Instructions (1.0.0)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.3.0)
-  - Instructions (~> 1.0.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - ActionSheetPicker-3.0
-    - Instructions
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
-  Instructions: 11b6744e572b8cab6f61e9445403cb95fcde68f1
 
-PODFILE CHECKSUM: bf8f03c1e4065c1d2399be8216e77e5566fb372e
+PODFILE CHECKSUM: 58bcc46727432ec9499a5a16383e96921174ebf0
 
 COCOAPODS: 1.8.3

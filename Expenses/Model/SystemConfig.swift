@@ -22,7 +22,6 @@ class SystemConfig {
     let KeyLastAccount = "LastAccount"
     let KeyMainScreenHelpWasDisplayed = "MainScreenHelpWasDisplayed"
     let KeyExpenseDetailsScreenHelpWasDisplayed = "ExpenseDetailsScreenHelpWasDisplayed"
-    let KeyExpenseReportScreenHelpWasDisplayed = "ExpenseReportScreenHelpWasDisplayed"
     let KeyInfoScreenHelpWasDisplayed = "InfoScreenHelpWasDisplayed"
 
     var appCurrencyCode: String {
@@ -77,45 +76,5 @@ class SystemConfig {
         set(category) {
             userDefaults.set(category, forKey: KeyLastAccount)
         }
-    }
-    
-    var mainScreenHelpWasDisplayed: Bool {
-        get {
-            return userDefaults.bool(forKey: KeyMainScreenHelpWasDisplayed)
-        }
-        
-        set(category) {
-            userDefaults.set(category, forKey: KeyMainScreenHelpWasDisplayed)
-        }
-    }
-    
-    var expenseDetailsScreenHelpWasDisplayed: Bool {
-        get {
-            return userDefaults.bool(forKey: KeyExpenseDetailsScreenHelpWasDisplayed)
-        }
-        
-        set(category) {
-            userDefaults.set(category, forKey: KeyExpenseDetailsScreenHelpWasDisplayed)
-        }
-    }
-    
-    var expenseReportScreenHelpWasDisplayed: Bool {
-        get {
-            return userDefaults.bool(forKey: KeyExpenseReportScreenHelpWasDisplayed)
-        }
-        
-        set(category) {
-            userDefaults.set(category, forKey: KeyExpenseReportScreenHelpWasDisplayed)
-        }
-    }
-    
-    var infoScreenHelpWasDisplayed: Bool {
-        get {
-            return userDefaults.bool(forKey: KeyInfoScreenHelpWasDisplayed)
-        }
-        
-        set(category) {
-            userDefaults.set(category, forKey: KeyInfoScreenHelpWasDisplayed)
-        }
-    }
+    }    
 }

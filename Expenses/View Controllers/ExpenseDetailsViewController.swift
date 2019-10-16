@@ -8,10 +8,9 @@
 
 import UIKit
 import MapKit
-import Instructions
 import ActionSheetPicker_3_0
 
-class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerDataSource, CoachMarksControllerDelegate {
+class ExpenseDetailsViewController: UITableViewController {
     
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var convertedAmountField: UILabel!
@@ -34,14 +33,8 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
     
     var newExpense : Bool?
     
-    let coachMarksController = CoachMarksController()
-    
-    let helpTextIds = [ "Help.ExpenseDetails.General", "Help.ExpenseDetails.Currency", "Help.ExpenseDetails.Location", "Help.ExpenseDetails.Comment", "Help.ExpenseDetails.Save" ]
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.coachMarksController.dataSource = self
         amountTextField.addTarget(self, action: #selector(amountTextFieldDidChange), for: .editingChanged)
         commentField.addTarget(self, action: #selector(commentTextFieldDidChange), for: .editingChanged)
 
@@ -97,56 +90,14 @@ class ExpenseDetailsViewController: UITableViewController, CoachMarksControllerD
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         amountTextField.becomeFirstResponder()
-        if !SystemConfig.sharedInstance.expenseDetailsScreenHelpWasDisplayed {
-            SystemConfig.sharedInstance.expenseDetailsScreenHelpWasDisplayed = true
-            self.coachMarksController.start(on: self)
-        }
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.coachMarksController.stop(immediately: true)
-    }
-    
-    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
-        return helpTextIds.count
-    }
-    
-    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
-        switch index {
-        case 0:
-            return coachMarksController.helper.makeCoachMark(for: amountTextField)
-        case 1:
-            return coachMarksController.helper.makeCoachMark(for: currencyLabel)
-        case 2:
-            return coachMarksController.helper.makeCoachMark(for: locationField)
-        case 3:
-            return coachMarksController.helper.makeCoachMark(for: commentField)
-        case 4:
-            let s = saveButton?.value(forKey: "view") as! UIView
-            return coachMarksController.helper.makeCoachMark(for: s)
-        default:
-            return coachMarksController.helper.makeCoachMark(for: self.view)
-        }
-    }
-    
     private func createInvisibleImage(cellFrame: CGRect) -> UIImageView {
         let overlayImage = UIImageView(frame: cellFrame)
         overlayImage.image = UIImage(named: "arrow_horiz_right_short")
         overlayImage.contentMode = .center
         overlayImage.isHidden=true
         return overlayImage
-    }
-    
-    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
-        let coachViews = coachMarksController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: coachMark.arrowOrientation)
-        coachViews.bodyView.hintLabel.text = NSLocalizedString(helpTextIds[index], comment: "")
-        coachViews.bodyView.nextLabel.text = NSLocalizedString(index < helpTextIds.count-1  ? "Next" : "Done", comment: "")
-        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
-    }
-    
-    @IBAction func onHelpButtonPressed(_ sender: UIBarButtonItem) {
-        self.coachMarksController.start(on: self)
     }
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
